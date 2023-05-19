@@ -18,6 +18,9 @@ const button_variants = cva(
             // info : like details, etc.
           info:
             '',
+            // warning
+          warning:
+            '',
             // clear enough  
           disabled: '',
             //To highlight a button
