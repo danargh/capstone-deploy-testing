@@ -1,20 +1,38 @@
 {
-   "name": "capstone-kelompok-3",
-   "version": "0.1.0",
-   "private": true,
-   "scripts": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start",
-      "lint": "next lint"
-   },
-   "dependencies": {
-      "autoprefixer": "10.4.14",
-      "class-variance-authority": "^0.6.0",
-      "next": "13.4.2",
-      "postcss": "8.4.23",
-      "react": "18.2.0",
-      "react-dom": "18.2.0",
-      "tailwindcss": "3.3.2"
-   }
+  "name": "capstone-kelompok-3",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "10.4.14",
+    "class-variance-authority": "^0.6.0",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.4",
+    "next": "13.4.2",
+    "postcss": "8.4.23",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.2"
+  },
+  "description": "",
+  "main": "next.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kelompok-3-Capstone-Alterra-2023/Frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kelompok-3-Capstone-Alterra-2023/Frontend/issues"
+  },
+  "homepage": "https://github.com/Kelompok-3-Capstone-Alterra-2023/Frontend#readme"
 }
