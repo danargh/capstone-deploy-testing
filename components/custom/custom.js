@@ -36,7 +36,7 @@ const button_variants = cva(["font-normal", "rounded-lg", "gap-3", "flex", "just
    },
 });
 
-const text_variants = cva("font-inter", {
+const text_variants_inter = cva("font-inter", {
    variants: {
       variant: {
          inter_32_bold: ["text-xl", "font-bold"],
@@ -52,4 +52,19 @@ const text_variants = cva("font-inter", {
    },
 });
 
-export { button_variants, text_variants };
+const text_variants_poppins = cva("font-poppins", {
+   variants: {
+      variant: {
+         poppins_bold: ["font-bold"],
+      },
+      size: {
+         xs: ["text-xs"],
+         sm: ["text-sm"],
+         md: ["text-md"],
+         lg: ["text-lg"],
+         xl: ["text-xl"],
+      },
+   },
+});
+
+export { button_variants, text_variants_inter, text_variants_poppins };
