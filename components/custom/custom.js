@@ -36,7 +36,7 @@ const button_variants = cva(["font-normal", "rounded-lg", "gap-3", "flex", "just
     },
 });
 
-const text_variants = cva("font-inter", {
+const text_variants_inter = cva("font-inter", {
     variants: {
         variant: {
             inter_32_bold: ["text-xl", "font-bold"],
@@ -52,6 +52,21 @@ const text_variants = cva("font-inter", {
     },
 });
 
+const text_variants_poppins = cva("font-poppins", {
+    variants: {
+        variant: {
+            poppins_bold: ["font-bold"],
+        },
+        size: {
+            xs: ["text-xs"],
+            sm: ["text-sm"],
+            md: ["text-md"],
+            lg: ["text-lg"],
+            xl: ["text-xl"],
+        },
+    },
+});
+
 const input_variants = cva('w-full', {
     variants: {
         variant: {
@@ -61,7 +76,7 @@ const input_variants = cva('w-full', {
             textarea: ["rounded-lg h-[312px] border-warning-black-70"],
             chat_text: ['rounded-2xl h-[43px] bg-warning-black-40 border-warning-black-900 border-4'],
             chat_textarea: ["rounded-lg h-[222px] border-warning-black-70"],
-            image: [" border  rounded-s-lg border-warning-black-70 file:bg-transparent file:border-0 py-2 ps-2 "],
+            image: [" border  rounded-s-lg border-warning-black-70  py-2 ps-2 "],
         },
         defaultVariants: {
             variant: "default",
@@ -70,4 +85,4 @@ const input_variants = cva('w-full', {
     }
 })
 
-export { button_variants, text_variants, input_variants };
+export { button_variants, text_variants_inter, text_variants_poppins, input_variants };

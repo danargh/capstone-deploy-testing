@@ -1,3 +1,4 @@
+
 import { button_variants, text_variants, input_variants } from "@/components/custom/custom";
 import Input from "@/components/forms/Input";
 import Input_file from "@/components/forms/Input_file";
@@ -44,5 +45,5 @@ export default function Home() {
             <Input_file />
 
         </main>
-    );
+    )
 }
