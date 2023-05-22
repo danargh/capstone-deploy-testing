@@ -1,13 +1,12 @@
 # CHANGELOG
 
+## 22 - 05 - 2023
+
+- Changes : Changed Avatar and Badge
+
 ## 19 - 05 - 2023
 
-### Major Changes
-
-- New : Added Custom Colour Code for Web Green, Danger Red, Success Green, Warning Yellow, and Warning Black(?) (unconfirmed).
-- New : Added new button variants (Warning)
-
-### Minor Changes
+- New : Added Custom Colour Code for Web Green, Danger Red, Success Green, Warning Yellow, and Neutral.
 
 ## 17 - 05 - 2023
 
