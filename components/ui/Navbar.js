@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { text_variants_poppins } from "@/components/custom/custom";
 import searchIcon from "@/public/assets/icons/search-icon.svg";
+import { AddIcon } from "@/public/assets/icons/icons";
 
 const Navbar = () => {
    return (
@@ -11,11 +11,7 @@ const Navbar = () => {
                   <Image src="/assets/logo/logo-p-white.png" alt="Logo" width={32} height={47} />
                </a>
                <div>
-                  <ul
-                     className={`${text_variants_poppins({
-                        size: "lg",
-                     })} font-[700] flex flex-row gap-[61px]  text-white`}
-                  >
+                  <ul className="font-poppins text-[24px] font-[700] flex flex-row gap-[61px]  text-white">
                      <li>
                         <a href="">Home</a>{" "}
                      </li>

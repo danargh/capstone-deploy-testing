@@ -1,15 +1,11 @@
-import { text_variants_poppins } from "@/components/custom/custom";
+import Image from "next/image";
 
 const Footer = () => {
    return (
       <>
          <footer className="bg-web-green-300  text-white flex justify-center">
-            <div className={`${text_variants_poppins({ size: "sm" })} max-w-[1440px]`}>
-               <div
-                  className={`${text_variants_poppins({
-                     size: "lg",
-                  })} flex gap-[61px] justify-center font-bold py-7`}
-               >
+            <div className=" font-poppins text-[20px] max-w-[1440px]">
+               <div className="font-poppins text-[24px] flex gap-[61px] justify-center font-bold py-7">
                   <div>About</div>
                   <div>Contact Us</div>
                   <div>Privacy Policy</div>
@@ -45,6 +41,32 @@ const Footer = () => {
                      <p className="font-[600] leading-relaxed">
                         Download aplikasi Prevent di play sotre secara gratis.
                      </p>
+                     <div className="flex items-center gap-3 mt-3">
+                        <Image
+                           src="/assets/logo/logo-p-green.png"
+                           alt="Logo"
+                           width={90}
+                           height={83}
+                        />
+                        <div className="flex flex-col gap-3">
+                           <button>
+                              <Image
+                                 src="/assets/images/google-play.png"
+                                 alt="Logo"
+                                 width={120}
+                                 height={48}
+                              />
+                           </button>
+                           <button>
+                              <Image
+                                 src="/assets/images/app-store.png"
+                                 alt="Logo"
+                                 width={120}
+                                 height={48}
+                              />
+                           </button>
+                        </div>
+                     </div>
                   </div>
                </div>
                <div className="text-center py-10">
