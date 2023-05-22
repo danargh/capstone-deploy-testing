@@ -3,13 +3,13 @@ import { input_variants } from "@/components/custom/custom";
 import { useState } from "react";
 
 
-const Input_file = ({ handleSelectedFile }) => {
+const InputFile = ({ handleSelectedFile }) => {
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setSelectedFile(file);
-        handleSelectedFile(file); // Pass the selected file value to the prop
+        handleSelectedFile(file);
     };
 
     return (
@@ -27,4 +27,4 @@ const Input_file = ({ handleSelectedFile }) => {
     );
 };
 
-export default Input_file;
+export default InputFile;
