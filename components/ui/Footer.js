@@ -6,34 +6,60 @@ const Footer = () => {
          <footer className="bg-web-green-300  text-white flex justify-center">
             <div className=" font-poppins text-[20px] max-w-[1440px]">
                <div className="font-poppins text-[24px] flex gap-[61px] justify-center font-bold py-7">
-                  <div>About</div>
-                  <div>Contact Us</div>
-                  <div>Privacy Policy</div>
-                  <div>Term and Condition</div>
+                  <div>
+                     <a href="#">About</a>
+                  </div>
+                  <div>
+                     <a href="#">Contact Us</a>
+                  </div>
+                  <div>
+                     <a href="#">Privacy Policy</a>
+                  </div>
+                  <div>
+                     <a href="#">Term and Condition</a>
+                  </div>
                </div>
                <div className="flex gap-10 justify-center py-28">
                   <div>
                      <div className="text-[24px] font-[700] leading-normal">EXPLORE PROPERTIES</div>
                      <ul className="font-[600] leading-relaxed">
-                        <li>Home</li>
-                        <li>Artikel</li>
-                        <li>Docter</li>
+                        <li>
+                           <a href="#">Home</a>
+                        </li>
+                        <li>
+                           <a href="#">Artikel</a>
+                        </li>
+                        <li>
+                           <a href="#">Dokter</a>
+                        </li>
                      </ul>
                   </div>
                   <div>
                      <div className="text-[24px]  font-[700] leading-normal">OVERVIEW</div>
                      <ul className="font-[600] leading-relaxed">
-                        <li>About Us</li>
-                        <li>Contact</li>
-                        <li>Terms Of Use</li>
-                        <li>Privacy Policy</li>
+                        <li>
+                           <a href="#">About Us</a>
+                        </li>
+                        <li>
+                           <a href="#">Contact</a>
+                        </li>
+                        <li>
+                           <a href="#">Term and Condition</a>
+                        </li>
+                        <li>
+                           <a href="#">Privacy Policy</a>
+                        </li>
                      </ul>
                   </div>
                   <div className="w-[270px]">
                      <div className="text-[24px]  font-[700] leading-normal">COMMUNITY</div>
                      <ul className="font-[600] leading-relaxed">
-                        <li>Community central</li>
-                        <li>Help</li>
+                        <li>
+                           <a href="#">Community central</a>
+                        </li>
+                        <li>
+                           <a href="#">Help</a>
+                        </li>
                      </ul>
                   </div>
                   <div>
