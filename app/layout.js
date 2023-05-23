@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/Footer";
+import 'react-quill/dist/quill.snow.css'
 
 import "flowbite";
 
