@@ -39,8 +39,6 @@ export default function Home() {
          <p className={text_variants_poppins({ variant: "poppins_bold", size: "xl" })}>
             Poppins a bold xl
          </p>
-         <div className=" w-full">
-         </div>
       </main>
    );
 }
