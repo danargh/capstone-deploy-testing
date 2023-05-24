@@ -1,7 +1,7 @@
 const NavbarDokter = () => {
    return (
       <>
-         <nav className=" bg-web-green-300">
+         <nav className=" bg-web-green-300 m-0 p-0">
             <div className="max-w-[1440px] flex flex-wrap items-center justify-between mx-auto p-[22px]">
                 <div className="flex flex-wrap items-center">
                     <a href="#home">
