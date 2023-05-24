@@ -1,6 +1,5 @@
 import React from 'react';
-import filterIconUrl from '../../public/assets/icons/filter_alt.svg';
-import PersonIconUrl from '../../public/assets/icons/community-register.svg';
+import { FilterIcon, PersonIcon } from '@/public/assets/icons/icons';
 
 import Image from 'next/image';
 
@@ -55,10 +54,7 @@ export const Filter = ({ onClick }) => {
    return (
       <button className={button_variants({ variant: 'ic_black', size: 'default' })} onClick={onClick}>
          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Image
-               src={filterIconUrl} // jalur ke gambar Anda
-               alt="Filter Icon"
-            />
+            <FilterIcon />
             <p className={text_variants_inter({ variant: 'inter_24_reguler' })}>Filter Data</p>
          </div>
       </button>
@@ -169,10 +165,7 @@ export const Register = ({ onClick }) => {
    return (
       <button className={button_variants({ variant: 'green_bg', size: 'default' })} onClick={onClick}>
          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Image
-               src={PersonIconUrl} // jalur ke gambar Anda
-               alt="Filter Icon"
-            />
+            <PersonIcon />
             <p className={text_variants_poppins({ size: 'sm' })}>Register</p>
          </div>
       </button>
