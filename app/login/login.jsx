@@ -10,9 +10,9 @@ import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
 export default function Login() {
    return (
       <>
-         <section className="flex bg-gray-500 h-screen">
-            <div className="w-full bg-[#7CA153] font-poppins text-[16px] font-[700] flex flex-col justify-between">
-               <div className=" mt-4">
+         <section className="flex bg-gray-500 min-screen-2xl h-screen">
+            <div className="w-1/2 bg-[#7CA153] font-poppins text-[16px] font-[700] flex flex-col justify-between">
+               <div className="mt-4">
                   <Image
                      className="mx-auto"
                      src="/assets/logo/logo-APP-solo-white.png"
@@ -41,28 +41,37 @@ export default function Login() {
                   />
                </div>
             </div>
-            <div className="w-full bg-neutral-0">
-               {/* <ArrowBackIcon2 fill="black" /> */}
-               <p className="font-poppins font-[700] text-[36px] text-[#7CA153]">Dokter Area</p>
-               <Input
-                  type="text"
-                  placeholder="email"
-                  className={input_variants({ variant: "dokter_login" })}
-               />
-               <Input
-                  type="password"
-                  placeholder="password"
-                  className={input_variants({ variant: "dokter_login" })}
-               />
-               <a href="#" className="font-poppins font-[700] text-[12px] text-web-green-500">
-                  Lupa kata sandi?
-               </a>
-               <LoginDokter
-                  onClick={() => {
-                     console.log("halo");
-                  }}
-               />
-               <Filter />
+            <div className="w-1/2 bg-neutral-0 flex flex-col justify-center">
+               <i className="relative top-[-180px] left-10">
+                  <ArrowBackIcon2 width="60" height="60" />
+               </i>
+               <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
+                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">
+                     Dokter Area
+                  </p>
+                  <form onSubmit={{}} className="flex flex-col gap-8">
+                     <Input
+                        type="text"
+                        placeholder="email"
+                        className={input_variants({ variant: "dokter_login" })}
+                     />
+                     <Input
+                        type="password"
+                        placeholder="password"
+                        className={input_variants({ variant: "dokter_login" })}
+                     />
+                  </form>
+                  <a
+                     href="#"
+                     className=" text-right font-poppins font-[700] text-[12px] text-web-green-500"
+                  >
+                     Lupa kata sandi?
+                  </a>
+
+                  <Button className={button_variants({ variant: "default", size: "full" })}>
+                     <p className="font-poppins font-[700]">Log In</p>
+                  </Button>
+               </div>
             </div>
          </section>
       </>

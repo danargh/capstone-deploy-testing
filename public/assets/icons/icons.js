@@ -437,6 +437,7 @@ const ArrowBackIcon2 = ({ width = "32", height = "32", fill = "white" }) => {
             fill={fill}
             d="M36.167 16L20.667 32L36.167 48"
             stroke="black"
+            strokeWidth="3"
             stroke-linecap="round"
          />
       </svg>
