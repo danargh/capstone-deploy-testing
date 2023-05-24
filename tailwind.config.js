@@ -55,7 +55,6 @@ module.exports = {
                 400: "#b29701",
                 500: "#9b8301",
             },
-            // The usage is unclear - need to clarify!
             neutral: {
                 0: "#ffffff",
                 10: "#fafafa",
