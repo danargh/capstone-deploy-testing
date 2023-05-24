@@ -8,7 +8,7 @@ export default function Card({ images, title, description, href, postId, handleD
       <>
          <div className="flex flex-col items-start isolation-auto  w-[410px] h-[528px]  bg-neutral-0 shadow-md rounded-lg border border-neutral-40">
             <div className="w-[410px] h-[256px] rounded-t-lg  overflow-hidden">
-               <Image src={images} alt="Title" width={410} height={256} />
+               <Image className="w-full h-auto" src={images} alt="Title" width={410} height={0} />
             </div>
             <div className="flex flex-col items-center w-[410px] h-[248px]">
                <div className="flex w-96 h-fit items-center justify-center px-4 -mt-24 bg-neutral-0 rounded-t-xl">

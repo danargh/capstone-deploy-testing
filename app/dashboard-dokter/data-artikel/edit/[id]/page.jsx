@@ -1,39 +1,46 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import useSWR, { mutate } from "swr";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
-import Input from "@/components/forms/Input";
 import { ArrowBackArtikelEditButton, KirimArtikelButton } from "@/components/ui/Button";
-import NavbarDokter from "@/components/ui/NavbarDokter";
 import InputFile from "@/components/forms/input-file";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function page({ params }) {
    const id = params.id;
-   const [artikel, setArtikel] = useState("");
-   const [category, setCategory] = useState("");
+   const { data: artikelData, error } = useSWR(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`, fetcher);
+   const [artikel, setArtikel] = React.useState("");
+   const [category, setCategory] = React.useState("");
 
-   useEffect(() => {
-      if (id) {
-         axios.get(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`).then((response) => {
-            const data = response.data;
-            setArtikel(data.artikel);
-            setCategory(data.category);
-         });
+   React.useEffect(() => {
+      if (artikelData) {
+         setArtikel(artikelData.artikel);
+         setCategory(artikelData.category);
       }
-   }, [id]);
+   }, [artikelData]);
 
    const updateArticle = async (id, data) => {
       try {
-         const response = await axios.put(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`, data);
-         return response.data;
+         const response = await fetch(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`, {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+         });
+         if (!response.ok) {
+            throw new Error("Error updating article");
+         }
+         const updatedData = await response.json();
+         mutate(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`);
+         return updatedData;
       } catch (error) {
          console.error("Error updating article:", error);
       }

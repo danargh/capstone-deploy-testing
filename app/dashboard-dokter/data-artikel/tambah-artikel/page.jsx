@@ -1,18 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import useSWR, { mutate } from "swr";
-import axios from "axios";
 import Swal from "sweetalert2";
 
-import Input from "@/components/forms/Input";
-import { ArrowBackArtikelButton, KirimArtikelButton } from "@/components/ui/Button";
-import NavbarDokter from "@/components/ui/NavbarDokter";
+import { KirimArtikelButton } from "@/components/ui/Button";
 import InputFile from "@/components/forms/input-file";
 import Link from "next/link";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import { ArrowBackArtikelButton } from "@/components/ui/Button";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function page() {
    const [artikel, setArtikel] = useState("");
@@ -27,8 +26,18 @@ export default function page() {
       };
 
       try {
-         const response = await axios.post("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article", data);
-         console.log(response.data);
+         const response = await fetch("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+         });
+         if (!response.ok) {
+            throw new Error("Error adding article");
+         }
+         const responseData = await response.json();
+         console.log(responseData);
          mutate("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article");
 
          // Tampilkan SweetAlert

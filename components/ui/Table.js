@@ -2,90 +2,47 @@ import React, { useState, useEffect } from 'react';
 import { PaginationOrderDokter } from './Pagination';
 
 export const TableOrder = (props) => {
-    const orderLength = props.order.length;
-    const [orderShow, setOrderShow] = useState("1");
-    const [currentPage, setCurentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(orderShow);
 
-    useEffect(() => {
-        setPostPerPage(orderShow);
-        setCurentPage(1);
-
-    }, [orderShow]);
-    const lastPostIndex = currentPage * postPerPage;
-    const firstPostIndex = lastPostIndex - postPerPage;
-    const handleSelectChange = (event) => {
-        setOrderShow(event.target.value);
-    };
     return (
-        <div className={props.className}>
-            <div className="relative flex py-10">
-                <p className='py-2'>Menampilkan</p>
-                <select id="data-per-page" className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-8 leading-tight focus:outline-none focus:border-blue-500 mx-5"
-                    value={orderShow}
-                    onChange={handleSelectChange}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                </select>
-                <p className='py-2'>Data</p>
-            </div>
-            <table className="border-collapse border w-full border-black">
-                <thead className={props.className}>
-                    <tr className="bg-gray-300 font-semibold h-[43px]"> {props.children}
-                        <th className='px-3 w-1/6 py-2'>
-                            <div className='flex items-center justify-between'>
-                                <p>Tanggal</p>
-                                <img className='ml-4 cursor-pointer' src={"/assets/icons/community-sort-down.svg"} />
-                            </div>
-                        </th>
-                        <th className='border border-black w-1/6'>Nama</th>
-                        <th className='border border-black w-1/6'>Jenis Kelamin</th>
-                        <th className='border border-black w-1/6'>Status</th>
-                        <th className='border border-black w-1/6'>Chat</th>
-                        <th className='border border-black w-1/6'>Telepon</th>
-                    </tr>
-                </thead>
-                <tbody className={props.className}>
-                    {props.order.slice(firstPostIndex, lastPostIndex).map((order) => (
-                        <tr scope="col" className=''>
-                            <td className='border border-black text-center'>{order.date}</td>
-                            <td className='border border-black text-center'>{order.name}</td>
-                            <td className='border border-black text-center'>{order.gender}</td>
-                            <td className='border border-black text-center'>{order.status}</td>
-                            {order.chat ?
-                                (<>
-                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></td>
+        <table className="border-collapse border w-full border-black">
+            <thead >
+                <tr className="bg-gray-300 font-semibold h-[43px]">
+                    <th className='border border-black'>No</th>
+                    <th className='border border-black'>Tanggal</th>
+                    <th className='border border-black'>Nama</th>
+                    <th className='border border-black'>Jenis Kelamin</th>
+                    <th className='border border-black'>Status</th>
+                    <th className='border border-black'>Chat</th>
+                    <th className='border border-black'>Telepon</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.order.slice(props.firstPostIndex, props.lastPostIndex).map((order, index) => (
+                    <tr className=''>
+                        <td className='border border-black text-center'>{index + 1}</td>
+                        <td className='border border-black text-center'>{order.date}</td>
+                        <td className='border border-black text-center'>{order.name}</td>
+                        <td className='border border-black text-center'>{order.gender}</td>
+                        <td className='border border-black text-center'>{order.status}</td>
+                        {order.chat ?
+                            (<>
+                                <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></td>
+                                <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
+
+                            </>)
+                            : (
+                                <>
                                     <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
+                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} /></td>
 
-                                </>)
-                                : (
-                                    <>
-                                        <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
-                                        <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} /></td>
+                                </>
+                            )
+                        }
+                    </tr>
+                ))}
 
-                                    </>
-                                )
-                            }
-                        </tr>
-                    ))}
-
-                </tbody>
-            </table>
-            <div className='flex justify-between items-center mt-10 mb-24'>
-                <div>Menampilkan {firstPostIndex + 1} ke {lastPostIndex > orderLength ? orderLength : lastPostIndex} dari {orderLength} data</div>
-                <PaginationOrderDokter
-                    totalPosts={orderLength}
-                    postPerPage={postPerPage}
-                    setCurrentPage={setCurentPage}
-                    currentPage={currentPage}
-                    orderShow={orderShow}
-                />
-            </div>
-
-        </div>
+            </tbody>
+        </table>
     );
 }
 

@@ -9,7 +9,7 @@ function layout({ children }) {
    return (
       <>
          <div className="bg-web-green-300 mb-28">
-            <div className="max-w-[1440px] mx-auto flex justify-between items-center py-3">
+            <div className="max-w-[1440px] mx-auto flex flex-col justify-between items-center py-3 sm:flex-row">
                <div className="flex items-center gap-3">
                   <Image
                      src={logoHelp}
@@ -52,12 +52,12 @@ function layout({ children }) {
                   </small>
                </div>
                <div>
-                  <Image src={navbarHelp} alt="" />
+                  <Image src={navbarHelp} alt="" className="hidden sm:block" />
                </div>
             </div>
          </div>
          <div>{children}</div>
-         <div className="flex flex-col items-center mb-[121px] mt-28">
+         <div className="flex flex-col items-center mb-[121px] mt-28 px-5">
             <p className=" font-semibold text-lg">
                Apakah Anda membutuhkan bantuan lebih lanjut?
             </p>

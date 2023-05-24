@@ -8,8 +8,6 @@ import Link from "next/link";
 function page(props) {
    const [selectedFile, setSelectedFile] = useState(null);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   const [selectedUser, setSelectedUser] = useState(0);
-   const [newMessage, setNewMessage] = useState("");
    const resepObat = props.router?.query.resepObat;
 
    // useEffect(() => {
@@ -28,6 +26,9 @@ function page(props) {
    //       }
    //    });
    // }, []);
+
+   const [selectedUser, setSelectedUser] = useState("0");
+   const [newMessage, setNewMessage] = useState("");
 
    const handleInputChange = (e) => {
       setNewMessage(e.target.value);
@@ -161,11 +162,17 @@ function page(props) {
                <div className=" flex-grow">
                   <div className="flex items-center justify-between bg-web-green-75 px-3 py-2">
                      <form onSubmit={handleFormSubmit} className="flex w-full">
-                        <div className="flex items-center gap-3 w-full">
+                        <div className="flex items-center gap-3 w-full h-auto">
                            <div>
-                              <label htmlFor="file-input" className="cursor-pointer">
+                              <label htmlFor="file-input" className="cursor-pointer relative">
                                  {selectedFile ? (
-                                    selectedFile.name
+                                    <>
+                                       <div className="absolute z-10 bottom-10 p-3  border border-black w-[200px]">
+                                          <img src={URL.createObjectURL(selectedFile)} alt={selectedFile.name} className="selected-image   " />
+                                       </div>
+
+                                       <div className="line-clamp-1 w-24"> {selectedFile.name}</div>
+                                    </>
                                  ) : (
                                     <>
                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,12 +191,13 @@ function page(props) {
                               <input id="file-input" className="hidden" type="file" onChange={handleFileChange} />
                            </div>
 
-                           <input type="text " placeholder="Tulis pesan anda" className="bg-web-green-75 text-[16px] px-4 w-full" value={newMessage} onChange={handleInputChange} />
+                           <input type="text " placeholder="Tulis pesan anda" className="bg-web-green-75 text-[16px] px-4 w-full h-auto resize-none" value={newMessage} onChange={handleInputChange} />
                         </div>
                         <label htmlFor="chat-submit" className="cursor-pointer">
                            <svg width={25} height={25} viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <rect width={25} height={25} rx={5} fill="#769E4B" />
                               <mask id="mask0_1618_19880" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x={0} y={0} width={25} height={25}>
+                                 =======
                                  <path d="M25 0H0V25H25V0Z" fill="white" />
                               </mask>
                               <g mask="url(#mask0_1618_19880)">
@@ -213,7 +221,7 @@ function page(props) {
    );
 }
 
-const UserContact = ({ id, nama, chat, onClick }) => {
+const UserContact = ({ id, nama, onClick }) => {
    return (
       <>
          <div className="flex bg-neutral-10 px-5 py-2 items-center hover:bg-web-green-50 cursor-pointer" onClick={() => onClick(id)}>
@@ -284,7 +292,9 @@ const UserChat = ({ message, type }) => {
             </>
          ) : (
             <div className="flex gap-3 m-5 justify-end">
-               <div className=" w-1/2 bg-web-green-100 px-4 py-3  rounded-b-lg rounded-s-lg">{message}</div>
+               <div className=" w-1/2 h-auto bg-web-green-100 px-4 py-3  rounded-b-lg rounded-s-lg">
+                  <p className="w-full break-words">{message}</p>
+               </div>
                <svg width="50" height="50" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_1618_19825)">
                      <rect width="80" height="80" rx="40" fill="#8EBF59" />
