@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Input from "@/components/forms/Input";
-import Button from "@/components/ui/Button";
+import Button, { Filter, LoginDokter } from "@/components/ui/Button";
 import { input_variants, button_variants } from "@/components/custom/custom";
 import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
 
@@ -55,7 +57,12 @@ export default function Login() {
                <a href="#" className="font-poppins font-[700] text-[12px] text-web-green-500">
                   Lupa kata sandi?
                </a>
-               <Button />
+               <LoginDokter
+                  onClick={() => {
+                     console.log("halo");
+                  }}
+               />
+               <Filter />
             </div>
          </section>
       </>
