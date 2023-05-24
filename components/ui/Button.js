@@ -1,42 +1,31 @@
 import React from "react";
-import filterIconUrl from "../../public/assets/icons/filter_alt.svg";
-import PersonIconUrl from "../../public/assets/icons/community-register.svg";
-
+import { FilterIcon, PersonIcon } from "@/public/assets/icons/icons";
 import Image from "next/image";
 
 import { button_variants, text_variants_inter, text_variants_poppins } from "../custom/custom";
 
-export const DetailDokter = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "default", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "xs" })}>Detail</p>
-      </button>
-   );
-};
+// export const DetailDokter = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xs' })}>Detail</p>
+//       </button>
+//    );
+// };
 
-export const DaftarWhatsApp = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "outline_primary", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "lg" })}>WHATSAPP</p>
-      </button>
-   );
-};
-export const DaftarEmail = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "default", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "lg" })}>Email</p>
-      </button>
-   );
-};
+// export const DaftarWhatsApp = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'outline_primary', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'lg' })}>WHATSAPP</p>
+//       </button>
+//    );
+// };
+// export const DaftarEmail = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'lg' })}>Email</p>
+//       </button>
+//    );
+// };
 export const KirimKomentar = ({ onClick }) => {
    return (
       <button
@@ -73,10 +62,7 @@ export const Filter = ({ onClick }) => {
          onClick={onClick}
       >
          <div style={{ display: "flex", alignItems: "center" }}>
-            <Image
-               src={filterIconUrl} // jalur ke gambar Anda
-               alt="Filter Icon"
-            />
+            <FilterIcon />
             <p className={text_variants_inter({ variant: "inter_24_reguler" })}>Filter Data</p>
          </div>
       </button>
@@ -93,16 +79,13 @@ export const KirimPesan = ({ onClick }) => {
       </button>
    );
 };
-export const AddObat = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "green_bg", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "xs" })}>Add</p>
-      </button>
-   );
-};
+// export const AddObat = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'green_bg', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xs' })}>Add</p>
+//       </button>
+//    );
+// };
 
 export const SendObat = ({ onClick }) => {
    return (
@@ -114,27 +97,21 @@ export const SendObat = ({ onClick }) => {
       </button>
    );
 };
-export const KirimArtikel = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "default", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "xs" })}>Kirim Artikel</p>
-      </button>
-   );
-};
+// export const KirimArtikel = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xs' })}>Kirim Artikel</p>
+//       </button>
+//    );
+// };
 
-export const SimpanArtikel = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "default", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "xs" })}>Simpan Artikel</p>
-      </button>
-   );
-};
+// export const SimpanArtikel = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xs' })}>Simpan Artikel</p>
+//       </button>
+//    );
+// };
 
 export const LanjutkanProfile = ({ onClick }) => {
    return (
@@ -157,24 +134,21 @@ export const SimpanProfile = ({ onClick }) => {
    );
 };
 
-export const BatalHapusArtikel = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "outline_danger", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "xl" })}>Tidak</p>
-      </button>
-   );
-};
+// export const BatalHapusArtikel = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'outline_danger', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xl' })}>Tidak</p>
+//       </button>
+//    );
+// };
 
-export const HapusArtikel = ({ onClick }) => {
-   return (
-      <button className={button_variants({ variant: "danger", size: "default" })} onClick={onClick}>
-         <p className={text_variants_poppins({ size: "xl" })}>Ya</p>
-      </button>
-   );
-};
+// export const HapusArtikel = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'danger', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'xl' })}>Ya</p>
+//       </button>
+//    );
+// };
 
 export const ContinueWithdraw = ({ onClick }) => {
    return (
@@ -205,33 +179,24 @@ export const TutupWithdraw = ({ onClick }) => {
    );
 };
 
-export const SignIn = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "green_bg", size: "default" })}
-         onClick={onClick}
-      >
-         <p className={text_variants_poppins({ size: "sm" })}>Sign In</p>
-      </button>
-   );
-};
+// export const SignIn = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'green_bg', size: 'default' })} onClick={onClick}>
+//          <p className={text_variants_poppins({ size: 'sm' })}>Sign In</p>
+//       </button>
+//    );
+// };
 
-export const Register = ({ onClick }) => {
-   return (
-      <button
-         className={button_variants({ variant: "green_bg", size: "default" })}
-         onClick={onClick}
-      >
-         <div style={{ display: "flex", alignItems: "center" }}>
-            <Image
-               src={PersonIconUrl} // jalur ke gambar Anda
-               alt="Filter Icon"
-            />
-            <p className={text_variants_poppins({ size: "sm" })}>Register</p>
-         </div>
-      </button>
-   );
-};
+// export const Register = ({ onClick }) => {
+//    return (
+//       <button className={button_variants({ variant: 'green_bg', size: 'default' })} onClick={onClick}>
+//          <div style={{ display: 'flex', alignItems: 'center' }}>
+//             <PersonIcon />
+//             <p className={text_variants_poppins({ size: 'sm' })}>Register</p>
+//          </div>
+//       </button>
+//    );
+// };
 
 export const LoginUser = ({ onClick }) => {
    return (
