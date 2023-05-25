@@ -20,7 +20,7 @@ export default function Dokter() {
 
   return (
     <>
-    <div className="bg-neutral-0 w-[1440px] h-[1495px] relative overflow-hidden">
+    <div className="bg-neutral-0 w-[1440px] h-[1000px] relative overflow-hidden">
       <div className="flex flex-col gap-[31px] items-center justify-start absolute left-14 top-[172px]">
         <div className="flex flex-col gap-[30px] items-end justify-start shrink-0 relative">
           <div className="flex flex-col gap-3.5 items-center justify-start shrink-0 relative">
