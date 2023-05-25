@@ -1,3 +1,4 @@
+
 "use client"
 import 'flowbite';
 import Card from "@/components/ui/Card";
@@ -34,4 +35,5 @@ export default function Home() {
             </div>
         </main>
     )
+
 }

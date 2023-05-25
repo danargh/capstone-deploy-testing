@@ -1,6 +1,5 @@
 import Image from "next/image";
-import searchIcon from "@/public/assets/icons/search-icon.svg";
-import { AddIcon } from "@/public/assets/icons/icons";
+import { SearchIcon } from "@/public/assets/icons/icons";
 
 const Navbar = () => {
    return (
@@ -42,10 +41,18 @@ const Navbar = () => {
                               ></path>
                            </svg>
                         </button>
-                        <div id="dropdown" className="z-10 hidden bg-white divide-y">
+                        <div
+                           id="dropdown"
+                           className="z-10 hidden bg-white divide-y text-neutral-900 font-[600] shadow-md"
+                        >
                            <ul aria-labelledby="dropdownDefaultButton">
-                              <li>Detail Dokter</li>
-                              <li>Apakah Kamu Dokter?</li>
+                              <li className="px-[24px] py-[24px]">
+                                 <a href="#">Detail Dokter</a>
+                              </li>
+                              <hr />
+                              <li className="px-[24px] py-[24px]">
+                                 <a href="#">Apakah Kamu Dokter?</a>
+                              </li>
                            </ul>
                         </div>
                      </li>
@@ -56,13 +63,7 @@ const Navbar = () => {
                </div>
                <div>
                   <button className="flex items-center">
-                     <Image
-                        className="fill-current text-white"
-                        src={searchIcon}
-                        alt="Logo"
-                        width={32}
-                        height={47}
-                     />
+                     <SearchIcon fill="white" />
                   </button>
                </div>
             </div>
