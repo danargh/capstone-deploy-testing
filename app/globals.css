@@ -9,6 +9,6 @@
       font-family: "Inter", sans-serif;
    }
    .main {
-      @apply max-w-[1440px] px-16 bg-gray-400 mx-auto;
+      @apply max-w-[1440px] px-16 mx-auto;
    }
 }

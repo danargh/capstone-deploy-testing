@@ -203,6 +203,7 @@ const ExitIcon = ({ width = '32', height = '32', fill = 'white' }) => {
       </svg>
    );
 };
+
 const FilterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
