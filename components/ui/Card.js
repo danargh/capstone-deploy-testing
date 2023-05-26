@@ -20,7 +20,7 @@ export default function Card({ images, title, description, href }) {
                         </p>
                     </div>
                     <div className="flex flex-grow"></div>
-                    <div className="flex flex-row justify-end w-96 h-fit px-4 py-2 bg-neutral-0 rounded-none">
+                    <div className="flex flex-row justify-end w-96 h-fit px-4 py-2 rounded-none">
                         <Link
                             href={href}
                             className="font-inter text-right  text-[14px] font-normal text-[#0637B5]"

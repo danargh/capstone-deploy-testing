@@ -11,7 +11,7 @@ export default function Carousel() {
         <>
             <div id="default-carousel" className="relative w-full" data-carousel="slide">
                 {/* Carousel wrapper */}
-                <div className="relative h-[704px] overflow-hidden ">
+                <div className="relative z-10 h-[704px] overflow-hidden ">
                     {/* Item 1 */}
                     <div className="hidden duration-500  ease-in-out w-full   h-[704px]" data-carousel-item>
                         <Image
