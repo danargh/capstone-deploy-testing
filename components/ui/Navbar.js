@@ -18,33 +18,13 @@ const Navbar = () => {
                         <a href=""> Artikel</a>
                      </li>
                      <li>
-                        <button
-                           id="dropdownDefaultButton"
-                           data-dropdown-toggle="dropdown"
-                           type="button"
-                           className="flex flex-row items-center"
-                        >
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" type="button" className="flex flex-row items-center">
                            Dokter
-                           <svg
-                              class="w-6 h-6 ml-2"
-                              aria-hidden="true"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                           >
-                              <path
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round"
-                                 stroke-width="2"
-                                 d="M19 9l-7 7-7-7"
-                              ></path>
+                           <svg class="w-6 h-6 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                            </svg>
                         </button>
-                        <div
-                           id="dropdown"
-                           className="z-10 hidden bg-white divide-y text-neutral-900 font-[600] shadow-md"
-                        >
+                        <div id="dropdown" className="z-10 hidden bg-white divide-y text-neutral-900 font-[600] shadow-md">
                            <ul aria-labelledby="dropdownDefaultButton">
                               <li className="px-[24px] py-[24px]">
                                  <a href="#">Detail Dokter</a>
