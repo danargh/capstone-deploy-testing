@@ -1,5 +1,6 @@
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
+import RegisterDokter3 from "./register-dokter/page3";
 
 export const metadata = {
    title: "Create Next App",
@@ -9,7 +10,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
    return (
       <html lang="en">
-         <body>{children}</body>
+         {/* <body>{children}</body> */}
+         <RegisterDokter3/>
       </html>
    );
 }
