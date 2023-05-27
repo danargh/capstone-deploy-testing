@@ -11,13 +11,12 @@ export default function DetailArticle({ params }) {
    return (
       <>
          <Navbar />
-         <article className="mt-[62px] mb-[142px] w-[1440px] mx-auto ">
-            <header>
+         <article className="mt-[62px] mb-[142px]">
+            <header className="w-[1440px] mx-auto">
                <h1 className="font-poppins font-[600] text-[32px] leading-[52px]">Copy Artikel / Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya</h1>
                <div className="flex gap-6 font-inter text-[16px] leading-[18px] font-[400] mt-6">
                   <p className="flex items-center gap-[14px]">
                      <PersonIcon fill="black" />
-
                      <span>Juragan</span>
                   </p>
                   <p className="flex items-center gap-[14px]">
@@ -26,8 +25,8 @@ export default function DetailArticle({ params }) {
                   </p>
                </div>
             </header>
-            <main>
-               <Image className=" bg-cover mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
+            <Image className="w-full mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
+            <main className="max-w-[1220px] mx-auto">
                <div className="flex gap-[42px] justify-center my-[32px]">
                   <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
                      <Image src="/assets/icons/facebook-icon.svg" width={30} height={30} />
@@ -68,7 +67,7 @@ export default function DetailArticle({ params }) {
                   </div>
                </aside>
             </main>
-            <section className="mt-[70px] mb-[50px]">
+            <section className="max-w-[1220px] mx-auto mt-[70px] mb-[50px]">
                <div>
                   <h3 className="font-inter font-[600] text-[22px] leading-9">Tinggalkan Balasan</h3>
                   <p className="font-inter font-[400] text-[20px] leading-8 mt-[26px]">Alamat email Anda tidak akan dipublikasikan. Ruas yang wajib ditandai *</p>
