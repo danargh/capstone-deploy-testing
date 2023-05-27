@@ -3,7 +3,7 @@ import "flowbite";
 import Card from "@/components/ui/Card";
 import detailArtikel from "../public/assets/images/detail-article.png";
 
-import Pagination from "@/components/ui/Pagination";
+import { Pagination } from "@/components/ui/Pagination";
 import { useState } from "react";
 import Carousel from "@/components/ui/Carousel";
 import Navbar from "@/components/ui/Navbar";
@@ -18,9 +18,9 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <main className="flex min-h-screen flex-col items-center ">
+            <main className="flex min-h-screen flex-col items-center">
                 <Carousel />
-                <div className="grid grid-cols-3 gap-10 mt-[102px]">
+                <div className="grid grid-cols-3 gap-10 mt-[102px]" id="article">
                     {Array(15)
                         .fill(
                             <Card

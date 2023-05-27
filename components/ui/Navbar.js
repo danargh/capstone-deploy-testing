@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SearchIcon } from "@/public/assets/icons/icons";
-
+import Link from 'next/link';
+import 'flowbite'
 const Navbar = () => {
     return (
         <>
@@ -12,10 +13,10 @@ const Navbar = () => {
                     <div>
                         <ul className="font-poppins text-[24px] font-[700] flex flex-row gap-[61px]  text-white">
                             <li>
-                                <a href="">Home</a>{" "}
+                                <Link href="/">Home</Link>{" "}
                             </li>
                             <li>
-                                <a href=""> Artikel</a>
+                                <Link href="/#article"> Artikel</Link>
                             </li>
                             <li>
                                 <button
@@ -48,7 +49,7 @@ const Navbar = () => {
                                 >
                                     <ul aria-labelledby="dropdownDefaultButton">
                                         <li className="px-[24px] py-[24px]">
-                                            <a href="#">Detail Dokter</a>
+                                            <Link href="/detail-dokter">Detail Dokter</Link>
                                         </li>
                                         <hr />
                                         <li className="px-[24px] py-[24px]">

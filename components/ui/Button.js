@@ -1,7 +1,7 @@
 import React from "react";
+import { FilterIcon } from "@/public/assets/icons/icons";
 
 import { button_variants, text_variants_inter, text_variants_poppins } from "../custom/custom";
-import { FilterIcon } from "@/public/assets/icons/icons";
 
 export const DetailDokterButton = ({ onClick, children }) => {
     return (
@@ -70,7 +70,8 @@ export const FilterButton = ({ onClick, children }) => {
             onClick={onClick}
         >
             <div style={{ display: "flex", alignItems: "center" }}>
-                <p className={text_variants_inter({ variant: "inter_24_reguler" })}>{children}</p>
+                <FilterIcon fill="white" />
+                <p className={text_variants_inter({ variant: "inter_24_reguler" })} style={{ color: "white" }}>{children}</p>
             </div>
         </button>
     );

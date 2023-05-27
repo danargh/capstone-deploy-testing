@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { PaginationOrderDokter } from './Pagination';
 
 export const TableOrder = (props) => {
+    const orderLength = props.order.length;
+    const [orderShow, setOrderShow] = useState("1");
+    const [currentPage, setCurentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(orderShow);
+
+    useEffect(() => {
+        setPostPerPage(orderShow);
+        setCurentPage(1);
+
+    }, [orderShow]);
+    const lastPostIndex = currentPage * postPerPage;
+    const firstPostIndex = lastPostIndex - postPerPage;
+    const handleSelectChange = (event) => {
+        setOrderShow(event.target.value);
+    };
     return (
         <div className={props.className}>
             <div className="relative flex py-10">
                 <p className='py-2'>Menampilkan</p>
-                <select id="data-per-page" className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-8 leading-tight focus:outline-none focus:border-blue-500 mx-5">
-                    <option>10</option>
-                    <option>20</option>
-                    <option>50</option>
-                    <option>100</option>
+                <select id="data-per-page" className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-8 leading-tight focus:outline-none focus:border-blue-500 mx-5"
+                    value={orderShow}
+                    onChange={handleSelectChange}
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
                 </select>
                 <p className='py-2'>Data</p>
             </div>
@@ -30,7 +49,7 @@ export const TableOrder = (props) => {
                     </tr>
                 </thead>
                 <tbody className={props.className}>
-                    {props.order.map((order) => (
+                    {props.order.slice(firstPostIndex, lastPostIndex).map((order) => (
                         <tr scope="col" className=''>
                             <td className='border border-black text-center'>{order.date}</td>
                             <td className='border border-black text-center'>{order.name}</td>
@@ -55,6 +74,17 @@ export const TableOrder = (props) => {
 
                 </tbody>
             </table>
+            <div className='flex justify-between items-center mt-10 mb-24'>
+                <div>Menampilkan {firstPostIndex + 1} ke {lastPostIndex > orderLength ? orderLength : lastPostIndex} dari {orderLength} data</div>
+                <PaginationOrderDokter
+                    totalPosts={orderLength}
+                    postPerPage={postPerPage}
+                    setCurrentPage={setCurentPage}
+                    currentPage={currentPage}
+                    orderShow={orderShow}
+                />
+            </div>
+
         </div>
     );
 }
