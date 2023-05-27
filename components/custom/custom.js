@@ -10,20 +10,8 @@ const button_variants = cva(["font-normal", "rounded-lg", "gap-3", "flex", "just
          danger: ["bg-[#B1514D]", "hover:bg-[#A12D28] hover:drop-shadow-md", "text-white"],
          success: ["bg-[#517D67]", "hover:bg-[#2D6248] hover:drop-shadow-md", "text-white"],
          warning: ["bg-[#FEDE2D]", "hover:bg-[#B29701] hover:drop-shadow-md", "text-white"],
-         outline_primary: [
-            "bg-none",
-            "border-[#8EBF59]",
-            "text-[#8EBF59]",
-            "border",
-            "hover:bg-[#EBEBEB]",
-         ],
-         outline_danger: [
-            "bg-none",
-            "border-[#B1514D]",
-            "text-[#B1514D]",
-            "border",
-            "hover:bg-[#EBEBEB]",
-         ],
+         outline_primary: ["bg-none", "border-[#8EBF59]", "text-[#8EBF59]", "border", "hover:bg-[#EBEBEB]"],
+         outline_danger: ["bg-none", "border-[#B1514D]", "text-[#B1514D]", "border", "hover:bg-[#EBEBEB]"],
          disable: ["bg-[#DEDEDE]", "text-[#858585] cursor-not-allowed"],
       },
 
@@ -86,13 +74,9 @@ const input_variants = cva("w-full", {
          search: [" border  rounded-lg border-neutral-70 "],
          detail_artikel: ["border   border-neutral-70"],
          dokter_login: ["rounded-lg border-none bg-neutral-40"],
-         contact_us: [
-            "font-inter border border-neutral-50 text-neutral-80 bg-[#F0F0F0] hover:bg-neutral-40 focus:ring-2 focus:outline-none focus:ring-neutral-80  font-normal rounded-lg text-sm px-4 py-3  inline-flex items-center justify-between ",
-         ],
+         contact_us: ["font-inter border border-neutral-50 text-neutral-80 bg-[#F0F0F0] hover:bg-neutral-40 focus:ring-2 focus:outline-none focus:ring-neutral-80  font-normal rounded-lg text-sm px-4 py-3  inline-flex items-center justify-between "],
          textarea: ["rounded-lg h-[312px] border-neutral-70"],
-         chat_text: [
-            "rounded-2xl h-[43px] bg-neutral-40 border-neutral-900 border-4 focus:border-neutral-900 ",
-         ],
+         chat_text: ["rounded-2xl h-[43px] bg-neutral-40 border-neutral-900 border-4 focus:border-neutral-900 "],
          chat_textarea: ["rounded-lg h-[222px] border-neutral-70"],
          image: [" border  rounded-s-lg border-neutral-70  py-2 ps-2 text-neutral-80 "],
       },
