@@ -1,4 +1,5 @@
 import React from "react";
+import { FilterIcon } from "@/public/assets/icons/icons";
 
 import { button_variants, text_variants_inter, text_variants_poppins } from "../custom/custom";
 
@@ -33,11 +34,11 @@ export const KirimKomentarButton = ({ onClick, children }) => {
 };
 
 export const LoginDokterButton = ({ onClick, children }) => {
-   return (
-      <button className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
-         <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
-      </button>
-   );
+    return (
+        <button className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
+            <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
+        </button>
+    );
 };
 
 export const TransferSaldo = ({ onClick, children }) => {
@@ -119,11 +120,11 @@ export const BatalHapusArtikelButton = ({ onClick, children }) => {
 };
 
 export const HapusArtikelButton = ({ onClick, children }) => {
-   return (
-      <button className={button_variants({ variant: "danger", size: "default" })} onClick={onClick}>
-         <p className={text_variants_poppins({ size: "xl" })}>{children}</p>
-      </button>
-   );
+    return (
+        <button className={button_variants({ variant: "danger", size: "default" })} onClick={onClick}>
+            <p className={text_variants_poppins({ size: "xl" })}>{children}</p>
+        </button>
+    );
 };
 
 export const ContinueWithdrawButton = ({ onClick, children }) => {
@@ -135,11 +136,11 @@ export const ContinueWithdrawButton = ({ onClick, children }) => {
 };
 
 export const LanjutkanWithdrawButton = ({ onClick, children }) => {
-   return (
-      <button className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
-         <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
-      </button>
-   );
+    return (
+        <button className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
+            <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
+        </button>
+    );
 };
 export const TutupWithdrawButton = ({ onClick, children }) => {
    return (
@@ -165,12 +166,13 @@ export const RegisterButton = ({ onClick, children }) => {
          </div>
       </button>
    );
+
 };
 
 export const LoginUserButton = ({ onClick, children }) => {
-   return (
-      <button className={button_variants({ variant: "green_bg", size: "full" })} onClick={onClick}>
-         <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
-      </button>
-   );
+    return (
+        <button className={button_variants({ variant: "green_bg", size: "full" })} onClick={onClick}>
+            <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
+        </button>
+    );
 };

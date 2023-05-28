@@ -1,18 +1,16 @@
 import { input_variants } from "../custom/custom"
 
-const Select = () => {
+const Select = ({ options }) => {
     return (
         <>
 
-            <select
-                id="countries"
-                className={input_variants({ variant: "contact_us" })}
-            >
-                <option defaultValue="">Choose a country</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+            <select id="countries" className={input_variants({ variant: "contact_us" })}>
+
+                {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
             </select>
 
         </>
