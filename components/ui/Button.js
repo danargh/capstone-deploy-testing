@@ -52,7 +52,7 @@ export const FilterButton = ({ onClick, children }) => {
     return (
         <button className={button_variants({ variant: "ic_black", size: "default" })} onClick={onClick}>
             <div style={{ display: "flex", alignItems: "center" }}>
-                <FilterButton fill="white" />
+                <FilterIcon fill="white" />
                 <p className={text_variants_inter({ variant: "inter_24_reguler" })} style={{ color: "white" }}>{children}</p>
             </div>
         </button>
