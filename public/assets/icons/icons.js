@@ -379,7 +379,17 @@ const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
+const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <circle cx="50" cy="50" r="50" fill="black" />
+         <path d="M75 50L37.5 71.6506L37.5 28.3494L75 50Z" fill="#6FB54E" />
+      </svg>
+   );
+};
+
 export {
+   PlayButtonIcon,
    AddIcon,
    BankIcon,
    NotificationIcon,
