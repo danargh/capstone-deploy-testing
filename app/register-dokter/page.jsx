@@ -15,15 +15,15 @@ import InputFileDaftarSip from '@/components/forms/InputFileDaftar/input-file-da
 export default function RegisterDokter() {
 
    const [index, setIndex] = useState(0);
-   const [cvFile, setCvFile] = useState(null);
-   const [ijasahFile, setIjasahFile] = useState(null);
-   const [strAktifFile, setStrAktifFile] = useState(null);
-   const [sipFile, setSipFile] = useState(null);
-   console.log(index);
    const handleFormSubmit = (e) => {
       e.preventDefault();
 
-  
+      Swal.fire(
+         'Maaf Pendaftaran Gagal',
+         'Pastikan data pendaftaran sesuai dengan ketentuan.',
+         'error'
+      )
+
       Swal.fire(
          'Pendaftaran Berhasil',
          'Informasi pendaftaran anda akan kami informasikan melalui email.',
@@ -166,24 +166,24 @@ export default function RegisterDokter() {
                     <div>
                       <p className='text-[18px] font-semibold font-poppins float-left'>Curriculum Vitae (CV)</p>
                       <p className='text-[12px] font-normal text-gray-500 float-left'>Unggah CV dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                      <InputFileDaftarCv handleSelectedFile={(e) => setCvFile(e)} value={cvFile} />
+                      <InputFileDaftarCv/>
                     </div>
                     <div>
                       <p className='text-[18px] font-semibold font-poppins float-left'>Ijazah</p>
                       <p className='text-[12px] font-normal text-gray-500 float-left'>Jadikan satu file dan unggah ijazah dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                      <InputFileDaftarIjasah handleSelectedFile={(e) => setIjasahFile(e)} value={ijasahFile}/>
+                      <InputFileDaftarIjasah/>
                     </div>
                     <div>
                       <div className='max-w-sm'>
                         <p className='text-[18px] font-semibold font-poppins float-left'>STR Aktif</p>
                         <p className='text-[12px] font-normal text-gray-500 float-left'>Unggah STR dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
                       </div>
-                      <InputFileDaftarStr handleSelectedFile={(e) => setStrAktifFile(e)} value={strAktifFile}/>
+                      <InputFileDaftarStr/>
                     </div>
                     <div>
                       <p className='text-[18px] font-semibold font-poppins float-left'>SIP (Surat Izin Praktek)</p>
                       <p className='text-[12px] font-normal text-gray-500 float-left'>Unggah SIP dalam bentuk pdf dengan ukuranmaksimal 2 MB</p>
-                      <InputFileDaftarSip handleSelectedFile={(e) => setSipFile(e)} value={sipFile}/>
+                      <InputFileDaftarSip/>
                     </div>
                     <div className='mt-4 w-full flex flex-col justify-center'>
                       <RegisterButton>Daftar</RegisterButton>
