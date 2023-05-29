@@ -74,6 +74,23 @@ const ArrowBackIcon = ({ width = '32', height = '32', fill = 'white' }) => {
       </svg>
    );
 };
+const ArrowBackIconTableArtikel = ({ width = '40', height = '40', fill = 'white' }) => {
+   return (
+      <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M13.4166 0.250001L16.3333 3.34167L6.74992 13.5L16.3333 23.6583L13.4166 26.75L0.916585 13.5L13.4166 0.250001Z" fill="#577536" />
+      </svg>
+   );
+};
+const EditArtikelIcon = ({ width = '40', height = '40', fill = 'white' }) => {
+   return (
+      <svg width="22.5" height="22.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M20.75 20.75V3.25H3.25V20.75H20.75ZM20.75 0.75C21.413 0.75 22.0489 1.01339 22.5178 1.48223C22.9866 1.95107 23.25 2.58696 23.25 3.25V20.75C23.25 21.413 22.9866 22.0489 22.5178 22.5178C22.0489 22.9866 21.413 23.25 20.75 23.25H3.25C2.58696 23.25 1.95107 22.9866 1.48223 22.5178C1.01339 22.0489 0.75 21.413 0.75 20.75V3.25C0.75 2.58696 1.01339 1.95107 1.48223 1.48223C1.95107 1.01339 2.58696 0.75 3.25 0.75H20.75ZM17.875 8.6875L16.625 9.9375L14.0625 7.375L15.3125 6.125C15.575 5.85 16.0125 5.85 16.275 6.125L17.875 7.725C18.15 7.9875 18.15 8.425 17.875 8.6875ZM5.75 15.675L13.325 8.1L15.9 10.675L8.325 18.25H5.75V15.675Z"
+            fill="black"
+         />
+      </svg>
+   );
+};
 const CommentIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -375,6 +392,16 @@ const ChartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
       </svg>
    );
 };
+const AddArtikelIcon = ({ width = '32', height = '32', fill = 'white' }) => {
+   return (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M8 14H10V10H14V8H10V4H8V8H4V10H8V14ZM2 18C1.45 18 0.979002 17.804 0.587002 17.412C0.195002 17.02 -0.000664969 16.5493 1.69779e-06 16V2C1.69779e-06 1.45 0.196002 0.979002 0.588002 0.587002C0.980002 0.195002 1.45067 -0.000664969 2 1.69779e-06H16C16.55 1.69779e-06 17.021 0.196002 17.413 0.588002C17.805 0.980002 18.0007 1.45067 18 2V16C18 16.55 17.804 17.021 17.412 17.413C17.02 17.805 16.5493 18.0007 16 18H2ZM2 16H16V2H2V16Z"
+            fill="white"
+         />
+      </svg>
+   );
+};
 const TrashIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -445,4 +472,7 @@ export {
    FingerIcon,
    KomisiIcon,
    ArrowBackIcon2,
+   AddArtikelIcon,
+   ArrowBackIconTableArtikel,
+   EditArtikelIcon,
 };
