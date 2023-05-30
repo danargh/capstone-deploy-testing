@@ -70,17 +70,15 @@ const text_variants_poppins = cva('font-poppins', {
 const input_variants = cva('w-full', {
    variants: {
       variant: {
-         default: [' border  rounded-lg border-neutral-70 '],
-         search: [' border  rounded-lg border-neutral-70 '],
-         detail_artikel: ['border   border-neutral-70'],
-         dokter_login: ['rounded-lg border-none bg-neutral-40'],
-         contact_us: [
-            'font-inter border border-neutral-50 text-neutral-80 bg-[#F0F0F0] hover:bg-neutral-40 focus:ring-2 focus:outline-none focus:ring-neutral-80  font-normal rounded-lg text-sm px-4 py-3  inline-flex items-center justify-between ',
-         ],
-         textarea: ['rounded-lg h-[312px] border-neutral-70'],
-         chat_text: ['rounded-2xl h-[43px] bg-neutral-40 border-neutral-900 border-4 focus:border-neutral-900 '],
-         chat_textarea: ['rounded-lg h-[222px] border-neutral-70'],
-         image: [' border  rounded-s-lg border-neutral-70  py-2 ps-2 text-neutral-80 '],
+         default: [" border  rounded-lg border-neutral-70 "],
+         search: [" border  rounded-lg border-neutral-70 "],
+         detail_artikel: ["border   border-neutral-70"],
+         dokter_login: ["rounded-lg border-none bg-neutral-40"],
+         contact_us: ["font-inter border border-neutral-50 text-neutral-80 bg-[#F0F0F0] hover:bg-neutral-40 focus:ring-2 focus:outline-none focus:ring-neutral-80  font-normal rounded-lg text-sm px-4 py-3  inline-flex items-center justify-between "],
+         textarea: ["rounded-lg h-[312px] border-neutral-70"],
+         chat_text: ["rounded-2xl h-[43px] bg-neutral-40 border-neutral-900 border-4 focus:border-neutral-900 "],
+         chat_textarea: ["rounded-lg h-[222px] border-neutral-70"],
+         image: [" border  rounded-s-lg border-neutral-70  py-2 ps-2 text-neutral-80 "],
       },
    },
    defaultVariants: {

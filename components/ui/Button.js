@@ -64,7 +64,7 @@ export const FilterButton = ({ onClick, children }) => {
 
 export const KirimPesanButton = ({ onClick, children }) => {
    return (
-      <button className={button_variants({ variant: "green_bg", size: "default" })} onClick={onClick}>
+      <button className={`bg-[#6FB54E] ${button_variants({ variant: "green_bg", size: "full" })}`} onClick={onClick}>
          <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
       </button>
    );
