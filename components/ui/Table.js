@@ -190,4 +190,3 @@ export const TabelHistory = (props) => {
         </div>
     )
 }
-

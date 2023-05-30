@@ -1,7 +1,9 @@
 import React from "react";
 import { FilterIcon } from "@/public/assets/icons/icons";
 
-import { button_variants, text_variants_inter, text_variants_poppins } from "../custom/custom";
+
+import { button_variants, text_variants_inter, text_variants_poppins } from '../custom/custom';
+import { AddArtikelIcon, ArrowBackIconTableArtikel } from '@/public/assets/icons/icons';
 
 export const DetailDokterButton = ({ onClick, children }) => {
     return (
