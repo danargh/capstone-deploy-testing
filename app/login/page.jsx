@@ -18,24 +18,11 @@ export default function Login() {
                </a>
 
                <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
-                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">
-                     Dokter Area
-                  </p>
+                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Dokter Area</p>
                   <form onSubmit={{}} className="flex flex-col gap-8">
-                     <Input
-                        type="text"
-                        placeholder="email"
-                        className={input_variants({ variant: "dokter_login" })}
-                     />
-                     <Input
-                        type="password"
-                        placeholder="password"
-                        className={input_variants({ variant: "dokter_login" })}
-                     />
-                     <a
-                        href="#"
-                        className=" text-right font-poppins font-[700] text-[12px] text-web-green-500"
-                     >
+                     <Input type="text" placeholder="email" className={input_variants({ variant: "default" })} />
+                     <Input type="password" placeholder="password" className={input_variants({ variant: "default" })} />
+                     <a href="#" className=" text-right font-poppins font-[700] text-[12px] text-web-green-500">
                         Lupa kata sandi?
                      </a>
                      <LoginDokterButton>Log In</LoginDokterButton>

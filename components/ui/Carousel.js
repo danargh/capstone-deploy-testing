@@ -11,17 +11,19 @@ export default function Carousel() {
         <>
             <div id="default-carousel" className="relative w-full" data-carousel="slide">
                 {/* Carousel wrapper */}
-                <div className="relative h-[704px] overflow-hidden ">
+                <div className="relative z-10 h-[704px] overflow-hidden ">
                     {/* Item 1 */}
-                    <div className="hidden duration-500  ease-in-out w-full   h-[704px]" data-carousel-item>
+                    <div className=" hidden duration-500  ease-in-out w-full   h-[704px]" data-carousel-item>
                         <Image
                             src={hero1.src}
                             fill={true}
                             alt="hero-img"
+
+
                         />
                     </div>
                     {/* Item 2 */}
-                    <div className="hidden duration-500 ease-in-out w-full h-[704px]" data-carousel-item>
+                    <div className=" hidden duration-500 ease-in-out w-full h-[704px]" data-carousel-item>
                         <Image
                             src={hero2.src}
                             fill={true}
@@ -30,11 +32,12 @@ export default function Carousel() {
                         />
                     </div>
                     {/* Item 3 */}
-                    <div className="hidden duration-500  ease-in-out w-full h-[704px]" data-carousel-item>
+                    <div className=" hidden duration-500  ease-in-out w-full h-[704px]" data-carousel-item>
                         <Image
                             src={hero3.src}
                             fill={true}
                             alt="hero-img"
+
                         />
                     </div>
 
