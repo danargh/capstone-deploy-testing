@@ -6,8 +6,16 @@ import { input_variants } from "@/components/custom/custom";
 import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
 import { LoginDokterButton } from "@/components/ui/Button";
 import HeroLogin from "@/components/ui/HeroLogin";
+import InputNew from "@/components/forms/InputNew";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+   const router = useRouter();
+
+   const handleLupaPassword = (e) => {
+      e.preventDefault();
+      router.push("/login/1");
+   };
    return (
       <>
          <section className="flex bg-gray-500 min-screen-2xl h-screen">
@@ -18,27 +26,14 @@ export default function Login() {
                </a>
 
                <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
-                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">
-                     Dokter Area
-                  </p>
+                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Area Dokter</p>
                   <form onSubmit={{}} className="flex flex-col gap-8">
-                     <Input
-                        type="text"
-                        placeholder="email"
-                        className={input_variants({ variant: "dokter_login" })}
-                     />
-                     <Input
-                        type="password"
-                        placeholder="password"
-                        className={input_variants({ variant: "dokter_login" })}
-                     />
-                     <a
-                        href="#"
-                        className=" text-right font-poppins font-[700] text-[12px] text-web-green-500"
-                     >
-                        Lupa kata sandi?
-                     </a>
+                     <InputNew type="email" label="Email" />
+                     <InputNew type="password" label="Password" />
                      <LoginDokterButton>Log In</LoginDokterButton>
+                     <button onClick={handleLupaPassword} className="text-left font-poppins font-[700] text-[12px] text-web-green-500">
+                        Lupa kata sandi?
+                     </button>
                   </form>
                </div>
             </div>
