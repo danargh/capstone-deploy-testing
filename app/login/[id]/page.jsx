@@ -1,21 +1,11 @@
-"use client";
-
 import React from "react";
-import Input from "@/components/forms/Input";
-import { input_variants } from "@/components/custom/custom";
 import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
 import { LoginDokterButton } from "@/components/ui/Button";
 import HeroLogin from "@/components/ui/HeroLogin";
 import InputNew from "@/components/forms/InputNew";
-import { useRouter } from "next/navigation";
+import ErrorMessage from "@/components/error/ErrorMessage";
 
-export default function Login() {
-   const router = useRouter();
-
-   const handleLupaPassword = (e) => {
-      e.preventDefault();
-      router.push("/login/1");
-   };
+export default function LupaPassword({ params }) {
    return (
       <>
          <section className="flex bg-gray-500 min-screen-2xl h-screen">
@@ -26,14 +16,22 @@ export default function Login() {
                </a>
 
                <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
-                  <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Area Dokter</p>
+                  <h1 className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Lupa Kata Sandi?</h1>
+                  <div className="flex flex-col justify-start text-left font-poppins text-[14px]">
+                     <h4>
+                        <b>Lupa Kata Sandi</b>{" "}
+                     </h4>
+                     <p>Ikuti langkah mudah dibawah ini untuk mengatur ulang akun Anda:</p>
+                     <ul>
+                        <li>1. Masukkan alamat email Prevent Anda </li>
+                        <li>2. Tunggu sampai data pemulihan Anda dikirim</li>
+                        <li>3. Ikuti petunjuknya dan aktifkan kembali akun Prevent Anda</li>
+                     </ul>
+                  </div>
                   <form onSubmit={{}} className="flex flex-col gap-8">
                      <InputNew type="email" label="Email" />
-                     <InputNew type="password" label="Password" />
+                     <ErrorMessage errorMessage="Email anda tidak terdaftar pada sistem. Silahkan coba lagi!" />
                      <LoginDokterButton>Log In</LoginDokterButton>
-                     <button onClick={handleLupaPassword} className="text-left font-poppins font-[700] text-[12px] text-web-green-500">
-                        Lupa kata sandi?
-                     </button>
                   </form>
                </div>
             </div>
