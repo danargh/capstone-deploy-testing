@@ -79,16 +79,40 @@ export default function page() {
             <div className="pb-[39.5px]">
                <p className="text-sm font-bold pt-[35px] mb-5">Kategori Artikel</p>
                <div className="flex items-center mb-4">
+                  <input id="" type="radio" value="Depresi" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
+                  <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
+                     Depresi
+                  </label>
+               </div>
+               <div className="flex items-center mb-4">
                   <input
-                     id="kategori-lion"
+                     id=""
                      type="radio"
-                     value="lion"
+                     value="Gangguan Kepribadian"
                      name="kategori"
                      className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500"
                      onChange={(e) => setCategory(e.target.value)}
                   />
-                  <label htmlFor="kategori-lion" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
-                     Lion
+                  <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
+                     Gangguan Kepribadian
+                  </label>
+               </div>
+               <div className="flex items-center mb-4">
+                  <input id="" type="radio" value="Gangguan Tidur" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
+                  <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
+                     Gangguan Tidur
+                  </label>
+               </div>
+               <div className="flex items-center mb-4">
+                  <input id="" type="radio" value="Kesehatan Mental" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
+                  <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
+                     Kesehatan Mental
+                  </label>
+               </div>
+               <div className="flex items-center mb-4">
+                  <input id="" type="radio" value="Stress" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
+                  <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
+                     Stress
                   </label>
                </div>
                {/* Tambahkan input radio lainnya untuk kategori yang berbeda */}
