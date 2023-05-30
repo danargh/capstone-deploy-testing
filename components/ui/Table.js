@@ -125,9 +125,37 @@ export const TableArtikel = (props) => {
 }
 
 export const TabelHistory = (props) => {
+    const orderLength = props.orders.length;
+    const [orderShow, setOrderShow] = useState("1");
+    const [currentPage, setCurentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(orderShow);
+
+    useEffect(() => {
+        setPostPerPage(orderShow);
+        setCurentPage(1);
+
+    }, [orderShow]);
+    const lastPostIndex = currentPage * postPerPage;
+    const firstPostIndex = lastPostIndex - postPerPage;
+    const handleSelectChange = (event) => {
+        setOrderShow(event.target.value);
+    };
     return (
         <div className={props.className}>
-            <div className="relative flex py-10">
+            <div className="relative flex items-center py-5">
+                <p >Menampilkan</p>
+                <select id="data-per-page" className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2 pr-8 leading-tight focus:outline-none focus:border-blue-500 mx-5"
+                    value={orderShow}
+                    onChange={handleSelectChange}
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                </select>
+                <p >Data</p>
+            </div>
+            <div className="relative flex ">
             </div>
             <table className="w-full">
                 <thead className={props.className}>
@@ -138,16 +166,27 @@ export const TabelHistory = (props) => {
                         <th className='w-1/4'>Tax</th>
                     </tr>
                 </thead>
-                <tbody className={props.className}>
-                    <tr scope="col" className='text'>
-                        <td className='text-center'>12/05/2023</td>
-                        <td className='text-center'>6</td>
-                        <td className='text-center'>Rp. 400.000</td>
-                        <td className='text-center'>-RP. 12.500</td>
-                    </tr>
+                <tbody className="bg-neutral-0">
+                    {props.orders.slice(firstPostIndex, lastPostIndex).map((order) => (
+                        <tr scope="col" >
+                            <td className='text-center'>{order.date}</td>
+                            <td className='text-center'>{order.order}</td>
+                            <td className='text-center'>{order.komisi}</td>
+                            <td className='text-center'>{order.tax}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
+            <div className='flex justify-end items-center mt-10 pb-24'>
+                {/* <div>Menampilkan {firstPostIndex + 1} ke {lastPostIndex > orderLength ? orderLength : lastPostIndex} dari {orderLength} data</div> */}
+                <PaginationOrderDokter
+                    totalPosts={orderLength}
+                    postPerPage={postPerPage}
+                    setCurrentPage={setCurentPage}
+                    currentPage={currentPage}
+                    orderShow={orderShow}
+                />
+            </div>
         </div>
     )
 }
-
