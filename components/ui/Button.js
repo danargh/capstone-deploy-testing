@@ -145,7 +145,7 @@ export const LanjutkanWithdrawButton = ({ onClick, children }) => {
 };
 export const TutupWithdrawButton = ({ onClick, children }) => {
     return (
-        <button className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
+        <button className={button_variants({ variant: "default", size: "default" })} onClick={onClick} style={{ width: '400px' }}>
             <p className={text_variants_inter({ variant: "inter_32_reguler" })}>{children}</p>
         </button>
     );
