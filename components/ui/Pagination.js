@@ -39,10 +39,10 @@ export const PaginationOrderDokter = ({ orderShow, totalPosts, postPerPage, curr
     }, [orderShow]);
     return (
         <div>
-            <button className={`border py-2 px-6 rounded-l-lg ${currentPage === 1 ? 'text-neutral-80 bg-neutral-20' : ''}`} onClick={goToPrevPage} disabled={currentPage === 1}>
+            <button className={`border py-2 px-6 rounded-l-lg ${currentPage === 1 ? 'text-neutral-80 bg-neutral-20' : 'bg-neutral-0'}`} onClick={goToPrevPage} disabled={currentPage === 1}>
                 Sebelumnya
             </button>
-            <button className={`border py-2 px-6 rounded-r-lg ${currentPage === totalPages ? 'text-neutral-80 bg-neutral-20' : ''}`} onClick={goToNextPage} disabled={currentPage === totalPages}>
+            <button className={`border py-2 px-6 rounded-r-lg ${currentPage === totalPages ? 'text-neutral-80 bg-neutral-20' : 'bg-neutral-0'}`} onClick={goToNextPage} disabled={currentPage === totalPages}>
                 Selanjutnya
             </button>
         </div>
