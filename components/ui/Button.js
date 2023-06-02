@@ -69,10 +69,13 @@ export const KirimPesanButton = ({ onClick, children }) => {
       </button>
    );
 };
-export const AddObatButton = ({ onClick }) => {
+export const AddObatButton = ({ onClick, children }) => {
    return (
+
       <button className={button_variants({ variant: 'green_bg', size: 'default' })} onClick={onClick}>
          <p className={text_variants_poppins({ size: 'xs' })}>{children}</p>
+      <button className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
+         <p className={text_variants_poppins({ size: "xs" })}>{children}</p>
       </button>
    );
 };

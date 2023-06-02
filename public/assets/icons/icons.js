@@ -1,4 +1,4 @@
-const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -11,7 +11,7 @@ const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const BankIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BankIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 72" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -22,14 +22,14 @@ const BankIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIconTableArtikel = ({ width = "40", height = "40", fill = "white" }) => {
+const ArrowBackIconTableArtikel = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M13.4166 0.250001L16.3333 3.34167L6.74992 13.5L16.3333 23.6583L13.4166 26.75L0.916585 13.5L13.4166 0.250001Z" fill="#577536" />
       </svg>
    );
 };
-const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
+const EditArtikelIcon = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="22.5" height="22.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -40,7 +40,7 @@ const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
    );
 };
 
-const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const NotificationIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -50,7 +50,7 @@ const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -60,7 +60,7 @@ const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClarityDashboardIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -70,7 +70,7 @@ const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) =
       </svg>
    );
 };
-const ClockIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClockIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -82,7 +82,7 @@ const ClockIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -92,7 +92,7 @@ const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CommentIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -102,7 +102,7 @@ const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BreadCrumbIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1" y="1" width="24" height="2" rx="1" fill={fill} />
@@ -114,7 +114,7 @@ const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const LikePostIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" id="like" width={width} height={height} x="0" y="0" version="1.1" viewBox="0 0 29 29">
          <path
@@ -124,7 +124,7 @@ const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PostOptionIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 10 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <ellipse cx="5" cy="4.96179" rx="5" ry="4.40613" fill={fill} />
@@ -133,14 +133,19 @@ const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const UserIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const UserIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="none" id="user">
-         <path fill={fill} fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z" clip-rule="evenodd"></path>
+         <path
+            fill={fill}
+            fill-rule="evenodd"
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z"
+            clip-rule="evenodd"
+         ></path>
       </svg>
    );
 };
-const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcRegisterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -156,7 +161,7 @@ const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcShareIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -166,14 +171,17 @@ const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CcSortDownIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcSortDownIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} id="arrow">
-         <path fill={fill} d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"></path>
+         <path
+            fill={fill}
+            d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"
+         ></path>
       </svg>
    );
 };
-const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcStandardPopupIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1.5" y="1" width="24" height="8" rx="3" fill={fill} />
@@ -183,7 +191,7 @@ const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) =>
       </svg>
    );
 };
-const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcViewDayIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 37 31" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -193,7 +201,7 @@ const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PenIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -203,7 +211,7 @@ const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ExitIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -214,7 +222,7 @@ const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FilterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g mask="url(#mask0_228_2025)">
@@ -226,7 +234,7 @@ const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ProfileIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ProfileIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -244,7 +252,7 @@ const ProfileIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AccessTimeIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -254,7 +262,7 @@ const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DownloadIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -264,7 +272,7 @@ const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MailIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -274,7 +282,7 @@ const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FingerIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -284,7 +292,7 @@ const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const KomisiIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 168 134" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -294,14 +302,14 @@ const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIcon2 = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon2 = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 62 64" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path fill={fill} d="M36.167 16L20.667 32L36.167 48" stroke="black" strokeLinecap="round" />
       </svg>
    );
 };
-const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DollarIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -311,7 +319,7 @@ const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MoneyIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -321,7 +329,7 @@ const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PersonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -331,7 +339,7 @@ const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SearchIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -341,23 +349,38 @@ const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SendChatIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SendChatIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path fill={fill} fill-rule="evenodd" clip-rule="evenodd" d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+         <path
+            fill={fill}
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z"
+            stroke="black"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
          <rect x="2" y="2" width="39" height="39" rx="19.5" stroke="black" strokeWidth="4" />
       </svg>
    );
 };
-const CopyrightIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CopyrightIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M3.33337 20C3.33337 10.795 10.795 3.33331 20 3.33331C29.205 3.33331 36.6667 10.795 36.6667 20C36.6667 29.205 29.205 36.6666 20 36.6666C10.795 36.6666 3.33337 29.205 3.33337 20Z" stroke="black" strokeWidth="1.5" />
-         <path fill={fill} d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
+         <path
+            fill={fill}
+            d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+         />
       </svg>
    );
 };
-const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ChartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M1.78577 48.2143H48.2143H1.78577ZM16.0715 48.2143V1.78571H1.78577V48.2143M30.3572 48.2143V23.2143H16.0715V48.2143M44.6429 48.2143V12.5H30.3572V48.2143" fill="white" />
@@ -365,7 +388,7 @@ const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const TrashIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -375,7 +398,7 @@ const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const VirtualWalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const VirtualWalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 71 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -386,7 +409,7 @@ const VirtualWalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddArtikelIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -397,7 +420,7 @@ const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const WalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -408,8 +431,7 @@ const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-
-const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ErrorIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -420,7 +442,7 @@ const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PlayButtonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
          <circle cx="50" cy="50" r="50" fill="black" />
@@ -428,7 +450,7 @@ const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
+const QuestionHelp = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -439,148 +461,297 @@ const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const Salinan = ({ width = "30", height = "34", fill = "black" }) => {
+const Salinan = ({ width = '30', height = '34', fill = 'black' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             d="M4.16665 33.6663C3.24998 33.6663 2.46498 33.3397 1.81165 32.6863C1.15832 32.033 0.832205 31.2486 0.833316 30.333V6.99968H4.16665V30.333H22.5V33.6663H4.16665ZM10.8333 26.9997C9.91665 26.9997 9.13165 26.673 8.47832 26.0197C7.82498 25.3663 7.49887 24.5819 7.49998 23.6663V3.66634C7.49998 2.74968 7.82665 1.96468 8.47998 1.31134C9.13332 0.65801 9.91776 0.3319 10.8333 0.333011H25.8333C26.75 0.333011 27.535 0.659677 28.1883 1.31301C28.8416 1.96634 29.1678 2.75079 29.1666 3.66634V23.6663C29.1666 24.583 28.84 25.368 28.1866 26.0213C27.5333 26.6747 26.7489 27.0008 25.8333 26.9997H10.8333Z"
-
             fill={fill}
          />
       </svg>
    );
 };
 
-const SidebarDashboardIcon = ({ width = "50", height = "50", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clipPath="url(#clip0_2154_5470)">
-        <path d="M34.9723 17.1113L26.7639 25.1808C25.8785 24.7543 24.8708 24.6545 23.9189 24.899C22.9669 25.1436 22.1321 25.7168 21.5619 26.5173C20.9918 27.3179 20.7229 28.2942 20.8029 29.2737C20.8829 30.2533 21.3066 31.1731 21.9991 31.8705C22.6916 32.5679 23.6083 32.9981 24.5873 33.085C25.5663 33.1719 26.5445 32.9099 27.349 32.3454C28.1535 31.7809 28.7326 30.9502 28.9839 30C29.2352 29.0498 29.1425 28.0414 28.7223 27.153L36.9445 19.0836L34.9723 17.1113Z" fill={fill}/>
-        <path d="M24.9998 5.90236C20.6286 5.89735 16.3472 7.14338 12.6614 9.49329C8.97553 11.8432 6.03913 15.1988 4.199 19.1639C2.35887 23.1289 1.69187 27.5377 2.27677 31.8697C2.86167 36.2016 4.67404 40.2756 7.49983 43.6107L7.9165 44.0968H42.0832L42.4998 43.6107C45.3256 40.2756 47.138 36.2016 47.7229 31.8697C48.3078 27.5377 47.6408 23.1289 45.8007 19.1639C43.9605 15.1988 41.0241 11.8432 37.3383 9.49329C33.6524 7.14338 29.3711 5.89735 24.9998 5.90236ZM40.7498 41.319H9.24983C6.75772 38.2006 5.25364 34.4089 4.93039 30.4301H9.72205V27.6524H4.93039C5.16298 23.2423 6.84769 19.0329 9.72205 15.6801L13.1248 19.0829L15.0832 17.1246L11.7082 13.7079C15.0183 10.7823 19.2033 9.03401 23.6109 8.73569V13.5968H26.3887V8.74958C31.2574 9.10266 35.8312 11.2157 39.256 14.6942C42.6808 18.1727 44.7225 22.7787 44.9998 27.6524H40.1665V30.4301H45.0693C44.746 34.4089 43.2419 38.2006 40.7498 41.319Z" fill={fill}/>
-        </g>
-        <defs>
-        <clipPath id="clip0_2154_5470">
-        <rect width={width} height={height} fill={fill}/>
-        </clipPath>
-        </defs>
-        </svg>
-    );
- };
+const SidebarDashboardIcon = ({ width = '50', height = '50', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <g clipPath="url(#clip0_2154_5470)">
+            <path
+               d="M34.9723 17.1113L26.7639 25.1808C25.8785 24.7543 24.8708 24.6545 23.9189 24.899C22.9669 25.1436 22.1321 25.7168 21.5619 26.5173C20.9918 27.3179 20.7229 28.2942 20.8029 29.2737C20.8829 30.2533 21.3066 31.1731 21.9991 31.8705C22.6916 32.5679 23.6083 32.9981 24.5873 33.085C25.5663 33.1719 26.5445 32.9099 27.349 32.3454C28.1535 31.7809 28.7326 30.9502 28.9839 30C29.2352 29.0498 29.1425 28.0414 28.7223 27.153L36.9445 19.0836L34.9723 17.1113Z"
+               fill={fill}
+            />
+            <path
+               d="M24.9998 5.90236C20.6286 5.89735 16.3472 7.14338 12.6614 9.49329C8.97553 11.8432 6.03913 15.1988 4.199 19.1639C2.35887 23.1289 1.69187 27.5377 2.27677 31.8697C2.86167 36.2016 4.67404 40.2756 7.49983 43.6107L7.9165 44.0968H42.0832L42.4998 43.6107C45.3256 40.2756 47.138 36.2016 47.7229 31.8697C48.3078 27.5377 47.6408 23.1289 45.8007 19.1639C43.9605 15.1988 41.0241 11.8432 37.3383 9.49329C33.6524 7.14338 29.3711 5.89735 24.9998 5.90236ZM40.7498 41.319H9.24983C6.75772 38.2006 5.25364 34.4089 4.93039 30.4301H9.72205V27.6524H4.93039C5.16298 23.2423 6.84769 19.0329 9.72205 15.6801L13.1248 19.0829L15.0832 17.1246L11.7082 13.7079C15.0183 10.7823 19.2033 9.03401 23.6109 8.73569V13.5968H26.3887V8.74958C31.2574 9.10266 35.8312 11.2157 39.256 14.6942C42.6808 18.1727 44.7225 22.7787 44.9998 27.6524H40.1665V30.4301H45.0693C44.746 34.4089 43.2419 38.2006 40.7498 41.319Z"
+               fill={fill}
+            />
+         </g>
+         <defs>
+            <clipPath id="clip0_2154_5470">
+               <rect width={width} height={height} fill={fill} />
+            </clipPath>
+         </defs>
+      </svg>
+   );
+};
 
- const SidebarArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M35.6667 41.8337H2.33333C1.7808 41.8337 1.25089 41.6142 0.860194 41.2235C0.469493 40.8328 0.25 40.3029 0.25 39.7503V2.25033C0.25 1.69779 0.469493 1.16789 0.860194 0.777186C1.25089 0.386486 1.7808 0.166992 2.33333 0.166992H35.6667C36.2192 0.166992 36.7491 0.386486 37.1398 0.777186C37.5305 1.16789 37.75 1.69779 37.75 2.25033V39.7503C37.75 40.3029 37.5305 40.8328 37.1398 41.2235C36.7491 41.6142 36.2192 41.8337 35.6667 41.8337ZM33.5833 37.667V4.33366H4.41667V37.667H33.5833ZM8.58333 8.50033H16.9167V16.8337H8.58333V8.50033ZM8.58333 21.0003H29.4167V25.167H8.58333V21.0003ZM8.58333 29.3337H29.4167V33.5003H8.58333V29.3337ZM21.0833 10.5837H29.4167V14.7503H21.0833V10.5837Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M35.6667 41.8337H2.33333C1.7808 41.8337 1.25089 41.6142 0.860194 41.2235C0.469493 40.8328 0.25 40.3029 0.25 39.7503V2.25033C0.25 1.69779 0.469493 1.16789 0.860194 0.777186C1.25089 0.386486 1.7808 0.166992 2.33333 0.166992H35.6667C36.2192 0.166992 36.7491 0.386486 37.1398 0.777186C37.5305 1.16789 37.75 1.69779 37.75 2.25033V39.7503C37.75 40.3029 37.5305 40.8328 37.1398 41.2235C36.7491 41.6142 36.2192 41.8337 35.6667 41.8337ZM33.5833 37.667V4.33366H4.41667V37.667H33.5833ZM8.58333 8.50033H16.9167V16.8337H8.58333V8.50033ZM8.58333 21.0003H29.4167V25.167H8.58333V21.0003ZM8.58333 29.3337H29.4167V33.5003H8.58333V29.3337ZM21.0833 10.5837H29.4167V14.7503H21.0833V10.5837Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M35.6667 41.8333H2.33333C1.7808 41.8333 1.25089 41.6138 0.860194 41.2231C0.469493 40.8324 0.25 40.3025 0.25 39.75V2.24999C0.25 1.69746 0.469493 1.16755 0.860194 0.776851C1.25089 0.38615 1.7808 0.166656 2.33333 0.166656H35.6667C36.2192 0.166656 36.7491 0.38615 37.1398 0.776851C37.5305 1.16755 37.75 1.69746 37.75 2.24999V39.75C37.75 40.3025 37.5305 40.8324 37.1398 41.2231C36.7491 41.6138 36.2192 41.8333 35.6667 41.8333ZM8.58333 8.49999V16.8333H16.9167V8.49999H8.58333ZM8.58333 21V25.1667H29.4167V21H8.58333ZM8.58333 29.3333V33.5H29.4167V29.3333H8.58333ZM21.0833 10.5833V14.75H29.4167V10.5833H21.0833Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarDarkArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M35.6667 41.8333H2.33333C1.7808 41.8333 1.25089 41.6138 0.860194 41.2231C0.469493 40.8324 0.25 40.3025 0.25 39.75V2.24999C0.25 1.69746 0.469493 1.16755 0.860194 0.776851C1.25089 0.38615 1.7808 0.166656 2.33333 0.166656H35.6667C36.2192 0.166656 36.7491 0.38615 37.1398 0.776851C37.5305 1.16755 37.75 1.69746 37.75 2.24999V39.75C37.75 40.3025 37.5305 40.8324 37.1398 41.2231C36.7491 41.6138 36.2192 41.8333 35.6667 41.8333ZM8.58333 8.49999V16.8333H16.9167V8.49999H8.58333ZM8.58333 21V25.1667H29.4167V21H8.58333ZM8.58333 29.3333V33.5H29.4167V29.3333H8.58333ZM21.0833 10.5833V14.75H29.4167V10.5833H21.0833Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarMessageIcon = ({ width = "42", height = "38", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M29.3333 10.6663H37.6667C38.8173 10.6663 39.75 11.5991 39.75 12.7497V35.6663L32.8062 29.8976C32.4323 29.5868 31.96 29.4163 31.4735 29.4163H14.75C13.5994 29.4163 12.6667 28.4836 12.6667 27.333V21.083M29.3333 10.6663V4.41634C29.3333 3.26576 28.4006 2.33301 27.25 2.33301H4.33333C3.18275 2.33301 2.25 3.26576 2.25 4.41634V27.3336L9.19377 21.5638C9.56781 21.2532 10.0401 21.083 10.5264 21.083H12.6667M29.3333 10.6663V18.9997C29.3333 20.1503 28.4006 21.083 27.25 21.083H12.6667" stroke={fill} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-    );
- };
+const SidebarMessageIcon = ({ width = '42', height = '38', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M29.3333 10.6663H37.6667C38.8173 10.6663 39.75 11.5991 39.75 12.7497V35.6663L32.8062 29.8976C32.4323 29.5868 31.96 29.4163 31.4735 29.4163H14.75C13.5994 29.4163 12.6667 28.4836 12.6667 27.333V21.083M29.3333 10.6663V4.41634C29.3333 3.26576 28.4006 2.33301 27.25 2.33301H4.33333C3.18275 2.33301 2.25 3.26576 2.25 4.41634V27.3336L9.19377 21.5638C9.56781 21.2532 10.0401 21.083 10.5264 21.083H12.6667M29.3333 10.6663V18.9997C29.3333 20.1503 28.4006 21.083 27.25 21.083H12.6667"
+            stroke={fill}
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkMessageIcon = ({ width = "48", height = "40", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M38.1281 23.175V3.66407C38.1281 1.73594 36.5656 0.17032 34.6343 0.17032H4.05466C2.12498 0.168757 0.560913 1.73438 0.560913 3.66407V23.175C0.560913 25.1047 2.12498 26.6688 4.05466 26.6688H9.88123V34.6953L18.7937 26.6688H34.6328C36.5656 26.6688 38.1281 25.1047 38.1281 23.175ZM43.9453 7.84063H39.5734C39.5734 7.84063 39.5734 23.4219 39.5734 24.8859C39.5734 26.35 37.6734 28.2328 36.2093 28.2328C34.7453 28.2328 19.1078 28.3188 19.1078 28.3188C19.1078 30.2484 20.6718 31.4219 22.6015 31.4219H29.3343L38.1187 39.3938L38.1078 31.4219H43.9453C45.8765 31.4219 47.439 30.2484 47.439 28.3188V11.2375C47.439 9.30938 45.8765 7.84063 43.9453 7.84063Z" fill={fill}/>
-</svg>
-    );
- };
+const SidebarDarkMessageIcon = ({ width = '48', height = '40', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M38.1281 23.175V3.66407C38.1281 1.73594 36.5656 0.17032 34.6343 0.17032H4.05466C2.12498 0.168757 0.560913 1.73438 0.560913 3.66407V23.175C0.560913 25.1047 2.12498 26.6688 4.05466 26.6688H9.88123V34.6953L18.7937 26.6688H34.6328C36.5656 26.6688 38.1281 25.1047 38.1281 23.175ZM43.9453 7.84063H39.5734C39.5734 7.84063 39.5734 23.4219 39.5734 24.8859C39.5734 26.35 37.6734 28.2328 36.2093 28.2328C34.7453 28.2328 19.1078 28.3188 19.1078 28.3188C19.1078 30.2484 20.6718 31.4219 22.6015 31.4219H29.3343L38.1187 39.3938L38.1078 31.4219H43.9453C45.8765 31.4219 47.439 30.2484 47.439 28.3188V11.2375C47.439 9.30938 45.8765 7.84063 43.9453 7.84063Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M40.8547 29.1453L36.625 24.9156V19.3125C36.6202 15.4404 35.1797 11.7076 32.5822 8.83591C29.9848 5.96424 26.4147 4.15771 22.5625 3.76562V0.5625H19.4375V3.76562C15.5853 4.15771 12.0153 5.96424 9.41776 8.83591C6.82028 11.7076 5.37985 15.4404 5.375 19.3125V24.9156L1.14531 29.1453C0.852267 29.4383 0.687588 29.8356 0.6875 30.25V34.9375C0.6875 35.3519 0.85212 35.7493 1.14515 36.0424C1.43817 36.3354 1.8356 36.5 2.25 36.5H13.1875V37.7141C13.1535 39.6963 13.8522 41.6214 15.1497 43.1204C16.4471 44.6194 18.2521 45.5869 20.2188 45.8375C21.305 45.9452 22.4017 45.8244 23.4384 45.4828C24.4751 45.1412 25.4289 44.5864 26.2383 43.8541C27.0478 43.1218 27.695 42.2282 28.1383 41.2307C28.5816 40.2332 28.8113 39.154 28.8125 38.0625V36.5H39.75C40.1644 36.5 40.5618 36.3354 40.8549 36.0424C41.1479 35.7493 41.3125 35.3519 41.3125 34.9375V30.25C41.3124 29.8356 41.1477 29.4383 40.8547 29.1453ZM25.6875 38.0625C25.6875 39.3057 25.1936 40.498 24.3146 41.3771C23.4355 42.2561 22.2432 42.75 21 42.75C19.7568 42.75 18.5645 42.2561 17.6854 41.3771C16.8064 40.498 16.3125 39.3057 16.3125 38.0625V36.5H25.6875V38.0625ZM38.1875 33.375H3.8125V30.8969L8.04219 26.6672C8.33523 26.3742 8.49991 25.9769 8.5 25.5625V19.3125C8.5 15.9973 9.81696 12.8179 12.1612 10.4737C14.5054 8.12946 17.6848 6.8125 21 6.8125C24.3152 6.8125 27.4946 8.12946 29.8388 10.4737C32.183 12.8179 33.5 15.9973 33.5 19.3125V25.5625C33.5001 25.9769 33.6648 26.3742 33.9578 26.6672L38.1875 30.8969V33.375Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M40.8547 29.1453L36.625 24.9156V19.3125C36.6202 15.4404 35.1797 11.7076 32.5822 8.83591C29.9848 5.96424 26.4147 4.15771 22.5625 3.76562V0.5625H19.4375V3.76562C15.5853 4.15771 12.0153 5.96424 9.41776 8.83591C6.82028 11.7076 5.37985 15.4404 5.375 19.3125V24.9156L1.14531 29.1453C0.852267 29.4383 0.687588 29.8356 0.6875 30.25V34.9375C0.6875 35.3519 0.85212 35.7493 1.14515 36.0424C1.43817 36.3354 1.8356 36.5 2.25 36.5H13.1875V37.7141C13.1535 39.6963 13.8522 41.6214 15.1497 43.1204C16.4471 44.6194 18.2521 45.5869 20.2188 45.8375C21.305 45.9452 22.4017 45.8244 23.4384 45.4828C24.4751 45.1412 25.4289 44.5864 26.2383 43.8541C27.0478 43.1218 27.695 42.2282 28.1383 41.2307C28.5816 40.2332 28.8113 39.154 28.8125 38.0625V36.5H39.75C40.1644 36.5 40.5618 36.3354 40.8549 36.0424C41.1479 35.7493 41.3125 35.3519 41.3125 34.9375V30.25C41.3124 29.8356 41.1477 29.4383 40.8547 29.1453ZM25.6875 38.0625C25.6875 39.3057 25.1936 40.498 24.3146 41.3771C23.4355 42.2561 22.2432 42.75 21 42.75C19.7568 42.75 18.5645 42.2561 17.6854 41.3771C16.8064 40.498 16.3125 39.3057 16.3125 38.0625V36.5H25.6875V38.0625ZM38.1875 33.375H3.8125V30.8969L8.04219 26.6672C8.33523 26.3742 8.49991 25.9769 8.5 25.5625V19.3125C8.5 15.9973 9.81696 12.8179 12.1612 10.4737C14.5054 8.12946 17.6848 6.8125 21 6.8125C24.3152 6.8125 27.4946 8.12946 29.8388 10.4737C32.183 12.8179 33.5 15.9973 33.5 19.3125V25.5625C33.5001 25.9769 33.6648 26.3742 33.9578 26.6672L38.1875 30.8969V33.375Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M40.8547 29.1453L36.625 24.9156V19.3125C36.6202 15.4404 35.1797 11.7076 32.5822 8.83591C29.9848 5.96424 26.4147 4.15771 22.5625 3.76562V0.5625H19.4375V3.76562C15.5853 4.15771 12.0153 5.96424 9.41776 8.83591C6.82028 11.7076 5.37985 15.4404 5.375 19.3125V24.9156L1.14531 29.1453C0.852267 29.4383 0.687588 29.8356 0.6875 30.25V34.9375C0.6875 35.3519 0.85212 35.7493 1.14515 36.0424C1.43817 36.3354 1.8356 36.5 2.25 36.5H13.1875V38.0625C13.1875 40.1345 14.0106 42.1216 15.4757 43.5868C16.9409 45.0519 18.928 45.875 21 45.875C23.072 45.875 25.0591 45.0519 26.5243 43.5868C27.9894 42.1216 28.8125 40.1345 28.8125 38.0625V36.5H39.75C40.1644 36.5 40.5618 36.3354 40.8549 36.0424C41.1479 35.7493 41.3125 35.3519 41.3125 34.9375V30.25C41.3124 29.8356 41.1477 29.4383 40.8547 29.1453ZM25.6875 38.0625C25.6875 39.3057 25.1936 40.498 24.3146 41.3771C23.4355 42.2561 22.2432 42.75 21 42.75C19.7568 42.75 18.5645 42.2561 17.6854 41.3771C16.8064 40.498 16.3125 39.3057 16.3125 38.0625V36.5H25.6875V38.0625Z" fill={fill}/>
-</svg>
-    );
- };
+const SidebarDarkNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M40.8547 29.1453L36.625 24.9156V19.3125C36.6202 15.4404 35.1797 11.7076 32.5822 8.83591C29.9848 5.96424 26.4147 4.15771 22.5625 3.76562V0.5625H19.4375V3.76562C15.5853 4.15771 12.0153 5.96424 9.41776 8.83591C6.82028 11.7076 5.37985 15.4404 5.375 19.3125V24.9156L1.14531 29.1453C0.852267 29.4383 0.687588 29.8356 0.6875 30.25V34.9375C0.6875 35.3519 0.85212 35.7493 1.14515 36.0424C1.43817 36.3354 1.8356 36.5 2.25 36.5H13.1875V38.0625C13.1875 40.1345 14.0106 42.1216 15.4757 43.5868C16.9409 45.0519 18.928 45.875 21 45.875C23.072 45.875 25.0591 45.0519 26.5243 43.5868C27.9894 42.1216 28.8125 40.1345 28.8125 38.0625V36.5H39.75C40.1644 36.5 40.5618 36.3354 40.8549 36.0424C41.1479 35.7493 41.3125 35.3519 41.3125 34.9375V30.25C41.3124 29.8356 41.1477 29.4383 40.8547 29.1453ZM25.6875 38.0625C25.6875 39.3057 25.1936 40.498 24.3146 41.3771C23.4355 42.2561 22.2432 42.75 21 42.75C19.7568 42.75 18.5645 42.2561 17.6854 41.3771C16.8064 40.498 16.3125 39.3057 16.3125 38.0625V36.5H25.6875V38.0625Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarDollarIcon = ({ width = "22", height = "38", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.583496 25.25H4.75016C4.75016 27.5 7.60433 29.4167 11.0002 29.4167C14.396 29.4167 17.2502 27.5 17.2502 25.25C17.2502 22.9583 15.0835 22.125 10.5002 21.0208C6.0835 19.9167 0.583496 18.5417 0.583496 12.75C0.583496 9.02083 3.646 5.85417 7.87516 4.79167V0.25H14.1252V4.79167C18.3543 5.85417 21.4168 9.02083 21.4168 12.75H17.2502C17.2502 10.5 14.396 8.58333 11.0002 8.58333C7.60433 8.58333 4.75016 10.5 4.75016 12.75C4.75016 15.0417 6.91683 15.875 11.5002 16.9792C15.9168 18.0833 21.4168 19.4583 21.4168 25.25C21.4168 28.9792 18.3543 32.1458 14.1252 33.2083V37.75H7.87516V33.2083C3.646 32.1458 0.583496 28.9792 0.583496 25.25Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarDollarIcon = ({ width = '22', height = '38', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M0.583496 25.25H4.75016C4.75016 27.5 7.60433 29.4167 11.0002 29.4167C14.396 29.4167 17.2502 27.5 17.2502 25.25C17.2502 22.9583 15.0835 22.125 10.5002 21.0208C6.0835 19.9167 0.583496 18.5417 0.583496 12.75C0.583496 9.02083 3.646 5.85417 7.87516 4.79167V0.25H14.1252V4.79167C18.3543 5.85417 21.4168 9.02083 21.4168 12.75H17.2502C17.2502 10.5 14.396 8.58333 11.0002 8.58333C7.60433 8.58333 4.75016 10.5 4.75016 12.75C4.75016 15.0417 6.91683 15.875 11.5002 16.9792C15.9168 18.0833 21.4168 19.4583 21.4168 25.25C21.4168 28.9792 18.3543 32.1458 14.1252 33.2083V37.75H7.87516V33.2083C3.646 32.1458 0.583496 28.9792 0.583496 25.25Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkDollarIcon = ({ width = "46", height = "46", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M23 0.290619C10.4578 0.290619 0.290649 10.4578 0.290649 23C0.290649 35.5422 10.4578 45.7094 23 45.7094C35.5422 45.7094 45.7094 35.5422 45.7094 23C45.7094 10.4578 35.5422 0.290619 23 0.290619ZM24.961 35.3125V38.5109H21.9016V35.3484C16.8813 34.6609 14.6828 30.5359 14.6828 30.5359L17.8078 27.9219C17.8078 27.9219 19.8032 31.3953 23.4125 31.3953C25.4063 31.3953 26.9188 30.3281 26.9188 28.5047C26.9188 24.2422 15.4344 24.7594 15.4344 16.8516C15.4344 13.4141 18.1531 10.9375 21.9 10.3516V7.15624H24.9594V10.3516C27.5719 10.6953 30.6656 12.0703 30.6656 15.0281V17.2969H26.6094V16.1969C26.6094 15.0625 25.1641 14.3062 23.5469 14.3062C21.4844 14.3062 19.9735 15.3375 19.9735 16.7812C19.9735 21.1469 31.4578 20.0812 31.4578 28.3672C31.4578 31.7734 28.9141 34.7266 24.961 35.3125Z" fill={fill}/>
-</svg>
-    );
- };
+const SidebarDarkDollarIcon = ({ width = '46', height = '46', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M23 0.290619C10.4578 0.290619 0.290649 10.4578 0.290649 23C0.290649 35.5422 10.4578 45.7094 23 45.7094C35.5422 45.7094 45.7094 35.5422 45.7094 23C45.7094 10.4578 35.5422 0.290619 23 0.290619ZM24.961 35.3125V38.5109H21.9016V35.3484C16.8813 34.6609 14.6828 30.5359 14.6828 30.5359L17.8078 27.9219C17.8078 27.9219 19.8032 31.3953 23.4125 31.3953C25.4063 31.3953 26.9188 30.3281 26.9188 28.5047C26.9188 24.2422 15.4344 24.7594 15.4344 16.8516C15.4344 13.4141 18.1531 10.9375 21.9 10.3516V7.15624H24.9594V10.3516C27.5719 10.6953 30.6656 12.0703 30.6656 15.0281V17.2969H26.6094V16.1969C26.6094 15.0625 25.1641 14.3062 23.5469 14.3062C21.4844 14.3062 19.9735 15.3375 19.9735 16.7812C19.9735 21.1469 31.4578 20.0812 31.4578 28.3672C31.4578 31.7734 28.9141 34.7266 24.961 35.3125Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M39.75 20.9996C39.7562 24.722 38.649 28.3612 36.5708 31.4496C34.857 34.0057 32.5397 36.1002 29.8239 37.5478C27.1082 38.9955 24.0775 39.7517 21 39.7496C17.9225 39.7517 14.8918 38.9955 12.1761 37.5478C9.46027 36.1002 7.14301 34.0057 5.42917 31.4496C3.79735 29.0171 2.75813 26.2361 2.3948 23.3296C2.03148 20.4232 2.35416 17.472 3.33697 14.7126C4.31979 11.9533 5.93541 9.46267 8.05431 7.4403C10.1732 5.41793 12.7365 3.92012 15.5386 3.06693C18.3407 2.21375 21.3037 2.02892 24.1901 2.52728C27.0765 3.02563 29.806 4.1933 32.1598 5.93668C34.5136 7.68006 36.4262 9.95065 37.7443 12.5664C39.0624 15.1822 39.7493 18.0704 39.75 20.9996Z" stroke={fill} strokeWidth="3"/>
-        <mask id="path-2-inside-1_2154_10709" fill={"white"}>
-        <path d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z"/>
-        </mask>
-        <path d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z" fill="black"/>
-        <path d="M19.5002 17.3538V20.4788H22.5002V17.3538H19.5002ZM26.7293 13.2497H23.6043V16.2497H26.7293V13.2497ZM18.396 13.2497H15.271V16.2497H18.396V13.2497ZM22.5002 12.1455V9.02051H19.5002V12.1455H22.5002ZM28.7502 28.8122V25.6872H25.7502V28.8122H28.7502ZM13.2502 25.6872V28.8122H16.2502V25.6872H13.2502ZM22.5002 41.3122V38.1872H19.5002V41.3122H22.5002ZM26.7293 14.7497H29.7293H26.7293ZM15.271 14.7497H12.271H15.271ZM6.76266 33.1997L8.71569 35.4769L12.893 31.8942L7.61847 30.3243L6.76266 33.1997ZM5.26475 32.7538L2.39023 31.8953L2.39006 31.8958L5.26475 32.7538ZM5.021 33.5705L2.14631 32.7125L1.67698 34.2849L2.74789 35.5283L5.021 33.5705ZM35.2377 33.1997L34.3819 30.3243L29.1082 31.894L33.2843 35.4766L35.2377 33.1997ZM36.9793 33.5726L39.2561 35.5262L40.3214 34.2846L39.8546 32.7166L36.9793 33.5726ZM36.7356 32.7538L39.6109 31.8978L39.6101 31.8953L36.7356 32.7538ZM14.7502 28.8122V25.8122H14.7496L14.7502 28.8122ZM27.2502 25.6872L27.2503 22.6872H27.2502V25.6872ZM14.7502 25.6872V22.6872H14.75L14.7502 25.6872ZM8.26058 33.6455L7.40478 36.5208L10.2761 37.3755L11.1347 34.5053L8.26058 33.6455ZM21.0002 38.1872L21.0036 35.1872L20.9967 35.1872L21.0002 38.1872ZM7.94808 32.183L10.2284 30.2336L8.27583 27.9497L5.99505 29.9058L7.94808 32.183ZM21.0002 41.3122L21.003 38.3122L20.9973 38.3122L21.0002 41.3122ZM33.7397 33.6455L30.8647 34.5024L31.7213 37.3763L34.5955 36.5208L33.7397 33.6455ZM34.0522 32.183L36.0054 29.9059L33.7246 27.9495L31.772 30.2336L34.0522 32.183ZM20.6043 14.7497C20.6043 14.5303 20.7808 14.3538 21.0002 14.3538V20.3538C24.0945 20.3538 26.6043 17.844 26.6043 14.7497H20.6043ZM21.0002 23.4788C23.3153 23.4788 25.5356 22.5592 27.1726 20.9221L22.93 16.6795C22.4182 17.1913 21.724 17.4788 21.0002 17.4788V23.4788ZM27.1726 20.9221C28.8097 19.2851 29.7293 17.0648 29.7293 14.7497H23.7293C23.7293 15.4735 23.4418 16.1677 22.93 16.6795L27.1726 20.9221ZM21.0002 14.3538C21.2195 14.3538 21.396 14.5303 21.396 14.7497H15.396C15.396 17.844 17.9058 20.3538 21.0002 20.3538V14.3538ZM12.271 14.7497C12.271 17.0648 13.1907 19.2851 14.8277 20.9221L19.0703 16.6795C18.5585 16.1677 18.271 15.4735 18.271 14.7497H12.271ZM14.8277 20.9221C16.4647 22.5592 18.685 23.4788 21.0002 23.4788V17.4788C20.2763 17.4788 19.5822 17.1913 19.0703 16.6795L14.8277 20.9221ZM21.396 14.7497C21.396 14.969 21.2195 15.1455 21.0002 15.1455V9.14551C17.9058 9.14551 15.396 11.6553 15.396 14.7497H21.396ZM21.0002 6.02051C18.685 6.02051 16.4647 6.94018 14.8277 8.57722L19.0703 12.8199C19.5822 12.308 20.2763 12.0205 21.0002 12.0205V6.02051ZM14.8277 8.57722C13.1907 10.2143 12.271 12.4346 12.271 14.7497H18.271C18.271 14.0259 18.5585 13.3317 19.0703 12.8199L14.8277 8.57722ZM21.0002 15.1455C20.7808 15.1455 20.6043 14.969 20.6043 14.7497H26.6043C26.6043 11.6553 24.0945 9.14551 21.0002 9.14551V15.1455ZM29.7293 14.7497C29.7293 12.4346 28.8097 10.2143 27.1726 8.57722L22.93 12.8199C23.4418 13.3317 23.7293 14.0259 23.7293 14.7497H29.7293ZM27.1726 8.57722C25.5356 6.94018 23.3153 6.02051 21.0002 6.02051V12.0205C21.724 12.0205 22.4182 12.308 22.93 12.8199L27.1726 8.57722ZM7.61847 30.3243L6.12055 29.8785L4.40894 35.6292L5.90686 36.075L7.61847 30.3243ZM2.39006 31.8958L2.14631 32.7125L7.89568 34.4285L8.13943 33.6118L2.39006 31.8958ZM2.74789 35.5283L3.30414 36.1741L7.85035 32.2585L7.2941 31.6127L2.74789 35.5283ZM7.53028 36.4935L8.71569 35.4769L4.80963 30.9225L3.62422 31.9391L7.53028 36.4935ZM33.2843 35.4766L34.4718 36.4953L38.3785 31.9415L37.191 30.9227L33.2843 35.4766ZM38.7019 36.172L39.2561 35.5262L34.7026 31.619L34.1484 32.2648L38.7019 36.172ZM39.8546 32.7166L39.6109 31.8978L33.8603 33.6098L34.104 34.4286L39.8546 32.7166ZM35.8798 29.8785L34.3819 30.3243L36.0935 36.075L37.5914 35.6292L35.8798 29.8785ZM14.7502 31.8122H27.2502V25.8122H14.7502V31.8122ZM27.2502 22.6872H14.7502V28.6872H27.2502V22.6872ZM14.75 22.6872C11.9732 22.6873 9.27055 23.5835 7.04376 25.2424L10.6284 30.0539C11.8194 29.1666 13.265 28.6872 14.7503 28.6872L14.75 22.6872ZM7.04376 25.2424C4.81698 26.9014 3.18494 29.2346 2.39023 31.8953L8.13926 33.6124C8.56434 32.1893 9.43729 30.9413 10.6284 30.0539L7.04376 25.2424ZM4.40894 35.6292L7.40478 36.5208L9.11638 30.7702L6.12055 29.8785L4.40894 35.6292ZM11.1347 34.5053C11.3675 33.7271 11.8451 33.0448 12.4965 32.5596L8.91259 27.7476C7.2258 29.0039 5.98919 30.7707 5.38642 32.7857L11.1347 34.5053ZM12.4965 32.5596C13.1479 32.0744 13.9385 31.8123 14.7507 31.8122L14.7496 25.8122C12.6464 25.8126 10.5994 26.4913 8.91259 27.7476L12.4965 32.5596ZM20.9967 35.1872C18.9503 35.1895 16.9278 34.7479 15.0687 33.8926L12.5612 39.3435C15.2088 40.5615 18.0892 41.1905 21.0036 41.1872L20.9967 35.1872ZM15.0687 33.8926C13.2096 33.0374 11.5581 31.789 10.2284 30.2336L5.66781 34.1325C7.56162 36.3476 9.91351 38.1256 12.5612 39.3435L15.0687 33.8926ZM5.99505 29.9058L3.62421 31.9391L7.53028 36.4935L9.90111 34.4602L5.99505 29.9058ZM3.29757 36.1665C5.48389 38.7222 8.19904 40.7767 11.2567 42.1831L13.7639 36.732C11.4965 35.6891 9.48085 34.1645 7.85692 32.2662L3.29757 36.1665ZM11.2567 42.1831C14.3134 43.589 17.6385 44.3154 21.003 44.3122L20.9973 38.3122C18.5003 38.3146 16.0325 37.7755 13.7639 36.732L11.2567 42.1831ZM27.2502 31.8122C28.9509 31.8122 30.4003 32.9443 30.8647 34.5024L36.6148 32.7886C35.4125 28.755 31.6744 25.8122 27.2502 25.8122V31.8122ZM34.5955 36.5208L37.5914 35.6292L35.8798 29.8785L32.8839 30.7702L34.5955 36.5208ZM39.6101 31.8953C38.8154 29.2346 37.1833 26.9014 34.9566 25.2424L31.372 30.0539C32.563 30.9413 33.436 32.1893 33.8611 33.6124L39.6101 31.8953ZM34.9566 25.2424C32.7298 23.5835 30.0271 22.6873 27.2503 22.6872L27.25 28.6872C28.7353 28.6872 30.1809 29.1666 31.372 30.0539L34.9566 25.2424ZM31.772 30.2336C30.4422 31.789 28.7908 33.0374 26.9317 33.8926L29.4392 39.3435C32.0868 38.1256 34.4387 36.3476 36.3325 34.1325L31.772 30.2336ZM26.9317 33.8926C25.0725 34.7479 23.05 35.1895 21.0036 35.1872L20.9967 41.1872C23.9111 41.1905 26.7915 40.5615 29.4392 39.3435L26.9317 33.8926ZM20.9973 44.3122C24.3618 44.3154 27.6869 43.589 30.7436 42.1831L28.2364 36.732C25.9678 37.7755 23.5 38.3146 21.003 38.3122L20.9973 44.3122ZM30.7436 42.1831C33.7994 40.7776 36.5172 38.7259 38.7048 36.1686L34.1455 32.2683C32.5229 34.165 30.5057 35.6883 28.2364 36.732L30.7436 42.1831ZM38.3784 31.9414L36.0054 29.9059L32.099 34.4601L34.472 36.4955L38.3784 31.9414Z" fill={fill} mask="url(#path-2-inside-1_2154_10709)"/>
-        </svg>
-    );
- };
+const SidebarProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M39.75 20.9996C39.7562 24.722 38.649 28.3612 36.5708 31.4496C34.857 34.0057 32.5397 36.1002 29.8239 37.5478C27.1082 38.9955 24.0775 39.7517 21 39.7496C17.9225 39.7517 14.8918 38.9955 12.1761 37.5478C9.46027 36.1002 7.14301 34.0057 5.42917 31.4496C3.79735 29.0171 2.75813 26.2361 2.3948 23.3296C2.03148 20.4232 2.35416 17.472 3.33697 14.7126C4.31979 11.9533 5.93541 9.46267 8.05431 7.4403C10.1732 5.41793 12.7365 3.92012 15.5386 3.06693C18.3407 2.21375 21.3037 2.02892 24.1901 2.52728C27.0765 3.02563 29.806 4.1933 32.1598 5.93668C34.5136 7.68006 36.4262 9.95065 37.7443 12.5664C39.0624 15.1822 39.7493 18.0704 39.75 20.9996Z"
+            stroke={fill}
+            strokeWidth="3"
+         />
+         <mask id="path-2-inside-1_2154_10709" fill={'white'}>
+            <path d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z" />
+         </mask>
+         <path
+            d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z"
+            fill="black"
+         />
+         <path
+            d="M19.5002 17.3538V20.4788H22.5002V17.3538H19.5002ZM26.7293 13.2497H23.6043V16.2497H26.7293V13.2497ZM18.396 13.2497H15.271V16.2497H18.396V13.2497ZM22.5002 12.1455V9.02051H19.5002V12.1455H22.5002ZM28.7502 28.8122V25.6872H25.7502V28.8122H28.7502ZM13.2502 25.6872V28.8122H16.2502V25.6872H13.2502ZM22.5002 41.3122V38.1872H19.5002V41.3122H22.5002ZM26.7293 14.7497H29.7293H26.7293ZM15.271 14.7497H12.271H15.271ZM6.76266 33.1997L8.71569 35.4769L12.893 31.8942L7.61847 30.3243L6.76266 33.1997ZM5.26475 32.7538L2.39023 31.8953L2.39006 31.8958L5.26475 32.7538ZM5.021 33.5705L2.14631 32.7125L1.67698 34.2849L2.74789 35.5283L5.021 33.5705ZM35.2377 33.1997L34.3819 30.3243L29.1082 31.894L33.2843 35.4766L35.2377 33.1997ZM36.9793 33.5726L39.2561 35.5262L40.3214 34.2846L39.8546 32.7166L36.9793 33.5726ZM36.7356 32.7538L39.6109 31.8978L39.6101 31.8953L36.7356 32.7538ZM14.7502 28.8122V25.8122H14.7496L14.7502 28.8122ZM27.2502 25.6872L27.2503 22.6872H27.2502V25.6872ZM14.7502 25.6872V22.6872H14.75L14.7502 25.6872ZM8.26058 33.6455L7.40478 36.5208L10.2761 37.3755L11.1347 34.5053L8.26058 33.6455ZM21.0002 38.1872L21.0036 35.1872L20.9967 35.1872L21.0002 38.1872ZM7.94808 32.183L10.2284 30.2336L8.27583 27.9497L5.99505 29.9058L7.94808 32.183ZM21.0002 41.3122L21.003 38.3122L20.9973 38.3122L21.0002 41.3122ZM33.7397 33.6455L30.8647 34.5024L31.7213 37.3763L34.5955 36.5208L33.7397 33.6455ZM34.0522 32.183L36.0054 29.9059L33.7246 27.9495L31.772 30.2336L34.0522 32.183ZM20.6043 14.7497C20.6043 14.5303 20.7808 14.3538 21.0002 14.3538V20.3538C24.0945 20.3538 26.6043 17.844 26.6043 14.7497H20.6043ZM21.0002 23.4788C23.3153 23.4788 25.5356 22.5592 27.1726 20.9221L22.93 16.6795C22.4182 17.1913 21.724 17.4788 21.0002 17.4788V23.4788ZM27.1726 20.9221C28.8097 19.2851 29.7293 17.0648 29.7293 14.7497H23.7293C23.7293 15.4735 23.4418 16.1677 22.93 16.6795L27.1726 20.9221ZM21.0002 14.3538C21.2195 14.3538 21.396 14.5303 21.396 14.7497H15.396C15.396 17.844 17.9058 20.3538 21.0002 20.3538V14.3538ZM12.271 14.7497C12.271 17.0648 13.1907 19.2851 14.8277 20.9221L19.0703 16.6795C18.5585 16.1677 18.271 15.4735 18.271 14.7497H12.271ZM14.8277 20.9221C16.4647 22.5592 18.685 23.4788 21.0002 23.4788V17.4788C20.2763 17.4788 19.5822 17.1913 19.0703 16.6795L14.8277 20.9221ZM21.396 14.7497C21.396 14.969 21.2195 15.1455 21.0002 15.1455V9.14551C17.9058 9.14551 15.396 11.6553 15.396 14.7497H21.396ZM21.0002 6.02051C18.685 6.02051 16.4647 6.94018 14.8277 8.57722L19.0703 12.8199C19.5822 12.308 20.2763 12.0205 21.0002 12.0205V6.02051ZM14.8277 8.57722C13.1907 10.2143 12.271 12.4346 12.271 14.7497H18.271C18.271 14.0259 18.5585 13.3317 19.0703 12.8199L14.8277 8.57722ZM21.0002 15.1455C20.7808 15.1455 20.6043 14.969 20.6043 14.7497H26.6043C26.6043 11.6553 24.0945 9.14551 21.0002 9.14551V15.1455ZM29.7293 14.7497C29.7293 12.4346 28.8097 10.2143 27.1726 8.57722L22.93 12.8199C23.4418 13.3317 23.7293 14.0259 23.7293 14.7497H29.7293ZM27.1726 8.57722C25.5356 6.94018 23.3153 6.02051 21.0002 6.02051V12.0205C21.724 12.0205 22.4182 12.308 22.93 12.8199L27.1726 8.57722ZM7.61847 30.3243L6.12055 29.8785L4.40894 35.6292L5.90686 36.075L7.61847 30.3243ZM2.39006 31.8958L2.14631 32.7125L7.89568 34.4285L8.13943 33.6118L2.39006 31.8958ZM2.74789 35.5283L3.30414 36.1741L7.85035 32.2585L7.2941 31.6127L2.74789 35.5283ZM7.53028 36.4935L8.71569 35.4769L4.80963 30.9225L3.62422 31.9391L7.53028 36.4935ZM33.2843 35.4766L34.4718 36.4953L38.3785 31.9415L37.191 30.9227L33.2843 35.4766ZM38.7019 36.172L39.2561 35.5262L34.7026 31.619L34.1484 32.2648L38.7019 36.172ZM39.8546 32.7166L39.6109 31.8978L33.8603 33.6098L34.104 34.4286L39.8546 32.7166ZM35.8798 29.8785L34.3819 30.3243L36.0935 36.075L37.5914 35.6292L35.8798 29.8785ZM14.7502 31.8122H27.2502V25.8122H14.7502V31.8122ZM27.2502 22.6872H14.7502V28.6872H27.2502V22.6872ZM14.75 22.6872C11.9732 22.6873 9.27055 23.5835 7.04376 25.2424L10.6284 30.0539C11.8194 29.1666 13.265 28.6872 14.7503 28.6872L14.75 22.6872ZM7.04376 25.2424C4.81698 26.9014 3.18494 29.2346 2.39023 31.8953L8.13926 33.6124C8.56434 32.1893 9.43729 30.9413 10.6284 30.0539L7.04376 25.2424ZM4.40894 35.6292L7.40478 36.5208L9.11638 30.7702L6.12055 29.8785L4.40894 35.6292ZM11.1347 34.5053C11.3675 33.7271 11.8451 33.0448 12.4965 32.5596L8.91259 27.7476C7.2258 29.0039 5.98919 30.7707 5.38642 32.7857L11.1347 34.5053ZM12.4965 32.5596C13.1479 32.0744 13.9385 31.8123 14.7507 31.8122L14.7496 25.8122C12.6464 25.8126 10.5994 26.4913 8.91259 27.7476L12.4965 32.5596ZM20.9967 35.1872C18.9503 35.1895 16.9278 34.7479 15.0687 33.8926L12.5612 39.3435C15.2088 40.5615 18.0892 41.1905 21.0036 41.1872L20.9967 35.1872ZM15.0687 33.8926C13.2096 33.0374 11.5581 31.789 10.2284 30.2336L5.66781 34.1325C7.56162 36.3476 9.91351 38.1256 12.5612 39.3435L15.0687 33.8926ZM5.99505 29.9058L3.62421 31.9391L7.53028 36.4935L9.90111 34.4602L5.99505 29.9058ZM3.29757 36.1665C5.48389 38.7222 8.19904 40.7767 11.2567 42.1831L13.7639 36.732C11.4965 35.6891 9.48085 34.1645 7.85692 32.2662L3.29757 36.1665ZM11.2567 42.1831C14.3134 43.589 17.6385 44.3154 21.003 44.3122L20.9973 38.3122C18.5003 38.3146 16.0325 37.7755 13.7639 36.732L11.2567 42.1831ZM27.2502 31.8122C28.9509 31.8122 30.4003 32.9443 30.8647 34.5024L36.6148 32.7886C35.4125 28.755 31.6744 25.8122 27.2502 25.8122V31.8122ZM34.5955 36.5208L37.5914 35.6292L35.8798 29.8785L32.8839 30.7702L34.5955 36.5208ZM39.6101 31.8953C38.8154 29.2346 37.1833 26.9014 34.9566 25.2424L31.372 30.0539C32.563 30.9413 33.436 32.1893 33.8611 33.6124L39.6101 31.8953ZM34.9566 25.2424C32.7298 23.5835 30.0271 22.6873 27.2503 22.6872L27.25 28.6872C28.7353 28.6872 30.1809 29.1666 31.372 30.0539L34.9566 25.2424ZM31.772 30.2336C30.4422 31.789 28.7908 33.0374 26.9317 33.8926L29.4392 39.3435C32.0868 38.1256 34.4387 36.3476 36.3325 34.1325L31.772 30.2336ZM26.9317 33.8926C25.0725 34.7479 23.05 35.1895 21.0036 35.1872L20.9967 41.1872C23.9111 41.1905 26.7915 40.5615 29.4392 39.3435L26.9317 33.8926ZM20.9973 44.3122C24.3618 44.3154 27.6869 43.589 30.7436 42.1831L28.2364 36.732C25.9678 37.7755 23.5 38.3146 21.003 38.3122L20.9973 44.3122ZM30.7436 42.1831C33.7994 40.7776 36.5172 38.7259 38.7048 36.1686L34.1455 32.2683C32.5229 34.165 30.5057 35.6883 28.2364 36.732L30.7436 42.1831ZM38.3784 31.9414L36.0054 29.9059L32.099 34.4601L34.472 36.4955L38.3784 31.9414Z"
+            fill={fill}
+            mask="url(#path-2-inside-1_2154_10709)"
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fillRule="evenodd" clipRule="evenodd" d="M21 4.33332C18.0849 4.33279 15.2207 5.09684 12.6931 6.54921C10.1656 8.00159 8.06325 10.0915 6.59585 12.6103C5.12845 15.1291 4.34736 17.9888 4.33054 20.9038C4.31372 23.8188 5.06175 26.6873 6.49998 29.2229C7.47209 27.9595 8.72171 26.9366 10.1522 26.2333C11.5828 25.5299 13.1559 25.165 14.75 25.1667H27.25C28.8441 25.165 30.4172 25.5299 31.8477 26.2333C33.2783 26.9366 34.5279 27.9595 35.5 29.2229C36.9382 26.6873 37.6862 23.8188 37.6694 20.9038C37.6526 17.9888 36.8715 15.1291 35.4041 12.6103C33.9367 10.0915 31.8343 8.00159 29.3068 6.54921C26.7793 5.09684 23.9151 4.33279 21 4.33332ZM37.5479 33.6583C40.3334 30.027 41.84 25.5766 41.8333 21C41.8333 9.49374 32.5062 0.166656 21 0.166656C9.49373 0.166656 0.166649 9.49374 0.166649 21C0.159771 25.5766 1.66645 30.0271 4.45207 33.6583L4.44165 33.6958L5.18123 34.5562C7.13516 36.8406 9.5612 38.6742 12.2921 39.9305C15.0231 41.1868 17.9939 41.836 21 41.8333C25.2236 41.8411 29.3487 40.5581 32.8229 38.1562C34.304 37.1329 35.647 35.923 36.8187 34.5562L37.5583 33.6958L37.5479 33.6583ZM21 8.49999C19.3424 8.49999 17.7527 9.15847 16.5806 10.3306C15.4085 11.5027 14.75 13.0924 14.75 14.75C14.75 16.4076 15.4085 17.9973 16.5806 19.1694C17.7527 20.3415 19.3424 21 21 21C22.6576 21 24.2473 20.3415 25.4194 19.1694C26.5915 17.9973 27.25 16.4076 27.25 14.75C27.25 13.0924 26.5915 11.5027 25.4194 10.3306C24.2473 9.15847 22.6576 8.49999 21 8.49999Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarDarkProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M21 4.33332C18.0849 4.33279 15.2207 5.09684 12.6931 6.54921C10.1656 8.00159 8.06325 10.0915 6.59585 12.6103C5.12845 15.1291 4.34736 17.9888 4.33054 20.9038C4.31372 23.8188 5.06175 26.6873 6.49998 29.2229C7.47209 27.9595 8.72171 26.9366 10.1522 26.2333C11.5828 25.5299 13.1559 25.165 14.75 25.1667H27.25C28.8441 25.165 30.4172 25.5299 31.8477 26.2333C33.2783 26.9366 34.5279 27.9595 35.5 29.2229C36.9382 26.6873 37.6862 23.8188 37.6694 20.9038C37.6526 17.9888 36.8715 15.1291 35.4041 12.6103C33.9367 10.0915 31.8343 8.00159 29.3068 6.54921C26.7793 5.09684 23.9151 4.33279 21 4.33332ZM37.5479 33.6583C40.3334 30.027 41.84 25.5766 41.8333 21C41.8333 9.49374 32.5062 0.166656 21 0.166656C9.49373 0.166656 0.166649 9.49374 0.166649 21C0.159771 25.5766 1.66645 30.0271 4.45207 33.6583L4.44165 33.6958L5.18123 34.5562C7.13516 36.8406 9.5612 38.6742 12.2921 39.9305C15.0231 41.1868 17.9939 41.836 21 41.8333C25.2236 41.8411 29.3487 40.5581 32.8229 38.1562C34.304 37.1329 35.647 35.923 36.8187 34.5562L37.5583 33.6958L37.5479 33.6583ZM21 8.49999C19.3424 8.49999 17.7527 9.15847 16.5806 10.3306C15.4085 11.5027 14.75 13.0924 14.75 14.75C14.75 16.4076 15.4085 17.9973 16.5806 19.1694C17.7527 20.3415 19.3424 21 21 21C22.6576 21 24.2473 20.3415 25.4194 19.1694C26.5915 17.9973 27.25 16.4076 27.25 14.75C27.25 13.0924 26.5915 11.5027 25.4194 10.3306C24.2473 9.15847 22.6576 8.49999 21 8.49999Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarLogOutIcon = ({ width = "34", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23.2498 2.25H6.58317C5.4781 2.25 4.41829 2.68899 3.63689 3.47039C2.85549 4.25179 2.4165 5.3116 2.4165 6.41667V35.5833C2.4165 36.6884 2.85549 37.7482 3.63689 38.5296C4.41829 39.311 5.4781 39.75 6.58317 39.75H23.2498M31.5832 21L23.2498 12.6667M31.5832 21L23.2498 29.3333M31.5832 21H10.7498" stroke={fill} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-    );
- };
+const SidebarLogOutIcon = ({ width = '34', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M23.2498 2.25H6.58317C5.4781 2.25 4.41829 2.68899 3.63689 3.47039C2.85549 4.25179 2.4165 5.3116 2.4165 6.41667V35.5833C2.4165 36.6884 2.85549 37.7482 3.63689 38.5296C4.41829 39.311 5.4781 39.75 6.58317 39.75H23.2498M31.5832 21L23.2498 12.6667M31.5832 21L23.2498 29.3333M31.5832 21H10.7498"
+            stroke={fill}
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkLogOutIcon = ({ width = "40", height = "42", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 0.166672C4.8424 0.166672 3.25269 0.825152 2.08058 1.99725C0.908481 3.16936 0.25 4.75907 0.25 6.41667V35.5833C0.25 37.2409 0.908481 38.8307 2.08058 40.0028C3.25269 41.1749 4.8424 41.8333 6.5 41.8333H19C20.6576 41.8333 22.2473 41.1749 23.4194 40.0028C24.5915 38.8307 25.25 37.2409 25.25 35.5833V6.41667C25.25 4.75907 24.5915 3.16936 23.4194 1.99725C22.2473 0.825152 20.6576 0.166672 19 0.166672H6.5ZM27.9438 11.1938C28.3344 10.8032 28.8642 10.5838 29.4167 10.5838C29.9691 10.5838 30.4989 10.8032 30.8896 11.1938L39.2229 19.5271C39.6135 19.9178 39.8329 20.4476 39.8329 21C39.8329 21.5524 39.6135 22.0822 39.2229 22.4729L30.8896 30.8063C30.4967 31.1858 29.9704 31.3957 29.4242 31.391C28.8779 31.3862 28.3554 31.1671 27.9691 30.7809C27.5829 30.3946 27.3638 29.8721 27.359 29.3258C27.3543 28.7796 27.5643 28.2533 27.9438 27.8604L32.7208 23.0833H14.8333C14.2808 23.0833 13.7509 22.8638 13.3602 22.4731C12.9695 22.0824 12.75 21.5525 12.75 21C12.75 20.4475 12.9695 19.9176 13.3602 19.5269C13.7509 19.1362 14.2808 18.9167 14.8333 18.9167H32.7208L27.9438 14.1396C27.5532 13.7489 27.3338 13.2191 27.3338 12.6667C27.3338 12.1142 27.5532 11.5844 27.9438 11.1938Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarDarkLogOutIcon = ({ width = '40', height = '42', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M6.5 0.166672C4.8424 0.166672 3.25269 0.825152 2.08058 1.99725C0.908481 3.16936 0.25 4.75907 0.25 6.41667V35.5833C0.25 37.2409 0.908481 38.8307 2.08058 40.0028C3.25269 41.1749 4.8424 41.8333 6.5 41.8333H19C20.6576 41.8333 22.2473 41.1749 23.4194 40.0028C24.5915 38.8307 25.25 37.2409 25.25 35.5833V6.41667C25.25 4.75907 24.5915 3.16936 23.4194 1.99725C22.2473 0.825152 20.6576 0.166672 19 0.166672H6.5ZM27.9438 11.1938C28.3344 10.8032 28.8642 10.5838 29.4167 10.5838C29.9691 10.5838 30.4989 10.8032 30.8896 11.1938L39.2229 19.5271C39.6135 19.9178 39.8329 20.4476 39.8329 21C39.8329 21.5524 39.6135 22.0822 39.2229 22.4729L30.8896 30.8063C30.4967 31.1858 29.9704 31.3957 29.4242 31.391C28.8779 31.3862 28.3554 31.1671 27.9691 30.7809C27.5829 30.3946 27.3638 29.8721 27.359 29.3258C27.3543 28.7796 27.5643 28.2533 27.9438 27.8604L32.7208 23.0833H14.8333C14.2808 23.0833 13.7509 22.8638 13.3602 22.4731C12.9695 22.0824 12.75 21.5525 12.75 21C12.75 20.4475 12.9695 19.9176 13.3602 19.5269C13.7509 19.1362 14.2808 18.9167 14.8333 18.9167H32.7208L27.9438 14.1396C27.5532 13.7489 27.3338 13.2191 27.3338 12.6667C27.3338 12.1142 27.5532 11.5844 27.9438 11.1938Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
- const SidebarDarkCartIcon = ({ width = "50", height = "50", fill = "white" }) => {
-    return (
-        <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M43.8122 31.25H18.3656L18.9338 34.375H42.2339C43.5708 34.375 44.5617 35.7716 44.2654 37.2382L43.7865 39.6089C45.409 40.4949 46.5278 42.366 46.5278 44.5312C46.5278 47.5783 44.3126 50.0434 41.5951 49.9994C39.0063 49.9575 36.8773 47.594 36.8074 44.6823C36.7692 43.0918 37.3356 41.6502 38.266 40.6249H20.0674C20.9681 41.6177 21.5278 43.0006 21.5278 44.5312C21.5278 47.638 19.225 50.1397 16.4349 49.9939C13.9575 49.8645 11.9426 47.6126 11.8124 44.8263C11.7119 42.6745 12.7183 40.7779 14.2474 39.7886L8.14957 6.25H2.08333C0.932726 6.25 0 5.20068 0 3.90625V2.34375C0 1.04932 0.932726 0 2.08333 0H10.9834C11.9731 0 12.8261 0.783301 13.0245 1.87402L13.8201 6.25H47.9158C49.2527 6.25 50.2436 7.64658 49.9473 9.11318L45.8437 29.4257C45.6282 30.4928 44.785 31.25 43.8122 31.25ZM34.9852 18.75H31.25V12.8906C31.25 12.2435 30.7836 11.7188 30.2083 11.7188H28.125C27.5497 11.7188 27.0833 12.2435 27.0833 12.8906V18.75H23.3482C22.4201 18.75 21.9554 20.0123 22.6116 20.7505L28.4301 27.2963C28.8369 27.7539 29.4964 27.7539 29.9033 27.2963L35.7218 20.7505C36.378 20.0123 35.9132 18.75 34.9852 18.75Z" fill={fill}/>
-        </svg>
-    );
- };
+const SidebarDarkCartIcon = ({ width = '50', height = '50', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M43.8122 31.25H18.3656L18.9338 34.375H42.2339C43.5708 34.375 44.5617 35.7716 44.2654 37.2382L43.7865 39.6089C45.409 40.4949 46.5278 42.366 46.5278 44.5312C46.5278 47.5783 44.3126 50.0434 41.5951 49.9994C39.0063 49.9575 36.8773 47.594 36.8074 44.6823C36.7692 43.0918 37.3356 41.6502 38.266 40.6249H20.0674C20.9681 41.6177 21.5278 43.0006 21.5278 44.5312C21.5278 47.638 19.225 50.1397 16.4349 49.9939C13.9575 49.8645 11.9426 47.6126 11.8124 44.8263C11.7119 42.6745 12.7183 40.7779 14.2474 39.7886L8.14957 6.25H2.08333C0.932726 6.25 0 5.20068 0 3.90625V2.34375C0 1.04932 0.932726 0 2.08333 0H10.9834C11.9731 0 12.8261 0.783301 13.0245 1.87402L13.8201 6.25H47.9158C49.2527 6.25 50.2436 7.64658 49.9473 9.11318L45.8437 29.4257C45.6282 30.4928 44.785 31.25 43.8122 31.25ZM34.9852 18.75H31.25V12.8906C31.25 12.2435 30.7836 11.7188 30.2083 11.7188H28.125C27.5497 11.7188 27.0833 12.2435 27.0833 12.8906V18.75H23.3482C22.4201 18.75 21.9554 20.0123 22.6116 20.7505L28.4301 27.2963C28.8369 27.7539 29.4964 27.7539 29.9033 27.2963L35.7218 20.7505C36.378 20.0123 35.9132 18.75 34.9852 18.75Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
 
+const AddObatIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M9.0001 0.600006C9.66284 0.600006 10.2001 1.13726 10.2001 1.80001V7.80001H16.2001C16.8628 7.80001 17.4001 8.33726 17.4001 9.00001C17.4001 9.66275 16.8628 10.2 16.2001 10.2H10.2001V16.2C10.2001 16.8627 9.66284 17.4 9.0001 17.4C8.33736 17.4 7.8001 16.8627 7.8001 16.2V10.2H1.8001C1.13736 10.2 0.600098 9.66275 0.600098 9C0.600098 8.33726 1.13736 7.8 1.8001 7.8L7.8001 7.80001V1.80001C7.8001 1.13726 8.33736 0.600006 9.0001 0.600006Z"
+            fill={fill}
+         />
+      </svg>
+   );
+};
+const AdminUserIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M80.5053 153.281H80.5002C64.004 153.281 48.3088 149.567 34.0843 142.86C34.7781 130.329 39.7385 118.53 47.9848 109.759C56.7059 100.482 68.39 95.3375 80.5002 95.3375C92.6104 95.3375 104.294 100.482 113.016 109.759C121.262 118.53 126.222 130.328 126.916 142.859C112.272 149.756 96.4725 153.305 80.5053 153.281ZM102 43.25C102 49.5753 99.6738 55.5918 95.6083 59.9875C91.5514 64.3741 86.1102 66.7812 80.5002 66.7812C74.8902 66.7812 69.449 64.3741 65.392 59.9875C61.3266 55.5918 59.0002 49.5753 59.0002 43.25C59.0002 36.9247 61.3266 30.9082 65.392 26.5125C69.449 22.1259 74.8902 19.7188 80.5002 19.7188C86.1102 19.7188 91.5514 22.1259 95.6083 26.5125C99.6738 30.9082 102 36.9247 102 43.25Z"
+            stroke="#7CA153"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+         />
+      </svg>
+   );
+};
+const AdminDokterRegisterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M113.833 57.6667C113.833 77.5725 98.91 93.7083 80.5 93.7083C62.09 93.7083 47.1667 77.5725 47.1667 57.6667C47.1667 37.7609 62.09 21.625 80.5 21.625C98.91 21.625 113.833 37.7609 113.833 57.6667ZM107.167 57.6667C107.167 65.3137 104.357 72.6476 99.3562 78.0549C94.3552 83.4622 87.5724 86.5 80.5 86.5C73.4276 86.5 66.6448 83.4622 61.6438 78.0549C56.6428 72.6476 53.8333 65.3137 53.8333 57.6667C53.8333 50.0196 56.6428 42.6857 61.6438 37.2784C66.6448 31.8711 73.4276 28.8333 80.5 28.8333C87.5724 28.8333 94.3552 31.8711 99.3562 37.2784C104.357 42.6857 107.167 50.0196 107.167 57.6667ZM60.2133 103.998L60.25 104.078L60.5 104.607H99.6633C100.427 103.043 102.157 100.549 103.833 100.964C107.6 101.89 111.393 103.18 115.037 104.77L115.147 104.712L115.183 104.791L115.21 104.845C128.927 110.871 140.5 121.086 140.5 131.804V151.375H20.5V131.804C20.5 118.199 39.1533 105.397 57.1667 100.964C58.6367 100.603 59.51 102.477 60.2133 103.998ZM109.513 110.226C108.083 109.685 106.637 109.196 105.177 108.759L103.69 111.816H56.4767L55.0967 108.979L53.8967 109.368C53.8733 109.606 53.8533 109.873 53.8433 110.176C53.8 111.419 53.8867 112.893 54.0767 114.393C54.2717 115.956 54.5838 117.5 55.01 119.01C57.3516 119.31 59.5198 120.495 61.1317 122.355C62.7437 124.216 63.6957 126.633 63.8196 129.179C63.9436 131.725 63.2315 134.236 61.8091 136.269C60.3867 138.303 58.3455 139.727 56.046 140.292C53.7465 140.856 51.3366 140.523 49.2419 139.352C47.1473 138.182 45.5025 136.248 44.5982 133.894C43.6938 131.539 43.5881 128.915 44.2996 126.484C45.0111 124.054 46.4941 121.973 48.4867 120.61L48.46 120.509C48.0158 118.824 47.685 117.106 47.47 115.369C47.3286 114.26 47.2352 113.144 47.19 112.025C43.07 113.928 39.2267 116.227 36.0067 118.765C29.6 123.825 27.1667 128.553 27.1667 131.804V144.167H133.833V131.804C133.833 128.55 131.4 123.821 124.993 118.768C122.2 116.596 119.225 114.711 116.107 113.138C115.971 115.092 115.695 117.031 115.28 118.938H117.167C117.786 118.938 118.392 119.124 118.918 119.477C119.445 119.829 119.87 120.332 120.147 120.931L123.48 128.139C123.713 128.64 123.833 129.191 123.833 129.75V136.958C123.833 137.914 123.482 138.831 122.857 139.507C122.232 140.183 121.384 140.562 120.5 140.562H113.833V133.354H117.167V130.601L115.107 126.146H105.893L103.833 130.601V133.354H107.167V140.562H100.5C99.6159 140.562 98.7681 140.183 98.143 139.507C97.5179 138.831 97.1667 137.914 97.1667 136.958V129.75C97.1667 129.191 97.2867 128.64 97.52 128.139L100.853 120.931C101.13 120.332 101.555 119.829 102.082 119.477C102.608 119.124 103.214 118.938 103.833 118.938H108.373C108.413 118.793 108.457 118.649 108.497 118.491C108.81 117.334 109.09 115.896 109.28 114.396C109.467 112.911 109.553 111.459 109.513 110.226ZM57.1667 129.75C57.1667 131.819 55.6267 133.408 53.8333 133.408C52.04 133.408 50.5 131.822 50.5 129.75C50.5 127.681 52.04 126.092 53.8333 126.092C55.6267 126.092 57.1667 127.678 57.1667 129.75Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminDokterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M55.9969 33.613L56.1802 32.748C56.5302 31.1406 57.1035 28.7762 58.2869 26.4479C59.4935 24.0764 61.3635 21.6724 64.2969 20.0902C67.2202 18.5152 70.8835 17.9277 75.4135 18.5764C80.4135 19.2973 90.4569 21.0849 99.3302 25.965C108.254 30.8738 116.614 39.3184 116.614 53.3819C116.614 60.6479 114.014 68.4437 111.494 73.5256C110.284 75.9692 108.847 78.3047 107.407 79.5625C107.077 79.8509 106.607 80.2113 106.024 80.4636C104.423 86.1494 101.238 91.162 96.9034 94.8162C92.5686 98.4705 87.2957 100.588 81.8058 100.879C76.3158 101.17 70.8766 99.6206 66.2319 96.4425C61.5873 93.2644 57.9638 88.6127 55.8569 83.1235L55.7769 83.1379L54.5935 81.5845L54.5902 81.5773L54.5835 81.5701L54.5669 81.5448L54.5102 81.4727C54.2249 81.0889 53.9504 80.6958 53.6869 80.2942C52.9671 79.2148 52.2887 78.1037 51.6535 76.9639C50.0869 74.1599 48.1969 70.1665 46.9869 65.5063C45.7802 60.8461 45.2269 55.3822 46.4935 49.7453C47.7269 44.2597 50.6369 38.8607 55.9069 34.0383L55.9969 33.613ZM61.5969 79.1625C63.0426 83.6577 65.8187 87.5122 69.4954 90.1288C73.1721 92.7454 77.5442 93.9782 81.9345 93.6362C86.3247 93.2943 90.4882 91.3967 93.7801 88.2373C97.072 85.0779 99.3086 80.8331 100.144 76.1602L100.52 76.2972C100.507 76.0932 100.5 75.8889 100.5 75.6845C100.5 69.7196 99.7335 65.5567 99.0202 62.9617C98.8809 62.4566 98.7264 61.9566 98.5569 61.4624L98.4202 61.4696H98.2869C95.7943 61.5278 93.3025 61.3226 90.8469 60.8569C85.1235 59.8117 77.3735 57.2023 68.2469 51.1581C68.0469 51.6411 67.8469 52.1853 67.6469 52.7908C66.9935 54.7911 66.4569 57.1662 65.9935 59.6747C65.5835 61.8841 65.2469 64.1079 64.9269 66.1911L64.8035 67.0128C64.4602 69.2474 64.1169 71.4423 63.7169 73.0318C63.0169 75.7926 62.3035 77.7532 61.5969 79.1589V79.1625ZM56.9302 72.4479C55.4246 69.6536 54.2424 66.6698 53.4102 63.5636C52.4135 59.7216 52.0469 55.5624 52.9735 51.45C53.8735 47.4494 56.0502 43.2433 60.5269 39.2571C61.3335 38.6661 61.7002 37.8731 61.8002 37.6605V37.6569C61.9752 37.2672 62.1159 36.8605 62.2202 36.4423C62.3269 36.0314 62.4435 35.4692 62.5535 34.9646L62.6702 34.3987C62.9869 32.9462 63.3969 31.364 64.1302 29.9187C64.8435 28.5203 65.8202 27.3237 67.2735 26.5416C68.7335 25.7523 70.9935 25.2117 74.5335 25.7235C79.3769 26.4191 88.4869 28.0878 96.3069 32.3912C104.074 36.6621 109.947 43.128 109.947 53.3819C109.947 58.1033 108.48 63.4735 106.714 67.7084C106.38 64.9476 105.9 62.6914 105.407 60.9038C105.063 59.6261 104.634 58.377 104.124 57.1662C103.931 56.7175 103.72 56.2786 103.49 55.8507L103.434 55.7534L103.414 55.7174L103.404 55.6993L103.397 55.6885L102.164 53.6197L99.9569 54.0991L99.9102 54.1099L99.5869 54.1568C99.0908 54.2165 98.5925 54.2526 98.0935 54.2649C96.0383 54.3078 93.9842 54.134 91.9602 53.7459C86.5835 52.7656 78.6835 50.0949 69.0869 43.1857L66.7535 41.5025L64.8235 43.7011C63.2335 45.5104 62.1535 47.9792 61.3635 50.3832C60.5569 52.8521 59.9469 55.6092 59.4569 58.2547C59.0506 60.506 58.6817 62.765 58.3502 65.0305L58.2235 65.8379C57.8669 68.1842 57.5769 69.9754 57.2835 71.136C57.1741 71.5759 57.0563 72.0133 56.9302 72.4479Z"
+            fill="#7CA153"
+         />
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M60.2133 103.999C59.5067 102.478 58.6367 100.6 57.1667 100.964C39.1533 105.397 20.5 118.195 20.5 131.805V151.375H140.5V131.805C140.5 121.086 128.927 110.868 115.21 104.845L115.193 104.809C115.178 104.777 115.163 104.744 115.147 104.712L115.037 104.77C111.393 103.184 107.6 101.886 103.833 100.964C102.157 100.549 100.423 103.043 99.6667 104.604H60.5C60.4067 104.417 60.3133 104.208 60.2133 103.999ZM105.177 108.756C106.633 109.192 108.083 109.682 109.513 110.223C109.553 111.456 109.467 112.912 109.28 114.397C109.09 115.934 108.787 117.453 108.373 118.938H103.833C103.214 118.938 102.608 119.125 102.082 119.477C101.555 119.829 101.13 120.332 100.853 120.931L97.52 128.139C97.2882 128.639 97.1672 129.191 97.1667 129.75V136.959C97.1667 137.914 97.5179 138.831 98.143 139.507C98.7681 140.183 99.6159 140.563 100.5 140.563H107.167V133.354H103.833V130.601L105.893 126.146H115.107L117.167 130.601V133.354H113.833V140.563H120.5C121.384 140.563 122.232 140.183 122.857 139.507C123.482 138.831 123.833 137.914 123.833 136.959V129.75C123.833 129.191 123.712 128.639 123.48 128.139L120.147 120.931C119.87 120.332 119.445 119.829 118.918 119.477C118.392 119.125 117.786 118.938 117.167 118.938H115.28C115.692 117.03 115.968 115.092 116.107 113.139C119.357 114.8 122.377 116.707 124.993 118.768C131.4 123.821 133.833 128.55 133.833 131.805V144.167H27.1667V131.805C27.1667 128.55 29.6 123.821 36.0067 118.768C39.2267 116.227 43.07 113.928 47.19 112.025C47.3044 114.897 47.7307 117.745 48.46 120.509L48.4867 120.61C46.4939 121.973 45.0107 124.054 44.2991 126.485C43.5875 128.916 43.6933 131.54 44.5977 133.895C45.5022 136.249 47.1471 138.183 49.242 139.353C51.3369 140.524 53.747 140.856 56.0466 140.292C58.3461 139.727 60.3873 138.303 61.8095 136.269C63.2317 134.235 63.9434 131.723 63.819 129.177C63.6946 126.631 62.742 124.214 61.1296 122.354C59.5171 120.494 57.3484 119.309 55.0067 119.01C54.5807 117.502 54.2686 115.959 54.0733 114.397C53.8877 112.999 53.8108 111.587 53.8433 110.176C53.853 109.906 53.8697 109.637 53.8933 109.369C54.2933 109.235 54.6933 109.106 55.0933 108.983L56.4767 111.816H103.69L105.177 108.76V108.756ZM53.8333 133.412C55.6267 133.412 57.1667 131.826 57.1667 129.754C57.1667 127.685 55.6267 126.096 53.8333 126.096C52.04 126.096 50.5 127.681 50.5 129.754C50.5 131.823 52.04 133.412 53.8333 133.412Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelTinjauIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M110.5 140.562C116.023 140.562 120.5 135.722 120.5 129.75C120.5 123.778 116.023 118.938 110.5 118.938C104.977 118.938 100.5 123.778 100.5 129.75C100.5 135.722 104.977 140.562 110.5 140.562Z" fill="#7CA153" />
+         <path
+            d="M149.385 126.933C146.296 118.423 140.964 111.081 134.052 105.815C127.14 100.55 118.951 97.5935 110.5 97.3125C102.049 97.5935 93.8597 100.55 86.9476 105.815C80.0355 111.081 74.7044 118.423 71.615 126.933L70.5 129.75L71.615 132.567C74.7044 141.077 80.0355 148.419 86.9476 153.685C93.8597 158.95 102.049 161.906 110.5 162.188C118.951 161.906 127.14 158.95 134.052 153.685C140.964 148.419 146.296 141.077 149.385 132.567L150.5 129.75L149.385 126.933ZM110.5 151.375C106.544 151.375 102.678 150.107 99.3886 147.731C96.0996 145.354 93.5362 141.977 92.0224 138.026C90.5087 134.074 90.1126 129.726 90.8843 125.531C91.656 121.336 93.5608 117.483 96.3579 114.459C99.1549 111.435 102.719 109.375 106.598 108.541C110.478 107.706 114.499 108.134 118.154 109.771C121.808 111.408 124.932 114.18 127.129 117.736C129.327 121.292 130.5 125.473 130.5 129.75C130.493 135.483 128.384 140.979 124.635 145.033C120.886 149.087 115.802 151.368 110.5 151.375Z"
+            fill="#7CA153"
+         />
+         <path
+            d="M60.5 151.375H40.5V21.6249H80.5V54.0624C80.5079 56.9274 81.564 59.6726 83.4377 61.6985C85.3113 63.7244 87.8503 64.8663 90.5 64.8749H120.5V86.4999H130.5V54.0624C130.518 53.3519 130.393 52.6457 130.134 51.9924C129.875 51.3391 129.488 50.7542 129 50.278L94 12.4343C93.5598 11.9063 93.0189 11.4879 92.4147 11.2079C91.8104 10.9279 91.1572 10.7929 90.5 10.8124H40.5C37.8503 10.8209 35.3113 11.9629 33.4377 13.9887C31.564 16.0146 30.5079 18.7599 30.5 21.6249V151.375C30.5079 154.24 31.564 156.985 33.4377 159.011C35.3113 161.037 37.8503 162.179 40.5 162.187H60.5V151.375ZM90.5 23.7874L118.5 54.0624H90.5V23.7874Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M110.5 54.875H70.5V11.625H10.5V141.375H110.5V54.875ZM106.36 44.0625L80.5 16.1014V44.0625H106.36ZM5.5 0.8125H80.5L120.5 44.0625V146.781C120.5 148.215 119.973 149.59 119.036 150.604C118.098 151.618 116.826 152.188 115.5 152.188H5.5C4.17392 152.188 2.90215 151.618 1.96447 150.604C1.02679 149.59 0.5 148.215 0.5 146.781V6.21875C0.5 4.78492 1.02679 3.40982 1.96447 2.39595C2.90215 1.38209 4.17392 0.8125 5.5 0.8125ZM30.5 76.5H90.5V87.3125H30.5V76.5ZM30.5 44.0625H55.5V54.875H30.5V44.0625ZM30.5 108.938H90.5V119.75H30.5V108.938Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelUnggahIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M107.167 7.20898V43.2507H140.5M80.5001 144.167V79.2923M53.8335 100.917L80.5001 72.084L107.167 100.917M20.4868 7.20898H117.167L140.5 32.4382V165.792H20.5002L20.4868 7.20898Z" stroke="#7CA153" stroke-width="7" />
+      </svg>
+   );
+};
 
 export {
+   AddObatIcon,
    ErrorIcon,
    PlayButtonIcon,
-
    AddIcon,
    BankIcon,
    NotificationIcon,
@@ -637,4 +808,10 @@ export {
    SidebarLogOutIcon,
    SidebarDarkLogOutIcon,
    SidebarDarkCartIcon,
+   AdminDokterIcon,
+   AdminDokterRegisterIcon,
+   AdminUserIcon,
+   AdminArtikelTinjauIcon,
+   AdminArtikelIcon,
+   AdminArtikelUnggahIcon,
 };
