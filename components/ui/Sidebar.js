@@ -24,9 +24,8 @@ import {
 /*How it works:
 1. Take FULL pathname (not params)
 2. Filter only the ROOT ('/', '/profile', etc.)
-3. Detect which we're currently in
+3. Detect which page we're currently in
 4. set the button state to ACTIVE (using ${FilteredPath === "/" ? "ACTIVE CLASS" : "INACTIVE CLASS"}   )
-5. Rage quit because this shit is inefficient AF so it took 5 SECONDS TO LOAD on my pc
 */
 
 //Might wanna install 'tailwind-scrollbar-hide' later

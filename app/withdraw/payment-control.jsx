@@ -39,18 +39,16 @@ export default function PaymentControl() {
 
    return (
       <>
-         <div>
-            <div className="flex flex-row gap-[57px] items-end justify-center w-[447px] absolute left-9 top-[26px]">
-               <div className="flex flex-row gap-[75px] items-end justify-center shrink-0 w-[447px] relative">
+         <div className="flex flex-col gap-[12px] items-start justify-start shrink-0 relative">
+            <div className="flex flex-row gap-[57px] items-end justify-center shrink-0 w-[447px] relative">
+               <div className="flex flex-row gap-[75px] items-center justify-start shrink-0 w-[447px] relative">
                   <div className="font-inter font-semibold text-lg/[61px] text-[#3a8504] text-center relative">
                      Metode Penarikan
                   </div>
-                  <div className="font-inter font-medium text-[14px]/[130%] text-[#2a7697] text-left relative">
-                     Lihat semua metode &gt;&gt;
-                  </div>
                </div>
             </div>
-            <div className="flex flex-col gap-3 items-start justify-start absolute left-9 top-[99px] pb-[56px]">
+
+            <div className="flex flex-col gap-3 items-start justify-start shrink-0 relative">
                <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[124px] relative overflow-hidden">
                   <div className="flex flex-row gap-[239px] items-center justify-start absolute left-[25px] top-2.5">
                      <div
@@ -110,18 +108,8 @@ export default function PaymentControl() {
 
                {/* Bank Dropdown Contents */}
                {isBankOpen && (
-                  <div className="relative top-full left-0 bg-white w-full rounded-b-lg mt-[14px] pb-[30px] z-10">
+                  <div className="relative top-full left-0 bg-white w-full rounded-b-lg pb-[18px] z-10">
                      <div className="flex flex-col gap-0 items-start justify-start self-stretch shrink-0 relative">
-                        <div className="border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    {selectedBank}
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
                         <div className="border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
                            <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
                               <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
@@ -218,9 +206,9 @@ export default function PaymentControl() {
                   </div>
                )}
 
-               <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[124px] relative overflow-hidden">
-                  <div className="flex flex-row gap-[239px] items-center justify-start absolute left-[25px] top-2.5">
-                     <div className="flex flex-col gap-[11px] items-start justify-center shrink-0 relative">
+               <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[7px] pr-6 pb-[7px] pl-6 flex flex-col gap-2.5 items-start justify-start shrink-0 w-[446px] relative overflow-hidden">
+                  <div className="flex flex-row gap-[239px] items-center justify-start self-stretch shrink-0 relative">
+                     <div className="flex flex-col gap-[11px] items-start justify-center flex-1 relative">
                         <svg
                            className="shrink-0 relative overflow-visible"
                            width="84"
