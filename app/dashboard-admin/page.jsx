@@ -4,7 +4,7 @@ import React from 'react';
 export default function page() {
    return (
       <>
-         <div className="bg-[#F8FFF1]">
+         <div className="bg-[#F8FFF1] max-w-[1440px] max-h-[1080px] mx-auto">
             <div className="flex">
                <div className="w-[313px] h-[1080px] bg-[#63863E]"> sidebar</div>
                <div className=" pl-[68px]">
