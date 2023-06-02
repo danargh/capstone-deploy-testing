@@ -1,4 +1,4 @@
-const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -11,7 +11,7 @@ const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const BankIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BankIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 72" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -22,14 +22,14 @@ const BankIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIconTableArtikel = ({ width = "40", height = "40", fill = "white" }) => {
+const ArrowBackIconTableArtikel = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M13.4166 0.250001L16.3333 3.34167L6.74992 13.5L16.3333 23.6583L13.4166 26.75L0.916585 13.5L13.4166 0.250001Z" fill="#577536" />
       </svg>
    );
 };
-const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
+const EditArtikelIcon = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="22.5" height="22.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -40,7 +40,7 @@ const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
    );
 };
 
-const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const NotificationIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -50,7 +50,7 @@ const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -60,7 +60,7 @@ const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClarityDashboardIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -70,7 +70,7 @@ const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) =
       </svg>
    );
 };
-const ClockIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClockIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -82,7 +82,7 @@ const ClockIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -92,7 +92,7 @@ const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CommentIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -102,7 +102,7 @@ const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BreadCrumbIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1" y="1" width="24" height="2" rx="1" fill={fill} />
@@ -114,7 +114,7 @@ const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const LikePostIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" id="like" width={width} height={height} x="0" y="0" version="1.1" viewBox="0 0 29 29">
          <path
@@ -124,7 +124,7 @@ const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PostOptionIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 10 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <ellipse cx="5" cy="4.96179" rx="5" ry="4.40613" fill={fill} />
@@ -133,14 +133,19 @@ const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const UserIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const UserIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="none" id="user">
-         <path fill={fill} fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z" clip-rule="evenodd"></path>
+         <path
+            fill={fill}
+            fill-rule="evenodd"
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z"
+            clip-rule="evenodd"
+         ></path>
       </svg>
    );
 };
-const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcRegisterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -156,7 +161,7 @@ const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcShareIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -166,14 +171,17 @@ const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CcSortDownIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcSortDownIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} id="arrow">
-         <path fill={fill} d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"></path>
+         <path
+            fill={fill}
+            d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"
+         ></path>
       </svg>
    );
 };
-const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcStandardPopupIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1.5" y="1" width="24" height="8" rx="3" fill={fill} />
@@ -183,7 +191,7 @@ const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) =>
       </svg>
    );
 };
-const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcViewDayIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 37 31" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -193,7 +201,7 @@ const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PenIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -203,7 +211,7 @@ const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ExitIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -214,7 +222,7 @@ const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FilterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g mask="url(#mask0_228_2025)">
@@ -226,7 +234,7 @@ const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ProfileIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ProfileIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -244,7 +252,7 @@ const ProfileIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AccessTimeIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -254,7 +262,7 @@ const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DownloadIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -264,7 +272,7 @@ const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MailIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -274,7 +282,7 @@ const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FingerIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -284,7 +292,7 @@ const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const KomisiIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 168 134" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -294,14 +302,14 @@ const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIcon2 = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon2 = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 62 64" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path fill={fill} d="M36.167 16L20.667 32L36.167 48" stroke="black" strokeLinecap="round" />
       </svg>
    );
 };
-const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DollarIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -311,7 +319,7 @@ const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MoneyIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -321,7 +329,7 @@ const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PersonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -331,7 +339,7 @@ const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SearchIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -341,23 +349,38 @@ const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SendChatIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SendChatIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path fill={fill} fill-rule="evenodd" clip-rule="evenodd" d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+         <path
+            fill={fill}
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z"
+            stroke="black"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
          <rect x="2" y="2" width="39" height="39" rx="19.5" stroke="black" strokeWidth="4" />
       </svg>
    );
 };
-const CopyrightIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CopyrightIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M3.33337 20C3.33337 10.795 10.795 3.33331 20 3.33331C29.205 3.33331 36.6667 10.795 36.6667 20C36.6667 29.205 29.205 36.6666 20 36.6666C10.795 36.6666 3.33337 29.205 3.33337 20Z" stroke="black" strokeWidth="1.5" />
-         <path fill={fill} d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
+         <path
+            fill={fill}
+            d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+         />
       </svg>
    );
 };
-const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ChartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M1.78577 48.2143H48.2143H1.78577ZM16.0715 48.2143V1.78571H1.78577V48.2143M30.3572 48.2143V23.2143H16.0715V48.2143M44.6429 48.2143V12.5H30.3572V48.2143" fill="white" />
@@ -365,7 +388,7 @@ const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const TrashIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -375,7 +398,7 @@ const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const VirtualWalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const VirtualWalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 71 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -386,7 +409,7 @@ const VirtualWalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddArtikelIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -397,7 +420,7 @@ const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const WalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -408,7 +431,7 @@ const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ErrorIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -419,7 +442,7 @@ const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PlayButtonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
          <circle cx="50" cy="50" r="50" fill="black" />
@@ -427,7 +450,7 @@ const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
+const QuestionHelp = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -438,7 +461,7 @@ const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const Salinan = ({ width = "30", height = "34", fill = "black" }) => {
+const Salinan = ({ width = '30', height = '34', fill = 'black' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -449,7 +472,7 @@ const Salinan = ({ width = "30", height = "34", fill = "black" }) => {
    );
 };
 
-const SidebarDashboardIcon = ({ width = "50", height = "50", fill = "white" }) => {
+const SidebarDashboardIcon = ({ width = '50', height = '50', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g clipPath="url(#clip0_2154_5470)">
@@ -471,7 +494,7 @@ const SidebarDashboardIcon = ({ width = "50", height = "50", fill = "white" }) =
    );
 };
 
-const SidebarArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
+const SidebarArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -482,7 +505,7 @@ const SidebarArticleIcon = ({ width = "38", height = "42", fill = "white" }) => 
    );
 };
 
-const SidebarDarkArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
+const SidebarDarkArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -493,7 +516,7 @@ const SidebarDarkArticleIcon = ({ width = "38", height = "42", fill = "white" })
    );
 };
 
-const SidebarMessageIcon = ({ width = "42", height = "38", fill = "white" }) => {
+const SidebarMessageIcon = ({ width = '42', height = '38', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -507,7 +530,7 @@ const SidebarMessageIcon = ({ width = "42", height = "38", fill = "white" }) => 
    );
 };
 
-const SidebarDarkMessageIcon = ({ width = "48", height = "40", fill = "white" }) => {
+const SidebarDarkMessageIcon = ({ width = '48', height = '40', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -518,7 +541,7 @@ const SidebarDarkMessageIcon = ({ width = "48", height = "40", fill = "white" })
    );
 };
 
-const SidebarNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
+const SidebarNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -529,7 +552,7 @@ const SidebarNotificationIcon = ({ width = "42", height = "46", fill = "white" }
    );
 };
 
-const SidebarDarkNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
+const SidebarDarkNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -540,7 +563,7 @@ const SidebarDarkNotificationIcon = ({ width = "42", height = "46", fill = "whit
    );
 };
 
-const SidebarDollarIcon = ({ width = "22", height = "38", fill = "white" }) => {
+const SidebarDollarIcon = ({ width = '22', height = '38', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -551,7 +574,7 @@ const SidebarDollarIcon = ({ width = "22", height = "38", fill = "white" }) => {
    );
 };
 
-const SidebarDarkDollarIcon = ({ width = "46", height = "46", fill = "white" }) => {
+const SidebarDarkDollarIcon = ({ width = '46', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -562,7 +585,7 @@ const SidebarDarkDollarIcon = ({ width = "46", height = "46", fill = "white" }) 
    );
 };
 
-const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
+const SidebarProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -570,7 +593,7 @@ const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => 
             stroke={fill}
             strokeWidth="3"
          />
-         <mask id="path-2-inside-1_2154_10709" fill={"white"}>
+         <mask id="path-2-inside-1_2154_10709" fill={'white'}>
             <path d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z" />
          </mask>
          <path
@@ -586,7 +609,7 @@ const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => 
    );
 };
 
-const SidebarDarkProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
+const SidebarDarkProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -599,7 +622,7 @@ const SidebarDarkProfileIcon = ({ width = "42", height = "42", fill = "white" })
    );
 };
 
-const SidebarLogOutIcon = ({ width = "34", height = "42", fill = "white" }) => {
+const SidebarLogOutIcon = ({ width = '34', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -613,7 +636,7 @@ const SidebarLogOutIcon = ({ width = "34", height = "42", fill = "white" }) => {
    );
 };
 
-const SidebarDarkLogOutIcon = ({ width = "40", height = "42", fill = "white" }) => {
+const SidebarDarkLogOutIcon = ({ width = '40', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -626,7 +649,7 @@ const SidebarDarkLogOutIcon = ({ width = "40", height = "42", fill = "white" }) 
    );
 };
 
-const SidebarDarkCartIcon = ({ width = "50", height = "50", fill = "white" }) => {
+const SidebarDarkCartIcon = ({ width = '50', height = '50', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -637,7 +660,7 @@ const SidebarDarkCartIcon = ({ width = "50", height = "50", fill = "white" }) =>
    );
 };
 
-const AddObatIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AddObatIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -646,6 +669,81 @@ const AddObatIcon = ({ width = "16", height = "16", fill = "white" }) => {
             d="M9.0001 0.600006C9.66284 0.600006 10.2001 1.13726 10.2001 1.80001V7.80001H16.2001C16.8628 7.80001 17.4001 8.33726 17.4001 9.00001C17.4001 9.66275 16.8628 10.2 16.2001 10.2H10.2001V16.2C10.2001 16.8627 9.66284 17.4 9.0001 17.4C8.33736 17.4 7.8001 16.8627 7.8001 16.2V10.2H1.8001C1.13736 10.2 0.600098 9.66275 0.600098 9C0.600098 8.33726 1.13736 7.8 1.8001 7.8L7.8001 7.80001V1.80001C7.8001 1.13726 8.33736 0.600006 9.0001 0.600006Z"
             fill={fill}
          />
+      </svg>
+   );
+};
+const AdminUserIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M80.5053 153.281H80.5002C64.004 153.281 48.3088 149.567 34.0843 142.86C34.7781 130.329 39.7385 118.53 47.9848 109.759C56.7059 100.482 68.39 95.3375 80.5002 95.3375C92.6104 95.3375 104.294 100.482 113.016 109.759C121.262 118.53 126.222 130.328 126.916 142.859C112.272 149.756 96.4725 153.305 80.5053 153.281ZM102 43.25C102 49.5753 99.6738 55.5918 95.6083 59.9875C91.5514 64.3741 86.1102 66.7812 80.5002 66.7812C74.8902 66.7812 69.449 64.3741 65.392 59.9875C61.3266 55.5918 59.0002 49.5753 59.0002 43.25C59.0002 36.9247 61.3266 30.9082 65.392 26.5125C69.449 22.1259 74.8902 19.7188 80.5002 19.7188C86.1102 19.7188 91.5514 22.1259 95.6083 26.5125C99.6738 30.9082 102 36.9247 102 43.25Z"
+            stroke="#7CA153"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+         />
+      </svg>
+   );
+};
+const AdminDokterRegisterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M113.833 57.6667C113.833 77.5725 98.91 93.7083 80.5 93.7083C62.09 93.7083 47.1667 77.5725 47.1667 57.6667C47.1667 37.7609 62.09 21.625 80.5 21.625C98.91 21.625 113.833 37.7609 113.833 57.6667ZM107.167 57.6667C107.167 65.3137 104.357 72.6476 99.3562 78.0549C94.3552 83.4622 87.5724 86.5 80.5 86.5C73.4276 86.5 66.6448 83.4622 61.6438 78.0549C56.6428 72.6476 53.8333 65.3137 53.8333 57.6667C53.8333 50.0196 56.6428 42.6857 61.6438 37.2784C66.6448 31.8711 73.4276 28.8333 80.5 28.8333C87.5724 28.8333 94.3552 31.8711 99.3562 37.2784C104.357 42.6857 107.167 50.0196 107.167 57.6667ZM60.2133 103.998L60.25 104.078L60.5 104.607H99.6633C100.427 103.043 102.157 100.549 103.833 100.964C107.6 101.89 111.393 103.18 115.037 104.77L115.147 104.712L115.183 104.791L115.21 104.845C128.927 110.871 140.5 121.086 140.5 131.804V151.375H20.5V131.804C20.5 118.199 39.1533 105.397 57.1667 100.964C58.6367 100.603 59.51 102.477 60.2133 103.998ZM109.513 110.226C108.083 109.685 106.637 109.196 105.177 108.759L103.69 111.816H56.4767L55.0967 108.979L53.8967 109.368C53.8733 109.606 53.8533 109.873 53.8433 110.176C53.8 111.419 53.8867 112.893 54.0767 114.393C54.2717 115.956 54.5838 117.5 55.01 119.01C57.3516 119.31 59.5198 120.495 61.1317 122.355C62.7437 124.216 63.6957 126.633 63.8196 129.179C63.9436 131.725 63.2315 134.236 61.8091 136.269C60.3867 138.303 58.3455 139.727 56.046 140.292C53.7465 140.856 51.3366 140.523 49.2419 139.352C47.1473 138.182 45.5025 136.248 44.5982 133.894C43.6938 131.539 43.5881 128.915 44.2996 126.484C45.0111 124.054 46.4941 121.973 48.4867 120.61L48.46 120.509C48.0158 118.824 47.685 117.106 47.47 115.369C47.3286 114.26 47.2352 113.144 47.19 112.025C43.07 113.928 39.2267 116.227 36.0067 118.765C29.6 123.825 27.1667 128.553 27.1667 131.804V144.167H133.833V131.804C133.833 128.55 131.4 123.821 124.993 118.768C122.2 116.596 119.225 114.711 116.107 113.138C115.971 115.092 115.695 117.031 115.28 118.938H117.167C117.786 118.938 118.392 119.124 118.918 119.477C119.445 119.829 119.87 120.332 120.147 120.931L123.48 128.139C123.713 128.64 123.833 129.191 123.833 129.75V136.958C123.833 137.914 123.482 138.831 122.857 139.507C122.232 140.183 121.384 140.562 120.5 140.562H113.833V133.354H117.167V130.601L115.107 126.146H105.893L103.833 130.601V133.354H107.167V140.562H100.5C99.6159 140.562 98.7681 140.183 98.143 139.507C97.5179 138.831 97.1667 137.914 97.1667 136.958V129.75C97.1667 129.191 97.2867 128.64 97.52 128.139L100.853 120.931C101.13 120.332 101.555 119.829 102.082 119.477C102.608 119.124 103.214 118.938 103.833 118.938H108.373C108.413 118.793 108.457 118.649 108.497 118.491C108.81 117.334 109.09 115.896 109.28 114.396C109.467 112.911 109.553 111.459 109.513 110.226ZM57.1667 129.75C57.1667 131.819 55.6267 133.408 53.8333 133.408C52.04 133.408 50.5 131.822 50.5 129.75C50.5 127.681 52.04 126.092 53.8333 126.092C55.6267 126.092 57.1667 127.678 57.1667 129.75Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminDokterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M55.9969 33.613L56.1802 32.748C56.5302 31.1406 57.1035 28.7762 58.2869 26.4479C59.4935 24.0764 61.3635 21.6724 64.2969 20.0902C67.2202 18.5152 70.8835 17.9277 75.4135 18.5764C80.4135 19.2973 90.4569 21.0849 99.3302 25.965C108.254 30.8738 116.614 39.3184 116.614 53.3819C116.614 60.6479 114.014 68.4437 111.494 73.5256C110.284 75.9692 108.847 78.3047 107.407 79.5625C107.077 79.8509 106.607 80.2113 106.024 80.4636C104.423 86.1494 101.238 91.162 96.9034 94.8162C92.5686 98.4705 87.2957 100.588 81.8058 100.879C76.3158 101.17 70.8766 99.6206 66.2319 96.4425C61.5873 93.2644 57.9638 88.6127 55.8569 83.1235L55.7769 83.1379L54.5935 81.5845L54.5902 81.5773L54.5835 81.5701L54.5669 81.5448L54.5102 81.4727C54.2249 81.0889 53.9504 80.6958 53.6869 80.2942C52.9671 79.2148 52.2887 78.1037 51.6535 76.9639C50.0869 74.1599 48.1969 70.1665 46.9869 65.5063C45.7802 60.8461 45.2269 55.3822 46.4935 49.7453C47.7269 44.2597 50.6369 38.8607 55.9069 34.0383L55.9969 33.613ZM61.5969 79.1625C63.0426 83.6577 65.8187 87.5122 69.4954 90.1288C73.1721 92.7454 77.5442 93.9782 81.9345 93.6362C86.3247 93.2943 90.4882 91.3967 93.7801 88.2373C97.072 85.0779 99.3086 80.8331 100.144 76.1602L100.52 76.2972C100.507 76.0932 100.5 75.8889 100.5 75.6845C100.5 69.7196 99.7335 65.5567 99.0202 62.9617C98.8809 62.4566 98.7264 61.9566 98.5569 61.4624L98.4202 61.4696H98.2869C95.7943 61.5278 93.3025 61.3226 90.8469 60.8569C85.1235 59.8117 77.3735 57.2023 68.2469 51.1581C68.0469 51.6411 67.8469 52.1853 67.6469 52.7908C66.9935 54.7911 66.4569 57.1662 65.9935 59.6747C65.5835 61.8841 65.2469 64.1079 64.9269 66.1911L64.8035 67.0128C64.4602 69.2474 64.1169 71.4423 63.7169 73.0318C63.0169 75.7926 62.3035 77.7532 61.5969 79.1589V79.1625ZM56.9302 72.4479C55.4246 69.6536 54.2424 66.6698 53.4102 63.5636C52.4135 59.7216 52.0469 55.5624 52.9735 51.45C53.8735 47.4494 56.0502 43.2433 60.5269 39.2571C61.3335 38.6661 61.7002 37.8731 61.8002 37.6605V37.6569C61.9752 37.2672 62.1159 36.8605 62.2202 36.4423C62.3269 36.0314 62.4435 35.4692 62.5535 34.9646L62.6702 34.3987C62.9869 32.9462 63.3969 31.364 64.1302 29.9187C64.8435 28.5203 65.8202 27.3237 67.2735 26.5416C68.7335 25.7523 70.9935 25.2117 74.5335 25.7235C79.3769 26.4191 88.4869 28.0878 96.3069 32.3912C104.074 36.6621 109.947 43.128 109.947 53.3819C109.947 58.1033 108.48 63.4735 106.714 67.7084C106.38 64.9476 105.9 62.6914 105.407 60.9038C105.063 59.6261 104.634 58.377 104.124 57.1662C103.931 56.7175 103.72 56.2786 103.49 55.8507L103.434 55.7534L103.414 55.7174L103.404 55.6993L103.397 55.6885L102.164 53.6197L99.9569 54.0991L99.9102 54.1099L99.5869 54.1568C99.0908 54.2165 98.5925 54.2526 98.0935 54.2649C96.0383 54.3078 93.9842 54.134 91.9602 53.7459C86.5835 52.7656 78.6835 50.0949 69.0869 43.1857L66.7535 41.5025L64.8235 43.7011C63.2335 45.5104 62.1535 47.9792 61.3635 50.3832C60.5569 52.8521 59.9469 55.6092 59.4569 58.2547C59.0506 60.506 58.6817 62.765 58.3502 65.0305L58.2235 65.8379C57.8669 68.1842 57.5769 69.9754 57.2835 71.136C57.1741 71.5759 57.0563 72.0133 56.9302 72.4479Z"
+            fill="#7CA153"
+         />
+         <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M60.2133 103.999C59.5067 102.478 58.6367 100.6 57.1667 100.964C39.1533 105.397 20.5 118.195 20.5 131.805V151.375H140.5V131.805C140.5 121.086 128.927 110.868 115.21 104.845L115.193 104.809C115.178 104.777 115.163 104.744 115.147 104.712L115.037 104.77C111.393 103.184 107.6 101.886 103.833 100.964C102.157 100.549 100.423 103.043 99.6667 104.604H60.5C60.4067 104.417 60.3133 104.208 60.2133 103.999ZM105.177 108.756C106.633 109.192 108.083 109.682 109.513 110.223C109.553 111.456 109.467 112.912 109.28 114.397C109.09 115.934 108.787 117.453 108.373 118.938H103.833C103.214 118.938 102.608 119.125 102.082 119.477C101.555 119.829 101.13 120.332 100.853 120.931L97.52 128.139C97.2882 128.639 97.1672 129.191 97.1667 129.75V136.959C97.1667 137.914 97.5179 138.831 98.143 139.507C98.7681 140.183 99.6159 140.563 100.5 140.563H107.167V133.354H103.833V130.601L105.893 126.146H115.107L117.167 130.601V133.354H113.833V140.563H120.5C121.384 140.563 122.232 140.183 122.857 139.507C123.482 138.831 123.833 137.914 123.833 136.959V129.75C123.833 129.191 123.712 128.639 123.48 128.139L120.147 120.931C119.87 120.332 119.445 119.829 118.918 119.477C118.392 119.125 117.786 118.938 117.167 118.938H115.28C115.692 117.03 115.968 115.092 116.107 113.139C119.357 114.8 122.377 116.707 124.993 118.768C131.4 123.821 133.833 128.55 133.833 131.805V144.167H27.1667V131.805C27.1667 128.55 29.6 123.821 36.0067 118.768C39.2267 116.227 43.07 113.928 47.19 112.025C47.3044 114.897 47.7307 117.745 48.46 120.509L48.4867 120.61C46.4939 121.973 45.0107 124.054 44.2991 126.485C43.5875 128.916 43.6933 131.54 44.5977 133.895C45.5022 136.249 47.1471 138.183 49.242 139.353C51.3369 140.524 53.747 140.856 56.0466 140.292C58.3461 139.727 60.3873 138.303 61.8095 136.269C63.2317 134.235 63.9434 131.723 63.819 129.177C63.6946 126.631 62.742 124.214 61.1296 122.354C59.5171 120.494 57.3484 119.309 55.0067 119.01C54.5807 117.502 54.2686 115.959 54.0733 114.397C53.8877 112.999 53.8108 111.587 53.8433 110.176C53.853 109.906 53.8697 109.637 53.8933 109.369C54.2933 109.235 54.6933 109.106 55.0933 108.983L56.4767 111.816H103.69L105.177 108.76V108.756ZM53.8333 133.412C55.6267 133.412 57.1667 131.826 57.1667 129.754C57.1667 127.685 55.6267 126.096 53.8333 126.096C52.04 126.096 50.5 127.681 50.5 129.754C50.5 131.823 52.04 133.412 53.8333 133.412Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelTinjauIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M110.5 140.562C116.023 140.562 120.5 135.722 120.5 129.75C120.5 123.778 116.023 118.938 110.5 118.938C104.977 118.938 100.5 123.778 100.5 129.75C100.5 135.722 104.977 140.562 110.5 140.562Z" fill="#7CA153" />
+         <path
+            d="M149.385 126.933C146.296 118.423 140.964 111.081 134.052 105.815C127.14 100.55 118.951 97.5935 110.5 97.3125C102.049 97.5935 93.8597 100.55 86.9476 105.815C80.0355 111.081 74.7044 118.423 71.615 126.933L70.5 129.75L71.615 132.567C74.7044 141.077 80.0355 148.419 86.9476 153.685C93.8597 158.95 102.049 161.906 110.5 162.188C118.951 161.906 127.14 158.95 134.052 153.685C140.964 148.419 146.296 141.077 149.385 132.567L150.5 129.75L149.385 126.933ZM110.5 151.375C106.544 151.375 102.678 150.107 99.3886 147.731C96.0996 145.354 93.5362 141.977 92.0224 138.026C90.5087 134.074 90.1126 129.726 90.8843 125.531C91.656 121.336 93.5608 117.483 96.3579 114.459C99.1549 111.435 102.719 109.375 106.598 108.541C110.478 107.706 114.499 108.134 118.154 109.771C121.808 111.408 124.932 114.18 127.129 117.736C129.327 121.292 130.5 125.473 130.5 129.75C130.493 135.483 128.384 140.979 124.635 145.033C120.886 149.087 115.802 151.368 110.5 151.375Z"
+            fill="#7CA153"
+         />
+         <path
+            d="M60.5 151.375H40.5V21.6249H80.5V54.0624C80.5079 56.9274 81.564 59.6726 83.4377 61.6985C85.3113 63.7244 87.8503 64.8663 90.5 64.8749H120.5V86.4999H130.5V54.0624C130.518 53.3519 130.393 52.6457 130.134 51.9924C129.875 51.3391 129.488 50.7542 129 50.278L94 12.4343C93.5598 11.9063 93.0189 11.4879 92.4147 11.2079C91.8104 10.9279 91.1572 10.7929 90.5 10.8124H40.5C37.8503 10.8209 35.3113 11.9629 33.4377 13.9887C31.564 16.0146 30.5079 18.7599 30.5 21.6249V151.375C30.5079 154.24 31.564 156.985 33.4377 159.011C35.3113 161.037 37.8503 162.179 40.5 162.187H60.5V151.375ZM90.5 23.7874L118.5 54.0624H90.5V23.7874Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M110.5 54.875H70.5V11.625H10.5V141.375H110.5V54.875ZM106.36 44.0625L80.5 16.1014V44.0625H106.36ZM5.5 0.8125H80.5L120.5 44.0625V146.781C120.5 148.215 119.973 149.59 119.036 150.604C118.098 151.618 116.826 152.188 115.5 152.188H5.5C4.17392 152.188 2.90215 151.618 1.96447 150.604C1.02679 149.59 0.5 148.215 0.5 146.781V6.21875C0.5 4.78492 1.02679 3.40982 1.96447 2.39595C2.90215 1.38209 4.17392 0.8125 5.5 0.8125ZM30.5 76.5H90.5V87.3125H30.5V76.5ZM30.5 44.0625H55.5V54.875H30.5V44.0625ZM30.5 108.938H90.5V119.75H30.5V108.938Z"
+            fill="#7CA153"
+         />
+      </svg>
+   );
+};
+const AdminArtikelUnggahIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+   return (
+      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M107.167 7.20898V43.2507H140.5M80.5001 144.167V79.2923M53.8335 100.917L80.5001 72.084L107.167 100.917M20.4868 7.20898H117.167L140.5 32.4382V165.792H20.5002L20.4868 7.20898Z" stroke="#7CA153" stroke-width="7" />
       </svg>
    );
 };
@@ -710,4 +808,10 @@ export {
    SidebarLogOutIcon,
    SidebarDarkLogOutIcon,
    SidebarDarkCartIcon,
+   AdminDokterIcon,
+   AdminDokterRegisterIcon,
+   AdminUserIcon,
+   AdminArtikelTinjauIcon,
+   AdminArtikelIcon,
+   AdminArtikelUnggahIcon,
 };
