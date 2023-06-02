@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import NavbarDokter from '@/components/ui/NavbarDokter'
 import Input from '@/components/forms/Input'
@@ -6,8 +7,19 @@ import Image from "next/image"
 import Textarea from '@/components/forms/Textarea'
 import Dropdown from '@/components/forms/Dropdown'
 import { SimpanProfileButton } from '@/components/ui/Button'
+import Swal from 'sweetalert2';
 
 export default function Profile() {
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+  
+        Swal.fire(
+           'Profil Baru disimpan',
+           'Ketuk oke untuk menutup halaman ini',
+           'success'
+        )
+    }
   return (
     <>
         <NavbarDokter/>
@@ -28,11 +40,12 @@ export default function Profile() {
         </div>
         <p className='font-inter font-semibold text-[40px] mx-14 text-[#515151] mt-[42px]'>Informasi Pribadi</p>
         <p className='font-inter font-normal text-lg text-[#4A4A4A] mx-14 max-w-3xl mt-7'>Beritahu kami sedikit tentang dirimu, Informasi ini akan muncul di profil publik anda, sehingga calon pembeli dapat lebih mengenal Anda.</p>
-        <div className='border-b-4 border-solid border-gray-400 w-11/12 h-1 mt-6 mx-14'></div>
-        <form onSubmit={{}}>
+        <div className='border-b-4 border-solid border-gray-400 w-11/12 h-1 mt-6 mx-14'/>
+        <form onSubmit={handleFormSubmit}>
             <div className='grid grid-cols-3 gap-4 mx-14 mt-8'>
-                <div className=''>
-                    <p className='font-inter font-semibold text-lg my-2'>Nama Lengkap</p>
+                <div className='flex'>
+                    <p className='font-inter font-semibold text-lg my-2 flex'>Nama Lengkap</p>
+                    <p className='text-red-700 my-2 text-lg'>*</p>
                 </div>
                 <div className='col-span-2'> 
                     <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm"/>
@@ -47,11 +60,18 @@ export default function Profile() {
                 </div>
             </div>
             <div className='grid grid-cols-3 gap-4 mx-14 mt-[105px]'>
-                <div className=''>
-                    <p className='font-inter font-semibold text-lg my-14'>Gambar Profil</p>
-                </div>
+                <p className='font-inter font-semibold text-lg my-14'>Gambar Profil</p>
                 <div className='col-span-2'> 
-                    <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" src={Dokter} alt="Dokter"/>
+                    <div style={{ position: 'relative', display: 'inline-block' }}>
+                        <label htmlFor="upload-input" className="cursor-pointer">
+                            <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" src={Dokter} alt="Dokter"/>
+                            <svg style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: '1' }} className='my-8 mx-14' width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="44" height="44" rx="22" fill="#87AF5B"/>
+                                <path d="M22 27.5C23.25 27.5 24.3127 27.0623 25.188 26.187C26.0633 25.3117 26.5007 24.2493 26.5 23C26.5 21.75 26.0623 20.6873 25.187 19.812C24.3117 18.9367 23.2493 18.4993 22 18.5C20.75 18.5 19.6873 18.9377 18.812 19.813C17.9367 20.6883 17.4993 21.7507 17.5 23C17.5 24.25 17.9377 25.3127 18.813 26.188C19.6883 27.0633 20.7507 27.5007 22 27.5ZM22 26.5L20.9 24.1L18.5 23L20.9 21.9L22 19.5L23.1 21.9L25.5 23L23.1 24.1L22 26.5ZM14 31C13.45 31 12.979 30.804 12.587 30.412C12.195 30.02 11.9993 29.5493 12 29V17C12 16.45 12.196 15.979 12.588 15.587C12.98 15.195 13.4507 14.9993 14 15H17.15L19 13H25L26.85 15H30C30.55 15 31.021 15.196 31.413 15.588C31.805 15.98 32.0007 16.4507 32 17V29C32 29.55 31.804 30.021 31.412 30.413C31.02 30.805 30.5493 31.0007 30 31H14Z" fill="white"/>
+                            </svg>
+                        </label>
+                        <input id="upload-input" type="file" className="hidden" />
+                    </div>
                 </div>
             </div>
             <div className='grid grid-cols-3 gap-4 mx-14 mt-[105px]'>
