@@ -1,8 +1,8 @@
 import React from "react";
 import PaymentControl from "./payment-control";
-import PaymentForm from "./temp";
+import PaymentForm from "./(bank)/bank-form";
+import PaymentFinale from "./(bank)/payment-confirm";
 
-//Temporary Fix! Still haven't figured out how to dynamically adjust the damn container div yet
 export default function Withdrawal() {
    return (
       <>
@@ -64,23 +64,26 @@ export default function Withdrawal() {
                         </div>
                      </div>
 
-                     <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] w-[1312px] min-h-[1000px] max-h-[1200px] relative overflow-auto">
-                        <PaymentControl />
-                        {/* <PaymentForm /> */}
+                     <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[26px] pr-8 pb-[26px] pl-8 flex flex-col gap-2.5 items-start justify-start w-[1312px] h-[831px] relative overflow-hidden">
+                        <div className="flex flex-row gap-[33px] items-start justify-start shrink-0 relative">
+                           {/* <PaymentControl /> */}
+                           {/* <PaymentForm /> */}
+                           <PaymentFinale />
 
-                        <div className="bg-neutral-0 rounded-[20px] border-solid border-[rgba(0,0,0,0.50)] border-[3px] min-w-[700px] max-w-[750px] h-[375px] relative left-[530px] top-[78px] overflow-hidden">
-                           <div className="font-inter font-semibold text-xl/[42px] text-neutral-900 text-left absolute left-[276px] top-11">
-                              Informasi Penarikan
-                           </div>
+                           <div className="bg-neutral-0 rounded-[20px] border-solid border-[rgba(0,0,0,0.50)] border-[3px] shrink-0 w-[767px] h-[375px] relative overflow-hidden">
+                              <div className="font-inter font-semibold text-xl/[42px] text-neutral-900 text-left absolute left-[276px] top-11">
+                                 Informasi Penarikan
+                              </div>
 
-                           <div className="font-inter font-normal text-lg text-neutral-900 text-justified absolute left-[47px] top-[117px] w-[672px]">
-                              1. Biaya penarikan Rp50.000 untuk penarikan di
-                              bawah Rp5.000.000 dan Rp100.000 dikenakan untuk
-                              penarikan di atas Rp5.000.000
-                              <br />
-                              2. Dana akan diterima dalam 1 hari ke akun Anda
-                              <br />
-                              3. Batas penarikan harian adalah Rp10.000.000
+                              <div className="font-inter font-normal text-lg text-neutral-900 text-justified absolute left-[47px] top-[117px] w-[672px]">
+                                 1. Biaya penarikan Rp50.000 untuk penarikan di
+                                 bawah Rp5.000.000 dan Rp100.000 dikenakan untuk
+                                 penarikan di atas Rp5.000.000
+                                 <br />
+                                 2. Dana akan diterima dalam 1 hari ke akun Anda
+                                 <br />
+                                 3. Batas penarikan harian adalah Rp10.000.000
+                              </div>
                            </div>
                         </div>
                      </div>
