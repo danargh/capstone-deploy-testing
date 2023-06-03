@@ -1,5 +1,7 @@
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export const metadata = {
    title: "Create Next App",
@@ -9,7 +11,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
    return (
       <html lang="en">
-         <body>{children}</body>
+         <body>
+            <Navbar>{children}</Navbar>
+            <Footer />
+         </body>
       </html>
    );
 }
