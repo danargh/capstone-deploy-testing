@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Input from "@/components/forms/Input";
 import { input_variants } from "@/components/custom/custom";
 import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
-import { LoginDokterButton, RegisterButton } from "@/components/ui/Button";
+import { RegisterButton } from "@/components/ui/Button";
 import HeroLogin from "@/components/ui/HeroLogin";
 import InputFileDaftarCv from '@/components/forms/InputFileDaftar/input-file-daftarCv';
 import Swal from 'sweetalert2';
