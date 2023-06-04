@@ -3,10 +3,13 @@ import { PersonIcon, ClockIcon } from "@/public/assets/icons/icons";
 import { TextAreaArtikel } from "@/components/forms/TextAreas";
 import Input from "@/components/forms/Input";
 // import { KirimKomentarButton } from "@/components/ui/Button";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export default function DetailArticle({ params }) {
    return (
       <>
+         <Navbar />
          <article className="mt-[62px] mb-[142px]">
             <header className="w-[1440px] mx-auto">
                <h1 className="font-poppins font-[600] text-[32px] leading-[52px]">Copy Artikel / Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya</h1>
@@ -93,6 +96,7 @@ export default function DetailArticle({ params }) {
                </form>
             </section>
          </article>
+         <Footer />
       </>
    );
 }

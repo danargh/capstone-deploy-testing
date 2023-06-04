@@ -60,17 +60,12 @@ function page() {
    ];
    return (
       <>
-         <NavbarDokter />
          <div className=" max-w-[1440px] mx-auto px-[32px]">
-            <h1 className="text-inter text-xl font-bold mt-[50px] mb-[20px]">
-               Pesanan
-            </h1>
+            <h1 className="text-inter text-xl font-bold mt-[50px] mb-[20px]">Pesanan</h1>
             <FilterButton>Filter Data</FilterButton>
 
             <TableOrder order={dataDokter} />
          </div>
-
-         <Footer />
       </>
    );
 }

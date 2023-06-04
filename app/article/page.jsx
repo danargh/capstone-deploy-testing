@@ -5,6 +5,8 @@ import Card from "@/components/ui/Card";
 import detailArtikel from "@/public/assets/images/detail-article.png";
 import { Pagination } from "@/components/ui/Pagination";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export default function Article({ keyword = "Covid" }) {
    const [currentPage, setCurentPage] = useState(1);
@@ -20,6 +22,7 @@ export default function Article({ keyword = "Covid" }) {
 
    return (
       <>
+         <Navbar />
          <section className="font-inter font-[600] text-[20px] mt-[32px] mb-16 w-[1440px] mx-auto">
             <p className="mb-[20px] leading-8">Hasil Pencarian "{keyword}"</p>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
@@ -40,6 +43,7 @@ export default function Article({ keyword = "Covid" }) {
                <Pagination totalPosts={15} postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
             </div>
          </section>
+         <Footer />
       </>
    );
 }

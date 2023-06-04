@@ -53,17 +53,12 @@ function page() {
    ];
    return (
       <>
-         <NavbarDokter />
          <div className=" max-w-[1440px] mx-auto px-[32px] bg-neutral-10 pt-[50px]">
-            <h1 className="text-inter text-xl text-white font-bold  mb-[20px] bg-web-green-300 py-4 px-5 rounded-lg">
-               Riwayat Komisi
-            </h1>
+            <h1 className="text-inter text-xl text-white font-bold  mb-[20px] bg-web-green-300 py-4 px-5 rounded-lg">Riwayat Komisi</h1>
             <FilterButton>Filter Data</FilterButton>
 
             <TabelHistory orders={dataOrders} />
          </div>
-
-         <Footer />
       </>
    );
 }
