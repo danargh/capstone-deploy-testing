@@ -10,10 +10,6 @@ export default function page() {
                <div className="flex">
                   <div className=" pl-[68px]">
                      <p className="pt-[57px] font-poppins font-bold text-[#577536] text-lg">Dashboard</p>
-
-                     <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian"></input>
-                     <button className="bg-[#8EBF59] py-[13.5px] px-[23px]">Cari</button>
-
                      <div className="mt-[51px] flex">
                         <div className="w-[293px] h-[299px] border-[#63863E] border-[5px] rounded-[15px]">
                            <div className="px-[66px] pt-[10px]">

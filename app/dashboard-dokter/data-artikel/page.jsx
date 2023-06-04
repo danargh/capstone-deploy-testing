@@ -57,7 +57,7 @@ export default function page() {
       <>
          <div className="mx-auto mb-5 max-w-[1440px]">
             <div style={{ marginTop: 100 }} className="flex mr-[60px] items-end justify-end default">
-               <Link href="/data-artikel/tambah-artikel">
+               <Link href="dashboard-dokter/data-artikel/tambah-artikel">
                   <AddArtikelButton />
                </Link>
             </div>
@@ -86,7 +86,7 @@ export default function page() {
                            <td className="border border-success-green-100 text-center ">Di setujui</td>
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
-                              <Link href="/data-artikel/edit/[id]" as={`/data-artikel/edit/${artikel.id}`}>
+                              <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>
                                  <button className={button_variants({ variant: "default", size: "default" })} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
                                     Edit
                                  </button>

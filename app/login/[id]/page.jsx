@@ -4,6 +4,7 @@ import { LoginDokterButton } from "@/components/ui/Button";
 import HeroLogin from "@/components/ui/HeroLogin";
 import InputNew from "@/components/forms/InputNew";
 import ErrorMessage from "@/components/error/ErrorMessage";
+import Link from "next/link";
 
 export default function LupaPassword({ params }) {
    return (
@@ -11,9 +12,9 @@ export default function LupaPassword({ params }) {
          <section className="flex bg-gray-500 min-screen-2xl h-screen">
             <HeroLogin />
             <div className="w-1/2 bg-neutral-0 flex flex-col justify-center">
-               <a href="#" className="absolute top-20 ml-5">
+               <Link href="/login" className="absolute top-20 ml-5">
                   <ArrowBackIcon2 width="60" height="60" />
-               </a>
+               </Link>
 
                <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
                   <h1 className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Lupa Kata Sandi?</h1>

@@ -63,7 +63,9 @@ export default function ApakahKamuDokter() {
                      </div>
                      {/*Later turn this to Link?*/}
                      <div>
-                        <button className="font-poppins font-semibold text-sm text-neutral-0 text-center bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[299px] h-14 relative">Daftar Sebagai Dokter</button>
+                        <Link href="/register-dokter" className="font-poppins font-semibold text-sm text-neutral-0 text-center bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[299px] h-14 relative">
+                           Daftar Sebagai Dokter
+                        </Link>
                      </div>
                   </div>
                </div>

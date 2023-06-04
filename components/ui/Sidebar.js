@@ -108,8 +108,8 @@ export default function Sidebar() {
                </div>
             </div>
 
-            <Link href={"/logout"} className={`${path === "/logout" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`} prefetch={false}>
-               {path === "/" ? <SidebarDarkLogOutIcon /> : <SidebarLogOutIcon />}
+            <Link href={"/login"} className={`${path === "/logout" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`} prefetch={false}>
+               {path === "/login" ? <SidebarDarkLogOutIcon /> : <SidebarLogOutIcon />}
                <div className={`font-poppins ${path === "/" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Keluar</div>
             </Link>
          </div>

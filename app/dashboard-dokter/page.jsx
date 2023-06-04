@@ -1,4 +1,5 @@
 import NavbarDokter from "@/components/ui/NavbarDokter";
+import Link from "next/link";
 import React from "react";
 
 export default function DashboardDokter() {
@@ -74,7 +75,9 @@ export default function DashboardDokter() {
                      <div className="block max-w-xl max-h-xl p-6 bg-white border-4 border-gray-200S shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                         <div className="py-[104px]">
                            <p className="font-Inter font-bold text-[32px]">Withdraw</p>
-                           <button className="bg-web-green-300 w-36 h-16 rounded-xl text-white my-[90px] font-medium">Transfer</button>
+                           <button className="bg-web-green-300 w-36 h-16 rounded-xl text-white my-[90px] font-medium">
+                              <Link href="/dashboard-dokter/withdraw">Transfer</Link>
+                           </button>
                         </div>
                      </div>
                   </div>

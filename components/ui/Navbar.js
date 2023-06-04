@@ -19,13 +19,13 @@ const Navbar = () => {
                </a>
                <div>
                   <ul className="font-poppins text-[24px] font-[700] flex flex-row gap-[61px]  text-white">
-                     <li className={`${pathname === "/" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}`}>
+                     <li className={pathname === "/" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                         <Link href="/">Home</Link>
                      </li>
-                     <li className={`${pathname === "/article" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}`}>
+                     <li className={pathname === "/article" || pathname === `/article/1` ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                         <Link href="/article"> Artikel</Link>
                      </li>
-                     <li className={`${pathname === "/detail-dokter" || pathname === "/are-you-doctor" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}`}>
+                     <li className={pathname === "/detail-dokter" || pathname === "/are-you-doctor" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown1" type="button" className="flex flex-row items-center">
                            Dokter
                            <svg class="w-6 h-6 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -39,12 +39,12 @@ const Navbar = () => {
                               </li>
                               <hr />
                               <li className="px-[24px] py-[24px]">
-                                 <a href="/are-you-doctor">Apakah Kamu Dokter?</a>
+                                 <Link href="/are-you-doctor">Apakah Kamu Dokter?</Link>
                               </li>
                            </ul>
                         </div>
                      </li>
-                     <li className={`${pathname === "/dokter" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}`}>
+                     <li className={pathname === "/dokter" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                         <Link href="/dokter">Dokter Area</Link>
                      </li>
                   </ul>
