@@ -1,6 +1,6 @@
 "use client";
 
-import Sidebar from "./Sidebar";
+import Sidebar from "./SidebarDokter";
 import { useState } from "react";
 
 const NavbarDokter = () => {
