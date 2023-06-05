@@ -5,7 +5,6 @@ import Footer from "@/components/ui/Footer";
 export default function NotifikasiDokter() {
    return (
       <>
-         <NavbarDokter />
          <section className="font-inter font-[700] max-w-[1320px] mx-auto h-[80vh]">
             <header className="flex justify-between items-center mt-[100px] bg-[#8EBF59] px-[24px] py-[16px] rounded-xl">
                <h1 className="text-[32px] leading-[38px] text-white">Notifikasi</h1>
@@ -24,7 +23,6 @@ export default function NotifikasiDokter() {
                   ))}
             </ul>
          </section>
-         <Footer />
       </>
    );
 }

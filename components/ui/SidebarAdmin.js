@@ -10,35 +10,35 @@ const navLinks = [
    {
       name: "Dasbor",
       icon: "/assets/icons/dashboard-icon.svg",
-      href: "/dashboard",
+      href: "/dashboard-admin",
       width: 48,
       height: 48,
    },
    {
       name: "Edit Pengguna",
       icon: "/assets/icons/edit-user-dokter-icon.svg",
-      href: "/edit-pengguna",
+      href: "/dashboard-admin/edit-pengguna",
       width: 48,
       height: 48,
    },
    {
       name: "Edit Artikel",
       icon: "/assets/icons/edit-artikel-icon.svg",
-      href: "/edit-artikel",
+      href: "/dashboard-admin/admin-article-tables",
       width: 45,
       height: 45,
    },
    {
       name: "Verifikasi Pencairan Dana",
       icon: "/assets/icons/req-withdraw-icon.svg",
-      href: "/req-withdraw",
+      href: "/dashboard-admin/req-withdraw",
       width: 48,
       height: 48,
    },
    {
       name: "Keluar",
       icon: "/assets/icons/logout-icon.svg",
-      href: "/logout",
+      href: "/dashboard-admin/admin",
       width: 48,
       height: 48,
    },
@@ -53,7 +53,7 @@ export default function SidebarAdmin({ children }) {
             <div className="font-inter font-[500] text-[16px] leading-[20px] text-[#D1E5BB] bg-[#63863E] w-[313px] h-screen fixed z-50 top-0 left-0">
                <Image className="mt-[48px] mb-[82px] mx-auto" src="/assets/logo/logo-APP-solo-white.png" width={126} height={21} />
                {navLinks.map((link) => {
-                  const isActive = pathname.startsWith(link.href);
+                  const isActive = pathname === link.href;
                   return (
                      <Link key={link.name} className={`${isActive ? "bg-[#FFFFFF33]" : ""} flex items-center justify-start hover:bg-[#FFFFFF33] py-3 my-3`} href={link.href}>
                         <Image className="mx-[20px]" src={link.icon} width={link.width} height={link.height} />

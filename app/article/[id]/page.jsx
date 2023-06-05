@@ -1,11 +1,10 @@
-import React from "react";
-import Navbar from "@/components/ui/Navbar";
-import Footer from "@/components/ui/Footer";
 import Image from "next/image";
 import { PersonIcon, ClockIcon } from "@/public/assets/icons/icons";
 import { TextAreaArtikel } from "@/components/forms/TextAreas";
 import Input from "@/components/forms/Input";
-import { KirimKomentarButton } from "@/components/ui/Button";
+// import { KirimKomentarButton } from "@/components/ui/Button";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export default function DetailArticle({ params }) {
    return (
@@ -93,7 +92,7 @@ export default function DetailArticle({ params }) {
                         className="block p-2.5 w-full h-[68px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      />
                   </div>
-                  <KirimKomentarButton>Kirim Komentar</KirimKomentarButton>
+                  {/* <KirimKomentarButton>Kirim Komentar</KirimKomentarButton> */}
                </form>
             </section>
          </article>

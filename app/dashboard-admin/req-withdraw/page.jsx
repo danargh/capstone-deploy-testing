@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SidebarAdmin from "@/components/ui/SidebarAdmin";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 const dataDokter = [
    {

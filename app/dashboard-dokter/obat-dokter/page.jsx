@@ -43,7 +43,6 @@ export default function ObatDokter() {
 
    return (
       <>
-         <NavbarDokter />
          <section className="grid grid-cols-2 gap-[46px] text-[#577536] mt-[46px] max-w-[1320px] mx-auto h-[90vh]">
             <div className="flex flex-col justify-between">
                <div>

@@ -19,6 +19,7 @@ import {
    SidebarMessageIcon,
    SidebarNotificationIcon,
    SidebarProfileIcon,
+   SidebarDarkCartIcon,
 } from "@/public/assets/icons/icons";
 
 /*How it works:
@@ -37,212 +38,79 @@ export default function Sidebar() {
    //split and filter
    const pathSegments = path.split("/");
    const FilteredPath = `/${pathSegments[1]}`;
+   console.log(path);
 
    return (
       <div className="bg-web-green-300 h-screen max-w-[467px] rounded-xl pt-[47px] pr-[61px] pb-[47px] pl-[61px] flex flex-row gap-2.5 items-start justify-start relative overflow-y-auto">
          <div className="flex flex-col gap-[452px] items-start justify-start shrink-0 relative">
             <div className="flex flex-col gap-[51px] items-start justify-start shrink-0 relative">
-               <div className="font-poppins font-normal text-[40px] text-neutral-0 text-left relative">
-                  Dashboard Menu
-               </div>
+               <div className="font-poppins font-normal text-[40px] text-neutral-0 text-left relative">Dashboard Menu</div>
 
                <div className="flex flex-col gap-[31px] items-start justify-start self-stretch shrink-0 relative">
-                  <Link
-                     href={"/sidebartest"}
-                     className={`${
-                        FilteredPath === "/sidebartest"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
-                     prefetch={false}
-                  >
-                     {FilteredPath === "/" ? (
-                        <ClarityDashboardIcon
-                           width="50"
-                           height="50"
-                           fill="white"
-                        />
-                     ) : (
-                        <SidebarDashboardIcon />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Dashboard
-                     </div>
+                  <Link href="/dashboard-dokter" className={`${path === "/dashboard-dokter" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`} prefetch={false}>
+                     {path === "/dashboard-dokter" ? <ClarityDashboardIcon width="50" height="50" fill="white" /> : <SidebarDashboardIcon />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Dashboard</div>
                   </Link>
 
                   <Link
-                     href={"/pesanan"}
-                     className={`${
-                        FilteredPath === "/"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/order-by-dokter"
+                     className={`${path === "/dashboard-dokter/order-by-dokter" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkCartIcon
-                           width="50"
-                           height="50"
-                           fill="white"
-                        />
-                     ) : (
-                        <CartIcon width={42} height={46} fill={"white"} />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Pesanan
-                     </div>
+                     {path === "/dashboard-dokter/order-by-dokter" ? <SidebarDarkCartIcon width="50" height="50" fill="white" /> : <CartIcon width={42} height={46} fill={"white"} />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/order-by-dokter" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Pesanan</div>
                   </Link>
 
                   <Link
-                     href={"/"}
-                     className={`${
-                        FilteredPath === "/"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/data-artikel"
+                     className={`${path === "/dashboard-dokter/data-artikel" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkArticleIcon />
-                     ) : (
-                        <SidebarArticleIcon />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Artikel
-                     </div>
+                     {path === "/dashboard-dokter/data-artikel" ? <SidebarDarkArticleIcon /> : <SidebarArticleIcon />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/data-artikel" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Artikel</div>
                   </Link>
 
                   <Link
-                     href={"#"}
-                     className={`${
-                        FilteredPath === "/"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/chat"
+                     className={`${path === "/dashboard-dokter/chat" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkMessageIcon />
-                     ) : (
-                        <SidebarMessageIcon />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Pesan
-                     </div>
+                     {path === "/dashboard-dokter/chat" ? <SidebarDarkMessageIcon /> : <SidebarMessageIcon />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/chat" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Pesan</div>
                   </Link>
 
                   <Link
-                     href={"#"}
-                     className={`${
-                        FilteredPath === "/"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/notifikasi-dokter"
+                     className={`${path === "/dashboard-dokter/notifikasi-dokter" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkNotificationIcon />
-                     ) : (
-                        <SidebarNotificationIcon />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Notifikasi
-                     </div>
+                     {path === "/dashboard-dokter/notifikasi-dokter" ? <SidebarDarkNotificationIcon /> : <SidebarNotificationIcon />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/notifikasi-dokter" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Notifikasi</div>
                   </Link>
 
                   <Link
-                     href={"/komisi"}
-                     className={`${
-                        FilteredPath === "/komisi"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/komisi"
+                     className={`${path === "/dashboard-dokter/komisi" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkDollarIcon />
-                     ) : (
-                        <SidebarDollarIcon
-                           width="22"
-                           height="38"
-                           fill="white"
-                        />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Komisi
-                     </div>
+                     {path === "/dashboard-dokter/komisi" ? <SidebarDarkDollarIcon /> : <SidebarDollarIcon width="22" height="38" fill="white" />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/komisi" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Komisi</div>
                   </Link>
 
                   <Link
-                     href={"/profile"}
-                     className={`${
-                        FilteredPath === "/profile"
-                           ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                           : " "
-                     } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                     href="/dashboard-dokter/profile-dokter"
+                     className={`${path === "/dashboard-dokter/profile-dokter" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
                      prefetch={false}
                   >
-                     {FilteredPath === "/" ? (
-                        <SidebarDarkProfileIcon />
-                     ) : (
-                        <SidebarProfileIcon />
-                     )}
-                     <div
-                        className={`font-poppins ${
-                           FilteredPath === "/" ? "font-bold" : "font-medium"
-                        } text-[35px] text-neutral-0 text-left relative`}
-                     >
-                        Profil
-                     </div>
+                     {path === "/dashboard-dokter/profile-dokter" ? <SidebarDarkProfileIcon /> : <SidebarProfileIcon />}
+                     <div className={`font-poppins ${path === "/dashboard-dokter/profile-dokter" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Profil</div>
                   </Link>
                </div>
             </div>
 
-            <Link
-               href={"/logout"}
-               className={`${
-                  FilteredPath === "/logout"
-                     ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                     : " "
-               } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
-               prefetch={false}
-            >
-               {FilteredPath === "/" ? (
-                  <SidebarDarkLogOutIcon />
-               ) : (
-                  <SidebarLogOutIcon />
-               )}
-               <div
-                  className={`font-poppins ${
-                     FilteredPath === "/" ? "font-bold" : "font-medium"
-                  } text-[35px] text-neutral-0 text-left relative`}
-               >
-                  Keluar
-               </div>
+            <Link href={"/login"} className={`${path === "/logout" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`} prefetch={false}>
+               {path === "/login" ? <SidebarDarkLogOutIcon /> : <SidebarLogOutIcon />}
+               <div className={`font-poppins ${path === "/" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Keluar</div>
             </Link>
          </div>
       </div>
