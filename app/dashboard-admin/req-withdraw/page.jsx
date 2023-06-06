@@ -41,7 +41,7 @@ const dataDokter = [
 
 export default function ReqWithdraw() {
    const [dokter, setDokter] = useState(dataDokter);
-   const [currentPage, setCurrentPage] = useState(1);
+   const [currentPage, setCurrentPage] = useState(2);
    const [itemsPerPage] = useState(2);
 
    const PaginatedData = () => {
