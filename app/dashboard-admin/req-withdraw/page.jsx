@@ -41,8 +41,10 @@ const dataDokter = [
 
 export default function ReqWithdraw() {
    const [dokter, setDokter] = useState(dataDokter);
-   const [currentPage, setCurrentPage] = useState(2);
+   const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(2);
+
+   const totalpages = (dokter.length/itemsPerPage);
 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
@@ -150,7 +152,7 @@ export default function ReqWithdraw() {
                   </tbody>
                </table>
                <div className="flex justify-start mt-8">
-                  <PaginationAlt currentPage={currentPage} totalItems={dokter.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+                  <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
                </div>
             </section>
          </SidebarAdmin>
