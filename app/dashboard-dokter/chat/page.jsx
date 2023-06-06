@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import NavbarDokter from "@/components/ui/NavbarDokter";
-import React, { useState } from "react";
+import NavbarDokter from '@/components/ui/NavbarDokter';
+import React, { useState } from 'react';
 
-import Link from "next/link";
+import Link from 'next/link';
 function page() {
    const [selectedFile, setSelectedFile] = useState(null);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [selectedUser, setSelectedUser] = useState(0);
-   const [newMessage, setNewMessage] = useState("");
+   const [newMessage, setNewMessage] = useState('');
 
    const handleInputChange = (e) => {
       setNewMessage(e.target.value);
@@ -24,23 +24,23 @@ function page() {
 
    const [users, setUsers] = useState([
       {
-         id: "0",
-         nama: "rudi",
+         id: '0',
+         nama: 'rudi',
          chat: [
-            { message: "tes", type: "received" },
-            { message: "tes2", type: "received" },
-            { message: "tes", type: "sent" },
-            { message: "tes2", type: "sent" },
+            { message: 'tes', type: 'received' },
+            { message: 'tes2', type: 'received' },
+            { message: 'tes', type: 'sent' },
+            { message: 'tes2', type: 'sent' },
          ],
       },
       {
-         id: "1",
-         nama: "rudix",
+         id: '1',
+         nama: 'rudix',
          chat: [
-            { message: "tes", type: "received" },
-            { message: "tes2", type: "received" },
-            { message: "tes", type: "sent" },
-            { message: "tes2", type: "sent" },
+            { message: 'tes', type: 'received' },
+            { message: 'tes2', type: 'received' },
+            { message: 'tes', type: 'sent' },
+            { message: 'tes2', type: 'sent' },
          ],
       },
    ]);
@@ -54,14 +54,14 @@ function page() {
          if (user.id === selectedUser) {
             return {
                ...user,
-               chat: [...user.chat, { message: newMessage, type: "sent" }],
+               chat: [...user.chat, { message: newMessage, type: 'sent' }],
             };
          }
          return user;
       });
 
       setUsers(updatedUsers);
-      setNewMessage("");
+      setNewMessage('');
    };
    return (
       <>
@@ -93,9 +93,9 @@ function page() {
                                     <path
                                        d="M6.625 6.125L9.12492 8.62492M9.12492 8.62492L11.6249 11.1249M9.12492 8.62492L6.625 11.1249M9.12492 8.62492L11.6249 6.125M9.125 16.125C4.98287 16.125 1.625 12.7672 1.625 8.625C1.625 4.48287 4.98287 1.125 9.125 1.125C13.2672 1.125 16.625 4.48287 16.625 8.625C16.625 12.7672 13.2672 16.125 9.125 16.125Z"
                                        stroke="white"
-                                       stroke-width="2"
-                                       stroke-linecap="round"
-                                       stroke-linejoin="round"
+                                       strokeWidth="2"
+                                       strokeLinecap="round"
+                                       strokeLinejoin="round"
                                     />
                                  </svg>
 
@@ -141,7 +141,10 @@ function page() {
                                              d="M21.6869 17.6972L18.67 11.3628C18.1206 10.2032 17.3013 9.54553 16.3664 9.50226C15.4411 9.45899 14.5447 10.0388 13.8603 11.1464L12.029 14.0973C11.6434 14.7204 11.094 15.0925 10.4964 15.1358C9.88918 15.1877 9.28194 14.9021 8.79037 14.3396L8.57832 14.0973C7.89397 13.3272 7.04577 12.9551 6.17829 13.033C5.31081 13.1108 4.56863 13.6474 4.07706 14.5214L2.40957 17.5069C1.81197 18.5886 1.8698 19.8433 2.57343 20.8645C3.27705 21.8856 4.50116 22.5 5.84094 22.5H18.1399C19.4315 22.5 20.6363 21.9202 21.3496 20.951C22.0821 19.9818 22.1978 18.7616 21.6869 17.6972Z"
                                              fill="white"
                                           />
-                                          <path d="M7.09833 11.6967C8.8095 11.6967 10.1966 10.3095 10.1966 8.59833C10.1966 6.88717 8.8095 5.5 7.09833 5.5C5.38717 5.5 4 6.88717 4 8.59833C4 10.3095 5.38717 11.6967 7.09833 11.6967Z" fill="white" />
+                                          <path
+                                             d="M7.09833 11.6967C8.8095 11.6967 10.1966 10.3095 10.1966 8.59833C10.1966 6.88717 8.8095 5.5 7.09833 5.5C5.38717 5.5 4 6.88717 4 8.59833C4 10.3095 5.38717 11.6967 7.09833 11.6967Z"
+                                             fill="white"
+                                          />
                                           <path d="M19 6.7549H17.2941V8.5H15.7059V6.7549H14V5.2549H15.7059V3.5H17.2941V5.2549H19V6.7549Z" fill="white" />
                                        </svg>
                                     </>
@@ -156,7 +159,7 @@ function page() {
                         <label htmlFor="chat-submit" className="cursor-pointer">
                            <svg width={25} height={25} viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <rect width={25} height={25} rx={5} fill="#769E4B" />
-                              <mask id="mask0_1618_19880" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x={0} y={0} width={25} height={25}>
+                              <mask id="mask0_1618_19880" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x={0} y={0} width={25} height={25}>
                                  <path d="M25 0H0V25H25V0Z" fill="white" />
                               </mask>
                               <g mask="url(#mask0_1618_19880)">
@@ -221,7 +224,7 @@ const UserContact = ({ id, nama, chat, onClick }) => {
 const UserChat = ({ message, type }) => {
    return (
       <>
-         {type === "received" ? (
+         {type === 'received' ? (
             <>
                <div className="flex gap-3 m-5">
                   <svg width="50" height="50" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
