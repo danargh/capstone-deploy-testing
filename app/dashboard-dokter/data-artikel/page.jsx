@@ -12,7 +12,7 @@ import PaginationAlt from '@/components/ui/PaginationAlt';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function page() {
    const [currentPage, setCurrentPage] = useState(1);
-   const [baseIndex, setBaseIndex] = useState(0);
+   const [baseIndex, setBaseIndex] = useState(1);
    const [articlesPerPage] = useState(13);
    const {
       data: dataArtikel,
@@ -124,8 +124,9 @@ export default function page() {
                   )}
                </tbody>
             </table>
-
-            <PaginationAlt currentPage={currentPage} articlePerPages={articlesPerPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <div className=" flex justify-end pt-[85px] pr-[66px]">
+               <PaginationAlt currentPage={currentPage} articlePerPages={articlesPerPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            </div>
          </div>
       </>
    );
