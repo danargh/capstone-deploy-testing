@@ -51,12 +51,12 @@ export default function SidebarAdmin({ children }) {
       <>
          <section className="relative">
             <div className="font-inter font-[500] text-[16px] leading-[20px] text-[#D1E5BB] bg-[#63863E] w-[313px] h-screen fixed z-50 top-0 left-0">
-               <Image className="mt-[48px] mb-[82px] mx-auto" src="/assets/logo/logo-APP-solo-white.png" width={126} height={21} />
+               <Image alt="images" className="mt-[48px] mb-[82px] mx-auto" src="/assets/logo/logo-APP-solo-white.png" width={126} height={21} />
                {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
                      <Link key={link.name} className={`${isActive ? "bg-[#FFFFFF33]" : ""} flex items-center justify-start hover:bg-[#FFFFFF33] py-3 my-3`} href={link.href}>
-                        <Image className="mx-[20px]" src={link.icon} width={link.width} height={link.height} />
+                        <Image alt="images" className="mx-[20px]" src={link.icon} width={link.width} height={link.height} />
                         <p>{link.name}</p>
                      </Link>
                   );
