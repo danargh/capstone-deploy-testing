@@ -26,7 +26,7 @@ import {
 3. Detect which page we're currently in
 4. set the button state to ACTIVE (using ${FilteredPath === "/" ? "ACTIVE CLASS" : "INACTIVE CLASS"}   )
 
-This is done in order to make that even in children pages (withdraw/bank etc.) navbar keep active.
+This is done in order to make that even in children pages (ex: withdraw/bank/x ), navbar keeps being active.
 */
 
 export default function Sidebar() {
@@ -36,7 +36,7 @@ export default function Sidebar() {
    // Split and filter the path
    const pathSegments = path.split("/");
    const filteredPath =
-      pathSegments.length >= 3 // the first segment is the domain the second is dashboard-dokter and the third is the one we use
+      pathSegments.length >= 3 // the first segment is the domain the second is dashboard-dokter and the third is the one used.
          ? `/dashboard-dokter/${pathSegments[2]}`
          : "/dashboard-dokter";
 
@@ -126,8 +126,8 @@ export default function Sidebar() {
    ];
 
    return (
-      <div className="bg-web-green-300 h-screen max-w-[467px] rounded-xl pt-[47px] pr-[61px] pb-[47px] pl-[61px] flex flex-row gap-2.5 items-start justify-start relative overflow-y-auto">
-         <div className="flex flex-col gap-[452px] items-start justify-start shrink-0 relative">
+      <div className="bg-web-green-300 h-screen min-w-[467px] px-[61px] py-[47px] flex relative overflow-y-auto">
+         <div className="flex flex-col items-center justify-between relative">
             <div className="flex flex-col gap-[51px] items-start justify-start shrink-0 relative">
                <div className="font-poppins font-normal text-[40px] text-neutral-0 text-left relative">
                   Dashboard Menu
@@ -147,7 +147,7 @@ export default function Sidebar() {
                   })}
                </div>
             </div>
-            
+
             {/* Keep this separate!!!! */}
             <Link
                href={"/login"}

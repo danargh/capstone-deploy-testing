@@ -3,7 +3,7 @@
 import Sidebar from "./SidebarDokter";
 import { useState } from "react";
 
-const NavbarDokter = () => {
+function NavbarDokter( {children} ) {
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
    const handleSidebarToggle = () => {
@@ -12,7 +12,7 @@ const NavbarDokter = () => {
 
    return (
       <>
-         <nav className=" bg-web-green-300 m-0 p-0">
+         <nav className="z-10 bg-web-green-300 m-0 p-0">
             <div className="max-w-[1440px] flex flex-wrap items-center justify-between mx-auto p-[22px]">
                <div className="flex flex-wrap items-center">
                   <button onClick={handleSidebarToggle}>
@@ -37,12 +37,13 @@ const NavbarDokter = () => {
                   <p className="font-poppins text-[22px] text-white font-[700] float-right mr-9">Hai, Dokter</p>
                </div>
             </div>
-            {isSidebarOpen && (
-               <div className="fixed w-[456px] top-0 left-0 h-full overflow-hidden">
-                  <Sidebar />
-               </div>
-            )}
          </nav>
+         <div className="flex flex-row">
+         {isSidebarOpen && (
+                  <Sidebar />
+            )}
+            {children}
+            </div>
       </>
    );
 };
