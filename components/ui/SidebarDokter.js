@@ -34,8 +34,9 @@ This is done in order to make that even in children pages (ex: withdraw/bank/x )
 */
 
 export default function Sidebar() {
-   // First, get the state
-   const { isSidebarOpen } = useSidebar()
+   // First, get the atom (not nuclear bomb, atom as in the smallest particle~)
+   const { isSidebarOpen } = useSidebar();
+
    // Get curent page's path
    const path = usePathname();
 
@@ -55,7 +56,7 @@ export default function Sidebar() {
    }) {
       return (
          <Link
-            href={`/dashboard-dokter/${navPoint}`}
+            href={`/dashboard-dokter${navPoint}`}
             className={`${
                filteredPath === "/dashboard-dokter" + navPoint
                   ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
@@ -133,7 +134,7 @@ export default function Sidebar() {
    return (
       <>
          {isSidebarOpen && (
-            <div className="z-0 flex top-0 transition">
+            <div className="z-0 flex top-0">
                <div className="bg-web-green-300 min-h-screen min-w-[467px] px-[61px] py-[47px] flex relative overflow-y-auto">
                   <div className="flex flex-col items-center justify-between relative">
                      <div className="flex flex-col gap-[51px] items-start justify-start shrink-0 relative">

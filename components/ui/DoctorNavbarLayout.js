@@ -1,10 +1,10 @@
 import React from "react";
-import SidebarDokter from "./SidebarDokter";
+import NavbarDokter from "./NavbarDokter";
 
 export default function DoctorNavbarLayout({children}) {
    return (
-      <div className="h-full flex flex-row">
-            <SidebarDokter />
+      <div className="h-full w-full">
+            <NavbarDokter />
             <main className="lg:pl-20 h-full">{children}</main>
       </div>
    );
