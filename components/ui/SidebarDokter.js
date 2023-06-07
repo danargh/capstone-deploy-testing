@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import useSidebar from "@/components/atoms/useSidebar.js";
 import {
    CartIcon,
    ClarityDashboardIcon,
@@ -30,6 +34,8 @@ This is done in order to make that even in children pages (ex: withdraw/bank/x )
 */
 
 export default function Sidebar() {
+   // First, get the state
+   const { isSidebarOpen } = useSidebar()
    // Get curent page's path
    const path = usePathname();
 
@@ -55,7 +61,6 @@ export default function Sidebar() {
                   ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
                   : " "
             } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
-            prefetch={false}
          >
             {filteredPath === "/dashboard-dokter" + navPoint
                ? sidebarDarkIcon
@@ -126,52 +131,60 @@ export default function Sidebar() {
    ];
 
    return (
-      <div className="bg-web-green-300 h-screen min-w-[467px] px-[61px] py-[47px] flex relative overflow-y-auto">
-         <div className="flex flex-col items-center justify-between relative">
-            <div className="flex flex-col gap-[51px] items-start justify-start shrink-0 relative">
-               <div className="font-poppins font-normal text-[40px] text-neutral-0 text-left relative">
-                  Dashboard Menu
-               </div>
+      <>
+         {isSidebarOpen && (
+            <div className="z-0 flex top-0 transition">
+               <div className="bg-web-green-300 min-h-screen min-w-[467px] px-[61px] py-[47px] flex relative overflow-y-auto">
+                  <div className="flex flex-col items-center justify-between relative">
+                     <div className="flex flex-col gap-[51px] items-start justify-start shrink-0 relative">
+                        <div className="font-poppins font-normal text-[40px] text-neutral-0 text-left relative">
+                           Dashboard Menu
+                        </div>
 
-               <div className="flex flex-col gap-[31px] items-start justify-start self-stretch shrink-0 relative">
-                  {navigationPoints.map((navigation) => {
-                     return (
-                        <SidebarComponent
-                           key={navigation.navigationPoint}
-                           navName={navigation.navigationName}
-                           navPoint={navigation.navigationPoint}
-                           sidebarDarkIcon={navigation.sidebarDarkIcon}
-                           sidebarLightIcon={navigation.sidebarLightIcon}
-                        />
-                     );
-                  })}
+                        <div className="flex flex-col gap-[31px] items-start justify-start self-stretch shrink-0 relative">
+                           {navigationPoints.map((navigation) => {
+                              return (
+                                 <SidebarComponent
+                                    key={navigation.navigationPoint}
+                                    navName={navigation.navigationName}
+                                    navPoint={navigation.navigationPoint}
+                                    sidebarDarkIcon={navigation.sidebarDarkIcon}
+                                    sidebarLightIcon={
+                                       navigation.sidebarLightIcon
+                                    }
+                                 />
+                              );
+                           })}
+                        </div>
+                     </div>
+
+                     {/* Keep this separate!!!! */}
+                     <Link
+                        href={"/login"}
+                        className={`${
+                           path === "/logout"
+                              ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
+                              : " "
+                        } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+                        prefetch={false}
+                     >
+                        {path === "/login" ? (
+                           <SidebarDarkLogOutIcon />
+                        ) : (
+                           <SidebarLogOutIcon />
+                        )}
+                        <div
+                           className={`font-poppins ${
+                              path === "/" ? "font-bold" : "font-medium"
+                           } text-[35px] text-neutral-0 text-left relative`}
+                        >
+                           Keluar
+                        </div>
+                     </Link>
+                  </div>
                </div>
             </div>
-
-            {/* Keep this separate!!!! */}
-            <Link
-               href={"/login"}
-               className={`${
-                  path === "/logout"
-                     ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3"
-                     : " "
-               } flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
-               prefetch={false}
-            >
-               {path === "/login" ? (
-                  <SidebarDarkLogOutIcon />
-               ) : (
-                  <SidebarLogOutIcon />
-               )}
-               <div
-                  className={`font-poppins ${
-                     path === "/" ? "font-bold" : "font-medium"
-                  } text-[35px] text-neutral-0 text-left relative`}
-               >
-                  Keluar
-               </div>
-            </Link>
-         </div>
-      </div>
+         )}
+      </>
    );
 }
