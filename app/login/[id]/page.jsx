@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import { ArrowBackIcon2 } from "@/public/assets/icons/icons";
 import { LoginDokterButton } from "@/components/ui/Button";
 import HeroLogin from "@/components/ui/HeroLogin";
@@ -7,6 +9,12 @@ import ErrorMessage from "@/components/error/ErrorMessage";
 import Link from "next/link";
 
 export default function LupaPassword({ params }) {
+   const [email, setEmail] = useState("");
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(email);
+   };
    return (
       <>
          <section className="flex bg-gray-500 min-screen-2xl h-screen">
@@ -29,9 +37,16 @@ export default function LupaPassword({ params }) {
                         <li>3. Ikuti petunjuknya dan aktifkan kembali akun Prevent Anda</li>
                      </ul>
                   </div>
-                  <form onSubmit={{}} className="flex flex-col gap-8">
-                     <InputNew type="email" label="Email" />
-                     <ErrorMessage errorMessage="Email anda tidak terdaftar pada sistem. Silahkan coba lagi!" />
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                     <InputNew
+                        type="email"
+                        label="Email"
+                        name="email"
+                        onHandleChange={(e) => {
+                           setEmail(e.target.value);
+                        }}
+                     />
+                     {/* <ErrorMessage errorMessage="Email anda tidak terdaftar pada sistem. Silahkan coba lagi!" /> */}
                      <LoginDokterButton>Log In</LoginDokterButton>
                   </form>
                </div>

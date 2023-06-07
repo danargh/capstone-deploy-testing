@@ -41,6 +41,20 @@ const dataDokter = [
 
 export default function ReqWithdraw() {
    const [dokter, setDokter] = useState(dataDokter);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [itemsPerPage] = useState(2);
+
+   const totalpages = (dokter.length/itemsPerPage);
+
+   const PaginatedData = () => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return dokter.slice(startIndex, endIndex);
+   };
+
+   const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+   };
 
    const handleApproved = (id) => {
       const newDokter = dokter.map((dokter) => {
@@ -86,8 +100,8 @@ export default function ReqWithdraw() {
                      </tr>
                   </thead>
                   <tbody>
-                     {dokter.map((dokter) => (
-                        <tr className="bg-white border-[#A9BFB4] border-2 text-center font-poppins font-[400] text-[14px] leading-[48px]">
+                     {PaginatedData().map((dokter, index) => (
+                        <tr key={index} className="bg-white border-[#A9BFB4] border-2 text-center font-poppins font-[400] text-[14px] leading-[48px]">
                            <td className="border-2 border-[#A9BFB4]">{dokter.id}</td>
                            <td className="border-2 border-[#A9BFB4]">{dokter.nama}</td>
                            <td className="border-2 border-[#A9BFB4]">{dokter.email}</td>
@@ -137,6 +151,9 @@ export default function ReqWithdraw() {
                      ))}
                   </tbody>
                </table>
+               <div className="flex justify-start mt-8">
+                  <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
+               </div>
             </section>
          </SidebarAdmin>
       </>
