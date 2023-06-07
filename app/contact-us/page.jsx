@@ -7,7 +7,6 @@ import Input from "@/components/forms/Input";
 import { input_variants } from "@/components/custom/custom";
 import { TextAreaContact } from "@/components/forms/TextAreas";
 import { KirimPesanButton } from "@/components/ui/Button";
-import { useForm } from "react-hook-form";
 
 export default function ContactUs() {
    return (
