@@ -1,18 +1,16 @@
-"use client";
-import React from "react";
 import { helpUtama } from "./dataHelp";
 import { AccordionHelp } from "@/components/ui/Accordion";
 import Link from "next/link";
 function page() {
    return (
       <>
-         <div className=" flex items-center flex-col">
+         <div className="px-5 mx-auto flex items-center flex-col justify-center w-full sm:w-[1088px]">
             <div className=" font-semibold text-[34px] mb-[47px]">
                Top Kategori
             </div>
             <Link
                href={"/help/harga-pembayaran"}
-               className="border border-black rounded-lg px-4 py-3 flex justify-between items-center w-[1088px] hover:bg-neutral-50"
+               className="border border-black rounded-lg px-4 py-3 flex justify-between items-center w-full hover:bg-neutral-50 "
             >
                <div className="font-semibold text-lg">Harga dan pembayaran</div>
                <svg
@@ -31,7 +29,7 @@ function page() {
             </Link>
             <Link
                href={"/help/akses-prevent"}
-               className="mt-4 border border-black rounded-lg px-4 py-3 flex justify-between items-center w-[1088px] hover:bg-neutral-50"
+               className="mt-4 border border-black rounded-lg px-4 py-3 flex justify-between items-center w-full  hover:bg-neutral-50"
             >
                <div className="font-semibold text-lg">Mengakses Prevent</div>
                <svg
@@ -50,11 +48,11 @@ function page() {
             </Link>
          </div>
 
-         <div className=" my-28 flex items-center flex-col ">
-            <div className=" font-semibold text-[34px] mb-[47px]">
+         <div className=" my-28 flex items-center flex-col px-5">
+            <div className=" font-semibold text-[34px] mb-[47px] ">
                Pertanyaan Berdasarkan Topik Anda
             </div>
-            <div className="w-[1088px]">
+            <div className="w-full sm:w-[1088px]">
                {helpUtama.map((item) => (
                   <AccordionHelp
                      question={item.question}
