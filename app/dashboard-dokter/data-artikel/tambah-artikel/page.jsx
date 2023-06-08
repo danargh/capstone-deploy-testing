@@ -1,22 +1,21 @@
-'use client';
-import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import useSWR, { mutate } from 'swr';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+"use client";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+import useSWR, { mutate } from "swr";
+import Swal from "sweetalert2";
 
-import Input from '@/components/forms/Input';
-import { ArrowBackArtikelButton, KirimArtikelButton } from '@/components/ui/Button';
-import NavbarDokter from '@/components/ui/NavbarDokter';
-import InputFile from '@/components/forms/input-file';
-import Link from 'next/link';
+import { KirimArtikelButton } from "@/components/ui/Button";
+import InputFile from "@/components/forms/input-file";
+import Link from "next/link";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import { ArrowBackArtikelButton } from "@/components/ui/Button";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function page() {
-   const [artikel, setArtikel] = useState('');
-   const [category, setCategory] = useState('');
+   const [artikel, setArtikel] = useState("");
+   const [category, setCategory] = useState("");
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -27,26 +26,26 @@ export default function page() {
       };
 
       try {
-         const response = await fetch('https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article', {
-            method: 'POST',
+         const response = await fetch("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article", {
+            method: "POST",
             headers: {
-               'Content-Type': 'application/json',
+               "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
          });
          if (!response.ok) {
-            throw new Error('Error adding article');
+            throw new Error("Error adding article");
          }
          const responseData = await response.json();
          console.log(responseData);
-         mutate('https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article');
+         mutate("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article");
 
          // Tampilkan SweetAlert
          Swal.fire({
-            title: 'Berhasil',
-            text: 'Yeyy Artikel Berhasil Ditambahkan',
-            icon: 'success',
-            confirmButtonText: 'OK',
+            title: "Berhasil",
+            text: "Yeyy Artikel Berhasil Ditambahkan",
+            icon: "success",
+            confirmButtonText: "OK",
          });
       } catch (error) {
          console.error(error);
@@ -63,7 +62,7 @@ export default function page() {
             <div className="mx-24" style={{ paddingTop: 17 }}>
                <span className="text-sm">Judul Artikel</span>
                <br />
-               <span className="" style={{ fontSize: 12, color: '#979797' }}>
+               <span className="" style={{ fontSize: 12, color: "#979797" }}>
                   Maksimal 250 Karakter
                </span>
                <div className="" style={{ width: 914 }}>
@@ -72,7 +71,7 @@ export default function page() {
                <div className="" style={{ paddingTop: 31 }}>
                   <span className="text-sm">Detail Artikel</span>
                   <br />
-                  <span className="" style={{ fontSize: 12, color: '#979797' }}>
+                  <span className="" style={{ fontSize: 12, color: "#979797" }}>
                      Minimal 250 Karakter
                   </span>
                </div>
@@ -80,7 +79,7 @@ export default function page() {
                <div className="" style={{ paddingTop: 36 }}>
                   <span className="text-sm">Tambahkan Gambar</span>
                   <br />
-                  <span className="" style={{ fontSize: 12, color: '#979797' }}>
+                  <span className="" style={{ fontSize: 12, color: "#979797" }}>
                      Format gambar .Jpg .png Max. 3MB
                   </span>
                   <InputFile />
@@ -94,40 +93,19 @@ export default function page() {
                      </label>
                   </div>
                   <div className="flex items-center mb-4">
-                     <input
-                        id=""
-                        type="radio"
-                        value="Gangguan Kepribadian"
-                        name="kategori"
-                        className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500"
-                        onChange={(e) => setCategory(e.target.value)}
-                     />
+                     <input id="" type="radio" value="Gangguan Kepribadian" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
                      <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
                         Gangguan Kepribadian
                      </label>
                   </div>
                   <div className="flex items-center mb-4">
-                     <input
-                        id=""
-                        type="radio"
-                        value="Gangguan Tidur"
-                        name="kategori"
-                        className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500"
-                        onChange={(e) => setCategory(e.target.value)}
-                     />
+                     <input id="" type="radio" value="Gangguan Tidur" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
                      <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
                         Gangguan Tidur
                      </label>
                   </div>
                   <div className="flex items-center mb-4">
-                     <input
-                        id=""
-                        type="radio"
-                        value="Kesehatan Mental"
-                        name="kategori"
-                        className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500"
-                        onChange={(e) => setCategory(e.target.value)}
-                     />
+                     <input id="" type="radio" value="Kesehatan Mental" name="kategori" className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500" onChange={(e) => setCategory(e.target.value)} />
                      <label htmlFor="" className="text-inter ml-3 text-sm font-semibold text-neutral-900 ">
                         Kesehatan Mental
                      </label>

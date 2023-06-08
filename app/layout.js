@@ -11,8 +11,8 @@ export default function RootLayout({ children }) {
    // const [dataJotai2] = useAtom(dataJotai);
 
    return (
-         <html lang="en">
-            <body>{children}</body>
-         </html>
+      <html lang="en">
+         <body>{children}</body>
+      </html>
    );
 }
