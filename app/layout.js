@@ -1,8 +1,5 @@
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
-import { Provider, useAtom } from "jotai";
-import { dataJotai } from "@/store/store";
-import { useHydrateAtoms } from "jotai/utils";
 
 export const metadata = {
    title: "Prevent",
@@ -14,8 +11,8 @@ export default function RootLayout({ children }) {
    // const [dataJotai2] = useAtom(dataJotai);
 
    return (
-         <html lang="en">
-            <body>{children}</body>
-         </html>
+      <html lang="en">
+         <body>{children}</body>
+      </html>
    );
 }
