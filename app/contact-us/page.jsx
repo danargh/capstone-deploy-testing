@@ -18,7 +18,7 @@ export default function ContactUs() {
                   <h1 className="font-[700] text-[56px] leading-[82px]">Hubungi Kami</h1>
                   <p>Dapatkan jawaban dari setiap pertanyaanmu terkait aplikasi Prevent</p>
                </div>
-               <Image src="/assets/images/contact-us.png" alt="Contact US" width={637} height={485} />
+               <Image priority src="/assets/images/contact-us.png" className="w-full h-auto" alt="Contact US" width={637} height={485} />
             </header>
             <div className="mt-[70px]">
                <div className="text-center">

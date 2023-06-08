@@ -60,20 +60,20 @@ export default function DetailArticle({ params }) {
                   </p>
                </div>
             </header>
-            <Image alt="images" className="w-full mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
+            <Image priority alt="images" className="w-full mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
             <main className="max-w-[1220px] mx-auto">
                <div className="flex gap-[42px] justify-center my-[32px]">
                   <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image alt="images" src="/assets/icons/facebook-icon.svg" width={30} height={30} />
+                     <Image priority alt="images" src="/assets/icons/facebook-icon.svg" width={30} height={30} />
                   </a>
                   <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image alt="images" src="/assets/icons/google-icon.svg" width={30} height={30} />
+                     <Image priority alt="images" src="/assets/icons/google-icon.svg" width={30} height={30} />
                   </a>
                   <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image alt="images" src="/assets/icons/twitter-icon.svg" width={30} height={30} />
+                     <Image priority alt="images" src="/assets/icons/twitter-icon.svg" width={30} height={30} />
                   </a>
                   <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image alt="images" src="/assets/icons/google-plus-icon.svg" width={30} height={30} />
+                     <Image priority alt="images" src="/assets/icons/google-plus-icon.svg" width={30} height={30} />
                   </a>
                </div>
                <p className="font-inter font-[400] text-[22px] leading-9 text-justify">
@@ -109,7 +109,7 @@ export default function DetailArticle({ params }) {
                </div>
                {comment.map((item, index) => (
                   <div key={index} className="flex gap-3 items-start my-[50px]">
-                     <Image alt="images" src="/assets/icons/profile2-icon.svg" width={40} height={40} />
+                     <Image priority alt="images" src="/assets/icons/profile2-icon.svg" width={40} height={40} />
                      <div>
                         <h4 className="font-poppins font-[500] text-[24px] leading-8 text-[#00000096]">{`${item.firstName} ${item.lastName}`}</h4>
                         <p>{item.commentValue}</p>
@@ -122,7 +122,7 @@ export default function DetailArticle({ params }) {
                         ref={commentTextRef}
                         id="message"
                         rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Comment"
                         required
                      ></textarea>
