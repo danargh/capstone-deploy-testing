@@ -7,4 +7,5 @@ export const dataJotai = atom({
          nama: "Dr. Fauzan Hakim, M.Psi,Psi",
       },
    ],
+   resepObat: [],
 });
