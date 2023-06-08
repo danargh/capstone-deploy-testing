@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
 import { Provider, useAtom } from "jotai";
@@ -16,10 +14,8 @@ export default function RootLayout({ children }) {
    // const [dataJotai2] = useAtom(dataJotai);
 
    return (
-      <Provider initialValues={dataJotai}>
          <html lang="en">
             <body>{children}</body>
          </html>
-      </Provider>
    );
 }
