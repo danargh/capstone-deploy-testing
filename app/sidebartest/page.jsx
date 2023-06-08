@@ -1,4 +1,4 @@
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from "@/components/ui/SidebarDokter";
 import React from "react";
 import SidebarControl from "./sidebar-control";
 

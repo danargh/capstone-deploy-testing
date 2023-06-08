@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 
 import { useState } from "react";
 import Image from "next/image";
@@ -76,6 +77,7 @@ const Navbar = () => {
             </nav>
         </>
     );
+
 };
 
 export default Navbar;

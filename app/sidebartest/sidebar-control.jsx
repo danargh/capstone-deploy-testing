@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from "@/components/ui/SidebarDokter";
 
 //Use this as reference when integrating the button to Navbar
 export default function SidebarControl() {

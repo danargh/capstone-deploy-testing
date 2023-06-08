@@ -1,9 +1,9 @@
-const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M22 4.88889C19.7529 4.88889 17.5279 5.33148 15.4519 6.19139C13.3758 7.05131 11.4895 8.3117 9.90062 9.90062C8.3117 11.4895 7.05131 13.3758 6.19139 15.4519C5.33148 17.5279 4.88889 19.7529 4.88889 22C4.88889 24.2471 5.33148 26.4721 6.19139 28.5481C7.05131 30.6242 8.3117 32.5105 9.90062 34.0994C11.4895 35.6883 13.3758 36.9487 15.4519 37.8086C17.5279 38.6685 19.7529 39.1111 22 39.1111C26.5381 39.1111 30.8904 37.3083 34.0994 34.0994C37.3083 30.8904 39.1111 26.5381 39.1111 22C39.1111 17.4619 37.3083 13.1096 34.0994 9.90062C30.8904 6.69166 26.5381 4.88889 22 4.88889ZM0 22C0 16.1652 2.31785 10.5695 6.44365 6.44365C10.5695 2.31785 16.1652 0 22 0C27.8348 0 33.4305 2.31785 37.5563 6.44365C41.6821 10.5695 44 16.1652 44 22C44 27.8348 41.6821 33.4305 37.5563 37.5563C33.4305 41.6821 27.8348 44 22 44C16.1652 44 10.5695 41.6821 6.44365 37.5563C2.31785 33.4305 0 27.8348 0 22ZM34.2222 22.1687C34.2222 22.817 33.9647 23.4387 33.5063 23.8972C33.0478 24.3556 32.4261 24.6131 31.7778 24.6131H24.6131V31.7778C24.6131 32.4261 24.3556 33.0478 23.8972 33.5063C23.4387 33.9647 22.817 34.2222 22.1687 34.2222C21.5204 34.2222 20.8986 33.9647 20.4402 33.5063C19.9818 33.0478 19.7242 32.4261 19.7242 31.7778V24.6131H12.2222C11.5739 24.6131 10.9522 24.3556 10.4937 23.8972C10.0353 23.4387 9.77778 22.817 9.77778 22.1687C9.77778 21.5204 10.0353 20.8986 10.4937 20.4402C10.9522 19.9818 11.5739 19.7242 12.2222 19.7242H19.7242V12.2222C19.7242 11.5739 19.9818 10.9522 20.4402 10.4937C20.8986 10.0353 21.5204 9.77778 22.1687 9.77778C22.817 9.77778 23.4387 10.0353 23.8972 10.4937C24.3556 10.9522 24.6131 11.5739 24.6131 12.2222V19.7242H31.7778C32.4261 19.7242 33.0478 19.9818 33.5063 20.4402C33.9647 20.8986 34.2222 21.5204 34.2222 22.1687Z"
             fill={fill}
          />
@@ -11,25 +11,25 @@ const AddIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const BankIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BankIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 72" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             d="M5.5 31.6801H10.5V48.9601H7.5C6.70435 48.9601 5.94129 49.4152 5.37868 50.2254C4.81607 51.0355 4.5 52.1343 4.5 53.2801C4.5 54.4258 4.81607 55.5246 5.37868 56.3347C5.94129 57.1449 6.70435 57.6 7.5 57.6H55.5C56.2957 57.6 57.0587 57.1449 57.6213 56.3347C58.1839 55.5246 58.5 54.4258 58.5 53.2801C58.5 52.1343 58.1839 51.0355 57.6213 50.2254C57.0587 49.4152 56.2957 48.9601 55.5 48.9601H52.5V31.6801H57.5C58.1532 31.6802 58.7886 31.3733 59.3097 30.8059C59.8307 30.2386 60.2089 29.4419 60.3868 28.5368C60.5647 27.6317 60.5327 26.6678 60.2954 25.7913C60.0582 24.9149 59.6288 24.1739 59.0725 23.6809L33.0725 0.641019C32.5996 0.221908 32.0553 0 31.5 0C30.9447 0 30.4004 0.221908 29.9275 0.641019L3.9275 23.6809C3.37117 24.1739 2.94178 24.9149 2.70456 25.7913C2.46734 26.6678 2.43526 27.6317 2.61318 28.5368C2.7911 29.4419 3.16931 30.2386 3.69034 30.8059C4.21138 31.3733 4.84678 31.6802 5.5 31.6801ZM16.5 31.6801H22.5V48.9601H16.5V31.6801ZM34.5 31.6801V48.9601H28.5V31.6801H34.5ZM46.5 48.9601H40.5V31.6801H46.5V48.9601ZM31.5 9.39259L46.9 23.0401H16.1L31.5 9.39259ZM62.5 67.68C62.5 68.8257 62.1839 69.9246 61.6213 70.7347C61.0587 71.5449 60.2957 72 59.5 72H3.5C2.70435 72 1.94129 71.5449 1.37868 70.7347C0.81607 69.9246 0.5 68.8257 0.5 67.68C0.5 66.5343 0.81607 65.4355 1.37868 64.6253C1.94129 63.8152 2.70435 63.36 3.5 63.36H59.5C60.2957 63.36 61.0587 63.8152 61.6213 64.6253C62.1839 65.4355 62.5 66.5343 62.5 67.68Z"
             fill={fill}
-            fill-opacity="0.72"
+            fillOpacity="0.72"
          />
       </svg>
    );
 };
-const ArrowBackIconTableArtikel = ({ width = "40", height = "40", fill = "white" }) => {
+const ArrowBackIconTableArtikel = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M13.4166 0.250001L16.3333 3.34167L6.74992 13.5L16.3333 23.6583L13.4166 26.75L0.916585 13.5L13.4166 0.250001Z" fill="#577536" />
       </svg>
    );
 };
-const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
+const EditArtikelIcon = ({ width = '40', height = '40', fill = 'white' }) => {
    return (
       <svg width="22.5" height="22.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -40,7 +40,7 @@ const EditArtikelIcon = ({ width = "40", height = "40", fill = "white" }) => {
    );
 };
 
-const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const NotificationIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -50,7 +50,7 @@ const NotificationIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -60,7 +60,7 @@ const CartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClarityDashboardIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -70,19 +70,19 @@ const ClarityDashboardIcon = ({ width = "32", height = "32", fill = "white" }) =
       </svg>
    );
 };
-const ClockIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ClockIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M20 36C28.8366 36 36 28.8366 36 20C36 11.1634 28.8366 4 20 4C11.1634 4 4 11.1634 4 20C4 28.8366 11.1634 36 20 36ZM21 12C21 11.4477 20.5523 11 20 11C19.4477 11 19 11.4477 19 12V20C19 20.2652 19.1054 20.5196 19.2929 20.7071L24.9497 26.364C25.3403 26.7545 25.9734 26.7545 26.364 26.364C26.7545 25.9734 26.7545 25.3403 26.364 24.9497L21 19.5858V12Z"
             fill={fill}
          />
       </svg>
    );
 };
-const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -92,7 +92,7 @@ const ArrowBackIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CommentIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -102,7 +102,7 @@ const CommentIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const BreadCrumbIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1" y="1" width="24" height="2" rx="1" fill={fill} />
@@ -114,7 +114,7 @@ const BreadCrumbIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const LikePostIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" id="like" width={width} height={height} x="0" y="0" version="1.1" viewBox="0 0 29 29">
          <path
@@ -124,7 +124,7 @@ const LikePostIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PostOptionIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 10 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <ellipse cx="5" cy="4.96179" rx="5" ry="4.40613" fill={fill} />
@@ -133,14 +133,19 @@ const PostOptionIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const UserIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const UserIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="none" id="user">
-         <path fill={fill} fill-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z" clip-rule="evenodd"></path>
+         <path
+            fill={fill}
+            fillRule="evenodd"
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm3-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 7a7.489 7.489 0 0 1 6-3 7.489 7.489 0 0 1 6 3 7.489 7.489 0 0 1-6 3 7.489 7.489 0 0 1-6-3Z"
+            clipRule="evenodd"
+         ></path>
       </svg>
    );
 };
-const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcRegisterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -156,7 +161,7 @@ const CcRegisterIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcShareIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -166,14 +171,17 @@ const CcShareIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const CcSortDownIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcSortDownIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} id="arrow">
-         <path fill={fill} d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"></path>
+         <path
+            fill={fill}
+            d="M16.682 19.674c.01-.012.014-.028.024-.04l6.982-7.714c.39-.434.39-1.138 0-1.572-.004-.004-.008-.006-.012-.008a.936.936 0 0 0-.712-.34H8.998a.948.948 0 0 0-.722.352l-.004-.004a1.202 1.202 0 0 0 0 1.572l6.998 7.754a.928.928 0 0 0 1.412 0z"
+         ></path>
       </svg>
    );
 };
-const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcStandardPopupIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
          <rect x="1.5" y="1" width="24" height="8" rx="3" fill={fill} />
@@ -183,7 +191,7 @@ const CcStandardPopupIcon = ({ width = "32", height = "32", fill = "white" }) =>
       </svg>
    );
 };
-const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CcViewDayIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 37 31" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -193,7 +201,7 @@ const CcViewDayIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PenIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -203,7 +211,7 @@ const PenIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ExitIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -214,7 +222,7 @@ const ExitIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FilterIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g mask="url(#mask0_228_2025)">
@@ -226,25 +234,25 @@ const FilterIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ProfileIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ProfileIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M26.6666 15C26.6666 16.7682 25.9642 18.4638 24.714 19.7141C23.4637 20.9643 21.768 21.6667 19.9999 21.6667C18.2318 21.6667 16.5361 20.9643 15.2859 19.7141C14.0356 18.4638 13.3333 16.7682 13.3333 15C13.3333 13.2319 14.0356 11.5362 15.2859 10.286C16.5361 9.03575 18.2318 8.33337 19.9999 8.33337C21.768 8.33337 23.4637 9.03575 24.714 10.286C25.9642 11.5362 26.6666 13.2319 26.6666 15ZM23.3333 15C23.3333 15.8841 22.9821 16.7319 22.3569 17.3571C21.7318 17.9822 20.884 18.3334 19.9999 18.3334C19.1159 18.3334 18.268 17.9822 17.6429 17.3571C17.0178 16.7319 16.6666 15.8841 16.6666 15C16.6666 14.116 17.0178 13.2681 17.6429 12.643C18.268 12.0179 19.1159 11.6667 19.9999 11.6667C20.884 11.6667 21.7318 12.0179 22.3569 12.643C22.9821 13.2681 23.3333 14.116 23.3333 15Z"
             fill="black"
          />
          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M20 1.66669C9.87496 1.66669 1.66663 9.87502 1.66663 20C1.66663 30.125 9.87496 38.3334 20 38.3334C30.125 38.3334 38.3333 30.125 38.3333 20C38.3333 9.87502 30.125 1.66669 20 1.66669ZM4.99996 20C4.99996 23.4834 6.18829 26.69 8.17996 29.2367C9.57868 27.3999 11.3831 25.9113 13.4523 24.8872C15.5216 23.8631 17.7995 23.3314 20.1083 23.3334C22.3872 23.3312 24.6365 23.8492 26.6848 24.848C28.7332 25.8468 30.5266 27.2999 31.9283 29.0967C33.3724 27.2027 34.3447 24.992 34.7648 22.6477C35.1849 20.3033 35.0407 17.8926 34.3441 15.615C33.6476 13.3374 32.4187 11.2584 30.7591 9.55008C29.0995 7.84173 27.057 6.55312 24.8006 5.79087C22.5441 5.02862 20.1386 4.81464 17.7831 5.16664C15.4275 5.51864 13.1896 6.42651 11.2546 7.81511C9.31954 9.20371 7.74298 11.0331 6.65534 13.152C5.5677 15.2709 5.00026 17.6183 4.99996 20ZM20 35C16.5565 35.0052 13.2171 33.8206 10.5466 31.6467C11.6215 30.1079 13.0522 28.8516 14.7169 27.9845C16.3817 27.1174 18.2313 26.6654 20.1083 26.6667C21.9619 26.6652 23.7891 27.106 25.4382 27.9524C27.0872 28.7988 28.5106 30.0265 29.59 31.5334C26.8988 33.7779 23.5043 35.0049 20 35Z"
             fill="black"
          />
       </svg>
    );
 };
-const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AccessTimeIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -254,7 +262,7 @@ const AccessTimeIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DownloadIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -264,7 +272,7 @@ const DownloadIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MailIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -274,7 +282,7 @@ const MailIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const FingerIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -284,7 +292,7 @@ const FingerIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const KomisiIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 168 134" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -294,14 +302,14 @@ const KomisiIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const ArrowBackIcon2 = ({ width = "32", height = "32", fill = "white" }) => {
+const ArrowBackIcon2 = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 62 64" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path fill={fill} d="M36.167 16L20.667 32L36.167 48" strokeWidth={3} stroke="black" strokeLinecap="round" />
       </svg>
    );
 };
-const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const DollarIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -311,7 +319,7 @@ const DollarIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const MoneyIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 63 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -321,7 +329,7 @@ const MoneyIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PersonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -331,7 +339,7 @@ const PersonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SearchIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -341,23 +349,38 @@ const SearchIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const SendChatIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const SendChatIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path fill={fill} fill-rule="evenodd" clip-rule="evenodd" d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+         <path
+            fill={fill}
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M35.6034 20.068C36.4535 20.3986 36.4535 21.6014 35.6034 21.932L11 31.5L15.1967 21.0001L11 10.5L35.6034 20.068Z"
+            stroke="black"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
          <rect x="2" y="2" width="39" height="39" rx="19.5" stroke="black" strokeWidth="4" />
       </svg>
    );
 };
-const CopyrightIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const CopyrightIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M3.33337 20C3.33337 10.795 10.795 3.33331 20 3.33331C29.205 3.33331 36.6667 10.795 36.6667 20C36.6667 29.205 29.205 36.6666 20 36.6666C10.795 36.6666 3.33337 29.205 3.33337 20Z" stroke="black" strokeWidth="1.5" />
-         <path fill={fill} d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
+         <path
+            fill={fill}
+            d="M23.3334 26.1116C22.4261 26.4799 21.4559 26.6684 20.4767 26.6666C16.5317 26.6666 13.3334 23.6833 13.3334 20C13.3334 16.3166 16.5317 13.3333 20.4767 13.3333C21.4934 13.3333 22.4584 13.5316 23.3334 13.8883"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+         />
       </svg>
    );
 };
-const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ChartIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M1.78577 48.2143H48.2143H1.78577ZM16.0715 48.2143V1.78571H1.78577V48.2143M30.3572 48.2143V23.2143H16.0715V48.2143M44.6429 48.2143V12.5H30.3572V48.2143" fill="white" />
@@ -365,7 +388,7 @@ const ChartIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const TrashIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -375,18 +398,18 @@ const TrashIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const VirtualWalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const VirtualWalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 71 51" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             d="M70.5 6.75001V44.25C70.5 45.9688 69.814 47.4406 68.442 48.6656C67.07 49.8906 65.4227 50.5021 63.5 50.5H7.50001C5.57501 50.5 3.92651 49.8875 2.55451 48.6625C1.18251 47.4375 0.497673 45.9667 0.500006 44.25V6.75001C0.500006 5.03126 1.18601 3.55938 2.55801 2.33438C3.93001 1.10938 5.57734 0.497922 7.50001 0.500005H63.5C65.425 0.500005 67.0735 1.1125 68.4455 2.3375C69.8175 3.5625 70.5023 5.03334 70.5 6.75001ZM7.50001 13H63.5V6.75001H7.50001V13ZM7.50001 25.5V44.25H63.5V25.5H7.50001Z"
             fill={fill}
-            fill-opacity="0.72"
+            fillOpacity="0.72"
          />
       </svg>
    );
 };
-const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const AddArtikelIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -397,7 +420,7 @@ const AddArtikelIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const WalletIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -408,7 +431,7 @@ const WalletIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const ErrorIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -419,7 +442,7 @@ const ErrorIcon = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
+const PlayButtonIcon = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
          <circle cx="50" cy="50" r="50" fill="black" />
@@ -427,7 +450,7 @@ const PlayButtonIcon = ({ width = "32", height = "32", fill = "white" }) => {
       </svg>
    );
 };
-const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
+const QuestionHelp = ({ width = '32', height = '32', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -438,7 +461,7 @@ const QuestionHelp = ({ width = "32", height = "32", fill = "white" }) => {
    );
 };
 
-const Salinan = ({ width = "30", height = "34", fill = "black" }) => {
+const Salinan = ({ width = '30', height = '34', fill = 'black' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -449,7 +472,7 @@ const Salinan = ({ width = "30", height = "34", fill = "black" }) => {
    );
 };
 
-const SidebarDashboardIcon = ({ width = "50", height = "50", fill = "white" }) => {
+const SidebarDashboardIcon = ({ width = '50', height = '50', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g clipPath="url(#clip0_2154_5470)">
@@ -471,7 +494,7 @@ const SidebarDashboardIcon = ({ width = "50", height = "50", fill = "white" }) =
    );
 };
 
-const SidebarArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
+const SidebarArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -482,7 +505,7 @@ const SidebarArticleIcon = ({ width = "38", height = "42", fill = "white" }) => 
    );
 };
 
-const SidebarDarkArticleIcon = ({ width = "38", height = "42", fill = "white" }) => {
+const SidebarDarkArticleIcon = ({ width = '38', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -493,7 +516,7 @@ const SidebarDarkArticleIcon = ({ width = "38", height = "42", fill = "white" })
    );
 };
 
-const SidebarMessageIcon = ({ width = "42", height = "38", fill = "white" }) => {
+const SidebarMessageIcon = ({ width = '42', height = '38', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -507,7 +530,7 @@ const SidebarMessageIcon = ({ width = "42", height = "38", fill = "white" }) => 
    );
 };
 
-const SidebarDarkMessageIcon = ({ width = "48", height = "40", fill = "white" }) => {
+const SidebarDarkMessageIcon = ({ width = '48', height = '40', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -518,7 +541,7 @@ const SidebarDarkMessageIcon = ({ width = "48", height = "40", fill = "white" })
    );
 };
 
-const SidebarNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
+const SidebarNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -529,7 +552,7 @@ const SidebarNotificationIcon = ({ width = "42", height = "46", fill = "white" }
    );
 };
 
-const SidebarDarkNotificationIcon = ({ width = "42", height = "46", fill = "white" }) => {
+const SidebarDarkNotificationIcon = ({ width = '42', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -540,7 +563,7 @@ const SidebarDarkNotificationIcon = ({ width = "42", height = "46", fill = "whit
    );
 };
 
-const SidebarDollarIcon = ({ width = "22", height = "38", fill = "white" }) => {
+const SidebarDollarIcon = ({ width = '22', height = '38', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -551,7 +574,7 @@ const SidebarDollarIcon = ({ width = "22", height = "38", fill = "white" }) => {
    );
 };
 
-const SidebarDarkDollarIcon = ({ width = "46", height = "46", fill = "white" }) => {
+const SidebarDarkDollarIcon = ({ width = '46', height = '46', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -562,7 +585,7 @@ const SidebarDarkDollarIcon = ({ width = "46", height = "46", fill = "white" }) 
    );
 };
 
-const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
+const SidebarProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -570,7 +593,7 @@ const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => 
             stroke={fill}
             strokeWidth="3"
          />
-         <mask id="path-2-inside-1_2154_10709" fill={"white"}>
+         <mask id="path-2-inside-1_2154_10709" fill={'white'}>
             <path d="M23.6043 14.7497C23.6043 16.1872 22.4377 17.3538 21.0002 17.3538V20.4788C22.5196 20.4788 23.9769 19.8752 25.0513 18.8008C26.1257 17.7264 26.7293 16.2691 26.7293 14.7497H23.6043ZM21.0002 17.3538C19.5627 17.3538 18.396 16.1872 18.396 14.7497H15.271C15.271 16.2691 15.8746 17.7264 16.949 18.8008C18.0235 19.8752 19.4807 20.4788 21.0002 20.4788V17.3538ZM18.396 14.7497C18.396 13.3122 19.5627 12.1455 21.0002 12.1455V9.02051C19.4807 9.02051 18.0235 9.62411 16.949 10.6985C15.8746 11.773 15.271 13.2302 15.271 14.7497H18.396ZM21.0002 12.1455C22.4377 12.1455 23.6043 13.3122 23.6043 14.7497H26.7293C26.7293 13.2302 26.1257 11.773 25.0513 10.6985C23.9769 9.62411 22.5196 9.02051 21.0002 9.02051V12.1455ZM6.76266 33.1997L5.26475 32.7538L5.021 33.5705L5.57725 34.2163L6.76266 33.1997ZM35.2377 33.1997L36.4252 34.2184L36.9793 33.5726L36.7356 32.7538L35.2377 33.1997ZM14.7502 28.8122H27.2502V25.6872H14.7502V28.8122ZM14.7502 25.6872C12.6191 25.6873 10.545 26.375 8.83606 27.6482C7.12713 28.9213 5.87464 30.7119 5.26475 32.7538L8.26058 33.6455C8.67836 32.2489 9.53544 31.0243 10.7045 30.1536C11.8737 29.2829 13.2924 28.8124 14.7502 28.8122V25.6872ZM21.0002 38.1872C18.5198 38.19 16.0683 37.6547 13.8149 36.6181C11.5615 35.5815 9.55988 34.0683 7.94808 32.183L5.57725 34.2163C7.48237 36.4434 9.84775 38.2329 12.5103 39.4576C15.1729 40.6822 18.0694 41.315 21.0002 41.3122V38.1872ZM27.2502 28.8122C30.3127 28.8122 32.9064 30.8497 33.7397 33.6455L36.7356 32.7538C36.1257 30.7119 34.8732 28.9213 33.1643 27.6482C31.4553 26.375 29.3812 25.6873 27.2502 25.6872V28.8122ZM34.0522 32.183C32.4404 34.0683 30.4388 35.5815 28.1854 36.6181C25.932 37.6547 23.4805 38.19 21.0002 38.1872V41.3122C23.9309 41.315 26.8274 40.6822 29.49 39.4576C32.1526 38.2329 34.52 36.4455 36.4252 34.2184L34.0522 32.183Z" />
          </mask>
          <path
@@ -586,7 +609,7 @@ const SidebarProfileIcon = ({ width = "42", height = "42", fill = "white" }) => 
    );
 };
 
-const SidebarDarkProfileIcon = ({ width = "42", height = "42", fill = "white" }) => {
+const SidebarDarkProfileIcon = ({ width = '42', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -599,7 +622,7 @@ const SidebarDarkProfileIcon = ({ width = "42", height = "42", fill = "white" })
    );
 };
 
-const SidebarLogOutIcon = ({ width = "34", height = "42", fill = "white" }) => {
+const SidebarLogOutIcon = ({ width = '34', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -613,7 +636,7 @@ const SidebarLogOutIcon = ({ width = "34", height = "42", fill = "white" }) => {
    );
 };
 
-const SidebarDarkLogOutIcon = ({ width = "40", height = "42", fill = "white" }) => {
+const SidebarDarkLogOutIcon = ({ width = '40', height = '42', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -626,7 +649,7 @@ const SidebarDarkLogOutIcon = ({ width = "40", height = "42", fill = "white" }) 
    );
 };
 
-const SidebarDarkCartIcon = ({ width = "50", height = "50", fill = "white" }) => {
+const SidebarDarkCartIcon = ({ width = '50', height = '50', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -637,77 +660,77 @@ const SidebarDarkCartIcon = ({ width = "50", height = "50", fill = "white" }) =>
    );
 };
 
-const AddObatIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AddObatIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
       <svg width={width} height={height} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M9.0001 0.600006C9.66284 0.600006 10.2001 1.13726 10.2001 1.80001V7.80001H16.2001C16.8628 7.80001 17.4001 8.33726 17.4001 9.00001C17.4001 9.66275 16.8628 10.2 16.2001 10.2H10.2001V16.2C10.2001 16.8627 9.66284 17.4 9.0001 17.4C8.33736 17.4 7.8001 16.8627 7.8001 16.2V10.2H1.8001C1.13736 10.2 0.600098 9.66275 0.600098 9C0.600098 8.33726 1.13736 7.8 1.8001 7.8L7.8001 7.80001V1.80001C7.8001 1.13726 8.33736 0.600006 9.0001 0.600006Z"
             fill={fill}
          />
       </svg>
    );
 };
-const AdminUserIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminUserIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
       <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             d="M80.5053 153.281H80.5002C64.004 153.281 48.3088 149.567 34.0843 142.86C34.7781 130.329 39.7385 118.53 47.9848 109.759C56.7059 100.482 68.39 95.3375 80.5002 95.3375C92.6104 95.3375 104.294 100.482 113.016 109.759C121.262 118.53 126.222 130.328 126.916 142.859C112.272 149.756 96.4725 153.305 80.5053 153.281ZM102 43.25C102 49.5753 99.6738 55.5918 95.6083 59.9875C91.5514 64.3741 86.1102 66.7812 80.5002 66.7812C74.8902 66.7812 69.449 64.3741 65.392 59.9875C61.3266 55.5918 59.0002 49.5753 59.0002 43.25C59.0002 36.9247 61.3266 30.9082 65.392 26.5125C69.449 22.1259 74.8902 19.7188 80.5002 19.7188C86.1102 19.7188 91.5514 22.1259 95.6083 26.5125C99.6738 30.9082 102 36.9247 102 43.25Z"
             stroke="#7CA153"
-            stroke-width="7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
          />
       </svg>
    );
 };
-const AdminDokterRegisterIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminDokterRegisterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
-      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="200" height="210" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M113.833 57.6667C113.833 77.5725 98.91 93.7083 80.5 93.7083C62.09 93.7083 47.1667 77.5725 47.1667 57.6667C47.1667 37.7609 62.09 21.625 80.5 21.625C98.91 21.625 113.833 37.7609 113.833 57.6667ZM107.167 57.6667C107.167 65.3137 104.357 72.6476 99.3562 78.0549C94.3552 83.4622 87.5724 86.5 80.5 86.5C73.4276 86.5 66.6448 83.4622 61.6438 78.0549C56.6428 72.6476 53.8333 65.3137 53.8333 57.6667C53.8333 50.0196 56.6428 42.6857 61.6438 37.2784C66.6448 31.8711 73.4276 28.8333 80.5 28.8333C87.5724 28.8333 94.3552 31.8711 99.3562 37.2784C104.357 42.6857 107.167 50.0196 107.167 57.6667ZM60.2133 103.998L60.25 104.078L60.5 104.607H99.6633C100.427 103.043 102.157 100.549 103.833 100.964C107.6 101.89 111.393 103.18 115.037 104.77L115.147 104.712L115.183 104.791L115.21 104.845C128.927 110.871 140.5 121.086 140.5 131.804V151.375H20.5V131.804C20.5 118.199 39.1533 105.397 57.1667 100.964C58.6367 100.603 59.51 102.477 60.2133 103.998ZM109.513 110.226C108.083 109.685 106.637 109.196 105.177 108.759L103.69 111.816H56.4767L55.0967 108.979L53.8967 109.368C53.8733 109.606 53.8533 109.873 53.8433 110.176C53.8 111.419 53.8867 112.893 54.0767 114.393C54.2717 115.956 54.5838 117.5 55.01 119.01C57.3516 119.31 59.5198 120.495 61.1317 122.355C62.7437 124.216 63.6957 126.633 63.8196 129.179C63.9436 131.725 63.2315 134.236 61.8091 136.269C60.3867 138.303 58.3455 139.727 56.046 140.292C53.7465 140.856 51.3366 140.523 49.2419 139.352C47.1473 138.182 45.5025 136.248 44.5982 133.894C43.6938 131.539 43.5881 128.915 44.2996 126.484C45.0111 124.054 46.4941 121.973 48.4867 120.61L48.46 120.509C48.0158 118.824 47.685 117.106 47.47 115.369C47.3286 114.26 47.2352 113.144 47.19 112.025C43.07 113.928 39.2267 116.227 36.0067 118.765C29.6 123.825 27.1667 128.553 27.1667 131.804V144.167H133.833V131.804C133.833 128.55 131.4 123.821 124.993 118.768C122.2 116.596 119.225 114.711 116.107 113.138C115.971 115.092 115.695 117.031 115.28 118.938H117.167C117.786 118.938 118.392 119.124 118.918 119.477C119.445 119.829 119.87 120.332 120.147 120.931L123.48 128.139C123.713 128.64 123.833 129.191 123.833 129.75V136.958C123.833 137.914 123.482 138.831 122.857 139.507C122.232 140.183 121.384 140.562 120.5 140.562H113.833V133.354H117.167V130.601L115.107 126.146H105.893L103.833 130.601V133.354H107.167V140.562H100.5C99.6159 140.562 98.7681 140.183 98.143 139.507C97.5179 138.831 97.1667 137.914 97.1667 136.958V129.75C97.1667 129.191 97.2867 128.64 97.52 128.139L100.853 120.931C101.13 120.332 101.555 119.829 102.082 119.477C102.608 119.124 103.214 118.938 103.833 118.938H108.373C108.413 118.793 108.457 118.649 108.497 118.491C108.81 117.334 109.09 115.896 109.28 114.396C109.467 112.911 109.553 111.459 109.513 110.226ZM57.1667 129.75C57.1667 131.819 55.6267 133.408 53.8333 133.408C52.04 133.408 50.5 131.822 50.5 129.75C50.5 127.681 52.04 126.092 53.8333 126.092C55.6267 126.092 57.1667 127.678 57.1667 129.75Z"
+            d="M141.667 70C141.667 94.1631 123.012 113.75 100 113.75C76.9875 113.75 58.3333 94.1631 58.3333 70C58.3333 45.8369 76.9875 26.25 100 26.25C123.012 26.25 141.667 45.8369 141.667 70ZM133.333 70C133.333 79.2826 129.821 88.185 123.57 94.7487C117.319 101.313 108.841 105 100 105C91.1594 105 82.681 101.313 76.4298 94.7487C70.1786 88.185 66.6667 79.2826 66.6667 70C66.6667 60.7174 70.1786 51.815 76.4298 45.2513C82.681 38.6875 91.1594 35 100 35C108.841 35 117.319 38.6875 123.57 45.2513C129.821 51.815 133.333 60.7174 133.333 70ZM74.6417 126.241L74.6875 126.337L75 126.98H123.954C124.908 125.081 127.071 122.054 129.167 122.557C133.875 123.681 138.617 125.247 143.171 127.177L143.308 127.107L143.354 127.203L143.387 127.269C160.533 134.584 175 146.982 175 159.994V183.75H25V159.994C25 143.478 48.3167 127.938 70.8333 122.557C72.6708 122.119 73.7625 124.394 74.6417 126.241ZM136.267 133.801C134.479 133.144 132.671 132.55 130.846 132.02L128.987 135.73H69.9708L68.2458 132.287L66.7458 132.759C66.7167 133.048 66.6917 133.372 66.6792 133.739C66.625 135.249 66.7333 137.038 66.9708 138.858C67.2146 140.756 67.6048 142.631 68.1375 144.463C71.0644 144.827 73.7747 146.265 75.7897 148.524C77.8046 150.782 78.9946 153.716 79.1495 156.806C79.3045 159.897 78.4143 162.946 76.6364 165.414C74.8584 167.882 72.3069 169.611 69.4325 170.296C66.5582 170.981 63.5458 170.577 60.9274 169.156C58.3091 167.735 56.2531 165.388 55.1227 162.53C53.9923 159.672 53.8601 156.486 54.7495 153.536C55.6389 150.585 57.4926 148.06 59.9833 146.405L59.95 146.283C59.3948 144.237 58.9812 142.152 58.7125 140.044C58.5357 138.697 58.4189 137.342 58.3625 135.984C53.2125 138.294 48.4083 141.085 44.3833 144.165C36.375 150.307 33.3333 156.048 33.3333 159.994V175H166.667V159.994C166.667 156.043 163.625 150.303 155.617 144.169C152.125 141.533 148.406 139.245 144.508 137.336C144.339 139.707 143.993 142.06 143.475 144.375H145.833C146.607 144.375 147.365 144.602 148.023 145.029C148.681 145.457 149.213 146.068 149.558 146.794L153.725 155.544C154.017 156.153 154.167 156.822 154.167 157.5V166.25C154.167 167.41 153.728 168.523 152.946 169.344C152.165 170.164 151.105 170.625 150 170.625H141.667V161.875H145.833V158.533L143.258 153.125H131.742L129.167 158.533V161.875H133.333V170.625H125C123.895 170.625 122.835 170.164 122.054 169.344C121.272 168.523 120.833 167.41 120.833 166.25V157.5C120.833 156.822 120.983 156.153 121.275 155.544L125.442 146.794C125.787 146.068 126.319 145.457 126.977 145.029C127.635 144.602 128.393 144.375 129.167 144.375H134.842C134.892 144.2 134.946 144.025 134.996 143.832C135.387 142.428 135.737 140.683 135.975 138.862C136.208 137.06 136.317 135.297 136.267 133.801ZM70.8333 157.5C70.8333 160.011 68.9083 161.941 66.6667 161.941C64.425 161.941 62.5 160.016 62.5 157.5C62.5 154.989 64.425 153.059 66.6667 153.059C68.9083 153.059 70.8333 154.984 70.8333 157.5Z"
             fill="#7CA153"
          />
       </svg>
    );
 };
-const AdminDokterIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminDokterIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
-      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="200" height="210" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M55.9969 33.613L56.1802 32.748C56.5302 31.1406 57.1035 28.7762 58.2869 26.4479C59.4935 24.0764 61.3635 21.6724 64.2969 20.0902C67.2202 18.5152 70.8835 17.9277 75.4135 18.5764C80.4135 19.2973 90.4569 21.0849 99.3302 25.965C108.254 30.8738 116.614 39.3184 116.614 53.3819C116.614 60.6479 114.014 68.4437 111.494 73.5256C110.284 75.9692 108.847 78.3047 107.407 79.5625C107.077 79.8509 106.607 80.2113 106.024 80.4636C104.423 86.1494 101.238 91.162 96.9034 94.8162C92.5686 98.4705 87.2957 100.588 81.8058 100.879C76.3158 101.17 70.8766 99.6206 66.2319 96.4425C61.5873 93.2644 57.9638 88.6127 55.8569 83.1235L55.7769 83.1379L54.5935 81.5845L54.5902 81.5773L54.5835 81.5701L54.5669 81.5448L54.5102 81.4727C54.2249 81.0889 53.9504 80.6958 53.6869 80.2942C52.9671 79.2148 52.2887 78.1037 51.6535 76.9639C50.0869 74.1599 48.1969 70.1665 46.9869 65.5063C45.7802 60.8461 45.2269 55.3822 46.4935 49.7453C47.7269 44.2597 50.6369 38.8607 55.9069 34.0383L55.9969 33.613ZM61.5969 79.1625C63.0426 83.6577 65.8187 87.5122 69.4954 90.1288C73.1721 92.7454 77.5442 93.9782 81.9345 93.6362C86.3247 93.2943 90.4882 91.3967 93.7801 88.2373C97.072 85.0779 99.3086 80.8331 100.144 76.1602L100.52 76.2972C100.507 76.0932 100.5 75.8889 100.5 75.6845C100.5 69.7196 99.7335 65.5567 99.0202 62.9617C98.8809 62.4566 98.7264 61.9566 98.5569 61.4624L98.4202 61.4696H98.2869C95.7943 61.5278 93.3025 61.3226 90.8469 60.8569C85.1235 59.8117 77.3735 57.2023 68.2469 51.1581C68.0469 51.6411 67.8469 52.1853 67.6469 52.7908C66.9935 54.7911 66.4569 57.1662 65.9935 59.6747C65.5835 61.8841 65.2469 64.1079 64.9269 66.1911L64.8035 67.0128C64.4602 69.2474 64.1169 71.4423 63.7169 73.0318C63.0169 75.7926 62.3035 77.7532 61.5969 79.1589V79.1625ZM56.9302 72.4479C55.4246 69.6536 54.2424 66.6698 53.4102 63.5636C52.4135 59.7216 52.0469 55.5624 52.9735 51.45C53.8735 47.4494 56.0502 43.2433 60.5269 39.2571C61.3335 38.6661 61.7002 37.8731 61.8002 37.6605V37.6569C61.9752 37.2672 62.1159 36.8605 62.2202 36.4423C62.3269 36.0314 62.4435 35.4692 62.5535 34.9646L62.6702 34.3987C62.9869 32.9462 63.3969 31.364 64.1302 29.9187C64.8435 28.5203 65.8202 27.3237 67.2735 26.5416C68.7335 25.7523 70.9935 25.2117 74.5335 25.7235C79.3769 26.4191 88.4869 28.0878 96.3069 32.3912C104.074 36.6621 109.947 43.128 109.947 53.3819C109.947 58.1033 108.48 63.4735 106.714 67.7084C106.38 64.9476 105.9 62.6914 105.407 60.9038C105.063 59.6261 104.634 58.377 104.124 57.1662C103.931 56.7175 103.72 56.2786 103.49 55.8507L103.434 55.7534L103.414 55.7174L103.404 55.6993L103.397 55.6885L102.164 53.6197L99.9569 54.0991L99.9102 54.1099L99.5869 54.1568C99.0908 54.2165 98.5925 54.2526 98.0935 54.2649C96.0383 54.3078 93.9842 54.134 91.9602 53.7459C86.5835 52.7656 78.6835 50.0949 69.0869 43.1857L66.7535 41.5025L64.8235 43.7011C63.2335 45.5104 62.1535 47.9792 61.3635 50.3832C60.5569 52.8521 59.9469 55.6092 59.4569 58.2547C59.0506 60.506 58.6817 62.765 58.3502 65.0305L58.2235 65.8379C57.8669 68.1842 57.5769 69.9754 57.2835 71.136C57.1741 71.5759 57.0563 72.0133 56.9302 72.4479Z"
+            d="M69.3708 40.8006L69.6 39.7506C70.0375 37.7993 70.7542 34.9293 72.2333 32.1031C73.7417 29.2243 76.0792 26.3062 79.7458 24.3856C83.4 22.4737 87.9792 21.7606 93.6417 22.5481C99.8917 23.4231 112.446 25.5931 123.538 31.5168C134.692 37.4756 145.142 47.7262 145.142 64.7974C145.142 73.6174 141.892 83.0806 138.742 89.2493C137.229 92.2156 135.433 95.0506 133.633 96.5774C133.221 96.9274 132.633 97.3649 131.904 97.6712C129.904 104.573 125.923 110.658 120.504 115.093C115.086 119.529 108.494 122.099 101.632 122.453C94.7695 122.806 87.9705 120.925 82.1647 117.068C76.3588 113.21 71.8295 107.563 69.1958 100.9L69.0958 100.917L67.6167 99.0318L67.6125 99.0231L67.6042 99.0143L67.5833 98.9837L67.5125 98.8962C67.1559 98.4302 66.8127 97.9531 66.4833 97.4656C65.5836 96.1553 64.7357 94.8066 63.9417 93.423C61.9833 90.0193 59.6208 85.1718 58.1083 79.5149C56.6 73.8581 55.9083 67.2256 57.4917 60.3831C59.0333 53.7243 62.6708 47.1706 69.2583 41.3168L69.3708 40.8006ZM76.3708 96.0918C78.1779 101.548 81.6482 106.227 86.244 109.403C90.8399 112.58 96.305 114.076 101.793 113.661C107.281 113.246 112.485 110.943 116.6 107.108C120.715 103.272 123.511 98.1197 124.554 92.4474L125.025 92.6137C125.008 92.3661 125 92.1181 125 91.8699C125 84.6293 124.042 79.5762 123.15 76.4262C122.976 75.813 122.783 75.2061 122.571 74.6062L122.4 74.6149H122.233C119.118 74.6856 116.003 74.4365 112.933 73.8712C105.779 72.6024 96.0917 69.4349 84.6833 62.0981C84.4333 62.6843 84.1833 63.3449 83.9333 64.0799C83.1167 66.5081 82.4458 69.3912 81.8667 72.4362C81.3542 75.118 80.9333 77.8174 80.5333 80.3462L80.3792 81.3437C79.95 84.0562 79.5208 86.7206 79.0208 88.6499C78.1458 92.0012 77.2542 94.3812 76.3708 96.0874V96.0918ZM70.5375 87.9412C68.6555 84.5493 67.1778 80.9273 66.1375 77.1568C64.8917 72.493 64.4333 67.4443 65.5917 62.4524C66.7167 57.5962 69.4375 52.4906 75.0333 47.6518C76.0417 46.9343 76.5 45.9718 76.625 45.7137V45.7093C76.8438 45.2363 77.0196 44.7426 77.15 44.2349C77.2833 43.7362 77.4292 43.0537 77.5667 42.4412L77.7125 41.7543C78.1083 39.9912 78.6208 38.0706 79.5375 36.3162C80.4292 34.6187 81.65 33.1662 83.4667 32.2168C85.2917 31.2587 88.1167 30.6024 92.5417 31.2237C98.5958 32.0681 109.983 34.0937 119.758 39.3174C129.467 44.5018 136.808 52.3506 136.808 64.7974C136.808 70.5287 134.975 77.0474 132.767 82.188C132.35 78.8368 131.75 76.0981 131.133 73.9281C130.703 72.3771 130.167 70.8609 129.529 69.3912C129.289 68.8465 129.024 68.3137 128.738 67.7943L128.667 67.6762L128.642 67.6324L128.629 67.6106L128.621 67.5974L127.079 65.0862L124.321 65.6681L124.263 65.6812L123.858 65.7381C123.238 65.8106 122.615 65.8544 121.992 65.8693C119.423 65.9214 116.855 65.7104 114.325 65.2393C107.604 64.0493 97.7292 60.8074 85.7333 52.4206L82.8167 50.3774L80.4042 53.0462C78.4167 55.2424 77.0667 58.2393 76.0792 61.1574C75.0708 64.1543 74.3083 67.5012 73.6958 70.7124C73.188 73.4452 72.7268 76.1873 72.3125 78.9374L72.1542 79.9174C71.7083 82.7656 71.3458 84.9399 70.9792 86.3487C70.8424 86.8826 70.6951 87.4136 70.5375 87.9412Z"
             fill="#7CA153"
          />
          <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M60.2133 103.999C59.5067 102.478 58.6367 100.6 57.1667 100.964C39.1533 105.397 20.5 118.195 20.5 131.805V151.375H140.5V131.805C140.5 121.086 128.927 110.868 115.21 104.845L115.193 104.809C115.178 104.777 115.163 104.744 115.147 104.712L115.037 104.77C111.393 103.184 107.6 101.886 103.833 100.964C102.157 100.549 100.423 103.043 99.6667 104.604H60.5C60.4067 104.417 60.3133 104.208 60.2133 103.999ZM105.177 108.756C106.633 109.192 108.083 109.682 109.513 110.223C109.553 111.456 109.467 112.912 109.28 114.397C109.09 115.934 108.787 117.453 108.373 118.938H103.833C103.214 118.938 102.608 119.125 102.082 119.477C101.555 119.829 101.13 120.332 100.853 120.931L97.52 128.139C97.2882 128.639 97.1672 129.191 97.1667 129.75V136.959C97.1667 137.914 97.5179 138.831 98.143 139.507C98.7681 140.183 99.6159 140.563 100.5 140.563H107.167V133.354H103.833V130.601L105.893 126.146H115.107L117.167 130.601V133.354H113.833V140.563H120.5C121.384 140.563 122.232 140.183 122.857 139.507C123.482 138.831 123.833 137.914 123.833 136.959V129.75C123.833 129.191 123.712 128.639 123.48 128.139L120.147 120.931C119.87 120.332 119.445 119.829 118.918 119.477C118.392 119.125 117.786 118.938 117.167 118.938H115.28C115.692 117.03 115.968 115.092 116.107 113.139C119.357 114.8 122.377 116.707 124.993 118.768C131.4 123.821 133.833 128.55 133.833 131.805V144.167H27.1667V131.805C27.1667 128.55 29.6 123.821 36.0067 118.768C39.2267 116.227 43.07 113.928 47.19 112.025C47.3044 114.897 47.7307 117.745 48.46 120.509L48.4867 120.61C46.4939 121.973 45.0107 124.054 44.2991 126.485C43.5875 128.916 43.6933 131.54 44.5977 133.895C45.5022 136.249 47.1471 138.183 49.242 139.353C51.3369 140.524 53.747 140.856 56.0466 140.292C58.3461 139.727 60.3873 138.303 61.8095 136.269C63.2317 134.235 63.9434 131.723 63.819 129.177C63.6946 126.631 62.742 124.214 61.1296 122.354C59.5171 120.494 57.3484 119.309 55.0067 119.01C54.5807 117.502 54.2686 115.959 54.0733 114.397C53.8877 112.999 53.8108 111.587 53.8433 110.176C53.853 109.906 53.8697 109.637 53.8933 109.369C54.2933 109.235 54.6933 109.106 55.0933 108.983L56.4767 111.816H103.69L105.177 108.76V108.756ZM53.8333 133.412C55.6267 133.412 57.1667 131.826 57.1667 129.754C57.1667 127.685 55.6267 126.096 53.8333 126.096C52.04 126.096 50.5 127.681 50.5 129.754C50.5 131.823 52.04 133.412 53.8333 133.412Z"
+            d="M74.6417 126.239C73.7583 124.393 72.6708 122.114 70.8333 122.556C48.3167 127.937 25 143.473 25 159.993V183.749H175V159.993C175 146.981 160.533 134.578 143.387 127.268L143.367 127.224C143.348 127.184 143.328 127.145 143.308 127.106L143.171 127.176C138.617 125.251 133.875 123.676 129.167 122.556C127.071 122.053 124.904 125.08 123.958 126.974H75C74.8833 126.747 74.7667 126.493 74.6417 126.239ZM130.846 132.014C132.667 132.544 134.479 133.139 136.267 133.795C136.317 135.291 136.208 137.059 135.975 138.861C135.737 140.727 135.358 142.571 134.842 144.374H129.167C128.393 144.374 127.635 144.601 126.977 145.028C126.319 145.455 125.787 146.067 125.442 146.793L121.275 155.543C120.985 156.15 120.834 156.82 120.833 157.499V166.249C120.833 167.409 121.272 168.522 122.054 169.342C122.835 170.163 123.895 170.624 125 170.624H133.333V161.874H129.167V158.531L131.742 153.124H143.258L145.833 158.531V161.874H141.667V170.624H150C151.105 170.624 152.165 170.163 152.946 169.342C153.728 168.522 154.167 167.409 154.167 166.249V157.499C154.166 156.82 154.015 156.15 153.725 155.543L149.558 146.793C149.213 146.067 148.681 145.455 148.023 145.028C147.365 144.601 146.607 144.374 145.833 144.374H143.475C143.99 142.058 144.335 139.705 144.508 137.334C148.571 139.351 152.346 141.666 155.617 144.168C163.625 150.302 166.667 156.042 166.667 159.993V174.999H33.3333V159.993C33.3333 156.042 36.375 150.302 44.3833 144.168C48.4083 141.084 53.2125 138.293 58.3625 135.983C58.5056 139.469 59.0384 142.926 59.95 146.281L59.9833 146.404C57.4923 148.058 55.6384 150.584 54.7489 153.535C53.8594 156.486 53.9916 159.671 55.1222 162.53C56.2527 165.388 58.3089 167.735 60.9275 169.156C63.5461 170.577 66.5587 170.98 69.4332 170.295C72.3077 169.61 74.8591 167.88 76.6369 165.411C78.4146 162.943 79.3043 159.894 79.1488 156.803C78.9933 153.712 77.8025 150.779 75.787 148.521C73.7714 146.262 71.0606 144.825 68.1333 144.461C67.6009 142.631 67.2108 140.758 66.9667 138.861C66.7347 137.165 66.6385 135.451 66.6792 133.738C66.6912 133.411 66.7121 133.084 66.7417 132.758C67.2417 132.596 67.7417 132.439 68.2417 132.29L69.9708 135.729H128.987L130.846 132.019V132.014ZM66.6667 161.944C68.9083 161.944 70.8333 160.019 70.8333 157.503C70.8333 154.992 68.9083 153.063 66.6667 153.063C64.425 153.063 62.5 154.988 62.5 157.503C62.5 160.014 64.425 161.944 66.6667 161.944Z"
             fill="#7CA153"
          />
       </svg>
    );
 };
-const AdminArtikelTinjauIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminArtikelTinjauIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
-      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path d="M110.5 140.562C116.023 140.562 120.5 135.722 120.5 129.75C120.5 123.778 116.023 118.938 110.5 118.938C104.977 118.938 100.5 123.778 100.5 129.75C100.5 135.722 104.977 140.562 110.5 140.562Z" fill="#7CA153" />
+      <svg width="200" height="210" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M137.5 170.625C144.404 170.625 150 164.749 150 157.5C150 150.251 144.404 144.375 137.5 144.375C130.596 144.375 125 150.251 125 157.5C125 164.749 130.596 170.625 137.5 170.625Z" fill="#7CA153" />
          <path
-            d="M149.385 126.933C146.296 118.423 140.964 111.081 134.052 105.815C127.14 100.55 118.951 97.5935 110.5 97.3125C102.049 97.5935 93.8597 100.55 86.9476 105.815C80.0355 111.081 74.7044 118.423 71.615 126.933L70.5 129.75L71.615 132.567C74.7044 141.077 80.0355 148.419 86.9476 153.685C93.8597 158.95 102.049 161.906 110.5 162.188C118.951 161.906 127.14 158.95 134.052 153.685C140.964 148.419 146.296 141.077 149.385 132.567L150.5 129.75L149.385 126.933ZM110.5 151.375C106.544 151.375 102.678 150.107 99.3886 147.731C96.0996 145.354 93.5362 141.977 92.0224 138.026C90.5087 134.074 90.1126 129.726 90.8843 125.531C91.656 121.336 93.5608 117.483 96.3579 114.459C99.1549 111.435 102.719 109.375 106.598 108.541C110.478 107.706 114.499 108.134 118.154 109.771C121.808 111.408 124.932 114.18 127.129 117.736C129.327 121.292 130.5 125.473 130.5 129.75C130.493 135.483 128.384 140.979 124.635 145.033C120.886 149.087 115.802 151.368 110.5 151.375Z"
+            d="M186.106 154.081C182.245 143.751 175.581 134.838 166.941 128.446C158.3 122.055 148.064 118.466 137.5 118.125C126.936 118.466 116.7 122.055 108.059 128.446C99.4194 134.838 92.7555 143.751 88.8937 154.081L87.5 157.5L88.8937 160.919C92.7555 171.249 99.4194 180.162 108.059 186.554C116.7 192.945 126.936 196.534 137.5 196.875C148.064 196.534 158.3 192.945 166.941 186.554C175.581 180.162 182.245 171.249 186.106 160.919L187.5 157.5L186.106 154.081ZM137.5 183.75C132.555 183.75 127.722 182.21 123.611 179.326C119.5 176.442 116.295 172.342 114.403 167.545C112.511 162.749 112.016 157.471 112.98 152.379C113.945 147.287 116.326 142.61 119.822 138.938C123.319 135.267 127.773 132.767 132.623 131.754C137.472 130.742 142.499 131.261 147.067 133.248C151.635 135.235 155.54 138.599 158.287 142.916C161.034 147.233 162.5 152.308 162.5 157.5C162.492 164.459 159.855 171.131 155.169 176.052C150.482 180.973 144.128 183.741 137.5 183.75Z"
             fill="#7CA153"
          />
          <path
-            d="M60.5 151.375H40.5V21.6249H80.5V54.0624C80.5079 56.9274 81.564 59.6726 83.4377 61.6985C85.3113 63.7244 87.8503 64.8663 90.5 64.8749H120.5V86.4999H130.5V54.0624C130.518 53.3519 130.393 52.6457 130.134 51.9924C129.875 51.3391 129.488 50.7542 129 50.278L94 12.4343C93.5598 11.9063 93.0189 11.4879 92.4147 11.2079C91.8104 10.9279 91.1572 10.7929 90.5 10.8124H40.5C37.8503 10.8209 35.3113 11.9629 33.4377 13.9887C31.564 16.0146 30.5079 18.7599 30.5 21.6249V151.375C30.5079 154.24 31.564 156.985 33.4377 159.011C35.3113 161.037 37.8503 162.179 40.5 162.187H60.5V151.375ZM90.5 23.7874L118.5 54.0624H90.5V23.7874Z"
+            d="M75 183.75H50V26.2503H100V65.6253C100.01 69.1031 101.33 72.4354 103.672 74.8946C106.014 77.3538 109.188 78.7399 112.5 78.7503H150V105H162.5V65.6253C162.522 64.7628 162.366 63.9056 162.042 63.1125C161.719 62.3195 161.235 61.6096 160.625 61.0315L116.875 15.094C116.325 14.4532 115.649 13.9453 114.893 13.6054C114.138 13.2655 113.321 13.1017 112.5 13.1253H50C46.6878 13.1357 43.5142 14.5218 41.1721 16.981C38.83 19.4401 37.5099 22.7725 37.5 26.2503V183.75C37.5099 187.228 38.83 190.56 41.1721 193.02C43.5142 195.479 46.6878 196.865 50 196.875H75V183.75ZM112.5 28.8753L147.5 65.6253H112.5V28.8753Z"
             fill="#7CA153"
          />
       </svg>
    );
 };
-const AdminArtikelIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminArtikelIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
       <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -717,10 +740,10 @@ const AdminArtikelIcon = ({ width = "16", height = "16", fill = "white" }) => {
       </svg>
    );
 };
-const AdminArtikelUnggahIcon = ({ width = "16", height = "16", fill = "white" }) => {
+const AdminArtikelUnggahIcon = ({ width = '16', height = '16', fill = 'white' }) => {
    return (
-      <svg width="161" height="173" viewBox="0 0 161 173" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path d="M107.167 7.20898V43.2507H140.5M80.5001 144.167V79.2923M53.8335 100.917L80.5001 72.084L107.167 100.917M20.4868 7.20898H117.167L140.5 32.4382V165.792H20.5002L20.4868 7.20898Z" stroke="#7CA153" stroke-width="7" />
+      <svg width="200" height="210" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M133.333 8.75V52.5H175M100 175V96.25M66.6667 122.5L100 87.5L133.333 122.5M24.9834 8.75H145.833L175 39.375V201.25H25.0001L24.9834 8.75Z" stroke="#7CA153" strokeWidth="7" />
       </svg>
    );
 };

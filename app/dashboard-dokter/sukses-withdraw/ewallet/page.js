@@ -3,9 +3,9 @@ import Footer from '@/components/ui/Footer'
 import NavbarDokter from '@/components/ui/NavbarDokter'
 import React from 'react'
 import { useState } from 'react';
-import CheckIcon  from '../../../public/assets/icons/CheckIcon.png'
+import CheckIcon  from 'public/assets/icons/CheckIcon.png'
 import Image from "next/image";
-import Dokter from '../../../public/assets/images/dokter.png'
+import Dokter from 'public/assets/images/dokter.png'
 import { TutupWithdrawButton } from '@/components/ui/Button';
 import { Salinan } from '@/public/assets/icons/icons';
 

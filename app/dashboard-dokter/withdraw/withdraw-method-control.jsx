@@ -6,33 +6,42 @@ import BNILogo from "public/assets/images/bni.png";
 import BRILogo from "public/assets/images/bri.png";
 import BCALogo from "public/assets/images/bca.png";
 import MandiriLogo from "public/assets/images/mandiri.png";
+import GopayLogo from "public/assets/images/gopay.png";
+import DanaLogo from "public/assets/images/dana.png";
+import LinkAjaLogo from "public/assets/images/link-aja.png";
+import ShopeePayLogo from "public/assets/images/shopee-pay.png";
 
-export default function PaymentControl() {
+export default function WithdrawMethodControl() {
    const [isBankOpen, setIsBankOpen] = useState(false);
    const [isVWalletOpen, setIsVWalletOpen] = useState(false);
-   const [selectedBank, setBank] = useState("");
+   const [selectedWithdrawOption, setWithdrawOption] = useState("");
+   const [selectedMethod, setMethod] = useState("");
 
    //Choose the Dropdown
    const handleBankDropdownClick = () => {
       setIsBankOpen(!isBankOpen);
+      setMethod("Bank");
       setIsVWalletOpen(false);
    };
    const handleVWalletDropdownClick = () => {
       setIsVWalletOpen(!isVWalletOpen);
+      setMethod("VWallet");
       setIsBankOpen(false);
    };
 
-   //Handle Selection
-   const handleBankSelection = (option) => {
-      setBank(option);
-      // setIsBankOpen(false);
+   // Handle Method Selection (Which one you want to withdraw to?)
+   const handleWithdrawalOptionSelection = (option) => {
+      setWithdrawOption(option);
    };
 
+   // Go to the Next Page
+   const handle = (e) => {};
+
    //Default Image Settings - Width were standarized
-   function PaymentImage({ image, height }) {
+   function PaymentImage({ image, height, width = 103 }) {
       return (
          <>
-            <Image src={image} alt="bank" width={103} height={height} />
+            <Image src={image} alt="bank" width={width} height={height} />
          </>
       );
    }
@@ -49,12 +58,12 @@ export default function PaymentControl() {
             </div>
 
             <div className="flex flex-col gap-3 items-start justify-start shrink-0 relative">
-               <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[124px] relative overflow-hidden">
+               <div
+                  className="select-none cursor-pointer rounded-lg border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[124px] relative overflow-hidden"
+                  onClick={handleBankDropdownClick}
+               >
                   <div className="flex flex-row gap-[239px] items-center justify-start absolute left-[25px] top-2.5">
-                     <div
-                        className="flex flex-col gap-[11px] items-start justify-center shrink-0 relative cursor-pointer"
-                        onClick={handleBankDropdownClick}
-                     >
+                     <div className="flex flex-col gap-[11px] items-start justify-center shrink-0 relative">
                         <svg
                            className="shrink-0 relative overflow-visible"
                            width="62"
@@ -126,7 +135,9 @@ export default function PaymentControl() {
                                     defaultValue="BCA"
                                     name="bank-radio"
                                     className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() => handleBankSelection("BCA")}
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection("BCA")
+                                    }
                                  />
                               </div>
                            </div>
@@ -148,7 +159,9 @@ export default function PaymentControl() {
                                     defaultValue="BRI"
                                     name="bank-radio"
                                     className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() => handleBankSelection("BRI")}
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection("BRI")
+                                    }
                                  />
                               </div>
                            </div>
@@ -170,7 +183,9 @@ export default function PaymentControl() {
                                     defaultValue="BNI"
                                     name="bank-radio"
                                     className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() => handleBankSelection("BNI")}
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection("BNI")
+                                    }
                                  />
                               </div>
                            </div>
@@ -196,7 +211,9 @@ export default function PaymentControl() {
                                     name="bank-radio"
                                     className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
                                     onClick={() =>
-                                       handleBankSelection("MANDIRI")
+                                       handleWithdrawalOptionSelection(
+                                          "MANDIRI"
+                                       )
                                     }
                                  />
                               </div>
@@ -206,7 +223,10 @@ export default function PaymentControl() {
                   </div>
                )}
 
-               <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[7px] pr-6 pb-[7px] pl-6 flex flex-col gap-2.5 items-start justify-start shrink-0 w-[446px] relative overflow-hidden">
+               <div
+                  className="select-none cursor-pointer  rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[7px] pr-6 pb-[7px] pl-6 flex flex-col gap-2.5 items-start justify-start shrink-0 w-[446px] relative overflow-hidden"
+                  onClick={handleVWalletDropdownClick}
+               >
                   <div className="flex flex-row gap-[239px] items-center justify-start self-stretch shrink-0 relative">
                      <div className="flex flex-col gap-[11px] items-start justify-center flex-1 relative">
                         <svg
@@ -230,7 +250,9 @@ export default function PaymentControl() {
                      </div>
 
                      <svg
-                        className="shrink-0 relative overflow-visible"
+                        className={`shrink-0 relative overflow-visible ${
+                           isVWalletOpen ? "rotate-180" : ""
+                        }`}
                         width="52"
                         height="53"
                         viewBox="0 0 52 53"
@@ -262,6 +284,119 @@ export default function PaymentControl() {
                      </svg>
                   </div>
                </div>
+               {/* Virtual Wallet Dropdown Contents */}
+               {isVWalletOpen && (
+                  <div className="relative top-full left-0 bg-white w-full rounded-b-lg pb-[18px] z-10">
+                     <div className="flex flex-col gap-0 items-start justify-start self-stretch shrink-0 relative">
+                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
+                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
+                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
+                                 <PaymentImage image={GopayLogo} height={26} />
+
+                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
+                                    Gopay
+                                 </div>
+                              </div>
+                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
+                                 <input
+                                    id="bca-radio"
+                                    type="radio"
+                                    defaultValue="BCA"
+                                    name="bank-radio"
+                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection("Gopay")
+                                    }
+                                 />
+                              </div>
+                           </div>
+                        </div>
+
+                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border p-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
+                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
+                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
+                                 <PaymentImage image={DanaLogo} height={32} />
+
+                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
+                                    DANA
+                                 </div>
+                              </div>
+                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
+                                 <input
+                                    id="bri-radio"
+                                    type="radio"
+                                    defaultValue="BRI"
+                                    name="bank-radio"
+                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection("DANA")
+                                    }
+                                 />
+                              </div>
+                           </div>
+                        </div>
+
+                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border p-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
+                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
+                              <div className="flex flex-row gap-[62px] items-center justify-start flex-1 relative">
+                                 <PaymentImage
+                                    image={LinkAjaLogo}
+                                    width={50}
+                                    height={53}
+                                 />
+
+                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
+                                    Link Aja!
+                                 </div>
+                              </div>
+                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
+                                 <input
+                                    id="bni-radio"
+                                    type="radio"
+                                    defaultValue="BNI"
+                                    name="bank-radio"
+                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection(
+                                          "LinkAja"
+                                       )
+                                    }
+                                 />
+                              </div>
+                           </div>
+                        </div>
+
+                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
+                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
+                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
+                                 <PaymentImage
+                                    image={ShopeePayLogo}
+                                    height={49}
+                                 />
+
+                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
+                                    Shopee Pay
+                                 </div>
+                              </div>
+                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
+                                 <input
+                                    id="mandiri-radio"
+                                    type="radio"
+                                    defaultValue="MANDIRI"
+                                    name="bank-radio"
+                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
+                                    onClick={() =>
+                                       handleWithdrawalOptionSelection(
+                                          "ShopeePay"
+                                       )
+                                    }
+                                 />
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               )}
                <button className="font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative">
                   Lanjutkan
                </button>

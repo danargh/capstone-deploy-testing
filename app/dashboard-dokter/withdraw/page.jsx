@@ -1,12 +1,10 @@
 import React from "react";
-import PaymentControl from "./payment-control";
-import PaymentForm from "./(bank)/bank-form";
-import PaymentFinale from "./(bank)/payment-confirm";
+import WithdrawForm from "./withdraw-form";
 
 export default function Withdrawal() {
    return (
       <>
-         <div className="bg-neutral-0 flex flex-col pt-[100px] pb-[150px] px-[64px] items-center justify-start relative overflow-hidden">
+         <div className="flex flex-col pt-[100px] pb-[150px] px-[64px] items-center justify-start relative overflow-hidden">
             <div className="flex flex-col gap-[91px] items-start justify-start shrink-0 relative">
                <div className="flex flex-col gap-[91px] items-center justify-start shrink-0 relative">
                   <div className="flex flex-col gap-[30px] items-start justify-start shrink-0 relative">
@@ -66,9 +64,7 @@ export default function Withdrawal() {
 
                      <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[26px] pr-8 pb-[26px] pl-8 flex flex-col gap-2.5 items-start justify-start w-[1312px] h-[831px] relative overflow-hidden">
                         <div className="flex flex-row gap-[33px] items-start justify-start shrink-0 relative">
-                           {/* <PaymentControl /> */}
-                           {/* <PaymentForm /> */}
-                           <PaymentFinale />
+                           <WithdrawForm />
 
                            <div className="bg-neutral-0 rounded-[20px] border-solid border-[rgba(0,0,0,0.50)] border-[3px] shrink-0 w-[767px] h-[375px] relative overflow-hidden">
                               <div className="font-inter font-semibold text-xl/[42px] text-neutral-900 text-left absolute left-[276px] top-11">
