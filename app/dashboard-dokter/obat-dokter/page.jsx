@@ -1,24 +1,20 @@
 "use client";
 
 import { useState, useRef } from "react";
-import NavbarDokter from "@/components/ui/NavbarDokter";
-import InputSearch from "@/components/forms/input-search";
 import { AddObatIcon, SearchIcon } from "@/public/assets/icons/icons";
 import ObatItem from "./ObatItem";
 import { useAtom } from "jotai";
-import { dataJotai } from "@/store/store";
-import { useRouter } from "next/router";
-import { Router } from "next/router";
+import { dataObat } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const listObat = ["Paracetamol 500mg", "Amoxicillin 3.000mg", "Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"];
 
 export default function ObatDokter() {
+   const [obat, setObat] = useAtom(dataObat);
    const editObatRef = useRef([]);
    const [choosedObat, setChoosedObat] = useState(["Paracetamol"]);
    const [keywordSearch, setKeywordSearch] = useState("");
    const router = useRouter();
-   // const { resepObat } = dataJotai;
-   // const [data, setData] = useAtom(resepObat);
 
    const handleAddObat = (obat) => {
       setChoosedObat([...choosedObat, obat]);
@@ -50,10 +46,8 @@ export default function ObatDokter() {
 
    const handleSubmitObat = (e) => {
       e.preventDefault();
-      router.push({
-         pathname: "/dashboard-dokter/chat",
-         query: { resepObat: choosedObat },
-      });
+      setObat(choosedObat);
+      router.push("/dashboard-dokter/chat");
    };
 
    return (
@@ -76,10 +70,10 @@ export default function ObatDokter() {
                   <ul className="mt-[20px]">
                      {keywordSearch === ""
                         ? choosedObat.map((obat, index) => {
-                             return <ObatItem editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })
                         : searchedObat.map((obat, index) => {
-                             return <ObatItem editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })}
                   </ul>
                </div>
