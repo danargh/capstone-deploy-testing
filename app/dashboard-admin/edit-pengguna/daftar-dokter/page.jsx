@@ -112,7 +112,6 @@ export default function DaftarDokter({ params }) {
    return (
       <>
          {/* <div className='flex'> */}
-         <SidebarAdmin />
          <div className="p-4 sm:ml-72">
             <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Daftar Dokter</p>
             <div class="flex items-center h-24 mx-16 mt-9">
