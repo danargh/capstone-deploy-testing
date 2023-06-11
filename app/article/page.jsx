@@ -7,9 +7,8 @@ import { Pagination } from "@/components/ui/Pagination";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { useSearchParams } from "next/navigation";
 
-export default function Article() {
+export default function Article({ keyword = "Covid" }) {
    const [currentPage, setCurentPage] = useState(1);
    const [postPerPage, setPostPerPage] = useState(12);
    const router = useRouter();
@@ -21,13 +20,11 @@ export default function Article() {
       router.push(`/article/${id}`);
    };
 
-   const searchParams = useSearchParams();
-   const search = searchParams.get("q");
    return (
       <>
          <Navbar />
          <section className="font-inter font-[600] text-[20px] mt-[32px] mb-16 w-[1440px] mx-auto">
-            <p className="mb-[20px] leading-8">Hasil Pencarian "{search}"</p>
+            <p className="mb-[20px] leading-8">Hasil Pencarian "{keyword}"</p>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
                {Array(15)
                   .fill(

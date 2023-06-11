@@ -1,10 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import { SearchIcon } from "@/public/assets/icons/icons";
 import Link from "next/link";
 
 import { usePathname, useRouter } from "next/navigation";
+import InputSearch from "../forms/input-search";
 
 const Navbar = () => {
     const pathname = usePathname();
