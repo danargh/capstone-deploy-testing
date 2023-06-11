@@ -119,7 +119,7 @@ export default function RegisterDokter() {
    };
    return (
       <>
-         <section className="flex bg-gray-500 ">
+         <section className="min-screen-2xl h-screen flex bg-gray-500 ">
             <HeroLogin />
             <div className="w-1/2 bg-neutral-0 flex flex-col justify-center">
                <div className="flex mt-5">
@@ -179,8 +179,9 @@ export default function RegisterDokter() {
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               error={formik.touched.email && formik.errors.email}
+                              showErrorMessage={formik.touched.email && formik.errors.email}
                            />
-                           {formik.touched.email && formik.errors.email ? <ErrorMessage errorMessage={formik.errors.email} /> : null}
+                           {/* {formik.touched.email && formik.errors.email ? <ErrorMessage errorMessage={formik.errors.email} /> : null} */}
                            <Input
                               type="text"
                               placeholder="Nama Lengkap"
@@ -191,7 +192,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.namaLengkap && formik.errors.namaLengkap}
                            />
-                           {formik.errors.namaLengkap ? <ErrorMessage errorMessage={formik.errors.namaLengkap} /> : null}
+                           {/* {formik.errors.namaLengkap ? <ErrorMessage errorMessage={formik.errors.namaLengkap} /> : null} */}
                            <Input
                               type="number"
                               placeholder="NIK"
@@ -202,7 +203,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.nik && formik.errors.nik}
                            />
-                           {formik.errors.nik ? <ErrorMessage errorMessage={formik.errors.nik} /> : null}
+                           {/* {formik.errors.nik ? <ErrorMessage errorMessage={formik.errors.nik} /> : null} */}
                            <Input
                               type="text"
                               placeholder="Jenis Kelamin"
@@ -213,7 +214,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.jenisKelamin && formik.errors.jenisKelamin}
                            />
-                            {formik.errors.jenisKelamin ? <ErrorMessage errorMessage={formik.errors.jenisKelamin} /> : null}
+                           {/* {formik.errors.jenisKelamin ? <ErrorMessage errorMessage={formik.errors.jenisKelamin} /> : null} */}
                            <Input
                               type="text"
                               placeholder="Tempat Lahir"
@@ -224,7 +225,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.tempatLahir && formik.errors.tempatLahir}
                            />
-                            {formik.errors.tempatLahir ? <ErrorMessage errorMessage={formik.errors.tempatLahir} /> : null}
+                           {/* {formik.errors.tempatLahir ? <ErrorMessage errorMessage={formik.errors.tempatLahir} /> : null} */}
                            <Input
                               type="date"
                               placeholder="Tanggal Lahir"
@@ -235,7 +236,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.tanggalLahir && formik.errors.tanggalLahir}
                            />
-                            {formik.errors.tanggalLahir ? <ErrorMessage errorMessage={formik.errors.tanggalLahir} /> : null}
+                           {/* {formik.errors.tanggalLahir ? <ErrorMessage errorMessage={formik.errors.tanggalLahir} /> : null} */}
                            <Input
                               type="text"
                               placeholder="Agama"
@@ -246,7 +247,7 @@ export default function RegisterDokter() {
                               onBlur={formik.handleBlur}
                               error={formik.touched.agama && formik.errors.agama}
                            />
-                           {formik.errors.agama ? <ErrorMessage errorMessage={formik.errors.agama} /> : null}
+                           {/* {formik.errors.agama ? <ErrorMessage errorMessage={formik.errors.agama} /> : null} */}
                         <RegisterDokterButton>Lanjut</RegisterDokterButton>
                      </form>
                   )}
@@ -264,7 +265,7 @@ export default function RegisterDokter() {
                            onChange={formik.handleChange}
                            onBlur={formik.handleBlur}
                         />
-                        {formik.errors.asalUniversitas1 ? <ErrorMessage errorMessage={formik.errors.asalUniversitas1} /> : null}
+                        {/* {formik.errors.asalUniversitas1 ? <ErrorMessage errorMessage={formik.errors.asalUniversitas1} /> : null} */}
                         <Input
                            type="text"
                            placeholder="Jurusan*"
@@ -274,7 +275,7 @@ export default function RegisterDokter() {
                            onChange={formik.handleChange}
                            onBlur={formik.handleBlur}
                         />
-                        {formik.errors.jurusan1 ? <ErrorMessage errorMessage={formik.errors.jurusan1} /> : null}
+                        {/* {formik.errors.jurusan1 ? <ErrorMessage errorMessage={formik.errors.jurusan1} /> : null} */}
                         <Input
                            type="number"
                            placeholder="Tahun Lulus*"
@@ -284,7 +285,7 @@ export default function RegisterDokter() {
                            onChange={formik.handleChange}
                            onBlur={formik.handleBlur}
                         />
-                        {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null}
+                        {/* {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null} */}
                         <Input
                            type="text"
                            placeholder="Asal Universitas 2"
@@ -321,7 +322,7 @@ export default function RegisterDokter() {
                            onChange={formik.handleChange}
                            onBlur={formik.handleBlur}
                         />
-                        {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null}
+                        {/* {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null} */}
                         <RegisterDokterButton>Lanjut</RegisterDokterButton>
                      </form>
                   )}
@@ -335,7 +336,7 @@ export default function RegisterDokter() {
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                            />
-                           {formik.errors.cv ? <ErrorMessage errorMessage={formik.errors.cv} /> : null}
+                           {/* {formik.errors.cv ? <ErrorMessage errorMessage={formik.errors.cv} /> : null} */}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Ijazah</p>
@@ -345,7 +346,7 @@ export default function RegisterDokter() {
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                            />
-                           {formik.errors.ijasah ? <ErrorMessage errorMessage={formik.errors.ijasah} /> : null}
+                           {/* {formik.errors.ijasah ? <ErrorMessage errorMessage={formik.errors.ijasah} /> : null} */}
                         </div>
                         <div>
                            <div className="max-w-sm">
@@ -357,7 +358,7 @@ export default function RegisterDokter() {
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                            />
-                           {formik.errors.strAktif ? <ErrorMessage errorMessage={formik.errors.strAktif} /> : null}
+                           {/* {formik.errors.strAktif ? <ErrorMessage errorMessage={formik.errors.strAktif} /> : null} */}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">SIP (Surat Izin Praktek)</p>
@@ -367,7 +368,7 @@ export default function RegisterDokter() {
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                            />
-                           {formik.errors.sip ? <ErrorMessage errorMessage={formik.errors.sip} /> : null}
+                           {/* {formik.errors.sip ? <ErrorMessage errorMessage={formik.errors.sip} /> : null} */}
                         </div>
                         <div className="mt-4 w-full flex flex-col justify-center">
                            <RegisterDokterButton onClick={handleFormSubmit}>Daftar</RegisterDokterButton>
