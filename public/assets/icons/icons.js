@@ -725,6 +725,15 @@ const AdminArtikelUnggahIcon = ({ width = "16", height = "16", fill = "white" })
    );
 };
 
+const ArrowBackHelpIcon = ({ width = '16', height = '16', fill = 'white' }) => {
+    return (
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 20.5L4.5 12.5L12.5 4.5L13.925 5.9L8.325 11.5H20.5V13.5H8.325L13.925 19.1L12.5 20.5Z" fill="black" />
+        </svg>
+    );
+};
+
+
 export {
    AddObatIcon,
    ErrorIcon,
@@ -791,4 +800,5 @@ export {
    AdminArtikelTinjauIcon,
    AdminArtikelIcon,
    AdminArtikelUnggahIcon,
+   ArrowBackHelpIcon,
 };
