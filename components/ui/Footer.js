@@ -52,7 +52,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <div className="text-[24px]  font-[700] leading-normal w-[270px]">PREVENT! APPS</div>
+                            <div className="text-[24px]  font-[600] leading-normal w-[270px]">PREVENT! APPS</div>
                             <p className="font-[400] leading-relaxed w-[270px]">Download aplikasi Prevent di play sotre secara gratis.</p>
                             <div className="flex items-center gap-3 mt-3">
                                 <Image src="/assets/logo/logo-p-green.png" alt="Logo" width={90} height={83} />

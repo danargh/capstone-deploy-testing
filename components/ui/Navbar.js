@@ -18,7 +18,7 @@ const Navbar = () => {
     const handleSearch = () => {
         const value = inputRef.current.value;
         inputRef.current.value = null;
-        router.push(`/article/search?=${value}`)
+        router.push(`/article/search?q=${value}`)
 
     }
 

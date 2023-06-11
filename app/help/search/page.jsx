@@ -13,7 +13,7 @@ function page() {
    return (
       <>
          <div className=" flex items-center flex-col">
-            <div className=" font-semibold text-[34px] mb-[47px]">
+            <div className=" font-semibold text-[34px] mb-[46px]">
                Hasil pencarian untuk : {search}
             </div>
             <div className="w-full sm:w-[1088px]  px-5">

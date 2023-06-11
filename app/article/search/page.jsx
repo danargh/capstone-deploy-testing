@@ -21,8 +21,8 @@ export default function Article() {
       router.push(`/article/${id}`);
    };
 
-   const search = useSearchParams();
-
+   const searchParams = useSearchParams();
+   const search = searchParams.get("q");
    return (
       <>
          <Navbar />
