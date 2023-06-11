@@ -7,8 +7,9 @@ import { Pagination } from "@/components/ui/Pagination";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { useSearchParams } from "next/navigation";
 
-export default function Article({ keyword = "Covid" }) {
+export default function Article() {
    const [currentPage, setCurentPage] = useState(1);
    const [postPerPage, setPostPerPage] = useState(12);
    const router = useRouter();
@@ -20,11 +21,13 @@ export default function Article({ keyword = "Covid" }) {
       router.push(`/article/${id}`);
    };
 
+   const search = useSearchParams();
+
    return (
       <>
          <Navbar />
          <section className="font-inter font-[600] text-[20px] mt-[32px] mb-16 w-[1440px] mx-auto">
-            <p className="mb-[20px] leading-8">Hasil Pencarian "{keyword}"</p>
+            <p className="mb-[20px] leading-8">Hasil Pencarian "{search}"</p>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
                {Array(15)
                   .fill(
@@ -40,7 +43,12 @@ export default function Article({ keyword = "Covid" }) {
                   .slice(firstPostIndex, lastPostIndex)}
             </div>
             <div className="flex justify-center mt-3">
-               <Pagination totalPosts={15} postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
+               <Pagination
+                  totalPosts={15}
+                  postPerPage={postPerPage}
+                  setCurrentPage={setCurentPage}
+                  currentPage={currentPage}
+               />
             </div>
          </section>
          <Footer />
