@@ -231,3 +231,13 @@ export const LoginUserButton = ({ onClick, children }) => {
       </button>
    );
 };
+
+export const RegisterDokterButton = ({ onClick, children }) => {
+   return (
+      <button className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
+         <div style={{ display: "flex", alignItems: "center" }}>
+            <p className={text_variants_poppins({ size: "sm" })}>{children}</p>
+         </div>
+      </button>
+   );
+};
