@@ -1,4 +1,5 @@
 import "react-quill/dist/quill.snow.css";
+import SidebarAdmin from "@/components/ui/SidebarAdmin";
 
 export const metadata = {
    title: "Prevent - Admin",
@@ -8,7 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
    return (
       <html lang="en">
-         <body>{children}</body>
+         <body>
+            <SidebarAdmin>{children}</SidebarAdmin>
+         </body>
       </html>
    );
 }

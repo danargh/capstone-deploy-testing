@@ -9,7 +9,12 @@ import Link from 'next/link';
 import { button_variants } from '@/components/custom/custom';
 import PaginationAlt from '@/components/ui/PaginationAlt';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) =>
+   fetch(url, {
+      headers: {
+         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2ODU5ODUzMTUsImlkIjoyLCJuYW1lIjoiZG9jdG9yIDEifQ._kTRqYbZEZ6MiFfZ5fDHpO8twM5wuLkOxHvadxbHHXw',
+      },
+   }).then((res) => res.json());
 export default function page() {
    const [currentPage, setCurrentPage] = useState(1);
    const [baseIndex, setBaseIndex] = useState(1);
@@ -78,6 +83,10 @@ export default function page() {
                   <AddArtikelButton />
                </Link>
             </div>
+            <div className="ml-3">
+               <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian"></input>
+               <button className="bg-[#8EBF59] py-[13.5px] px-[23px]">Cari</button>
+            </div>
 
             <div className="relative flex pt-10"></div>
             <table className="border-collapse borde ml-3 border-success-green-100 w-[1370px]">
@@ -97,10 +106,10 @@ export default function page() {
                      currentArticles.map((artikel, index) => (
                         <tr key={index} scope="" className="">
                            <td className="border border-success-green-100 text-center ">{baseIndex + index}</td>
-                           <td className="border border-success-green-100 pl-2 ">{artikel.artikel}</td>
+                           <td className="border border-success-green-100 pl-2 ">{artikel.title}</td>
                            <td className="border border-success-green-100 text-center ">gambar</td>
                            <td className="border border-success-green-100 text-center ">{artikel.category}</td>
-                           <td className="border border-success-green-100 text-center ">Di setujui</td>
+                           <td className="border border-success-green-100 text-center ">{artikel.status}</td>
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
                               <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>
