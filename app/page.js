@@ -36,7 +36,7 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <main className="flex min-h-screen flex-col items-center">
+            <main className="flex min-h-screen flex-col items-center" id="home">
                 <Carousel />
                 <div className="grid grid-cols-3 gap-10 mt-[102px]" id="article">
                     {newData.slice(firstPostIndex, lastPostIndex).map((item, index) => (

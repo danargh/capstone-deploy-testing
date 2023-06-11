@@ -2,16 +2,16 @@ export const helpUtama = [
     {
         question: "Saya tidak menerima kode verifikasi (OTP)",
         answer:
-            "Harap pastikan bahwa Anda memasukkan nomor telepon yang benar. Apabila Anda telah memasukkan nomor telepon yang benar, mohon matikan telepon seluler Anda, mulai ulang telepon dan coba lagi. Apabila Anda tidak dapat menerima kode verifikasi (OTP) melalui SMS setelah beberapa kali percobaan, mohon mencoba OTP kami melalui opsi telepon (Dapatkan kode melalui telepon). Harap pastikan bahwa Anda menerima SMS atau kode verifikasi (OTP) dari perangkat lain. Apabila Anda tidak menerima SMS atau kode verifikasi (OTP) lain, mohon hubungi penyedia layanan telekomunikasi Anda.",
+            "Kode OTP yang diberikan berlaku dalam waktu 1 menit dari pengiriman. Kode OTP akan dikirimkan melalui email yang sudah terdaftar dalam akun prevent.",
     },
     {
         question: "Privasi yang konsultasi apakah terjaga?",
-        answer: "tes juga",
+        answer: "Betul sekali sobat prevent, privasi dari setiap pengguna akan terjaga dan dirahasiakan.",
     },
-    { question: "Mengapa dokter tidak merespon chat?", answer: "tes juga" },
+    { question: "Mengapa dokter tidak merespon chat?", answer: "Dokter tidak merespon biasanya sedang terkendala jaringan. Apabila lebih dari 15 menit segeralah menghubungi pusat bantuan via whatsapp." },
     {
         question: "Apakah dokter mengalami kesulitan dalam konsultasi?",
-        answer: "tes juga",
+        answer: "Kesulitan yang dialami dokter biasanya terkendala oleh jaringan sehingga mengalami keterlambatan dalam melayani pasien.",
     },
 ];
 
