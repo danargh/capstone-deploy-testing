@@ -63,7 +63,7 @@ export default function Withdrawal() {
                      </div>
 
                      <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[26px] pr-8 pb-[26px] pl-8 flex flex-col gap-2.5 items-start justify-start w-[1312px] h-[831px] relative overflow-hidden">
-                        <div className="flex flex-row gap-[33px] items-start justify-start shrink-0 relative">
+                        <div className="flex flex-row gap-[28px] items-start justify-start shrink-0 relative">
                            <WithdrawForm />
 
                            <div className="bg-neutral-0 rounded-[20px] border-solid border-[rgba(0,0,0,0.50)] border-[3px] shrink-0 w-[767px] h-[375px] relative overflow-hidden">

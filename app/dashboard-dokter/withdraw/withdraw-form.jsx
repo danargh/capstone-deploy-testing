@@ -1,34 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
-import WithdrawMethodControl from "./withdraw-method-control";
+import { useAtom } from "jotai";
+import { WithdrawalStepAtom } from "@/components/atoms/useWithdrawal";
 import PaymentForm from "./(bank)/bank-form";
 import PaymentFinale from "./(bank)/payment-confirm";
+import WithdrawMethodControl from "./withdraw-method-control";
 
 export default function WithdrawForm() {
+   const [WithdrawalStep] = useAtom(WithdrawalStepAtom);
 
-   // Continue the Withdrawal Steps
-//    const continueWithdrawal = () => {
-//       setCurrentStep(currentStep + 1);
-//    };
+   function RenderStep() {
+      // Switch based on current step
+      switch (WithdrawalStep) {
+         case 1:
+            return <WithdrawMethodControl />;
+         case 2:
+            return <PaymentForm />;
+         case 3:
+            return <PaymentFinale />;
+         default:
+            return <WithdrawMethodControl />;
+      }
+   }
 
-//    const handleWithdrawMethodSelect = (method) => {
-//       setWithdrawMethod(method);
-//       continueWithdrawal();
-//    };
-
-//    const handleWithdrawDataChange = (data) => {
-//       setPaymentData(data);
-//    };
    return (
       <>
-            <WithdrawMethodControl
-            />
-            {/* <PaymentForm
-               continueWithdrawal={continueWithdrawal}
-               handleWithdrawData={handleWithdrawDataChange}
-            /> */}
-         {/* <PaymentFinale /> */}
+         <RenderStep />
       </>
    );
 }
