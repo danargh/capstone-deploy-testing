@@ -1,18 +1,18 @@
-'use client';
-import Swal from 'sweetalert2';
-import useSWR, { mutate } from 'swr';
+"use client";
+import Swal from "sweetalert2";
+import useSWR, { mutate } from "swr";
 
 // import { TableArtikel } from '@/components/ui/Table';
-import React, { useState } from 'react';
-import { AddArtikelButton } from '@/components/ui/Button';
-import Link from 'next/link';
-import { button_variants } from '@/components/custom/custom';
-import PaginationAlt from '@/components/ui/PaginationAlt';
+import React, { useState } from "react";
+import { AddArtikelButton } from "@/components/ui/Button";
+import Link from "next/link";
+import { button_variants } from "@/components/custom/custom";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 const fetcher = (url) =>
    fetch(url, {
       headers: {
-         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2ODU5ODUzMTUsImlkIjoyLCJuYW1lIjoiZG9jdG9yIDEifQ._kTRqYbZEZ6MiFfZ5fDHpO8twM5wuLkOxHvadxbHHXw',
+         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2ODU5ODUzMTUsImlkIjoyLCJuYW1lIjoiZG9jdG9yIDEifQ._kTRqYbZEZ6MiFfZ5fDHpO8twM5wuLkOxHvadxbHHXw",
       },
    }).then((res) => res.json());
 export default function page() {
@@ -23,7 +23,7 @@ export default function page() {
       data: dataArtikel,
       error,
       mutate: mutateDataArtikel,
-   } = useSWR('https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article', fetcher, {
+   } = useSWR("https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article", fetcher, {
       // Opsi SWR yang dapat Anda sesuaikan
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -46,31 +46,31 @@ export default function page() {
    };
    const handleDelete = async (id) => {
       Swal.fire({
-         title: 'Apakah Anda yakin?',
-         text: 'Apakah kamu yakin ingin menghapus artikel ini?',
-         icon: 'warning',
+         title: "Apakah Anda yakin?",
+         text: "Apakah kamu yakin ingin menghapus artikel ini?",
+         icon: "warning",
          showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Ya!',
-         cancelButtonText: 'Batal',
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Ya!",
+         cancelButtonText: "Batal",
       }).then(async (result) => {
          if (result.isConfirmed) {
             try {
                const response = await fetch(`https://6470c28f3de51400f724e4ab.mockapi.io/artikel/article/${id}`, {
-                  method: 'DELETE',
+                  method: "DELETE",
                });
 
                if (response.ok) {
                   const updatedData = dataArtikel.filter((artikel) => artikel.id !== id);
                   mutateDataArtikel(updatedData, false);
-                  Swal.fire('Terhapus!', 'Data telah dihapus.', 'success');
+                  Swal.fire("Terhapus!", "Data telah dihapus.", "success");
                } else {
-                  console.error('Gagal menghapus data:', response);
-                  throw new Error('Gagal menghapus data');
+                  console.error("Gagal menghapus data:", response);
+                  throw new Error("Gagal menghapus data");
                }
             } catch (error) {
-               Swal.fire('Terjadi kesalahan', error.message, 'error');
+               Swal.fire("Terjadi kesalahan", error.message, "error");
             }
          }
       });
@@ -92,7 +92,7 @@ export default function page() {
             <table className="border-collapse borde ml-3 border-success-green-100 w-[1370px]">
                <thead className="">
                   <tr className="bg-[#8EBF59] font-semibold h-[43px]">
-                     {' '}
+                     {" "}
                      <th className=" w-[82px] px-4 py-3 text-white">No</th>
                      <th className=" w-[372px] text-white">Artikel</th>
                      <th className="text-white w-[225px]">Gambar</th>
@@ -113,12 +113,12 @@ export default function page() {
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
                               <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>
-                                 <button className={button_variants({ variant: 'default', size: 'default' })} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
+                                 <button className={button_variants({ variant: "default", size: "default" })} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
                                     Edit
                                  </button>
                               </Link>
 
-                              <button className={button_variants({ variant: 'danger', size: 'default' })} onClick={() => handleDelete(artikel.id)} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
+                              <button className={button_variants({ variant: "danger", size: "default" })} onClick={() => handleDelete(artikel.id)} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
                                  Hapus
                               </button>
                            </td>

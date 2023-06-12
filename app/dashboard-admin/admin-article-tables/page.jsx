@@ -1,13 +1,11 @@
 "use client";
 
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
 import React, { useState } from "react";
 import Link from "next/link";
 import { button_variants } from "@/components/custom/custom";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import useSWR, { mutate } from "swr";
-
-// This is purposefully left inefficient, due to time constraint
+import Swal from "sweetalert2";
 
 //Any API changes later should refer to the comments for guidance!
 export default function AdminArticleTables() {

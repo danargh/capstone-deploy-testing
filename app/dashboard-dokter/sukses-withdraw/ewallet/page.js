@@ -34,7 +34,6 @@ export default function SuksesWithdrawEwallet() {
   };
   return (
     <>
-        <NavbarDokter/>
         {WithdrawEwallet.map((withdraw) => (
         <div className='flex flex-col justify-center items-center'>
             <Image className='w-[110px] h-[110px] mt-[100px]' src={CheckIcon}/>
@@ -98,7 +97,6 @@ export default function SuksesWithdrawEwallet() {
             </div>
         </div>
         ))}
-        <Footer/>
     </>
   )
 }
