@@ -1,7 +1,6 @@
 "use client";
 import SidebarAdmin from "@/components/ui/SidebarAdmin";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import PaginationDok from "@/components/PaginationDok";
