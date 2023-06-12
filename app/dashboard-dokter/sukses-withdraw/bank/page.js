@@ -94,7 +94,6 @@ export default function SuksesWithdrawBank() {
                </div>
             </div>
          ))}
-         <Footer />
       </>
    );
 }
