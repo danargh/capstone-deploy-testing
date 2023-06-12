@@ -1,13 +1,16 @@
 "use client";
 
 import React from "react";
-import Logo from "@/public/assets/logo/logo-admin-login.png";
+import Logo from "../../public/assets/logo/logo-admin-login.png";
 import Image from "next/image";
 import InputNew from "@/components/forms/InputNew";
+import { useRouter } from "next/navigation";
+
 export default function page() {
+   const router = useRouter();
    const handleLupaPassword = (e) => {
       e.preventDefault();
-      router.push("/login/1");
+      router.push("/login-admin/lupa-password");
    };
    return (
       <>

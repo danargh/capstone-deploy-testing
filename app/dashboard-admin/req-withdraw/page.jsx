@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
 import PaginationAlt from "@/components/ui/PaginationAlt";
+import Swal from "sweetalert2";
 
 const dataDokter = [
    {
@@ -35,7 +35,7 @@ const dataDokter = [
       email: "EmailDokter@gmail.com",
       penarikan: "Rp. 1.000.000",
       tanggal: new Date().toLocaleDateString(),
-      status: "Ditolak",
+      status: "Diterima",
    },
 ];
 
@@ -67,13 +67,18 @@ export default function ReqWithdraw() {
    };
 
    const handleDenied = (id) => {
-      const newDokter = dokter.map((dokter) => {
-         if (dokter.id === id) {
-            dokter.status = "Ditolak";
-         }
-         return dokter;
+      Swal.fire({
+         title: "Apakah kamu yakin ingin menolak pencairan dana ini?",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#8E1E18",
+         cancelButtonColor: "grey",
+         confirmButtonText: "Ya",
+         cancelButtonText: "Tidak",
+      }).then(() => {
+         const newDokter = dokter.filter((dokter) => dokter.id !== id);
+         setDokter(newDokter);
       });
-      setDokter(newDokter);
    };
 
    return (
