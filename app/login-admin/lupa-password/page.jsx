@@ -1,16 +1,16 @@
-import React from 'react';
-import ErrorMessage from '@/components/error/ErrorMessage';
-import InputNew from '@/components/forms/InputNew';
+import React from "react";
+import ErrorMessage from "@/components/error/ErrorMessage";
+import InputNew from "@/components/forms/InputNew";
 
 export default function page() {
    return (
       <>
-         <div className="bg-[#F8FFF1] h-[1080px] ">
+         <div className="bg-[#F8FFF1] h-screen">
             <div className="pt-[210px] max-w-[1440px] mx-auto">
                <div className="w-[677px] mx-auto">
                   <div className="item-center justify-center text-left font-poppins text-[20px]">
                      <h4>
-                        <b>Lupa Kata Sandi</b>{' '}
+                        <b>Lupa Kata Sandi</b>{" "}
                      </h4>
                      <p className="pb-3">Ikuti langkah mudah dibawah ini untuk mengatur ulang akun Anda:</p>
                      <ul>
