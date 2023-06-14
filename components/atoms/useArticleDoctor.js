@@ -32,7 +32,7 @@ export function useArticleData() {
       Swal.fire({
          title: 'Apakah Anda yakin?',
          text: 'Apakah kamu yakin ingin menghapus artikel ini?',
-         icon: 'warning',
+         iconHtml: '<img src="https://www.rinelisa.com/wp-content/uploads/2023/06/alert-artikel.png">',
          showCancelButton: true,
          confirmButtonColor: '#3085d6',
          cancelButtonColor: '#d33',
