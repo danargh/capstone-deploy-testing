@@ -12,106 +12,84 @@ import Swal from "sweetalert2";
 import InputFileDaftarIjasah from "@/components/forms/InputFileDaftar/input-file-daftarIjasah";
 import InputFileDaftarStr from "@/components/forms/InputFileDaftar/input-file-daftarstr";
 import InputFileDaftarSip from "@/components/forms/InputFileDaftar/input-file-daftarsip";
-import ErrorMessage from "@/components/error/ErrorMessage";
+import * as Yup from "yup";
+import { useRouter } from "next/navigation";
 
 export default function RegisterDokter() {
-   const [index, setIndex] = useState(0);
+   const [index, setIndex] = useState(2);
+   const router = useRouter();
 
-   const formik = useFormik({
+   const form1 = useFormik({
       initialValues: {
-        email: "",
-        namaLengkap: "",
-        nik: "",
-        jenisKelamin: "",
-        tempatLahir: "",
-        tanggalLahir: "",
-        agama: "",
-        asalUniversitas1: "",
-        jurusan1: "",
-        tahunLulus1: "",
-        asalUniversitas2: "",
-        jurusan2: "",
-        tahunLulus2: "",
-        tempatPraktikSekarang: "",
-        cv:"",
-        ijasah:"",
-        strAktif:"",
-        sip:"",
+         email: "",
+         namaLengkap: "",
+         nik: "",
+         jenisKelamin: "",
+         tempatLahir: "",
+         tanggalLahir: "",
+         agama: "",
       },
+      validationSchema: Yup.object({
+         email: Yup.string().email("Email tidak valid").required("Email tidak boleh kosong"),
+         namaLengkap: Yup.string().required("Nama lengkap tidak boleh kosong"),
+         nik: Yup.string().min(12, "Jumlah digit harus 12").max(12, "Jumlah digit harus 12").required("NIK tidak boleh kosong"),
+         jenisKelamin: Yup.string().required("Jenis kelamin tidak boleh kosong"),
+         tempatLahir: Yup.string().required("Tempat lahir tidak boleh kosong"),
+         tanggalLahir: Yup.string().required("Tanggal lahir tidak boleh kosong"),
+         agama: Yup.string().required("Agama tidak boleh kosong"),
+      }),
       onSubmit: (values) => {
          alert(JSON.stringify(values, null, 2));
+         setIndex(index + 1);
       },
-      validate: values => {
-         let errors = {}
+   });
 
-         if (!values.email) {
-            errors.email = 'Required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Format email Anda tidak sesuai';
-          }
-          if (!values.namaLengkap) {
-            errors.namaLengkap = 'Pastikan format penulisan nama lengkap sudah benar';
-          }
-          if (!values.nik) {
-            errors.nik = 'Pastikan format penulisan NIK sudah benar';
-          }
-          if (!values.jenisKelamin) {
-            errors.jenisKelamin = 'Pastikan format penulisan Jenis Kelamin sudah benar';
-          }
-          if (!values.tempatLahir) {
-            errors.tempatLahir = 'Pastikan format penulisan Tempat Lahir sudah benar';
-          }
-          if (!values.tanggalLahir) {
-            errors.tanggalLahir = 'Pastikan format penulisan Tanggal Lahir sudah benar';
-          }
-          if (!values.agama) {
-            errors.agama = 'Pastikan format penulisan Agama sudah benar';
-          }
-          if (!values.asalUniversitas1) {
-            errors.asalUniversitas1 = 'Pastikan format penulisan Asala Universitas 1 sudah benar';
-          }
-          if (!values.jurusan1) {
-            errors.jurusan1 = 'Pastikan format penulisan Jurusan 1 sudah benar';
-          }
-          if (!values.tahunLulus1) {
-            errors.tahunLulus1 = 'Pastikan format penulisan Tahun Lulus 1 sudah benar';
-          }
-          if (!values.asalUniversitas2) {
-            errors.asalUniversitas1 = 'Pastikan format penulisan Asala Universitas 2 sudah benar';
-          }
-          if (!values.jurusan2) {
-            errors.jurusan1 = 'Pastikan format penulisan Jurusan 2 sudah benar';
-          }
-          if (!values.tahunLulus2) {
-            errors.tahunLulus2 = 'Pastikan format penulisan Tahun Lulus 2 sudah benar';
-          }
-          if (!values.tempatPraktikSekarang) {
-            errors.tahunLulus2 = 'Pastikan format penulisan Tahun Lulus 2 sudah benar';
-          }
-          if (!values.cv) {
-            errors.cv = 'Pastikan format penulisan CV sudah benar';
-          }
-          if (!values.ijasah) {
-            errors.ijasah = 'Pastikan format penulisan Ijasah sudah benar';
-          }
-          if (!values.strAktif) {
-            errors.strAktif = 'Pastikan format penulisan STR Aktif sudah benar';
-          }
-          if (!values.sip) {
-            errors.sip = 'Pastikan format penulisan SIP sudah benar';
-          }
-         return errors
-      }
-    });
-   
+   const form2 = useFormik({
+      initialValues: {
+         asalUniversitas1: "",
+         jurusan1: "",
+         tahunLulus1: "",
+         asalUniversitas2: "",
+         jurusan2: "",
+         tahunLulus2: "",
+         tempatPraktikSekarang: "",
+      },
+      validationSchema: Yup.object({
+         asalUniversitas1: Yup.string().required("Asal universitas tidak boleh kosong"),
+         jurusan1: Yup.string().required("Jurusan tidak boleh kosong"),
+         tahunLulus1: Yup.string().required("Tahun lulus tidak boleh kosong"),
+         tempatPraktikSekarang: Yup.string().required("Tempat praktik tidak boleh kosong"),
+         noSTR: Yup.string().max(20, "Maximal nomor STR 20 digit").required("Nomor STR tidak boleh kosong"),
+      }),
+      onSubmit: (values) => {
+         alert(JSON.stringify(values, null, 2));
+         setIndex(index + 1);
+      },
+   });
+
+   const form3 = useFormik({
+      initialValues: {
+         cv: "",
+         ijasah: "",
+         strAktif: "",
+         sip: "",
+      },
+      validationSchema: Yup.object({
+         cv: Yup.mixed().required("CV tidak boleh kosong"),
+         ijasah: Yup.mixed().required("Ijasah tidak boleh kosong"),
+         strAktif: Yup.mixed().required("STR tidak boleh kosong"),
+         sip: Yup.mixed().required("SIP tidak boleh kosong"),
+      }),
+      onSubmit: (values) => {
+         // alert(JSON.stringify(values, null, 2));
+      },
+   });
+
    const handleFormSubmit = (e) => {
       e.preventDefault();
-
       Swal.fire("Maaf Pendaftaran Gagal", "Pastikan data pendaftaran sesuai dengan ketentuan.", "error");
-
       Swal.fire("Pendaftaran Berhasil", "Informasi pendaftaran anda akan kami informasikan melalui email.", "success");
+      router.push("/login");
    };
 
    const handleBack = () => {
@@ -166,209 +144,113 @@ export default function RegisterDokter() {
                      </div>
                   </div>
                   {index === 0 && (
-                     <form onSubmit={() => {
-                        formik.handleSubmit()
-                        setIndex(1)
-                     }} className="flex flex-col gap-8">
-                           <Input
-                              type="email"
-                              name="email"
-                              placeholder="Alamat Email"
-                              className={input_variants({ variant: "dokter_login" })}
-                              value={formik.values.email}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.email && formik.errors.email}
-                              showErrorMessage={formik.touched.email && formik.errors.email}
-                           />
-                           {/* {formik.touched.email && formik.errors.email ? <ErrorMessage errorMessage={formik.errors.email} /> : null} */}
-                           <Input
-                              type="text"
-                              placeholder="Nama Lengkap"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="namaLengkap"
-                              value={formik.values.namaLengkap}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.namaLengkap && formik.errors.namaLengkap}
-                           />
-                           {/* {formik.errors.namaLengkap ? <ErrorMessage errorMessage={formik.errors.namaLengkap} /> : null} */}
-                           <Input
-                              type="number"
-                              placeholder="NIK"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="nik"
-                              value={formik.values.nik}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.nik && formik.errors.nik}
-                           />
-                           {/* {formik.errors.nik ? <ErrorMessage errorMessage={formik.errors.nik} /> : null} */}
-                           <Input
-                              type="text"
-                              placeholder="Jenis Kelamin"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="jenisKelamin"
-                              value={formik.values.jenisKelamin}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.jenisKelamin && formik.errors.jenisKelamin}
-                           />
-                           {/* {formik.errors.jenisKelamin ? <ErrorMessage errorMessage={formik.errors.jenisKelamin} /> : null} */}
-                           <Input
-                              type="text"
-                              placeholder="Tempat Lahir"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="tempatLahir"
-                              value={formik.values.tempatLahir}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.tempatLahir && formik.errors.tempatLahir}
-                           />
-                           {/* {formik.errors.tempatLahir ? <ErrorMessage errorMessage={formik.errors.tempatLahir} /> : null} */}
-                           <Input
-                              type="date"
-                              placeholder="Tanggal Lahir"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="tanggalLahir"
-                              value={formik.values.tanggalLahir}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.tanggalLahir && formik.errors.tanggalLahir}
-                           />
-                           {/* {formik.errors.tanggalLahir ? <ErrorMessage errorMessage={formik.errors.tanggalLahir} /> : null} */}
-                           <Input
-                              type="text"
-                              placeholder="Agama"
-                              className={input_variants({ variant: "dokter_login" })}
-                              name="agama"
-                              value={formik.values.agama}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              error={formik.touched.agama && formik.errors.agama}
-                           />
-                           {/* {formik.errors.agama ? <ErrorMessage errorMessage={formik.errors.agama} /> : null} */}
-                        <RegisterDokterButton>Lanjut</RegisterDokterButton>
+                     <form onSubmit={form1.handleSubmit} className="flex flex-col gap-8">
+                        <div>
+                           <input type="email" name="email" placeholder="Alamat Email" className={input_variants({ variant: "default" })} value={form1.values.email} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.email && form1.errors.email ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.email}</p> : null}
+                        </div>
+                        <div>
+                           <input type="text" placeholder="Nama Lengkap" className={input_variants({ variant: "default" })} name="namaLengkap" value={form1.values.namaLengkap} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.namaLengkap && form1.errors.namaLengkap ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.namaLengkap}</p> : null}
+                        </div>
+                        {/* {form1.errors.namaLengkap ? <ErrorMessage errorMessage={form1.errors.namaLengkap} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="NIK" className={input_variants({ variant: "default" })} name="nik" value={form1.values.nik} onChange={form1.handleChange} onBlur={form1.handleBlur} error={form1.touched.nik && form1.errors.nik} />
+                           {form1.touched.nik && form1.errors.nik ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.nik}</p> : null}
+                        </div>
+                        {/* {form1.errors.n1 ? <ErrorMessage errorMessage={form1.errors.n1} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="Jenis Kelamin" className={input_variants({ variant: "default" })} name="jenisKelamin" value={form1.values.jenisKelamin} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.jenisKelamin && form1.errors.jenisKelamin ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.jenisKelamin}</p> : null}
+                        </div>
+                        {/* {form1.errors.jenisKelamin ? <ErrorMessage errorMessage={form1.errors.jenisKelamin} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="Tempat Lahir" className={input_variants({ variant: "default" })} name="tempatLahir" value={form1.values.tempatLahir} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.tempatLahir && form1.errors.tempatLahir ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.tempatLahir}</p> : null}
+                        </div>
+                        {/* {form1.errors.tempatLahir ? <ErrorMessage errorMessage={form1.errors.tempatLahir} /> : null} */}
+                        <div>
+                           <input type="date" placeholder="Tanggal Lahir" className={input_variants({ variant: "default" })} name="tanggalLahir" value={form1.values.tanggalLahir} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.tanggalLahir && form1.errors.tanggalLahir ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.tanggalLahir}</p> : null}
+                        </div>
+                        {/* {form1.errors.tanggalLahir ? <ErrorMessage errorMessage={form1.errors.tanggalLahir} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="Agama" className={input_variants({ variant: "default" })} name="agama" value={form1.values.agama} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.agama && form1.errors.agama ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.agama}</p> : null}
+                        </div>
+                        {/* {form1.errors.agama ? <ErrorMessage errorMessage={form1.errors.agama} /> : null} */}
+                        <RegisterDokterButton type="submit">Lanjut</RegisterDokterButton>
                      </form>
                   )}
                   {index === 1 && (
-                     <form onSubmit={() => {
-                        formik.handleSubmit()
-                        setIndex(2)
-                     }} className="flex flex-col gap-8">
-                        <Input
-                           type="text"
-                           placeholder="Asal Universitas 1*"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="asalUniversitas1"
-                           value={formik.values.asalUniversitas1}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
+                     <form onSubmit={form2.handleSubmit} className="flex flex-col gap-8">
+                        <div>
+                           <input type="text" placeholder="Asal Universitas 1*" className={input_variants({ variant: "default" })} name="asalUniversitas1" value={form2.values.asalUniversitas1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.asalUniversitas1 && form2.errors.asalUniversitas1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.asalUniversitas1}</p> : null}
+                        </div>
                         {/* {formik.errors.asalUniversitas1 ? <ErrorMessage errorMessage={formik.errors.asalUniversitas1} /> : null} */}
-                        <Input
-                           type="text"
-                           placeholder="Jurusan*"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="jurusan1"
-                           value={formik.values.jurusan1}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        {/* {formik.errors.jurusan1 ? <ErrorMessage errorMessage={formik.errors.jurusan1} /> : null} */}
-                        <Input
-                           type="number"
-                           placeholder="Tahun Lulus*"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="tahunLulus1"
-                           value={formik.values.tahunLulus1}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        {/* {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null} */}
-                        <Input
-                           type="text"
-                           placeholder="Asal Universitas 2"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="asalUniversitas2"
-                           value={formik.values.asalUniversitas2}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        <Input
-                           type="text"
-                           placeholder="Jurusan"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="jurusan2"
-                           value={formik.values.jurusan2}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        <Input
-                           type="number"
-                           placeholder="Tahun Lulus"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="tahunLulus2"
-                           value={formik.values.tahunLulus2}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        <Input
-                           type="text"
-                           placeholder="Tempat Praktik Sekarang"
-                           className={input_variants({ variant: "dokter_login" })}
-                           name="tempatPraktikSekarang"
-                           value={formik.values.tempatPraktikSekarang}
-                           onChange={formik.handleChange}
-                           onBlur={formik.handleBlur}
-                        />
-                        {/* {formik.errors.tahunLulus1 ? <ErrorMessage errorMessage={formik.errors.tahunLulus1} /> : null} */}
-                        <RegisterDokterButton>Lanjut</RegisterDokterButton>
+                        <div>
+                           <input type="text" placeholder="Jurusan*" className={input_variants({ variant: "default" })} name="jurusan1" value={form2.values.jurusan1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.jurusan1 && form2.errors.jurusan1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.jurusan1}</p> : null}
+                        </div>
+                        {/* {form2.errors.jurusan1 ? <ErrorMessage errorMessage={form2.errors.jurusan1} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="Tahun Lulus*" className={input_variants({ variant: "default" })} name="tahunLulus1" value={form2.values.tahunLulus1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.tahunLulus1 && form2.errors.tahunLulus1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus1}</p> : null}
+                        </div>
+                        {/* {form2.errors.tahunLulus1 ? <ErrorMessage errorMessage={form2.errors.tahunLulus1} /> : null} */}
+                        <div>
+                           <input type="text" placeholder="Asal Universitas 2" className={input_variants({ variant: "default" })} name="asalUniversitas2" value={form2.values.asalUniversitas2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.asalUniversitas2 && form2.errors.tahunLulus2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus2}</p> : null}
+                        </div>
+                        <div>
+                           <input type="text" placeholder="Jurusan" className={input_variants({ variant: "default" })} name="jurusan2" value={form2.values.jurusan2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.jurusan2 && form2.errors.jurusan2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.jurusan2}</p> : null}
+                        </div>
+                        <div>
+                           <input type="text" placeholder="Tahun Lulus" className={input_variants({ variant: "default" })} name="tahunLulus2" value={form2.values.tahunLulus2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.tahunLulus2 && form2.errors.tahunLulus2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus2}</p> : null}
+                        </div>
+                        <div>
+                           <input type="text" placeholder="Tempat Praktik Sekarang" className={input_variants({ variant: "default" })} name="tempatPraktikSekarang" value={form2.values.tempatPraktikSekarang} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.tempatPraktikSekarang && form2.errors.tempatPraktikSekarang ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tempatPraktikSekarang}</p> : null}
+                        </div>
+                        <div>
+                           <input type="text" placeholder="No STR*" className={input_variants({ variant: "default" })} name="noSTR" value={form2.values.noSTR} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.noSTR && form2.errors.noSTR ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.noSTR}</p> : null}
+                        </div>
+                        {/* {form2.errors.tahunLulus1 ? <ErrorMessage errorMessage={form2.errors.tahunLulus1} /> : null} */}
+                        <RegisterDokterButton type="submit">Lanjut</RegisterDokterButton>
                      </form>
                   )}
                   {index === 2 && (
-                     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+                     <form onSubmit={form3.handleSubmit} className="flex flex-col gap-4">
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Curriculum Vitae (CV)</p>
                            <p className="text-[12px] font-normal text-gray-500 float-left">Unggah CV dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                           <InputFileDaftarCv 
-                              value={formik.values.cv}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                           />
-                           {/* {formik.errors.cv ? <ErrorMessage errorMessage={formik.errors.cv} /> : null} */}
+                           <InputFileDaftarCv value={form3.values.cv} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+
+                           {/* {form3.errors.cv ? <ErrorMessage errorMessage={form3.errors.cv} /> : null} */}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Ijazah</p>
                            <p className="text-[12px] font-normal text-gray-500 float-left">Jadikan satu file dan unggah ijazah dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                           <InputFileDaftarIjasah 
-                              value={formik.values.ijasah}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                           />
-                           {/* {formik.errors.ijasah ? <ErrorMessage errorMessage={formik.errors.ijasah} /> : null} */}
+                           <InputFileDaftarIjasah value={form3.values.ijasah} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           {/* {form3.errors.ijasah ? <ErrorMessage errorMessage={form3.errors.ijasah} /> : null} */}
                         </div>
                         <div>
                            <div className="max-w-sm">
                               <p className="text-[18px] font-semibold font-poppins float-left">STR Aktif</p>
                               <p className="text-[12px] font-normal text-gray-500 float-left">Unggah STR dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
                            </div>
-                           <InputFileDaftarStr 
-                              value={formik.values.strAktif}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                           />
-                           {/* {formik.errors.strAktif ? <ErrorMessage errorMessage={formik.errors.strAktif} /> : null} */}
+                           <InputFileDaftarStr value={form3.values.strAktif} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           {/* {form3.errors.strAktif ? <ErrorMessage errorMessage={form3.errors.strAktif} /> : null} */}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">SIP (Surat Izin Praktek)</p>
                            <p className="text-[12px] font-normal text-gray-500 float-left">Unggah SIP dalam bentuk pdf dengan ukuranmaksimal 2 MB</p>
-                           <InputFileDaftarSip 
-                              value={formik.values.sip}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                           />
-                           {/* {formik.errors.sip ? <ErrorMessage errorMessage={formik.errors.sip} /> : null} */}
+                           <InputFileDaftarSip value={form3.values.sip} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           {/* {form3.errors.sip ? <ErrorMessage errorMessage={form3.errors.sip} /> : null} */}
                         </div>
                         <div className="mt-4 w-full flex flex-col justify-center">
                            <RegisterDokterButton onClick={handleFormSubmit}>Daftar</RegisterDokterButton>

@@ -17,7 +17,8 @@ export default function Login() {
          password: "",
       },
       onSubmit: (values) => {
-         alert(JSON.stringify(values, null, 2));
+         // alert(JSON.stringify(values, null, 2));
+         router.push("/dashboard-dokter");
       },
    });
 
@@ -30,18 +31,14 @@ export default function Login() {
          <section className="flex bg-gray-500 min-screen-2xl h-screen">
             <HeroLogin />
             <div className="w-1/2 bg-neutral-0 flex flex-col justify-center">
-               <a href="#" className="absolute top-20 ml-5">
-                  <ArrowBackIcon2 width="60" height="60" />
-               </a>
-
                <div className="w-[480px] flex flex-col gap-8 mx-auto text-center">
                   <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Area Dokter</p>
                   <form onSubmit={formik.handleSubmit} className="flex flex-col gap-8">
                      <InputNew type="email" label="Email" name="email" onHandleChange={formik.handleChange} value={formik.values.email} />
-                     {formik.errors.email ? <ErrorMessage errorMessage={formik.errors.password} /> : null}
+                     {/* {formik.errors.email ? <ErrorMessage errorMessage={formik.errors.password} /> : null} */}
                      <InputNew type="password" label="Password" name="password" onHandleChange={formik.handleChange} value={formik.values.password} />
-                     {formik.errors.password ? <ErrorMessage errorMessage={formik.errors.password} /> : null}
-                     <LoginDokterButton>Log In</LoginDokterButton>
+                     {/* {formik.errors.password ? <ErrorMessage errorMessage={formik.errors.password} /> : null} */}
+                     <LoginDokterButton type="submit">Log In</LoginDokterButton>
                      <button onClick={handleLupaPassword} className="text-left font-poppins font-[700] text-[12px] text-web-green-500">
                         Lupa kata sandi?
                      </button>

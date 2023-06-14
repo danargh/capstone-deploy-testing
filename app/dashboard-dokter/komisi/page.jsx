@@ -1,56 +1,19 @@
-"use client";
+'use client';
+import React from 'react';
+import useSWR from 'swr';
+import { FilterButton } from '@/components/ui/Button';
 
-import { FilterButton } from "@/components/ui/Button";
-import Footer from "@/components/ui/Footer";
-import NavbarDokter from "@/components/ui/NavbarDokter";
-import { TabelHistory, TableOrder } from "@/components/ui/Table";
-import React from "react";
+import { TabelHistory, TableOrder } from '@/components/ui/Table';
 
-function page() {
-   const dataOrders = [
-      {
-         date: "12/05/2023",
-         order: "6",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "5",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "2",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "6",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "1",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "3",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-      {
-         date: "12/05/2023",
-         order: "15",
-         komisi: "Rp. 400.000",
-         tax: "-Rp. 12.500",
-      },
-   ];
+// Membuat fungsi fetcher
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+function Page() {
+   const { data: dataOrders, error } = useSWR('https://648915770e2469c038fe9b25.mockapi.io/komisi/komisi', fetcher);
+
+   if (error) return <div>Gagal memuat data...</div>;
+   if (!dataOrders) return <div>Memuat data...</div>;
+
    return (
       <>
          <div className=" max-w-[1440px] mx-auto px-[32px] bg-neutral-10 pt-[50px]">
@@ -63,4 +26,4 @@ function page() {
    );
 }
 
-export default page;
+export default Page;
