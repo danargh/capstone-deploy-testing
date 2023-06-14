@@ -1,69 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import Swal from "sweetalert2";
-
-const dataDokter = [
-   {
-      id: 1,
-      nama: "Dr. Fauzan Hakim, M.Psi,Psi",
-      email: "EmailDokter@gmail.com",
-      penarikan: "Rp. 1.000.000",
-      tanggal: new Date().toLocaleDateString(),
-      status: "Diterima",
-   },
-   {
-      id: 2,
-      nama: "Dr. Fauzan Hakim, M.Psi,Psi",
-      email: "EmailDokter@gmail.com",
-      penarikan: "Rp. 1.000.000",
-      tanggal: new Date().toLocaleDateString(),
-      status: "Menunggu",
-   },
-   {
-      id: 3,
-      nama: "Dr. Fauzan Hakim, M.Psi,Psi",
-      email: "EmailDokter@gmail.com",
-      penarikan: "Rp. 1.000.000",
-      tanggal: new Date().toLocaleDateString(),
-      status: "Diterima",
-   },
-   {
-      id: 4,
-      nama: "Dr. Fauzan Hakim, M.Psi,Psi",
-      email: "EmailDokter@gmail.com",
-      penarikan: "Rp. 1.000.000",
-      tanggal: new Date().toLocaleDateString(),
-      status: "Diterima",
-   },
-];
+import useSWR from "swr";
 
 export default function ReqWithdraw() {
-   const [dokter, setDokter] = useState(dataDokter);
+   // const [dokter, setDokter] = useState(dataDokter);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(2);
+   const [itemsPerPage] = useState(5);
 
-   const totalpages = dokter.length / itemsPerPage;
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://642f8c91b289b1dec4b50531.mockapi.io/withdraw", fetcher, {});
+
+   const totalpages = dataWithdraw?.length / itemsPerPage;
 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      return dokter.slice(startIndex, endIndex);
+      return dataWithdraw?.slice(startIndex, endIndex);
    };
 
    const handlePageChange = (pageNumber) => {
       setCurrentPage(pageNumber);
    };
 
-   const handleApproved = (id) => {
-      const newDokter = dokter.map((dokter) => {
-         if (dokter.id === id) {
-            dokter.status = "Diterima";
+   const handleApproved = async (id) => {
+      try {
+         const newDataWithdraw = dataWithdraw.map((data) => {
+            if (data.id === id) {
+               data.status = "accepted";
+            }
+            return data;
+         });
+         const index = newDataWithdraw.findIndex((data) => data.id === id);
+
+         const response = await fetch(`https://642f8c91b289b1dec4b50531.mockapi.io/withdraw/${id}`, {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newDataWithdraw[index]),
+         });
+
+         if (response.ok) {
+            mutateDataWithdraw(newDataWithdraw, true);
+            // Swal.fire("Diterima!", "Penarikan telah diterima.", "success");
+         } else {
+            throw new Error("Gagal menghapus data");
          }
-         return dokter;
-      });
-      setDokter(newDokter);
+      } catch (error) {
+         Swal.fire("Terjadi kesalahan", error.message, "error");
+      }
    };
 
    const handleDenied = (id) => {
@@ -75,9 +63,26 @@ export default function ReqWithdraw() {
          cancelButtonColor: "grey",
          confirmButtonText: "Ya",
          cancelButtonText: "Tidak",
-      }).then(() => {
-         const newDokter = dokter.filter((dokter) => dokter.id !== id);
-         setDokter(newDokter);
+      }).then(async (result) => {
+         if (result.isConfirmed) {
+            try {
+               const response = await fetch(`https://642f8c91b289b1dec4b50531.mockapi.io/withdraw/${id}`, {
+                  method: "DELETE",
+               });
+
+               if (response.ok) {
+                  const updatedData = dataWithdraw.filter((data) => data.id !== id);
+                  mutateDataWithdraw(updatedData, false);
+                  // Swal.fire("Terhapus!", "Data telah dihapus.", "success");
+               } else {
+                  throw new Error("Gagal menghapus data");
+               }
+            } catch (error) {
+               Swal.fire("Terjadi kesalahan", error.message, "error");
+            }
+         } else {
+            return;
+         }
       });
    };
 
@@ -96,27 +101,27 @@ export default function ReqWithdraw() {
                <thead className="bg-[#7CA153] text-center font-inter font-[600] text-[16px] leading-[48px] text-white">
                   <tr>
                      <th>No</th>
-                     <th>Nama hokter</th>
-                     <th>Email hokter</th>
+                     <th>Nama Dokter</th>
+                     <th>Email Dokter</th>
                      <th>Penarikan</th>
                      <th>Tanggal</th>
                      <th>Aksi</th>
                   </tr>
                </thead>
                <tbody>
-                  {PaginatedData().map((dokter, index) => (
+                  {PaginatedData()?.map((data, index) => (
                      <tr key={index} className="bg-white border-[#A9BFB4] border-2 text-center font-poppins font-[400] text-[14px] leading-[48px]">
-                        <td className="border-2 border-[#A9BFB4]">{dokter.id}</td>
-                        <td className="border-2 border-[#A9BFB4]">{dokter.nama}</td>
-                        <td className="border-2 border-[#A9BFB4]">{dokter.email}</td>
-                        <td className="border-2 border-[#A9BFB4]">{dokter.penarikan}</td>
-                        <td className="border-2 border-[#A9BFB4]">{dokter.tanggal}</td>
+                        <td className="border-2 border-[#A9BFB4]">{index + 1}</td>
+                        <td className="border-2 border-[#A9BFB4]">{data.fullName}</td>
+                        <td className="border-2 border-[#A9BFB4]">{data.email}</td>
+                        <td className="border-2 border-[#A9BFB4]">{data.withdraw}</td>
+                        <td className="border-2 border-[#A9BFB4]">{data.date}</td>
                         <td className="py-[6px] flex gap-[28px] justify-center border-[#A9BFB4]">
-                           {dokter.status === "Menunggu" ? (
+                           {data.status === "waiting" ? (
                               <>
                                  <button
                                     onClick={() => {
-                                       handleApproved(dokter.id);
+                                       handleApproved(data.id);
                                     }}
                                     className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
                                  >
@@ -124,30 +129,21 @@ export default function ReqWithdraw() {
                                  </button>
                                  <button
                                     onClick={() => {
-                                       handleDenied(dokter.id);
+                                       handleDenied(data.id);
                                     }}
                                     className="text-white px-6 bg-[#A12D28] rounded-[5px]"
                                  >
                                     Tolak
                                  </button>
                               </>
-                           ) : dokter.status === "Diterima" ? (
+                           ) : (
                               <div
                                  onClick={() => {
-                                    handleApproved(dokter.id);
+                                    handleApproved(data.id);
                                  }}
                                  className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
                               >
                                  Diterima
-                              </div>
-                           ) : (
-                              <div
-                                 onClick={() => {
-                                    handleDenied(dokter.id);
-                                 }}
-                                 className="text-white px-6 bg-[#A12D28] rounded-[5px]"
-                              >
-                                 Ditolak
                               </div>
                            )}
                         </td>

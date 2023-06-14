@@ -14,7 +14,7 @@ export default function page() {
    };
    return (
       <>
-         <div className="bg-[#F8FFF1] h-[1080px] ">
+         <div className="bg-[#F8FFF1] h-screen">
             <div className="pt-[210px] max-w-[1440px] mx-auto">
                <Image src={Logo} className="w-[540px] h-[102px] mx-auto rounded-xl" />
                <div className="bg-white w-[550px] h-auto mx-auto mt-[79px] ">
@@ -22,7 +22,6 @@ export default function page() {
                      <InputNew type="email" label="Email" />
                      <InputNew type="password" label="Password" />
                      <button className="w-full bg-[#577536] h-[56px] text-white rounded-xl mt-[10px]" onClick={""}>
-                        {" "}
                         Masuk
                      </button>
 
