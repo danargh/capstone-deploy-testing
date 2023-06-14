@@ -33,7 +33,7 @@ export default function Home() {
                     {articles && articles.slice(firstPostIndex, lastPostIndex).map((article, index) => (
                         <Card
                             key={index}
-                            images={detailArtikel}
+                            images={article.img}
                             title={article.title}
                             description={article.description}
                             postId={1}
