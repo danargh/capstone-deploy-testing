@@ -1,20 +1,23 @@
-"use client";
+"use client"
 import SidebarAdmin from "@/components/ui/SidebarAdmin";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import useSWR from 'swr'
 import Swal from "sweetalert2";
 import PaginationDok from "@/components/PaginationDok";
 
 export default function DaftarDokter({ params }) {
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
-   const [pengguna, setPengguna] = useState([]);
    const [selectedId, setSelectedId] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(10);
 
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+
+   const { data: pengguna, mutate } = useSWR("https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter", fetcher);
+
    useEffect(() => {
-      axios.get("https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter").then((response) => setPengguna(response.data));
+      mutate();
    }, []);
 
    const handleDelete = (id) => {
@@ -28,12 +31,13 @@ export default function DaftarDokter({ params }) {
          cancelButtonText: "Tidak",
       }).then((result) => {
          if (result.isConfirmed) {
-            axios
-               .delete(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter/${id}`)
+            fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter/${id}`, {
+               method: 'DELETE',
+            })
                .then(() => {
                   Swal.fire("Data berhasil dihapus", "", "success");
                   // Mengupdate data pengguna setelah penghapusan
-                  setPengguna(pengguna.filter((pengguna) => pengguna.id !== id));
+                  mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
                })
                .catch((error) => {
                   Swal.fire("Terjadi kesalahan", error.message, "error");
@@ -47,10 +51,10 @@ export default function DaftarDokter({ params }) {
    };
 
    const handleSearch = () => {
-      axios
-         .get(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter?search=${searchKeyword}`)
-         .then((response) => {
-            setPengguna(response.data);
+      fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter?search=${searchKeyword}`)
+         .then((response) => response.json())
+         .then((data) => {
+            mutate(data, false);
          })
          .catch((error) => {
             console.log(error);
@@ -103,6 +107,12 @@ export default function DaftarDokter({ params }) {
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
+      
+      // Check if dokterMasuk is empty or null
+      if (!pengguna || pengguna.length === 0) {
+         return [];
+      }
+
       return pengguna.slice(startIndex, endIndex);
    };
 
@@ -112,7 +122,6 @@ export default function DaftarDokter({ params }) {
    return (
       <>
          {/* <div className='flex'> */}
-         <SidebarAdmin />
          <div className="p-4 sm:ml-72">
             <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Daftar Dokter</p>
             <div class="flex items-center h-24 mx-16 mt-9">
@@ -169,7 +178,14 @@ export default function DaftarDokter({ params }) {
                </tbody>
             </table>
             <div className="float-right mx-28 mt-11">
-               <PaginationDok currentPage={currentPage} totalItems={pengguna.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+            {pengguna && pengguna.length > 0 ? (
+               <PaginationDok
+                  currentPage={currentPage}
+                  totalItems={pengguna.length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+               />
+            ) : null}
             </div>
          </div>
       </>

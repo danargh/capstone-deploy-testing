@@ -1,17 +1,20 @@
 "use client";
 
 import { useState, useRef } from "react";
-import NavbarDokter from "@/components/ui/NavbarDokter";
-import InputSearch from "@/components/forms/input-search";
 import { AddObatIcon, SearchIcon } from "@/public/assets/icons/icons";
 import ObatItem from "./ObatItem";
+import { useAtom } from "jotai";
+import { dataObat } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const listObat = ["Paracetamol 500mg", "Amoxicillin 3.000mg", "Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"];
 
 export default function ObatDokter() {
+   const [obat, setObat] = useAtom(dataObat);
    const editObatRef = useRef([]);
    const [choosedObat, setChoosedObat] = useState(["Paracetamol"]);
    const [keywordSearch, setKeywordSearch] = useState("");
+   const router = useRouter();
 
    const handleAddObat = (obat) => {
       setChoosedObat([...choosedObat, obat]);
@@ -41,6 +44,12 @@ export default function ObatDokter() {
       return obat.toLowerCase().includes(keywordSearch.toLowerCase());
    });
 
+   const handleSubmitObat = (e) => {
+      e.preventDefault();
+      setObat(choosedObat);
+      router.push("/dashboard-dokter/chat");
+   };
+
    return (
       <>
          <section className="grid grid-cols-2 gap-[46px] text-[#577536] mt-[46px] max-w-[1320px] mx-auto h-[90vh]">
@@ -61,14 +70,16 @@ export default function ObatDokter() {
                   <ul className="mt-[20px]">
                      {keywordSearch === ""
                         ? choosedObat.map((obat, index) => {
-                             return <ObatItem editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })
                         : searchedObat.map((obat, index) => {
-                             return <ObatItem editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })}
                   </ul>
                </div>
-               <button className="w-[220px] font-poppins font-[600] text-[24px] leading-[28px] text-white px-[74px] py-[20px] hover:bg-web-green-400 hover:shadow-md bg-web-green-300 rounded-[12px]">Lanjut</button>
+               <button onClick={handleSubmitObat} className="w-[220px] font-poppins font-[600] text-[24px] leading-[28px] text-white px-[74px] py-[20px] hover:bg-web-green-400 hover:shadow-md bg-web-green-300 rounded-[12px]">
+                  Lanjut
+               </button>
             </div>
             <div className="bg-[#C7E8AF] rounded-[5px] px-[24px] pb-[38px] pt-[16px]">
                <h2 className="font-poppins font-[700] text-[24px] leading-[36px] text-[#577536] mb-[38px]">Daftar Obat</h2>

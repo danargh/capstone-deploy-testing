@@ -1,14 +1,35 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
+
 import logoHelp from "../../public/assets/logo/logo-p-help.png";
 import navbarHelp from "../../public/assets/images/navbar-help.png";
 import { button_variants, input_variants } from "@/components/custom/custom";
-import { MailIcon, QuestionHelp } from "@/public/assets/icons/icons";
+import {
+   ArrowBackHelpIcon,
+   MailIcon,
+   QuestionHelp,
+} from "@/public/assets/icons/icons";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 function layout({ children }) {
+   const inputRef = useRef(null);
+   const router = useRouter();
+   const handleSearch = () => {
+      const value = inputRef.current.value;
+      inputRef.current.value = null;
+      router.push(`/help/search?q=${value}`);
+   };
+
+   const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+         handleSearch();
+      }
+   };
    return (
       <>
-         <div className="bg-web-green-300 mb-28">
+         <div className="bg-web-green-300 ">
             <div className="max-w-[1440px] mx-auto flex flex-col justify-between items-center py-3 sm:flex-row">
                <div className="flex items-center gap-3">
                   <Image
@@ -44,11 +65,23 @@ function layout({ children }) {
                         id="simple-search"
                         className={`${input_variants()} bg-web-green-300 border-white ps-14`}
                         placeholder="Search"
+                        ref={inputRef}
+                        onKeyDown={handleKeyDown}
                         required=""
                      />
                   </div>
                   <small>
-                     Pencarian teratas: Masalah log in | Masalah pembayaran
+                     Pencarian teratas:{" "}
+                     <span className="hover:font-medium">
+                        <Link href={"/help/akses-prevent"}>Masalah log in</Link>
+                     </span>{" "}
+                     |{" "}
+                     <span className="hover:font-medium">
+                        <Link href={"/help/harga-pembayaran"}>
+                           {" "}
+                           Masalah pembayaran
+                        </Link>
+                     </span>
                   </small>
                </div>
                <div>
@@ -56,32 +89,47 @@ function layout({ children }) {
                </div>
             </div>
          </div>
+
+         <div className=" max-w-[1440px] mx-auto flex justify-start mb-28 mt-3">
+            <Link href={"/help"}>
+               <ArrowBackHelpIcon />
+            </Link>
+         </div>
          <div>{children}</div>
          <div className="flex flex-col items-center mb-[121px] mt-28 px-5">
             <p className=" font-semibold text-lg">
                Apakah Anda membutuhkan bantuan lebih lanjut?
             </p>
             <div className="flex gap-5 mt-5">
-               <button
-                  className={button_variants({ variant: "outline_primary" })}
-                  style={{
-                     color: "black",
-                     fontWeight: "600",
-                     alignItems: "center",
-                  }}
-               >
-                  <QuestionHelp fill="black" /> Hubungi Kami
-               </button>
-               <button
-                  className={button_variants({ variant: "outline_primary" })}
-                  style={{
-                     color: "black",
-                     fontWeight: "600",
-                     alignItems: "center",
-                  }}
-               >
-                  <MailIcon fill="black" /> Email kami
-               </button>
+               <Link href="https://wa.me/081775262221" target="_blank">
+                  <button
+                     className={button_variants({
+                        variant: "outline_primary",
+                     })}
+                     style={{
+                        color: "black",
+                        fontWeight: "600",
+                        alignItems: "center",
+                     }}
+                  >
+                     <QuestionHelp fill="black" /> Hubungi Kami
+                  </button>
+               </Link>
+
+               <Link href="mailto:melkijonathan2@gmail.com">
+                  <button
+                     className={button_variants({
+                        variant: "outline_primary",
+                     })}
+                     style={{
+                        color: "black",
+                        fontWeight: "600",
+                        alignItems: "center",
+                     }}
+                  >
+                     <MailIcon fill="black" /> Email kami
+                  </button>
+               </Link>
             </div>
          </div>
       </>

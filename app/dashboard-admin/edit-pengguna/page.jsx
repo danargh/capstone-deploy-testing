@@ -1,21 +1,23 @@
 "use client";
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import useSWR, { mutate } from 'swr'
 import PaginationDok from "@/components/PaginationDok";
 
 export default function DokterMasuk({ params }) {
    const [alasanPenolakan, setAlasanPenolakan] = useState("");
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
-   const [dokterMasuk, setDokterMasuk] = useState([]);
+   // const [dokterMasuk, setDokterMasuk] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(10);
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+
+   const { data: dokterMasuk, mutate } = useSWR('https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk', fetcher);
 
    useEffect(() => {
-      axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
+      mutate();
    }, []);
 
    const handleSearchKeywordChange = (event) => {
@@ -23,73 +25,96 @@ export default function DokterMasuk({ params }) {
    };
 
    const handleSearch = () => {
-      axios
-         .get(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchKeyword}`)
-         .then((response) => {
-            setDokterMasuk(response.data);
-         })
-         .catch((error) => {
-            console.log(error);
-         });
+      fetch(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchKeyword}`)
+      .then((response) => response.json())
+      .then((data) => {
+         mutate(data, false);
+      })
+      .catch((error) => {
+         console.log(error);
+      });
    };
 
    const handleTolak = (id) => {
-      Swal.fire({
-         title: "Alasan Penolakan",
-         icon: "warning",
-         input: "text",
-         inputLabel: "Masukkan alasan penolakan",
-         showCancelButton: true,
-         confirmButtonColor: "#8E1E18",
-         confirmButtonText: "Tolak",
-         cancelButtonText: "Batal",
-         inputValidator: (value) => {
-            if (!value) {
-               return "Mohon masukkan alasan penolakan";
-            }
-         },
-      }).then((result) => {
-         if (result.isConfirmed) {
-            const alasan = result.value;
-            // Mengirim permintaan HTTP ke backend untuk menyimpan alasan penolakan
-            axios
-               .put(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, { alasanPenolakan: alasan, status: "Ditolak" })
-               .then((response) => {
-                  // Berhasil menyimpan alasan penolakan
-                  // Lakukan tindakan yang diperlukan, misalnya memperbarui tampilan atau memberikan umpan balik kepada pengguna
-                  Swal.fire("Berhasil!", "Dokter ditolak.", "success");
-                  // Refresh data dokter setelah ditolak
-                  axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
-               })
-               .catch((error) => {
-                  // Menangani kesalahan jika permintaan gagal
-                  console.log(error);
-                  Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
-               });
+   Swal.fire({
+      title: 'Alasan Penolakan',
+      icon: 'warning',
+      input: 'text',
+      inputLabel: 'Masukkan alasan penolakan',
+      showCancelButton: true,
+      confirmButtonColor: '#8E1E18',
+      confirmButtonText: 'Tolak',
+      cancelButtonText: 'Batal',
+      inputValidator: (value) => {
+         if (!value) {
+            return 'Mohon masukkan alasan penolakan';
          }
+      },
+   }).then((result) => {
+      if (result.isConfirmed) {
+         const alasan = result.value;
+         fetch(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, {
+            method: 'PUT',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ alasanPenolakan: alasan, status: 'Ditolak' }),
+         })
+            .then((response) => response.json())
+            .then((data) => {
+               Swal.fire('Berhasil!', 'Dokter ditolak.', 'success');
+               fetch('https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk', fetcher)
+                  .then((response) => response.json())
+                  .then((data) => {
+                     setDokterMasuk(data);
+                  })
+                  .catch((error) => {
+                     console.log(error);
+                  });
+            })
+            .catch((error) => {
+               console.log(error);
+               Swal.fire('Oops!', 'Terjadi kesalahan. Mohon coba lagi.', 'error');
+            });
+      }
       });
    };
 
    const handleVerifikasi = (id) => {
-      // Send HTTP request to update verification status
-      axios
-         .put(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, { status: "Terverifikasi" })
-         .then((response) => {
-            // Handle successful verification
-            Swal.fire("Berhasil!", "Dokter terverifikasi.", "success");
-            // Refresh data dokter setelah diverifikasi
-            axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
-         })
-         .catch((error) => {
-            // Handle error
-            console.log(error);
-            Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
-         });
+   fetch(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status: 'Terverifikasi' }),
+   })
+      .then((response) => response.json())
+      .then((data) => {
+         Swal.fire('Berhasil!', 'Dokter terverifikasi.', 'success');
+         fetch('https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk', fetcher)
+            .then((response) => response.json())
+            .then((data) => {
+               setDokterMasuk(data);
+            })
+            .catch((error) => {
+               console.log(error);
+            });
+      })
+      .catch((error) => {
+         console.log(error);
+         Swal.fire('Oops!', 'Terjadi kesalahan. Mohon coba lagi.', 'error');
+      });
    };
 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
+      
+      // Check if dokterMasuk is empty or null
+      if (!dokterMasuk || dokterMasuk.length === 0) {
+         return [];
+      }
+
       return dokterMasuk.slice(startIndex, endIndex);
    };
 
@@ -99,7 +124,7 @@ export default function DokterMasuk({ params }) {
    return (
       <>
          {/* <div className='flex'> */}
-         <SidebarAdmin />
+
          <div className="p-4 sm:ml-72 w-full">
             <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Pendaftaran Dokter</p>
             <div class="flex items-center h-24 mx-16 mt-9">
@@ -124,9 +149,9 @@ export default function DokterMasuk({ params }) {
                         Cari
                      </button>
                   </div>
-                  <Link href="/edit-pengguna/daftar-dokter">
+                  <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">
                      <button className="w-32 h-11 bg-web-green-300 text-white rounded ">
-                        <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">Daftar Dokter</Link>
+                        Daftar Dokter
                      </button>
                   </Link>
                </div>
@@ -179,7 +204,14 @@ export default function DokterMasuk({ params }) {
                </tbody>
             </table>
             <div className="float-right mt-11">
-               <PaginationDok currentPage={currentPage} totalItems={dokterMasuk.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+           {dokterMasuk && dokterMasuk.length > 0 ? (
+               <PaginationDok
+                  currentPage={currentPage}
+                  totalItems={dokterMasuk.length}
+                  itemsPerPage={itemsPerPage}
+                  onPageChange={handlePageChange}
+               />
+            ) : null}
             </div>
          </div>
       </>

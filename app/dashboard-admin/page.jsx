@@ -1,12 +1,11 @@
-import SidebarAdmin from '@/components/ui/SidebarAdmin';
-import { AdminArtikelIcon, AdminArtikelTinjauIcon, AdminArtikelUnggahIcon, AdminDokterIcon, AdminDokterRegisterIcon, AdminUserIcon } from '@/public/assets/icons/icons';
-import React from 'react';
+import { AdminArtikelIcon, AdminArtikelTinjauIcon, AdminArtikelUnggahIcon, AdminDokterIcon, AdminDokterRegisterIcon, AdminUserIcon } from "@/public/assets/icons/icons";
+import React from "react";
 
 export default function page() {
    return (
       <>
-         <SidebarAdmin>
-            <div className="bg-[#F8FFF1] pl-[313px] max-w-full max-h-[1080px] mx-auto">
+         <div className="bg-[#F8FFF1] h-screen w-screen">
+            <div className=" pl-[313px] max-w-full max-h-[1080px] mx-auto">
                <div className="flex">
                   <div className=" pl-[68px]">
                      <p className="pt-[57px] font-poppins font-bold text-[#577536] text-lg">Dashboard</p>
@@ -46,7 +45,7 @@ export default function page() {
                   </div>
                </div>
             </div>
-         </SidebarAdmin>
+         </div>
       </>
    );
 }

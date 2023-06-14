@@ -38,7 +38,7 @@ const navLinks = [
    {
       name: "Keluar",
       icon: "/assets/icons/logout-icon.svg",
-      href: "/dashboard-admin/admin",
+      href: "/login-admin",
       width: 48,
       height: 48,
    },

@@ -38,10 +38,12 @@ export default function DetailArticle({ params }) {
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),
          };
+         commentTextRef.current.value = "";
+         firstNameRef.current.value = "";
+         lastNameRef.current.value = "";
          return [...prevComment, newComment];
       });
    };
-   console.log(comment);
 
    return (
       <>
@@ -49,15 +51,11 @@ export default function DetailArticle({ params }) {
          <article className="mt-[62px] mb-[142px]">
             <header className="w-[1440px] mx-auto">
                <h1 className="font-poppins font-[600] text-[32px] leading-[52px]">Copy Artikel / Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya</h1>
-               <div className="flex gap-6 font-inter text-[16px] leading-[18px] font-[400] mt-6">
-                  <p className="flex items-center gap-[14px]">
-                     <PersonIcon fill="black" />
-                     <span>Juragan</span>
-                  </p>
-                  <p className="flex items-center gap-[14px]">
-                     <ClockIcon fill="black" />
-                     <span>Rabu, 1 Maret 2023</span>
-                  </p>
+               <div className="flex flex-col gap-[22px] font-inter text-[16px] leading-[18px] font-[400] mt-6">
+                  <div className="p-[8px] bg-[#E2F0DC] rounded-[3px] max-w-[202px]">
+                     <p className="font-poppins font-[600] text-[20px] leading-[30px] text-[#7CA153]">Kesehatan Mental</p>
+                  </div>
+                  <p className="font-poppins font-[400] text-[16px] leading-[24px] italic">Dibuat Oleh: Dr. Fauzan Hakim M.Psi.Psi 25 Mei 2023</p>
                </div>
             </header>
             <Image priority alt="images" className="w-full mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
@@ -93,10 +91,10 @@ export default function DetailArticle({ params }) {
                      <h2 className="w-[500px] text-right">Breakdown Perkaraka Terjadinya COVID-19</h2>
                   </div>
                   <div className="flex justify-between mt-[18px]">
-                     <Link href={`/article/${params.id - 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
+                     <Link href={`/article/${parseInt(params.id) - 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
                         Post Sebelumnya
                      </Link>
-                     <Link href={`/article/${params.id + 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
+                     <Link href={`/article/${parseInt(params.id) + 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
                         Post Selanjutnya
                      </Link>
                   </div>
@@ -116,13 +114,13 @@ export default function DetailArticle({ params }) {
                      </div>
                   </div>
                ))}
-               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+               <form onSubmit={handleSubmit} className="flex flex-col gap-9">
                   <div>
                      <textarea
                         ref={commentTextRef}
                         id="message"
                         rows="4"
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block p-2.5 w-full h-[312px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Comment"
                         required
                      ></textarea>

@@ -10,8 +10,11 @@ import GopayLogo from "public/assets/images/gopay.png";
 import DanaLogo from "public/assets/images/dana.png";
 import LinkAjaLogo from "public/assets/images/link-aja.png";
 import ShopeePayLogo from "public/assets/images/shopee-pay.png";
+import useWithdrawal from "@/components/atoms/useWithdrawal";
 
 export default function WithdrawMethodControl() {
+   const { handleWithdrawalSteps } = useWithdrawal();
+
    const [isBankOpen, setIsBankOpen] = useState(false);
    const [isVWalletOpen, setIsVWalletOpen] = useState(false);
    const [selectedWithdrawOption, setWithdrawOption] = useState("");
@@ -397,7 +400,10 @@ export default function WithdrawMethodControl() {
                      </div>
                   </div>
                )}
-               <button className="font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative">
+               <button
+                  className="font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative"
+                  onClick={handleWithdrawalSteps}
+               >
                   Lanjutkan
                </button>
             </div>
