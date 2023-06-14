@@ -1,6 +1,5 @@
 "use client";
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import useSWR, { mutate } from 'swr'
