@@ -90,7 +90,7 @@ export default function SuksesWithdrawBank() {
                   </div>
                </div>
                <div className="mb-[150px]">
-                  <TutupWithdrawButton>Tutup</TutupWithdrawButton>
+                  <TutupWithdrawButton><Link href={`/dashboard-dokter`}>Tutup</Link></TutupWithdrawButton>
                </div>
             </div>
          ))}

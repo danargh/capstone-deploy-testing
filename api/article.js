@@ -1,8 +1,10 @@
+import { atom, useAtom } from "jotai";
 import useSWR, { mutate } from "swr";
 
 // Fix Later
 
-const authToken = "lorem ipsum";
+const authToken = atom("loremIpsum");
+
 export const fetcher = (url) =>
    fetch(url, {
       headers: {
