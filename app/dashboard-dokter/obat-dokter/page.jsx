@@ -3,18 +3,19 @@
 import { useState, useRef } from "react";
 import { AddObatIcon, SearchIcon } from "@/public/assets/icons/icons";
 import ObatItem from "./ObatItem";
-import { useAtom } from "jotai";
-import { dataObat } from "@/store/store";
+import { namaObatAtom } from "@/components/atoms/useObatDoctor";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import Aos from "aos";
 
 const listObat = ["Paracetamol 500mg", "Amoxicillin 3.000mg", "Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"];
 
 export default function ObatDokter() {
-   const [obat, setObat] = useAtom(dataObat);
    const editObatRef = useRef([]);
    const [choosedObat, setChoosedObat] = useState(["Paracetamol"]);
    const [keywordSearch, setKeywordSearch] = useState("");
    const router = useRouter();
+   const [obat, setObat] = useAtom(namaObatAtom);
 
    const handleAddObat = (obat) => {
       setChoosedObat([...choosedObat, obat]);

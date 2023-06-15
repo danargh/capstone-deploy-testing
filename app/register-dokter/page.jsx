@@ -16,7 +16,7 @@ import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 
 export default function RegisterDokter() {
-   const [index, setIndex] = useState(2);
+   const [index, setIndex] = useState(0);
    const router = useRouter();
 
    const form1 = useFormik({
@@ -32,7 +32,7 @@ export default function RegisterDokter() {
       validationSchema: Yup.object({
          email: Yup.string().email("Email tidak valid").required("Email tidak boleh kosong"),
          namaLengkap: Yup.string().required("Nama lengkap tidak boleh kosong"),
-         nik: Yup.string().min(12, "Jumlah digit harus 12").max(12, "Jumlah digit harus 12").required("NIK tidak boleh kosong"),
+         nik: Yup.string().min(16, "Jumlah digit harus 16").max(16, "Jumlah digit harus 16").required("NIK tidak boleh kosong"),
          jenisKelamin: Yup.string().required("Jenis kelamin tidak boleh kosong"),
          tempatLahir: Yup.string().required("Tempat lahir tidak boleh kosong"),
          tanggalLahir: Yup.string().required("Tanggal lahir tidak boleh kosong"),
@@ -53,6 +53,7 @@ export default function RegisterDokter() {
          jurusan2: "",
          tahunLulus2: "",
          tempatPraktikSekarang: "",
+         noSTR: "",
       },
       validationSchema: Yup.object({
          asalUniversitas1: Yup.string().required("Asal universitas tidak boleh kosong"),
