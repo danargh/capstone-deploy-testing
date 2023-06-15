@@ -1,7 +1,10 @@
 import { atom, useAtom } from "jotai";
 import useSWR, { mutate } from "swr";
-import Swal from "sweetalert2";
 
+// Define the Atoms
+export const WithdrawalStepAtom = atom(1);
+export const selectedDropdownAtom = atom("");
+export const WithdrawalMethodAtom = atom("");
 export const WithdrawalDataAtom = atom([
    {
       name: "",
@@ -12,14 +15,15 @@ export const WithdrawalDataAtom = atom([
       comment: "",
    },
 ]);
-export const WithdrawalStepAtom = atom(1);
 
+// Export necessary functions
 const useWithdrawal = () => {
    const [withdrawalData, setWithdrawalData] = useAtom(WithdrawalDataAtom);
    const [withdrawalStep, setWithdrawalStep] = useAtom(WithdrawalStepAtom);
+   const [withdrawalMethod] = useAtom(WithdrawalMethodAtom);
 
    // Handle form steps
-   const handleWithdrawalSteps = (step) => {
+   const handleWithdrawalSteps = () => {
       setWithdrawalStep(withdrawalStep + 1);
    };
 
@@ -28,7 +32,7 @@ const useWithdrawal = () => {
       const newData = [
          {
             name: "Asep",
-            method: "BCA",
+            method: withdrawalMethod,
             accountnumber: Number(data.accountNumber),
             amount: Number(data.amount),
             message: data.message,
@@ -59,13 +63,6 @@ const useWithdrawal = () => {
          mutate("https://6486902bbeba6297278ee628.mockapi.io/user/withdrawal");
          setWithdrawalData([]);
          setWithdrawalStep(1);
-         // Tampilkan SweetAlert
-         Swal.fire({
-            title: "Berhasil",
-            text: "Success",
-            icon: "success",
-            confirmButtonText: "OK",
-         });
       } catch (error) {
          console.error(error);
       }
