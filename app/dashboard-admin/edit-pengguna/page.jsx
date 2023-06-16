@@ -1,20 +1,26 @@
 "use client";
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import useSWR, { mutate } from "swr";
 import PaginationDok from "@/components/PaginationDok";
 
 export default function DokterMasuk({ params }) {
    const [alasanPenolakan, setAlasanPenolakan] = useState("");
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
-   const [dokterMasuk, setDokterMasuk] = useState([]);
+   // const [dokterMasuk, setDokterMasuk] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(10);
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+
+   const { data: dokterMasuk, mutate } = useSWR(
+      "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+      fetcher
+   );
 
    useEffect(() => {
-      axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
+      mutate();
    }, []);
 
    const handleSearchKeywordChange = (event) => {
@@ -22,10 +28,12 @@ export default function DokterMasuk({ params }) {
    };
 
    const handleSearch = () => {
-      axios
-         .get(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchKeyword}`)
-         .then((response) => {
-            setDokterMasuk(response.data);
+      fetch(
+         `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchKeyword}`
+      )
+         .then((response) => response.json())
+         .then((data) => {
+            mutate(data, false);
          })
          .catch((error) => {
             console.log(error);
@@ -50,37 +58,73 @@ export default function DokterMasuk({ params }) {
       }).then((result) => {
          if (result.isConfirmed) {
             const alasan = result.value;
-            // Mengirim permintaan HTTP ke backend untuk menyimpan alasan penolakan
-            axios
-               .put(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, { alasanPenolakan: alasan, status: "Ditolak" })
-               .then((response) => {
-                  // Berhasil menyimpan alasan penolakan
-                  // Lakukan tindakan yang diperlukan, misalnya memperbarui tampilan atau memberikan umpan balik kepada pengguna
+            fetch(
+               `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`,
+               {
+                  method: "PUT",
+                  headers: {
+                     "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                     alasanPenolakan: alasan,
+                     status: "Ditolak",
+                  }),
+               }
+            )
+               .then((response) => response.json())
+               .then((data) => {
                   Swal.fire("Berhasil!", "Dokter ditolak.", "success");
-                  // Refresh data dokter setelah ditolak
-                  axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
+                  fetch(
+                     "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+                     fetcher
+                  )
+                     .then((response) => response.json())
+                     .then((data) => {
+                        setDokterMasuk(data);
+                     })
+                     .catch((error) => {
+                        console.log(error);
+                     });
                })
                .catch((error) => {
-                  // Menangani kesalahan jika permintaan gagal
                   console.log(error);
-                  Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
+                  Swal.fire(
+                     "Oops!",
+                     "Terjadi kesalahan. Mohon coba lagi.",
+                     "error"
+                  );
                });
          }
       });
    };
 
    const handleVerifikasi = (id) => {
-      // Send HTTP request to update verification status
-      axios
-         .put(`https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`, { status: "Terverifikasi" })
-         .then((response) => {
-            // Handle successful verification
+      fetch(
+         `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`,
+         {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ status: "Terverifikasi" }),
+         }
+      )
+         .then((response) => response.json())
+         .then((data) => {
             Swal.fire("Berhasil!", "Dokter terverifikasi.", "success");
-            // Refresh data dokter setelah diverifikasi
-            axios.get("https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk").then((response) => setDokterMasuk(response.data));
+            fetch(
+               "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+               fetcher
+            )
+               .then((response) => response.json())
+               .then((data) => {
+                  setDokterMasuk(data);
+               })
+               .catch((error) => {
+                  console.log(error);
+               });
          })
          .catch((error) => {
-            // Handle error
             console.log(error);
             Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
          });
@@ -89,6 +133,12 @@ export default function DokterMasuk({ params }) {
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
+
+      // Check if dokterMasuk is empty or null
+      if (!dokterMasuk || dokterMasuk.length === 0) {
+         return [];
+      }
+
       return dokterMasuk.slice(startIndex, endIndex);
    };
 
@@ -100,7 +150,9 @@ export default function DokterMasuk({ params }) {
          {/* <div className='flex'> */}
 
          <div className="p-4 sm:ml-72 w-full">
-            <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Pendaftaran Dokter</p>
+            <p className="text-[32px] font-bold text-web-green-500 mx-16 ">
+               Pendaftaran Dokter
+            </p>
             <div class="flex items-center h-24 mx-16 mt-9">
                <div class="mb-4 flex w-full gap-16">
                   <div className="flex">
@@ -123,9 +175,9 @@ export default function DokterMasuk({ params }) {
                         Cari
                      </button>
                   </div>
-                  <Link href="/edit-pengguna/daftar-dokter">
+                  <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">
                      <button className="w-32 h-11 bg-web-green-300 text-white rounded ">
-                        <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">Daftar Dokter</Link>
+                        Daftar Dokter
                      </button>
                   </Link>
                </div>
@@ -134,16 +186,30 @@ export default function DokterMasuk({ params }) {
                <thead className="">
                   <tr className="bg-[#63863E] font-semibold border-web-green-300 text-white">
                      <th className="border border-web-green-300 py-5">No</th>
-                     <th className="border border-web-green-300">Nama Dokter</th>
-                     <th className="border border-web-green-300">Email Dokter</th>
+                     <th className="border border-web-green-300">
+                        Nama Dokter
+                     </th>
+                     <th className="border border-web-green-300">
+                        Email Dokter
+                     </th>
                      <th className="border border-web-green-300">NIK</th>
-                     <th className="border border-web-green-300">Jenis Kelamin</th>
-                     <th className="border border-web-green-300">Tempat Lahir</th>
+                     <th className="border border-web-green-300">
+                        Jenis Kelamin
+                     </th>
+                     <th className="border border-web-green-300">
+                        Tempat Lahir
+                     </th>
                      <th className="border border-web-green-300">Agama</th>
-                     <th className="border border-web-green-300">Universitas</th>
+                     <th className="border border-web-green-300">
+                        Universitas
+                     </th>
                      <th className="border border-web-green-300">Jurusan</th>
-                     <th className="border border-web-green-300">Tahun Lulus</th>
-                     <th className="border border-web-green-300">Tempat Praktik</th>
+                     <th className="border border-web-green-300">
+                        Tahun Lulus
+                     </th>
+                     <th className="border border-web-green-300">
+                        Tempat Praktik
+                     </th>
                      <th className="border border-web-green-300">No STR</th>
                      <th className="border border-web-green-300">Dokumen</th>
                      <th className="border border-web-green-300">Aksi</th>
@@ -152,24 +218,56 @@ export default function DokterMasuk({ params }) {
                <tbody className="">
                   {PaginatedData().map((dokter, i) => (
                      <tr scope="col" key={dokter.id} className="bg-white">
-                        <td className="border border-web-green-300 text-center">{dokter.id}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.namaDokter}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.emailDokter}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.nik}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.jenisKelamin}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.tempatLahir}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.Agama}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.Universitas}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.jurusan}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.tahunLulus}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.tempatPraktik}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.noStr}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.dokumen}</td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.id}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.namaDokter}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.emailDokter}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.nik}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.jenisKelamin}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.tempatLahir}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.Agama}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.Universitas}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.jurusan}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.tahunLulus}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.tempatPraktik}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.noStr}
+                        </td>
+                        <td className="border border-web-green-300 text-center">
+                           {dokter.dokumen}
+                        </td>
                         <td className="flex gap-3 py-2 justify-center border">
-                           <button onClick={() => handleVerifikasi(dokter.id)} className="w-[83px] h-[35px] rounded-md  bg-web-green-300 text-white">
+                           <button
+                              onClick={() => handleVerifikasi(dokter.id)}
+                              className="w-[83px] h-[35px] rounded-md  bg-web-green-300 text-white"
+                           >
                               Verifikasi
                            </button>
-                           <button onClick={() => handleTolak(dokter.id)} className="w-[83px] h-[35px] rounded-md  bg-red-900 text-white">
+                           <button
+                              onClick={() => handleTolak(dokter.id)}
+                              className="w-[83px] h-[35px] rounded-md  bg-red-900 text-white"
+                           >
                               Tolak
                            </button>
                         </td>
@@ -178,7 +276,14 @@ export default function DokterMasuk({ params }) {
                </tbody>
             </table>
             <div className="float-right mt-11">
-               <PaginationDok currentPage={currentPage} totalItems={dokterMasuk.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+               {dokterMasuk && dokterMasuk.length > 0 ? (
+                  <PaginationDok
+                     currentPage={currentPage}
+                     totalItems={dokterMasuk.length}
+                     itemsPerPage={itemsPerPage}
+                     onPageChange={handlePageChange}
+                  />
+               ) : null}
             </div>
          </div>
       </>

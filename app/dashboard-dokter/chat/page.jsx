@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { namaObatAtom } from "@/components/atoms/useObatDoctor";
 import { useAtom } from "jotai";
-import { dataObat } from "@/store/store";
 
 import Link from "next/link";
 function page() {
@@ -10,7 +10,7 @@ function page() {
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [selectedUser, setSelectedUser] = useState("0");
    const [newMessage, setNewMessage] = useState("");
-   const [obat, setObat] = useAtom(dataObat);
+   const [obat, setObat] = useAtom(namaObatAtom);
 
    const handleInputChange = (e) => {
       setNewMessage(e.target.value);
