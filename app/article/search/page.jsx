@@ -42,7 +42,7 @@ export default function Article() {
                      .map((article, index) => (
                         <Card
                            key={index}
-                           images={detailArtikel}
+                           images={article.image}
                            title={article.title}
                            description={article.description}
                            postId={1}
@@ -51,7 +51,7 @@ export default function Article() {
                      ))
                ) : (
                   <div className="">
-                     <h1>Maaf hasil tidak ditemukan :(</h1>
+                     <h1>Maaf hasil pencarian tidak ditemukan :(</h1>
                   </div>
                )}
             </div>
