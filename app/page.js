@@ -9,9 +9,11 @@ import { useState } from "react";
 import Carousel from "@/components/ui/Carousel";
 import { useRouter } from "next/navigation";
 import { useArticles } from "@/components/atoms/useArticles";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Home() {
+    AOS.init();
     const articles = useArticles();
     const [currentPage, setCurentPage] = useState(1);
     const [postPerPage, setPostPerPage] = useState(12);
@@ -31,14 +33,17 @@ export default function Home() {
                 <Carousel />
                 <div className="grid grid-cols-3 gap-10 mt-[102px]" id="article">
                     {articles && articles.slice(firstPostIndex, lastPostIndex).map((article, index) => (
-                        <Card
-                            key={index}
-                            images={article.img}
-                            title={article.title}
-                            description={article.description}
-                            postId={1}
-                            handleDetailArticle={handleDetailArticle}
-                        />
+                        <div data-aos="fade-up">
+                            <Card
+                                key={index}
+                                images={article.image}
+                                title={article.title}
+                                description={article.description}
+                                postId={1}
+                                handleDetailArticle={handleDetailArticle}
+                            />
+                        </div>
+
                     ))}
                 </div>
                 <div className="flex justify-center mb-36">

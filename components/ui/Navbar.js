@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { SearchIcon } from "@/public/assets/icons/icons";
 import Link from "next/link";
@@ -29,19 +29,43 @@ const Navbar = () => {
             handleSearch();
         }
     };
+
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const articleSection = document.getElementById("article");
+            if (articleSection) {
+                const articleSectionPos = articleSection.offsetTop;
+                const scrollPos = window.scrollY;
+
+                if (scrollPos >= articleSectionPos - 300) {
+                    setIsActive(true);
+                } else {
+                    setIsActive(false);
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [pathname]);
     return (
         <>
-            <nav className=" bg-web-green-300">
+            <nav className=" bg-web-green-300 fixed w-full z-50">
                 <div className="max-w-[1440px] flex flex-wrap items-center justify-between mx-auto p-[22px]">
                     <Link href="/#utama">
                         <Image src="/assets/logo/logo-p-white.png" alt="Logo" width={32} height={47} />
                     </Link>
                     <div>
                         <ul className="font-poppins text-[20px] font-[700] flex flex-row gap-[61px]  text-white">
-                            <li className={pathname === "/" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
+                            <li className={pathname === "/" && !isActive ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                                 <Link href="/#utama">Beranda</Link>
                             </li>
-                            <li className={pathname === "/article" || pathname === `/article/1` ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
+                            <li className={pathname === "/article" || pathname === `/article/1` || isActive ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
                                 <Link href="/#article"> Artikel</Link>
                             </li>
                             <li className={pathname === "/dokter" || pathname === "/are-you-doctor" ? "border-b-4 border-white transition-all" : "border-b-4 border-[#8EBF59]"}>
@@ -85,6 +109,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
+            <div className="pb-24"></div>
         </>
     );
 };

@@ -9,7 +9,9 @@ function page() {
    const search = searchParams.get("q");
 
    const questions = [...helpUtama, ...hargaPembayaran, ...aksesPrevent];
-
+   const filteredQuestions = questions.filter((question) =>
+      question.question.toLowerCase().includes(search.toLowerCase())
+   );
    return (
       <>
          <div className=" flex items-center flex-col">
@@ -17,19 +19,18 @@ function page() {
                Hasil pencarian untuk : {search}
             </div>
             <div className="w-full sm:w-[1088px]  px-5">
-               {questions.map((item) => {
-                  if (
-                     item.question.toLowerCase().includes(search.toLowerCase())
-                  ) {
-                     return (
-                        <AccordionHelp
-                           question={item.question}
-                           answer={item.answer}
-                        />
-                     );
-                  }
-                  return null;
-               })}
+               {filteredQuestions.length !== 0 ? (
+                  filteredQuestions.map((item) => (
+                     <AccordionHelp
+                        question={item.question}
+                        answer={item.answer}
+                     />
+                  ))
+               ) : (
+                  <div className="font-regular text-lg text-center">
+                     Maaf hasil pencarian tidak ditemukan :)
+                  </div>
+               )}
             </div>
          </div>
       </>
