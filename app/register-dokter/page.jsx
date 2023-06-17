@@ -156,7 +156,7 @@ export default function RegisterDokter() {
                         </div>
                         {/* {form1.errors.namaLengkap ? <ErrorMessage errorMessage={form1.errors.namaLengkap} /> : null} */}
                         <div>
-                           <input type="text" placeholder="NIK" className={input_variants({ variant: "default" })} name="nik" value={form1.values.nik} onChange={form1.handleChange} onBlur={form1.handleBlur} error={form1.touched.nik && form1.errors.nik} />
+                           <input type="text" placeholder="NIK" maxLength={16} className={input_variants({ variant: "default" })} name="nik" value={form1.values.nik} onChange={form1.handleChange} onBlur={form1.handleBlur} error={form1.touched.nik && form1.errors.nik} />
                            {form1.touched.nik && form1.errors.nik ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.nik}</p> : null}
                         </div>
                         {/* {form1.errors.n1 ? <ErrorMessage errorMessage={form1.errors.n1} /> : null} */}
@@ -229,7 +229,7 @@ export default function RegisterDokter() {
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Curriculum Vitae (CV)</p>
                            <p className="text-[12px] font-normal text-gray-500 float-left">Unggah CV dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                           <InputFileDaftarCv value={form3.values.cv} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           <InputFileDaftarCv value={form3.values.cv} onChange={form3.handleChange} onBlur={form3.handleBlur} error={form3.touched.cv && form3.errors.cv}/>
 
                            {/* {form3.errors.cv ? <ErrorMessage errorMessage={form3.errors.cv} /> : null} */}
                         </div>
