@@ -7,7 +7,9 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { useSearchParams } from "next/navigation";
+import { useArticles } from "@/components/atoms/useArticles";
 export default function Article() {
+   const articles = useArticles();
    const [currentPage, setCurentPage] = useState(1);
    const [postPerPage, setPostPerPage] = useState(12);
    const router = useRouter();
@@ -20,28 +22,42 @@ export default function Article() {
 
    const searchParams = useSearchParams();
    const search = searchParams.get("q");
+
+   const filteredArticles =
+      articles &&
+      articles.filter((article) =>
+         article.title.toLowerCase().includes(search.toLowerCase())
+      );
+
+   console.log(filteredArticles && filteredArticles);
    return (
       <>
          <Navbar />
          <section className="font-inter font-[600] text-[20px] mt-[32px] mb-16 w-[1440px] mx-auto">
             <p className="mb-[20px] leading-8">Hasil Pencarian "{search}"</p>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
-               {Array(15)
-                  .fill(
-                     <Card
-                        images={detailArtikel}
-                        title="Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya"
-                        description="Seorang ilmuwan di China mengungkapkan kemungkinan COVID-19 berasal dari manusia. Hal ini menyusul desakan dari Organisasi Kesehatan Dunia (WHO) kepada China untuk bersikap transparan perihal data asal-usul virus Corona."
-                        href="www.google.com"
-                        postId={1}
-                        handleDetailArticle={handleDetailArticle}
-                     />
-                  )
-                  .slice(firstPostIndex, lastPostIndex)}
+               {filteredArticles.length !== 0 ? (
+                  filteredArticles
+                     .slice(firstPostIndex, lastPostIndex)
+                     .map((article, index) => (
+                        <Card
+                           key={index}
+                           images={article.image}
+                           title={article.title}
+                           description={article.description}
+                           postId={1}
+                           handleDetailArticle={handleDetailArticle}
+                        />
+                     ))
+               ) : (
+                  <div className="">
+                     <h1>Maaf hasil pencarian tidak ditemukan :(</h1>
+                  </div>
+               )}
             </div>
             <div className="flex justify-center mt-3">
                <Pagination
-                  totalPosts={15}
+                  totalPosts={filteredArticles.length}
                   postPerPage={postPerPage}
                   setCurrentPage={setCurentPage}
                   currentPage={currentPage}

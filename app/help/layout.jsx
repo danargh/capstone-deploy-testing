@@ -11,9 +11,10 @@ import {
 } from "@/public/assets/icons/icons";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 function layout({ children }) {
+   const pathname = usePathname();
    const inputRef = useRef(null);
    const router = useRouter();
    const handleSearch = () => {
@@ -91,7 +92,7 @@ function layout({ children }) {
          </div>
 
          <div className=" max-w-[1440px] mx-auto flex justify-start mb-28 mt-3">
-            <Link href={"/help"}>
+            <Link href={pathname === "/help" ? "/" : "/help"}>
                <ArrowBackHelpIcon />
             </Link>
          </div>
