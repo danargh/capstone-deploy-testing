@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import DoctorCard from "@/components/ui/DoctorCard";
 import { useAtom } from "jotai";
 import useSWR from "swr";
@@ -18,22 +19,15 @@ import {
    allDoctorAtom,
    searchQueryAtom,
 } from "@/components/atoms/useAllDoctor";
+import FetchAllDoctor from "@/api/all-doctor";
 
 export default function Dokter() {
    const [allDoctor, setAllDoctor] = useAtom(allDoctorAtom);
    const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom);
 
    //Fetch the data from API
-   const fetcher = (url) => fetch(url).then((res) => res.json());
-   const { data: doctor_list, error } = useSWR(
-      "https://642ace62b11efeb759a35fe4.mockapi.io/doctorlist",
-      fetcher,
-      {
-         revalidateOnFocus: false,
-         revalidateOnReconnect: false,
-      }
-   );
-
+   const { doctorData } = FetchAllDoctor();
+   const doctor_list = doctorData; // im just too lazy to replace.... yea ik just use replace all
    const handleAllDoctor = () => {
       setAllDoctor(!allDoctor);
    };
@@ -45,10 +39,29 @@ export default function Dokter() {
    const filteredDoctors =
       doctor_list &&
       doctor_list.filter((doctor) => {
-         const name = doctor.name.toLowerCase();
+         const name = doctor.full_name.toLowerCase();
          const query = searchQuery.toLowerCase();
          return name.includes(query);
       });
+
+   // Randomize the Recommendation
+   function RandomizeDoctors(doctor_list, count) {
+      const randomIndexes = [];
+      while (
+         randomIndexes.length < count &&
+         randomIndexes.length < doctor_list.length
+      ) {
+         const randomIndex = Math.floor(Math.random() * doctor_list.length);
+         if (!randomIndexes.includes(randomIndex)) {
+            randomIndexes.push(randomIndex);
+         }
+      }
+      return randomIndexes;
+   }
+   const randomDoctorIndex = RandomizeDoctors(doctor_list, 2);
+   const randomDoctors = randomDoctorIndex.map((index) => doctor_list[index]);
+
+   console.log(randomDoctors);
 
    return (
       <>
@@ -128,7 +141,7 @@ export default function Dokter() {
             </div>
 
             <div className="flex flex-col gap-[45px] items-start justify-start absolute left-[541px] top-[250px]">
-               {(allDoctor || searchQuery != 0) ? (
+               {allDoctor || searchQuery != 0 ? (
                   <AllDoctor doctor_list={filteredDoctors} />
                ) : (
                   <>
@@ -143,7 +156,19 @@ export default function Dokter() {
                            </div>
                         </div>
 
-                        <div className="flex flex-row gap-[45px] items-center justify-start shrink-0 relative">
+                        {randomDoctors &&
+                                 randomDoctors.map((doctor_list) => (
+                                    <React.Fragment key={doctor_list.ID}>
+                                       <DoctorCard
+                                          image={doctor_list.photo}
+                                          name={doctor_list.full_name}
+                                          title={doctor_list.title}
+                                          work_time={doctor_list.work_time}
+                                          href={`/detail-dokter/${doctor_list.ID}`}
+                                       />
+                                    </React.Fragment>
+                                 ))}
+                        {/* <div className="flex flex-row gap-[45px] items-center justify-start shrink-0 relative">
                            <DoctorCard
                               image={TestIMG}
                               name={
@@ -162,7 +187,7 @@ export default function Dokter() {
                               work_time={"500"}
                               href={"/detail-dokter"}
                            />
-                        </div>
+                        </div> */}
                      </div>
 
                      <div className="flex flex-col gap-[17px] items-start justify-start shrink-0 relative">
@@ -176,14 +201,15 @@ export default function Dokter() {
                            <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
                               {doctor_list &&
                                  doctor_list.slice(0, 4).map((doctor_list) => (
-                                    <DoctorCard
-                                       //    image={doctor_list.image}
-                                       image={TestIMG}
-                                       name={doctor_list.name}
-                                       title={doctor_list.title}
-                                       work_time={doctor_list.work_time}
-                                       href={"/detail-dokter"}
-                                    />
+                                    <React.Fragment key={doctor_list.ID}>
+                                       <DoctorCard
+                                          image={doctor_list.photo}
+                                          name={doctor_list.full_name}
+                                          title={doctor_list.title}
+                                          work_time={doctor_list.work_time}
+                                          href={`/detail-dokter/${doctor_list.ID}`}
+                                       />
+                                    </React.Fragment>
                                  ))}
                            </div>
                         </div>

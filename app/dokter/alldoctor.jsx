@@ -17,15 +17,15 @@ export default function AllDoctor({ doctor_list }) {
             <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
                {doctor_list &&
                   doctor_list.map((doctor_list) => (
-                     <>
+                     <React.Fragment key={doctor_list.ID}>
                         <DoctorCard
-                           image={TestIMG}
-                           name={doctor_list.name}
+                           image={doctor_list.photos}
+                           name={doctor_list.full_name}
                            title={doctor_list.title}
                            work_time={doctor_list.work_time}
-                           href={doctor_list.href}
+                           href={`/detail-dokter/${doctor_list.ID}`}
                         />
-                     </>
+                     </React.Fragment>
                   ))}
             </div>
          </div>

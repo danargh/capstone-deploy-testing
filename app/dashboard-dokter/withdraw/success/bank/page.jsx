@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/ui/Footer";
-import NavbarDokter from "@/components/ui/NavbarDokter";
 import React from "react";
 import { useState } from "react";
 import CheckIcon from "@/public/assets/icons/CheckIcon.png";
