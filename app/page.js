@@ -9,11 +9,10 @@ import { useState } from "react";
 import Carousel from "@/components/ui/Carousel";
 import { useRouter } from "next/navigation";
 import { useArticles } from "@/components/atoms/useArticles";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { motion } from "framer-motion";
 
 export default function Home() {
-    AOS.init();
+
     const articles = useArticles();
     const [currentPage, setCurentPage] = useState(1);
     const [postPerPage, setPostPerPage] = useState(12);
@@ -25,29 +24,33 @@ export default function Home() {
     const handleDetailArticle = (id) => {
         router.push(`/article/${id}`);
     };
-
     return (
         <>
             <Navbar />
             <main className="flex min-h-screen flex-col items-center">
                 <Carousel />
                 <div className="grid grid-cols-3 gap-10 mt-[102px]" id="article">
-                    {articles && articles.slice(firstPostIndex, lastPostIndex).map((article, index) => (
-                        <div data-aos="fade-up">
+                    {articles && articles.data.slice(firstPostIndex, lastPostIndex).map((article, index) => (
+                        <motion.div whileInView={{ y: [50, 0], opacity: [0, 1] }} transition={{ duration: 1 }}>
                             <Card
                                 key={index}
-                                images={article.image}
+                                images={article.thumbnail}
                                 title={article.title}
-                                description={article.description}
-                                postId={1}
+                                description={article.content}
+                                postId={article.id}
                                 handleDetailArticle={handleDetailArticle}
                             />
-                        </div>
+                        </motion.div>
 
                     ))}
                 </div>
                 <div className="flex justify-center mb-36">
-                    <Pagination totalPosts={articles ? articles.length : 0} postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
+                    <Pagination totalPosts={
+                        articles &&
+                            articles.data.length > postPerPage
+                            ? articles.data.length
+                            : 0
+                    } postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
                 </div>
             </main>
             <Footer />
