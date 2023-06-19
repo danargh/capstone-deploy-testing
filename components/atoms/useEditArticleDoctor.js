@@ -1,21 +1,25 @@
 import { atom, useAtom } from 'jotai';
 
 // Buat atom untuk setiap state
-const titleAtom = atom('');
-const categoryAtom = atom('');
-const descriptionAtom = atom('');
+export const artikelAtom = atom('');
+export const categoryAtom = atom('');
+export const contentAtom = atom('');
+export const thumbnailatom = atom('');
 
 export function useEditArticleDoctor() {
-   const [title, setTitle] = useAtom(titleAtom);
+   const [title, setTitle] = useAtom(artikelAtom);
    const [category, setCategory] = useAtom(categoryAtom);
-   const [description, setDescription] = useAtom(descriptionAtom);
+   const [content, setContent] = useAtom(contentAtom);
+   const [thumbnail, setThumbnail] = useAtom(thumbnailatom);
 
    return {
       title,
       setTitle,
       category,
       setCategory,
-      description,
-      setDescription,
+      content,
+      setContent,
+      thumbnail,
+      setThumbnail,
    };
 }
