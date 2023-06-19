@@ -4,7 +4,7 @@ import useSWRMutation from "swr/mutation";
 import Cookies from "js-cookie";
 
 export const namaObatAtom = atom([]);
-export const dataDrugsAtom = atom(["Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"]);
+export const dataDrugsAtom = atom([]);
 
 const fetcher = (url) =>
    fetch(url, {
@@ -18,7 +18,7 @@ const fetcher = (url) =>
 export function getDrugs() {
    const [dataDrugs, setDataDrugs] = useAtom(dataDrugsAtom);
 
-   const { data, error } = useSWR("http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/doctor/drugs", fetcher, {
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/doctor/drugs", fetcher, {
       onSuccess: (data) => {
          setDataDrugs(data);
       },

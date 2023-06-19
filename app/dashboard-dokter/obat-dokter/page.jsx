@@ -8,16 +8,16 @@ import { useAtom } from "jotai";
 import { useObatDoctor, getDrugs } from "@/components/atoms/useObatDoctor";
 import { motion } from "framer-motion";
 
-const listObat = ["Paracetamol 500mg", "Amoxicillin 3.000mg", "Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"];
-
 export default function page() {
    const editObatRef = useRef([]);
-   const [choosedObat, setChoosedObat] = useState(["Paracetamol"]);
+   const [choosedObat, setChoosedObat] = useState([]);
    const [keywordSearch, setKeywordSearch] = useState("");
    const router = useRouter();
    const { dataDrugs, error: errorGetDrugs } = getDrugs();
    const { triggerObat, isObatLoading, data } = useObatDoctor();
    // const [obat, setObat] = useAtom(namaObatAtom);
+
+   const dataDrugsArray = dataDrugs.recipt;
 
    const handleAddObat = (obat) => {
       setChoosedObat([...choosedObat, obat]);
@@ -91,14 +91,14 @@ export default function page() {
             <motion.div whileInView={{ y: [64, 0], opacity: [0, 1] }} transition={{ duration: 1 }} className="h-[1080px] overflow-y-scroll bg-[#C7E8AF] rounded-[5px] px-[24px] pb-[38px] pt-[16px]">
                <h2 className="font-poppins font-[700] text-[24px] leading-[36px] text-[#577536] mb-[38px]">Daftar Obat</h2>
                <ul className="flex flex-col gap-[12px]">
-                  {listObat.map((obat, index) => {
+                  {dataDrugsArray?.map((obat, index) => {
                      return (
                         <li key={index} className="rounded-[5px] bg-white w-full h-[110px] font-poppins text-[20px] leading-[30px] font-[500] flex items-center justify-between p-[16px]">
-                           <p>{obat}</p>
+                           <p>{obat.nama}</p>
                            <motion.button
                               whileHover={{ transition: 2, backgroundColor: "#63863E" }}
                               onClick={() => {
-                                 handleAddObat(obat);
+                                 handleAddObat(obat.nama);
                               }}
                               className="bg-[#8EBF59] px-[34px] py-[12px] rounded-[8px] hover:shadow-md"
                            >
