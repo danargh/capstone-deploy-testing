@@ -9,13 +9,25 @@ import { KirimKomentarButton } from "@/components/ui/Button";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
+import useSWR, { mutate } from "swr";
+import { useArticles } from "@/components/atoms/useArticles";
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export function fetchArticle(id) {
+   const { data: article } = useSWR(
+      `https://capstone-project.duckdns.org:8080/articles/${id}`,
+      fetcher
+   );
+   return article;
+}
 const comments = [
    {
       id: Math.random(),
       firstName: "Arka",
       lastName: "Samudra",
-      commentValue: "Saat ini hampir setiap orang mengalami penderitaan akibat pandemi ini. Jika orang tersebut belum siap menghadapi perubahan sosial yang mendadak maka berpotensi timbul depresi dan gangguan kecemasan yang mengancam gangguan mental bila tidak dikelola dengan baik",
+      commentValue:
+         "Saat ini hampir setiap orang mengalami penderitaan akibat pandemi ini. Jika orang tersebut belum siap menghadapi perubahan sosial yang mendadak maka berpotensi timbul depresi dan gangguan kecemasan yang mengancam gangguan mental bila tidak dikelola dengan baik",
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
    },
@@ -26,7 +38,7 @@ export default function DetailArticle({ params }) {
    const commentTextRef = useRef();
    const firstNameRef = useRef();
    const lastNameRef = useRef();
-
+   const articles = useArticles();
    const handleSubmit = (event) => {
       event.preventDefault();
       setComment((prevComment) => {
@@ -44,70 +56,156 @@ export default function DetailArticle({ params }) {
          return [...prevComment, newComment];
       });
    };
+   const getArticle = fetchArticle(params.id);
+
+   const filteredArticles =
+      articles && articles.data.filter((article) => article.id != params.id);
 
    return (
       <>
          <Navbar />
+
          <article className="mt-[62px] mb-[142px]">
-            <header className="w-[1440px] mx-auto">
-               <h1 className="font-poppins font-[600] text-[32px] leading-[52px]">Copy Artikel / Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya</h1>
-               <div className="flex flex-col gap-[22px] font-inter text-[16px] leading-[18px] font-[400] mt-6">
-                  <div className="p-[8px] bg-[#E2F0DC] rounded-[3px] max-w-[202px]">
-                     <p className="font-poppins font-[600] text-[20px] leading-[30px] text-[#7CA153]">Kesehatan Mental</p>
-                  </div>
-                  <p className="font-poppins font-[400] text-[16px] leading-[24px] italic">Dibuat Oleh: Dr. Fauzan Hakim M.Psi.Psi 25 Mei 2023</p>
-               </div>
-            </header>
-            <Image priority alt="images" className="w-full mt-[48px]" src="/assets/images/detail-article.png" width={1440} height={500} />
-            <main className="max-w-[1220px] mx-auto">
-               <div className="flex gap-[42px] justify-center my-[32px]">
-                  <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image priority alt="images" src="/assets/icons/facebook-icon.svg" width={30} height={30} />
-                  </a>
-                  <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image priority alt="images" src="/assets/icons/google-icon.svg" width={30} height={30} />
-                  </a>
-                  <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image priority alt="images" src="/assets/icons/twitter-icon.svg" width={30} height={30} />
-                  </a>
-                  <a href="#" className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]">
-                     <Image priority alt="images" src="/assets/icons/google-plus-icon.svg" width={30} height={30} />
-                  </a>
-               </div>
-               <p className="font-inter font-[400] text-[22px] leading-9 text-justify">
-                  Jakarta - Seorang ilmuwan di China mengungkapkan kemungkinan COVID-19 berasal dari manusia. Hal ini menyusul desakan dari Organisasi Kesehatan Dunia (WHO) kepada China untuk bersikap transparan perihal data asal-usul virus Corona. Seperti apa temuannya?Kemungkinan tersebut
-                  diungkapkan oleh Tong Yigang dari Universitas Teknologi Kimia Beijing. Ia mengacu kepada sampel virus yang diambil dari Pasar Makanan Laut Huanan di Wuhan. Sampel dari pasar yang dianggap sebagai titik nol pandemi COVID-19 tersebut ditemukan 'hampir identik' dengan sampel pasien
-                  yang terpapar virus Corona. Dari sanalah ia menyebut, ada kemungkinan COVID-19 berasal dari manusia.Dikutip dari CNN, dalam konferensi pers yang diadakan oleh Dewan Negara China mengenai penelitian asal mula virus Corona, Tong menjelaskan lebih dari 1.300 sampel lingkungan dan
-                  hewan beku telah diambil di pasar antara Januari 2020 dan Maret 2020. Para peneliti telah mengisolasi tiga strain virus dari sampel.
-                  <br />
-                  <br />
-                  Ia juga mengatakan, hingga kini belum ada cukup bukti untuk mendukung penelitian terbaru yang menyatakan anjing rakun adalah asal dari penularan virus COVID-19.Dalam kesempatan yang sama, peneliti Pusat Pengendalian dan Pencegahan Penyakit (CDC) China, Zhou Lei, menyerukan perlunya
-                  kolaborasi ilmiah global dalam melacak asal-usul virus Corona. Sebab menurutnya, situs tempat COVID-19 teridentifikasi pertama kali belum tentu merupakan asal muasal virus Corona.Mengingat, China banyak dikritik karena dianggap menghalangi penyelidikan internasional perihal
-                  asal-usul virus Corona. Awal pekan ini, WHO menegaskan pihaknya masih belum memiliki data kunci dari China perihal awal wabah.
-               </p>
-               <aside className=" mt-[130px] font-inter font-[600] text-[22px] leading-9">
-                  <div className="flex justify-between">
-                     <h2 className="w-[500px]">Peran WHO Dalam Menanggulangan COVID-19 Bagi Masyarakat</h2>
-                     <h2 className="w-[500px] text-right">Breakdown Perkaraka Terjadinya COVID-19</h2>
-                  </div>
-                  <div className="flex justify-between mt-[18px]">
-                     <Link href={`/article/${parseInt(params.id) - 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
-                        Post Sebelumnya
-                     </Link>
-                     <Link href={`/article/${parseInt(params.id) + 1}`} className="font-[500] text-[16px] leading-4 text-[#268AFF]">
-                        Post Selanjutnya
-                     </Link>
-                  </div>
-               </aside>
-            </main>
+            {getArticle && getArticle ? (
+               <>
+                  <header className="w-[1440px] mx-auto">
+                     <h1 className="font-poppins font-[600] text-[32px] leading-[52px]">
+                        {/* Copy Artikel / Ilmuwan di China Sebut COVID-19 Mungkin Berasal
+                     dari Manusia, Begini Temuannya */}
+                        {getArticle.data.title}
+                     </h1>
+                     <div className="flex flex-col gap-[22px] font-inter text-[16px] leading-[18px] font-[400] mt-6">
+                        <div className="p-[8px] bg-[#E2F0DC] rounded-[3px] max-w-[202px]">
+                           <p className="font-poppins font-[600] text-[20px] leading-[30px] text-[#7CA153]">
+                              {getArticle.data.category}
+                           </p>
+                        </div>
+                        <p className="font-poppins font-[400] text-[16px] leading-[24px] italic">
+                           Dibuat Oleh: {getArticle.data.doctor_name}{" "}
+                           {getArticle.data.date}
+                        </p>
+                     </div>
+                  </header>
+                  <Image
+                     priority
+                     alt="images"
+                     className="w-full mt-[48px]"
+                     src="/assets/images/detail-article.png"
+                     width={1440}
+                     height={500}
+                  />
+                  <main className="max-w-[1220px] mx-auto">
+                     <div className="flex gap-[42px] justify-center my-[32px]">
+                        <a
+                           href="#"
+                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        >
+                           <Image
+                              priority
+                              alt="images"
+                              src="/assets/icons/facebook-icon.svg"
+                              width={30}
+                              height={30}
+                           />
+                        </a>
+                        <a
+                           href="#"
+                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        >
+                           <Image
+                              priority
+                              alt="images"
+                              src="/assets/icons/google-icon.svg"
+                              width={30}
+                              height={30}
+                           />
+                        </a>
+                        <a
+                           href="#"
+                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        >
+                           <Image
+                              priority
+                              alt="images"
+                              src="/assets/icons/twitter-icon.svg"
+                              width={30}
+                              height={30}
+                           />
+                        </a>
+                        <a
+                           href="#"
+                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        >
+                           <Image
+                              priority
+                              alt="images"
+                              src="/assets/icons/google-plus-icon.svg"
+                              width={30}
+                              height={30}
+                           />
+                        </a>
+                     </div>
+                     <p className="font-inter font-[400] text-[22px] leading-9 text-justify">
+                        {getArticle.data.content}
+                     </p>
+                     <aside className=" mt-[130px] font-inter font-[600] text-[22px] leading-9">
+                        <div className="flex justify-between">
+                           <div>
+                              <h2 className="w-[500px]">
+                                 {/* Peran WHO Dalam Menanggulangan COVID-19 Bagi
+                                 Masyarakat */}
+                                 {filteredArticles[0].title}
+                              </h2>
+                              <Link
+                                 href={`/article/${filteredArticles[0].id}`}
+                                 className="font-[500] text-[16px] leading-4 text-[#268AFF] mt-[18px] flex justify-start"
+                              >
+                                 Post Sebelumnya
+                              </Link>
+                           </div>
+                           <div>
+                              {filteredArticles.length >= 2 ? (
+                                 <>
+                                    {" "}
+                                    <h2 className="w-[500px] text-right">
+                                       {filteredArticles[1].title}
+                                    </h2>
+                                    <Link
+                                       href={`/article/${filteredArticles[1].id}`}
+                                       className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-end"
+                                    >
+                                       Post Selanjutnya
+                                    </Link>
+                                 </>
+                              ) : null}
+                           </div>
+                        </div>
+                     </aside>
+                  </main>
+               </>
+            ) : (
+               <>Loading...</>
+            )}
+
             <section className="max-w-[1220px] mx-auto mt-[70px] mb-[50px]">
                <div>
-                  <h3 className="font-inter font-[600] text-[22px] leading-9">Tinggalkan Balasan</h3>
-                  <p className="font-inter font-[400] text-[20px] leading-8 mt-[26px]">Alamat email Anda tidak akan dipublikasikan. Ruas yang wajib ditandai *</p>
+                  <h3 className="font-inter font-[600] text-[22px] leading-9">
+                     Tinggalkan Balasan
+                  </h3>
+                  <p className="font-inter font-[400] text-[20px] leading-8 mt-[26px]">
+                     Alamat email Anda tidak akan dipublikasikan. Ruas yang
+                     wajib ditandai *
+                  </p>
                </div>
                {comment.map((item, index) => (
                   <div key={index} className="flex gap-3 items-start my-[50px]">
-                     <Image priority alt="images" src="/assets/icons/profile2-icon.svg" width={40} height={40} />
+                     <Image
+                        priority
+                        alt="images"
+                        src="/assets/icons/profile2-icon.svg"
+                        width={40}
+                        height={40}
+                     />
                      <div>
                         <h4 className="font-poppins font-[500] text-[24px] leading-8 text-[#00000096]">{`${item.firstName} ${item.lastName}`}</h4>
                         <p>{item.commentValue}</p>
@@ -141,7 +239,9 @@ export default function DetailArticle({ params }) {
                         required
                      />
                   </div>
-                  <KirimKomentarButton type="submit">Kirim Komentar</KirimKomentarButton>
+                  <KirimKomentarButton type="submit">
+                     Kirim Komentar
+                  </KirimKomentarButton>
                </form>
             </section>
          </article>
