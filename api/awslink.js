@@ -1,7 +1,7 @@
 import { atom, useAtom } from "jotai";
 
 const awsLinkAtom = atom(
-   "http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080"
+   "https://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080"
 );
 
 const authToken = atom(

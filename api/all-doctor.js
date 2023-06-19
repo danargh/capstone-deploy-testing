@@ -7,7 +7,7 @@ const fetcher = async (url, token) =>
       headers: {},
    }).then((res) => res.json());
 
-export default function FetchAllDoctor() {
+export default async function FetchAllDoctor() {
    // Endpoint
    const { awslink } = AWSLink();
    const doctorEndpoint = `${awslink}/doctors`;
