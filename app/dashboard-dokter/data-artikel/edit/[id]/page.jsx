@@ -26,7 +26,7 @@ const fetcher = (url) => {
 
 export default function page({ params }) {
    const id = params.id;
-
+   const router = useRouter();
    const { data: artikelData, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`, fetcher);
    const { title, setTitle, category, setCategory, content, setContent, thumbnail, setThumbnail } = useEditArticleDoctor();
 
@@ -80,6 +80,7 @@ export default function page({ params }) {
       data.append('thumbnail', thumbnail);
 
       await updateArticle(id, data);
+      router.push('/dashboard-dokter/data-artikel');
    };
    const [selectedFile, setSelectedFile] = useState(null);
 

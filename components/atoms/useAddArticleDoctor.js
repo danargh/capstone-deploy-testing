@@ -2,6 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { mutate } from 'swr';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 export const artikelAtom = atom('');
 export const categoryAtom = atom('');
@@ -9,6 +10,7 @@ export const contentAtom = atom('');
 export const thumbnailatom = atom('');
 
 export function useAddArticleDoctor() {
+   const router = useRouter();
    const [title, setTitle] = useAtom(artikelAtom);
    const [category, setCategory] = useAtom(categoryAtom);
    const [content, setContent] = useAtom(contentAtom);
@@ -50,6 +52,7 @@ export function useAddArticleDoctor() {
       } catch (error) {
          console.error(error);
       }
+      router.push('/dashboard-dokter/data-artikel');
    };
    //    const handleSubmit = async (e) => {
    //       e.preventDefault();
