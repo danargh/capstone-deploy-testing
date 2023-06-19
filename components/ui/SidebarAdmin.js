@@ -4,6 +4,8 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 // @param {children} is a component that will be rendered inside this component
 import { SidebarDarkLogOutIcon, SidebarLogOutIcon } from '@/public/assets/icons/icons';
 
@@ -41,6 +43,7 @@ const navLinks = [
 export default function SidebarAdmin({ children }) {
    const pathname = usePathname();
    const path = usePathname();
+   const router = useRouter();
 
    // Split and filter the path
    const pathSegments = path.split('/');
