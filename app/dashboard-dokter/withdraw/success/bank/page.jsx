@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/ui/Footer";
-import NavbarDokter from "@/components/ui/NavbarDokter";
 import React from "react";
 import { useState } from "react";
 import CheckIcon from "@/public/assets/icons/CheckIcon.png";
@@ -90,7 +88,7 @@ export default function SuksesWithdrawBank() {
                   </div>
                </div>
                <div className="mb-[150px]">
-                  <TutupWithdrawButton>Tutup</TutupWithdrawButton>
+                  <TutupWithdrawButton><Link href={`/dashboard-dokter`}>Tutup</Link></TutupWithdrawButton>
                </div>
             </div>
          ))}

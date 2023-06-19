@@ -1,34 +1,31 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import BNILogo from "public/assets/images/bni.png";
-import BRILogo from "public/assets/images/bri.png";
-import BCALogo from "public/assets/images/bca.png";
-import MandiriLogo from "public/assets/images/mandiri.png";
-import GopayLogo from "public/assets/images/gopay.png";
-import DanaLogo from "public/assets/images/dana.png";
-import LinkAjaLogo from "public/assets/images/link-aja.png";
-import ShopeePayLogo from "public/assets/images/shopee-pay.png";
-import useWithdrawal from "@/components/atoms/useWithdrawal";
+import { useAtom } from "jotai";
+import useWithdrawal, {
+   WithdrawalMethodAtom,
+   selectedDropdownAtom,
+} from "@/components/atoms/useWithdrawal";
+import { bankLists, VWalletLists } from "@/components/ui/BankCardList";
+import { BankCard, VWalletCard } from "@/components/ui/BankCard";
 
 export default function WithdrawMethodControl() {
    const { handleWithdrawalSteps } = useWithdrawal();
 
    const [isBankOpen, setIsBankOpen] = useState(false);
    const [isVWalletOpen, setIsVWalletOpen] = useState(false);
-   const [selectedWithdrawOption, setWithdrawOption] = useState("");
-   const [selectedMethod, setMethod] = useState("");
+   const [WithdrawOption, setWithdrawOption] = useAtom(WithdrawalMethodAtom);
+   const [selectedDropdown, setDropdown] = useAtom(selectedDropdownAtom);
 
    //Choose the Dropdown
    const handleBankDropdownClick = () => {
       setIsBankOpen(!isBankOpen);
-      setMethod("Bank");
+      setDropdown("Bank");
       setIsVWalletOpen(false);
    };
    const handleVWalletDropdownClick = () => {
       setIsVWalletOpen(!isVWalletOpen);
-      setMethod("VWallet");
+      setDropdown("VWallet");
       setIsBankOpen(false);
    };
 
@@ -36,19 +33,7 @@ export default function WithdrawMethodControl() {
    const handleWithdrawalOptionSelection = (option) => {
       setWithdrawOption(option);
    };
-
-   // Go to the Next Page
-   const handle = (e) => {};
-
-   //Default Image Settings - Width were standarized
-   function PaymentImage({ image, height, width = 103 }) {
-      return (
-         <>
-            <Image src={image} alt="bank" width={width} height={height} />
-         </>
-      );
-   }
-
+   
    return (
       <>
          <div className="flex flex-col gap-[12px] items-start justify-start shrink-0 relative">
@@ -122,106 +107,20 @@ export default function WithdrawMethodControl() {
                {isBankOpen && (
                   <div className="relative top-full left-0 bg-white w-full rounded-b-lg pb-[18px] z-10">
                      <div className="flex flex-col gap-0 items-start justify-start self-stretch shrink-0 relative">
-                        <div className="border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage image={BCALogo} height={58} />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    BCA
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bca-radio"
-                                    type="radio"
-                                    defaultValue="BCA"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection("BCA")
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="border-solid border-[#d9d9d9] border p-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage image={BRILogo} height={42} />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    BRI
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bri-radio"
-                                    type="radio"
-                                    defaultValue="BRI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection("BRI")
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="border-solid border-[#d9d9d9] border pt-[21px] pr-5 pb-[21px] pl-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage image={BNILogo} height={40} />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    BNI
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bni-radio"
-                                    type="radio"
-                                    defaultValue="BNI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection("BNI")
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="border-solid border-[#d9d9d9] border pt-[26px] pr-5 pb-[26px] pl-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-start justify-start self-stretch shrink-0 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage
-                                    image={MandiriLogo}
-                                    height={30}
-                                 />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    MANDIRI
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="mandiri-radio"
-                                    type="radio"
-                                    defaultValue="MANDIRI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection(
-                                          "MANDIRI"
-                                       )
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
+                        {bankLists &&
+                           bankLists.map((banks, index) => {
+                              return (
+                                 <React.Fragment key={index}>
+                                    <BankCard
+                                       bankName={banks.bankName}
+                                       bankLogo={banks.bankLogo}
+                                       height={banks.height}
+                                       width={banks.width}
+                                       handleWithdrawalOptionSelection={() => handleWithdrawalOptionSelection(banks.bankName)}
+                                    />
+                                 </React.Fragment>
+                              );
+                           })}
                      </div>
                   </div>
                )}
@@ -291,118 +190,27 @@ export default function WithdrawMethodControl() {
                {isVWalletOpen && (
                   <div className="relative top-full left-0 bg-white w-full rounded-b-lg pb-[18px] z-10">
                      <div className="flex flex-col gap-0 items-start justify-start self-stretch shrink-0 relative">
-                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage image={GopayLogo} height={26} />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    Gopay
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bca-radio"
-                                    type="radio"
-                                    defaultValue="BCA"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection("Gopay")
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border p-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage image={DanaLogo} height={32} />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    DANA
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bri-radio"
-                                    type="radio"
-                                    defaultValue="BRI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection("DANA")
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border p-5 flex flex-col gap-2.5 items-start justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative">
-                              <div className="flex flex-row gap-[62px] items-center justify-start flex-1 relative">
-                                 <PaymentImage
-                                    image={LinkAjaLogo}
-                                    width={50}
-                                    height={53}
-                                 />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    Link Aja!
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="bni-radio"
-                                    type="radio"
-                                    defaultValue="BNI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection(
-                                          "LinkAja"
-                                       )
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="w-[447px] h-[82px] border-solid border-[#d9d9d9] border pt-3 pr-5 pb-3 pl-5 flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative overflow-hidden">
-                           <div className="flex flex-row gap-0 items-center justify-start flex-1 relative">
-                              <div className="flex flex-row gap-[11px] items-center justify-start flex-1 relative">
-                                 <PaymentImage
-                                    image={ShopeePayLogo}
-                                    height={49}
-                                 />
-
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative w-[107px]">
-                                    Shopee Pay
-                                 </div>
-                              </div>
-                              <div className="flex flex-row gap-0 items-center justify-start self-stretch shrink-0 relative cursor-pointer">
-                                 <input
-                                    id="mandiri-radio"
-                                    type="radio"
-                                    defaultValue="MANDIRI"
-                                    name="bank-radio"
-                                    className="w-6 h-6 text-web-green-400 bg-neutral-0 border-web-green-400 border-2 focus:ring-web-green-500 "
-                                    onClick={() =>
-                                       handleWithdrawalOptionSelection(
-                                          "ShopeePay"
-                                       )
-                                    }
-                                 />
-                              </div>
-                           </div>
-                        </div>
+                     {VWalletLists &&
+                           VWalletLists.map((vWallet, index) => {
+                              return (
+                                 <React.Fragment key={index}>
+                                    <VWalletCard
+                                       bankName={vWallet.bankName}
+                                       bankLogo={vWallet.bankLogo}
+                                       height={vWallet.height}
+                                       width={vWallet.width}
+                                       handleWithdrawalOptionSelection={() => handleWithdrawalOptionSelection(vWallet.bankName)}
+                                    />
+                                 </React.Fragment>
+                              );
+                           })}
                      </div>
                   </div>
                )}
                <button
-                  className="font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative"
+                  className={`disabled:cursor-not-allowed font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative`}
                   onClick={handleWithdrawalSteps}
+                  disabled={!WithdrawOption}
                >
                   Lanjutkan
                </button>
