@@ -1,4 +1,7 @@
+'use client'
+
 import { atom, useAtom } from "jotai";
+import Cookies from "js-cookie";
 
 // const awsLinkAtom = atom(
 //    "https://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080"
