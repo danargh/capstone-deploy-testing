@@ -17,7 +17,7 @@ export default function page() {
    const indexOfLastArticle = currentPage * articlesPerPage;
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
-   const currentArticles = dataArtikel ? dataArtikel.slice(indexOfFirstArticle, indexOfLastArticle) : [];
+   const currentArticles = Array.isArray(dataArtikel) ? dataArtikel.slice(indexOfFirstArticle, indexOfLastArticle) : [];
 
    const totalPages = Math.ceil((dataArtikel?.length || 0) / articlesPerPage);
 
@@ -60,7 +60,7 @@ export default function page() {
                            <td className="border border-success-green-100 pl-2 ">{artikel.title}</td>
                            <td className="border border-success-green-100 text-center ">{artikel.image}</td>
                            <td className="border border-success-green-100 text-center ">{artikel.category}</td>
-                           <td className="border border-success-green-100 text-center ">Sedang Di tinjau</td>
+                           <td className="border border-success-green-100 text-center ">{artikel.status}</td>
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
                               <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>

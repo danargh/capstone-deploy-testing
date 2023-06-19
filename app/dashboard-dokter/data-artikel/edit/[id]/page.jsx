@@ -1,45 +1,62 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import useSWR, { mutate } from 'swr';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import { useEditArticleDoctor } from '@/components/atoms/useEditArticleDoctor'; // Jangan lupa ganti "path/to/useEditArticleDoctor.js" dengan lokasi yang tepat
+import { useEditArticleDoctor } from '@/components/atoms/useEditArticleDoctor';
 
 import { ArrowBackArtikelEditButton, KirimArtikelButton } from '@/components/ui/Button';
 import InputFile from '@/components/forms/input-file';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { input_variants } from '@/components/custom/custom';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import Cookies from 'js-cookie';
+// const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) => {
+   const token = Cookies.get('doctorToken');
+   return fetch(url, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   }).then((res) => res.json());
+};
 
 export default function page({ params }) {
    const id = params.id;
-   const { data: artikelData, error } = useSWR(`https://64872a94beba6297279025c6.mockapi.io/articles/${id}`, fetcher);
-   const { title, setTitle, category, setCategory, description, setDescription } = useEditArticleDoctor();
+
+   const { data: artikelData, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`, fetcher);
+   const { title, setTitle, category, setCategory, content, setContent, thumbnail, setThumbnail } = useEditArticleDoctor();
 
    useEffect(() => {
       if (artikelData) {
-         setTitle(artikelData.title);
-         setCategory(artikelData.category);
+         setTitle(artikelData.data.title);
+         setCategory(artikelData.data.category);
+         setContent(artikelData.data.content);
+         setThumbnail(artikelData.data.thumbnail);
       }
    }, [artikelData]);
 
    const updateArticle = async (id, data) => {
+      const token = Cookies.get('doctorToken');
       try {
-         const response = await fetch(`https://64872a94beba6297279025c6.mockapi.io/articles/${id}`, {
+         const response = await fetch(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`, {
             method: 'PUT',
+
             headers: {
-               'Content-Type': 'application/json',
+               Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(data),
+
+            body: data,
          });
+         console.log(response);
          if (!response.ok) {
             throw new Error('Error updating article');
          }
          const updatedData = await response.json();
-         mutate(`https://64872a94beba6297279025c6.mockapi.io/articles/${id}`);
+         mutate(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`);
          return updatedData;
       } catch (error) {
          console.error('Error updating article:', error);
@@ -47,6 +64,7 @@ export default function page({ params }) {
    };
 
    const handleSubmit = async (e) => {
+      const token = Cookies.get('doctorToken');
       e.preventDefault();
       Swal.fire({
          title: 'Berhasil',
@@ -55,13 +73,20 @@ export default function page({ params }) {
          confirmButtonText: 'OK',
       });
 
-      const data = {
-         title: title,
-         category: category,
-         description: description,
-      };
+      const data = new FormData();
+      data.append('title', title);
+      data.append('category', category);
+      data.append('content', content);
+      data.append('thumbnail', thumbnail);
 
       await updateArticle(id, data);
+   };
+   const [selectedFile, setSelectedFile] = useState(null);
+
+   const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+      setThumbnail(file); // Menyimpan file ke state thumbnail
    };
    return (
       <>
@@ -88,14 +113,18 @@ export default function page({ params }) {
                      Minimal 250 Karakter
                   </span>
                </div>
-               <ReactQuill theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={description} onChange={setDescription} />
+               <ReactQuill theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={content} onChange={setContent} />
                <div className="" style={{ paddingTop: 36 }}>
                   <span className="text-sm">Tambahkan Gambar</span>
                   <br />
                   <span className="" style={{ fontSize: 12, color: '#979797' }}>
                      Format gambar .Jpg .png Max. 3MB
                   </span>
-                  <InputFile />
+                  <label htmlFor="file-input" className="flex flex-row-reverse w-[914px] cursor-pointer h-[41px]">
+                     <div className="bg-web-green-400 font-poppins whitespace-nowrap flex items-center px-3 rounded-r-md text-white">Pilih Gambar</div>
+                     <div className={input_variants({ variant: 'image' })}>{selectedFile ? selectedFile.name : 'Pilih Gambar'}</div>
+                  </label>
+                  <input id="file-input" className="hidden" type="file" onChange={handleFileChange} />
                </div>
                <div className="pb-[39.5px]">
                   <p className="text-sm font-bold pt-[35px] mb-5">Kategori Artikel</p>
