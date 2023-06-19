@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { AddObatIcon, PenIcon, TrashIcon } from "@/public/assets/icons/icons";
+import { PenIcon, TrashIcon } from "@/public/assets/icons/icons";
+import { motion } from "framer-motion";
 
 export default function ObatItem({ onChangeObat, onBlurObatInput, editObatRef, obat, index, onRemoveObat, onFocusEditObat }) {
    return (
@@ -23,6 +24,7 @@ export default function ObatItem({ onChangeObat, onBlurObatInput, editObatRef, o
 
          <div className="flex gap-[24px]">
             <button
+               className="hover:scale-125 transition-transform"
                onClick={() => {
                   onFocusEditObat(index);
                }}
@@ -30,6 +32,7 @@ export default function ObatItem({ onChangeObat, onBlurObatInput, editObatRef, o
                <PenIcon fill="#577536" />
             </button>
             <button
+               className="hover:scale-125 transition-transform"
                onClick={() => {
                   onRemoveObat(index);
                }}

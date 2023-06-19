@@ -14,12 +14,12 @@ export default function page() {
 
    const { data, error, isLoginLoading, triggerLogin } = loginAdmin();
 
-   //    React.useEffect(() => {
-   //       const token = Cookies.get('adminToken');
-   //       if (token) {
-   //          router.push('/dashboard-admin');
-   //       }
-   //    }, []);
+      React.useEffect(() => {
+         const token = Cookies.get('adminToken');
+         if (token) {
+            router.push('/dashboard-admin');
+         }
+      }, []);
 
    const formik = useFormik({
       initialValues: {
