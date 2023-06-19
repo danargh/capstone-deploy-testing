@@ -1,5 +1,7 @@
 import "./globals.css";
 import "react-quill/dist/quill.snow.css";
+import {ErrorBoundary} from "react-error-boundary";
+
 
 export const metadata = {
    title: "Prevent",
