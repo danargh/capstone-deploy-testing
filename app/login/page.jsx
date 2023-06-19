@@ -8,17 +8,38 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import ErrorMessage from "@/components/error/ErrorMessage";
 import { motion } from "framer-motion";
+import { login } from "@/lib/auth";
+import Cookies from "js-cookie";
 
 export default function Login() {
    const router = useRouter();
+   const { data, error, isLoginLoading, triggerLogin } = login();
+
+   // check if user already logged in
+   React.useEffect(() => {
+      const token = Cookies.get("doctorToken");
+      if (token) {
+         router.push("/dashboard-dokter");
+      }
+   }, []);
+
    const formik = useFormik({
       initialValues: {
          email: "",
          password: "",
       },
-      onSubmit: (values) => {
-         // alert(JSON.stringify(values, null, 2));
-         router.push("/dashboard-dokter");
+      onSubmit: async (values) => {
+         const { email, password } = values;
+         try {
+            const result = await triggerLogin({ email: email, password: password });
+            console.log(result);
+            if (result.message === "success login") {
+               Cookies.set("doctorToken", result.token, { expires: 7 });
+               router.push("/dashboard-dokter");
+            }
+         } catch (error) {
+            console.log(error.message);
+         }
       },
    });
 
@@ -35,11 +56,9 @@ export default function Login() {
                   <p className="font-poppins font-[700] text-[36px] text-[#7CA153] mb-12">Area Dokter</p>
                   <form onSubmit={formik.handleSubmit} className="flex flex-col gap-8">
                      <InputNew type="email" label="Email" name="email" onHandleChange={formik.handleChange} value={formik.values.email} />
-                     {/* {formik.errors.email ? <ErrorMessage errorMessage={formik.errors.password} /> : null} */}
                      <InputNew type="password" label="Password" name="password" onHandleChange={formik.handleChange} value={formik.values.password} />
-                     {/* {formik.errors.password ? <ErrorMessage errorMessage={formik.errors.password} /> : null} */}
-                     <LoginDokterButton type="submit">Log In</LoginDokterButton>
-
+                     {data !== undefined && isLoginLoading ? <ErrorMessage errorMessage="Email atau kata sandi salah. Silahkan coba lagi atau klik lupa kata sandi!" /> : null}
+                     <LoginDokterButton type="submit">{isLoginLoading ? "Loading..." : "Log In"}</LoginDokterButton>
                      <button onClick={handleLupaPassword} className="hover:text-[#7CA153] transition-colors text-left font-poppins font-[700] text-[12px] text-web-green-500">
                         Lupa kata sandi?
                      </button>

@@ -34,9 +34,9 @@ export const KirimKomentarButton = ({ onClick, children }) => {
    );
 };
 
-export const LoginDokterButton = ({ onClick, children }) => {
+export const LoginDokterButton = ({ onClick, children, type }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
+      <motion.button type={type} whileHover={{ transition: 2, backgroundColor: "#63863E" }} className={button_variants({ variant: "default", size: "full" })} onClick={onClick}>
          <p className={text_variants_inter({ variant: "inter_20_reguler" })}>{children}</p>
       </motion.button>
    );
