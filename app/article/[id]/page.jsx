@@ -16,7 +16,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function fetchArticle(id) {
    const { data: article } = useSWR(
-      `http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/articles/${id}`,
+      `https://capstone-project.duckdns.org:8080/articles/${id}`,
       fetcher
    );
    return article;
@@ -164,15 +164,20 @@ export default function DetailArticle({ params }) {
                               </Link>
                            </div>
                            <div>
-                              <h2 className="w-[500px] text-right">
-                                 {filteredArticles[1].title}
-                              </h2>
-                              <Link
-                                 href={`/article/${filteredArticles[1].id}`}
-                                 className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-end"
-                              >
-                                 Post Selanjutnya
-                              </Link>
+                              {filteredArticles.length >= 2 ? (
+                                 <>
+                                    {" "}
+                                    <h2 className="w-[500px] text-right">
+                                       {filteredArticles[1].title}
+                                    </h2>
+                                    <Link
+                                       href={`/article/${filteredArticles[1].id}`}
+                                       className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-end"
+                                    >
+                                       Post Selanjutnya
+                                    </Link>
+                                 </>
+                              ) : null}
                            </div>
                         </div>
                      </aside>

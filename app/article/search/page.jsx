@@ -14,7 +14,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function searchedArticle(keyword) {
    const { data: getSearchArticle } = useSWR(
-      `http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/articles/search?keyword=${keyword}`,
+      `https://capstone-project.duckdns.org:8080/articles/search?keyword=${keyword}`,
       fetcher
    );
    return getSearchArticle;

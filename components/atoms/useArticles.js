@@ -6,7 +6,7 @@ export const articlesAtom = atom(null);
 
 const fetchArticles = async () => {
 
-    const response = await fetch('http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/articles');
+    const response = await fetch('https://capstone-project.duckdns.org:8080/articles');
     return response.json();
 }
 
