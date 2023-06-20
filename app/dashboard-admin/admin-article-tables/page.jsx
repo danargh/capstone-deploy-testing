@@ -67,7 +67,7 @@ export default function AdminArticleTables() {
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Terhapus!", "Data telah dihapus.", "success");
+                  Swal.fire("Terhapus!", "Data diterima.", "success");
                } else {
                   console.error("Gagal menghapus data:", response);
                   throw new Error("Gagal menghapus data");
@@ -214,7 +214,7 @@ export default function AdminArticleTables() {
                                           {baseIndex + index}
                                        </td>
                                        <td className="border border-success-green-75 pl-2 ">
-                                          {article.writer}
+                                          {article.doctor_name}
                                        </td>
                                        <td className="border border-success-green-75 text-center font-inter text-[#001AFF] underline">
                                           <Link href={"#"}>
