@@ -5,8 +5,11 @@ import { AddObatIcon, SearchIcon } from "@/public/assets/icons/icons";
 import ObatItem from "./ObatItem";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import { useObatDoctor, getDrugs } from "@/components/atoms/useObatDoctor";
+import { getDrugs } from "@/components/atoms/useObatDoctor";
+import { receiptAtom } from "@/components/atoms/useCreateReceipt";
 import { motion } from "framer-motion";
+
+const listDrugs = ["Paracetamol"];
 
 export default function page() {
    const editObatRef = useRef([]);
@@ -14,8 +17,8 @@ export default function page() {
    const [keywordSearch, setKeywordSearch] = useState("");
    const router = useRouter();
    const { dataDrugs, error: errorGetDrugs } = getDrugs();
-   const { triggerObat, isObatLoading, data } = useObatDoctor();
-   // const [obat, setObat] = useAtom(namaObatAtom);
+   // const { error: errorCreateReceipt, triggerCreateReceipt, isReceiptLoading } = createReceipt();
+   const [receipt, setReceipt] = useAtom(receiptAtom);
 
    const dataDrugsArray = dataDrugs.recipt;
 
@@ -50,7 +53,7 @@ export default function page() {
    const handleSubmitObat = (e) => {
       e.preventDefault();
       try {
-         // triggerObat(choosedObat);
+         setReceipt(choosedObat);
       } catch (error) {
          console.log(error);
       }
@@ -77,10 +80,10 @@ export default function page() {
                   <ul className="mt-[20px]">
                      {keywordSearch === ""
                         ? choosedObat.map((obat, index) => {
-                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })
                         : searchedObat.map((obat, index) => {
-                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })}
                   </ul>
                </div>
@@ -91,14 +94,14 @@ export default function page() {
             <motion.div whileInView={{ y: [64, 0], opacity: [0, 1] }} transition={{ duration: 1 }} className="h-[1080px] overflow-y-scroll bg-[#C7E8AF] rounded-[5px] px-[24px] pb-[38px] pt-[16px]">
                <h2 className="font-poppins font-[700] text-[24px] leading-[36px] text-[#577536] mb-[38px]">Daftar Obat</h2>
                <ul className="flex flex-col gap-[12px]">
-                  {dataDrugsArray?.map((obat, index) => {
+                  {listDrugs.map((obat, index) => {
                      return (
                         <li key={index} className="rounded-[5px] bg-white w-full h-[110px] font-poppins text-[20px] leading-[30px] font-[500] flex items-center justify-between p-[16px]">
-                           <p>{obat.nama}</p>
+                           <p>{obat}</p>
                            <motion.button
                               whileHover={{ transition: 2, backgroundColor: "#63863E" }}
                               onClick={() => {
-                                 handleAddObat(obat.nama);
+                                 handleAddObat(obat);
                               }}
                               className="bg-[#8EBF59] px-[34px] py-[12px] rounded-[8px] hover:shadow-md"
                            >
