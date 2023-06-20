@@ -81,18 +81,19 @@ export default async function DoctorContainer() {
                            Konsultasi online dengan dokter kami
                         </div>
                      </div>
-
-                     {randomDoctors?.map((doctor_list) => (
-                        <React.Fragment key={doctor_list.ID}>
-                           <DoctorCard
-                              image={doctor_list.photo}
-                              name={doctor_list.full_name}
-                              title={doctor_list.title}
-                              work_time={doctor_list.work_time}
-                              href={`/detail-dokter/${doctor_list.ID}`}
-                           />
-                        </React.Fragment>
-                     ))}
+                     <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
+                        {randomDoctors?.map((doctor_list) => (
+                           <React.Fragment key={doctor_list.ID}>
+                              <DoctorCard
+                                 image={doctor_list.photo}
+                                 name={doctor_list.full_name}
+                                 title={doctor_list.title}
+                                 work_time={doctor_list.work_time}
+                                 href={`/detail-dokter/${doctor_list.ID}`}
+                              />
+                           </React.Fragment>
+                        ))}
+                     </div>
                   </div>
 
                   <div className="flex flex-col gap-[17px] items-start justify-start shrink-0 relative">
@@ -104,7 +105,7 @@ export default async function DoctorContainer() {
 
                      <div className="flex flex-col gap-4 items-start justify-start shrink-0 relative">
                         <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
-                           {doctor_list ? (
+                           {
                               doctor_list?.slice(0, 4).map((doctor_list) => (
                                  <React.Fragment key={doctor_list.ID}>
                                     <DoctorCard
@@ -116,9 +117,7 @@ export default async function DoctorContainer() {
                                     />
                                  </React.Fragment>
                               ))
-                           ) : (
-                              <SkeletonLoader />
-                           )}
+                           }
                         </div>
                      </div>
                   </div>

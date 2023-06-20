@@ -2,25 +2,43 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import PaginationDok from "@/components/PaginationDok";
+import Cookies from "js-cookie";
 
 export default function DokterMasuk({ params }) {
+   const [token, setToken] = useState("");
    const [alasanPenolakan, setAlasanPenolakan] = useState("");
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
    // const [dokterMasuk, setDokterMasuk] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(10);
-   const fetcher = (url) => fetch(url).then((res) => res.json());
+   // const fetcher = (url) => fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6MSwiYXV0aG9yaXplZCI6dHJ1ZSwiZXhwIjoxNjg3MTg2MTIxfQ.bm-y7OXsdiVe9lXviUryWAiwiZOB2pJ0kAr7ZJZdXz0`}}).then((res) => {
+   //    res.json()
+   //    console.log(res)
+   // });
+
+   const fetcher = async (url) => {
+      const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+      const jsonData = await response.json()
+      return jsonData
+   }
 
    const { data: dokterMasuk, mutate } = useSWR(
-      "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+      "https://capstone-project.duckdns.org:8080/admin/doctors",
       fetcher
    );
 
+
    useEffect(() => {
+      const tokenCookies = Cookies.get("doctorToken");
+      if (tokenCookies) {
+         setToken(tokenCookies);
+         console.log(token)
+      }
       mutate();
+
    }, []);
 
    const handleSearchKeywordChange = (event) => {
@@ -29,7 +47,7 @@ export default function DokterMasuk({ params }) {
 
    const handleSearch = () => {
       fetch(
-         `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchKeyword}`
+         `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`
       )
          .then((response) => response.json())
          .then((data) => {
@@ -59,7 +77,7 @@ export default function DokterMasuk({ params }) {
          if (result.isConfirmed) {
             const alasan = result.value;
             fetch(
-               `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`,
+               `https://capstone-project.duckdns.org:8080/admin/doctors/${id}`,
                {
                   method: "PUT",
                   headers: {
@@ -75,7 +93,7 @@ export default function DokterMasuk({ params }) {
                .then((data) => {
                   Swal.fire("Berhasil!", "Dokter ditolak.", "success");
                   fetch(
-                     "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+                     "https://capstone-project.duckdns.org:8080/admin/doctors",
                      fetcher
                   )
                      .then((response) => response.json())
@@ -100,7 +118,7 @@ export default function DokterMasuk({ params }) {
 
    const handleVerifikasi = (id) => {
       fetch(
-         `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk/${id}`,
+         `https://capstone-project.duckdns.org:8080/admin/doctors/${id}`,
          {
             method: "PUT",
             headers: {
@@ -113,7 +131,7 @@ export default function DokterMasuk({ params }) {
          .then((data) => {
             Swal.fire("Berhasil!", "Dokter terverifikasi.", "success");
             fetch(
-               "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk",
+               "https://capstone-project.duckdns.org:8080/admin/doctors",
                fetcher
             )
                .then((response) => response.json())
@@ -135,11 +153,11 @@ export default function DokterMasuk({ params }) {
       const endIndex = startIndex + itemsPerPage;
 
       // Check if dokterMasuk is empty or null
-      if (!dokterMasuk || dokterMasuk.length === 0) {
+      if (!dokterMasuk?.doctors || dokterMasuk?.doctors.length === 0) {
          return [];
       }
 
-      return dokterMasuk.slice(startIndex, endIndex);
+      return dokterMasuk?.doctors.slice(startIndex, endIndex);
    };
 
    const handlePageChange = (pageNumber) => {
@@ -219,43 +237,53 @@ export default function DokterMasuk({ params }) {
                   {PaginatedData().map((dokter, i) => (
                      <tr scope="col" key={dokter.id} className="bg-white">
                         <td className="border border-web-green-300 text-center">
-                           {dokter.id}
+                           {dokter.ID}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.namaDokter}
+                           {dokter.full_name}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.emailDokter}
+                           {dokter.email}
                         </td>
                         <td className="border border-web-green-300 text-center">
                            {dokter.nik}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.jenisKelamin}
+                           {dokter.gender}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.tempatLahir}
+                           {dokter.birth_place}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.Agama}
+                           {dokter.religion}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.Universitas}
+                           {dokter.alumnus}
                         </td>
                         <td className="border border-web-green-300 text-center">
                            {dokter.jurusan}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.tahunLulus}
+                           {dokter.grad_year}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.tempatPraktik}
+                           {dokter.practice_address}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.noStr}
+                           {dokter.str_number}
                         </td>
                         <td className="border border-web-green-300 text-center">
-                           {dokter.dokumen}
+                           {dokter.cv && dokter.ijazah && dokter.str ? (
+                              <a
+                                 href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${dokter.cv}\n${dokter.ijazah}\n${dokter.str}`)}`}
+                                 download="dokumen.txt"
+                                 className="text-blue-500 underline"
+                              >
+                                 LinkDokumen
+                              </a>
+                           ) : (
+                              "Tidak ada dokumen"
+                           )}
                         </td>
                         <td className="flex gap-3 py-2 justify-center border">
                            <button
@@ -276,10 +304,10 @@ export default function DokterMasuk({ params }) {
                </tbody>
             </table>
             <div className="float-right mt-11">
-               {dokterMasuk && dokterMasuk.length > 0 ? (
+               {dokterMasuk?.doctors && dokterMasuk?.doctors.length > 0 ? (
                   <PaginationDok
                      currentPage={currentPage}
-                     totalItems={dokterMasuk.length}
+                     totalItems={dokterMasuk?.doctors.length}
                      itemsPerPage={itemsPerPage}
                      onPageChange={handlePageChange}
                   />
