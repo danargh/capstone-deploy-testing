@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { AddArtikelButton } from '@/components/ui/Button';
@@ -11,15 +11,17 @@ export default function page() {
    const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
    const [baseIndex, setBaseIndex] = useAtom(baseIndexAtom);
    const [articlesPerPage] = useAtom(articlesPerPageAtom);
+   const [searchTerm, setSearchTerm] = useState('');
+   const [confirmedSearchTerm, setConfirmedSearchTerm] = useState('');
 
    const { dataArtikel, error, handleDelete } = useArticleData();
 
    const indexOfLastArticle = currentPage * articlesPerPage;
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
-   const currentArticles = Array.isArray(dataArtikel) ? dataArtikel.slice(indexOfFirstArticle, indexOfLastArticle) : [];
+   const currentArticles = Array.isArray(dataArtikel) ? dataArtikel.filter((artikel) => artikel.title.toLowerCase().includes(confirmedSearchTerm.toLowerCase())).slice(indexOfFirstArticle, indexOfLastArticle) : [];
 
-   const totalPages = Math.ceil((dataArtikel?.length || 0) / articlesPerPage);
+   const totalPages = Math.ceil((dataArtikel?.filter((artikel) => artikel.title.toLowerCase().includes(confirmedSearchTerm.toLowerCase())).length || 0) / articlesPerPage);
 
    const handlePageChange = (page) => {
       setCurrentPage(page);
@@ -35,8 +37,10 @@ export default function page() {
                </Link>
             </div>
             <div className="ml-3">
-               <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian"></input>
-               <button className="bg-[#8EBF59] py-[13.5px] px-[23px]">Cari</button>
+               <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+               <button className="bg-[#8EBF59] py-[13.5px] px-[23px]" onClick={() => setConfirmedSearchTerm(searchTerm)}>
+                  Cari
+               </button>
             </div>
 
             <div className="relative flex pt-10"></div>
