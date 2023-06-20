@@ -57,13 +57,14 @@ export default function Sidebar() {
 
    // Function to unify components
    function SidebarComponent({ navName, navPoint, sidebarDarkIcon, sidebarLightIcon }) {
+    const hover = "hover:bg-web-green-400 hover:border-solid hover:border-neutral-0 hover:border-l-[5px] hover:py-[5px] hover:pr-[5px] hover:pl-3"
       return (
          <Link
             href={`/dashboard-dokter${navPoint}`}
-            className={`${filteredPath === "/dashboard-dokter" + navPoint ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
+            className={`${filteredPath === "/dashboard-dokter" + navPoint ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} ${hover} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}
          >
             {filteredPath === "/dashboard-dokter" + navPoint ? sidebarDarkIcon : sidebarLightIcon}
-            <div className={`font-poppins ${filteredPath === "/dashboard-dokter" + navPoint ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>{navName}</div>
+            <div className={`font-poppins ${filteredPath === "/dashboard-dokter" + navPoint ? "font-bold" : "hover:font-bold font-medium"} text-[35px] text-neutral-0 text-left relative`}>{navName}</div>
          </Link>
       );
    }
@@ -131,9 +132,9 @@ export default function Sidebar() {
                      </div>
 
                      {/* Keep this separate!!!! */}
-                     <button onClick={logoutHandler} className={`${path === "/logout" ? "bg-web-green-400 border-solid border-neutral-0 border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`} prefetch={false}>
+                     <button onClick={logoutHandler} className={`hover:bg-web-green-400 hover:border-solid hover:border-neutral-0 hover:border-l-[5px] hover:py-[5px] hover:pr-[5px] hover:pl-3 flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative`}>
                         {path === "/login" ? <SidebarDarkLogOutIcon /> : <SidebarLogOutIcon />}
-                        <div className={`font-poppins ${path === "/" ? "font-bold" : "font-medium"} text-[35px] text-neutral-0 text-left relative`}>Keluar</div>
+                        <div className={`font-poppins ${path === "/" ? "font-bold" : "hover:font-bold font-medium"} text-[35px] text-neutral-0 text-left relative`}>Keluar</div>
                      </button>
                   </div>
                </div>
