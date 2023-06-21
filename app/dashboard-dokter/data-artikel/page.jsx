@@ -6,6 +6,7 @@ import { AddArtikelButton } from '@/components/ui/Button';
 import { button_variants } from '@/components/custom/custom';
 import PaginationAlt from '@/components/ui/PaginationAlt';
 import { currentPageAtom, baseIndexAtom, articlesPerPageAtom, useArticleData } from '@/components/atoms/useArticleDoctor';
+import Image from 'next/image';
 
 export default function page() {
    const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
@@ -62,7 +63,11 @@ export default function page() {
                         <tr key={index} scope="" className="">
                            <td className="border border-success-green-100 text-center ">{baseIndex + index}</td>
                            <td className="border border-success-green-100 pl-2 ">{artikel.title}</td>
-                           <td className="border border-success-green-100 text-center ">{artikel.image}</td>
+                           <td className="border border-success-green-100 text-center ">
+                              <div className="mr-[73px] ml-[83px]">
+                                 <Image src={artikel.thumbnail} width={69} height={53} />
+                              </div>
+                           </td>
                            <td className="border border-success-green-100 text-center ">{artikel.category}</td>
                            <td className="border border-success-green-100 text-center ">{artikel.status}</td>
 
