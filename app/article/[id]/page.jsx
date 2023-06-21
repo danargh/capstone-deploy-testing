@@ -86,14 +86,16 @@ export default function DetailArticle({ params }) {
                         </p>
                      </div>
                   </header>
+
                   <Image
                      priority
                      alt="images"
-                     className="w-full mt-[48px]"
-                     src="/assets/images/detail-article.png"
+                     className="w-full mt-[48px]   h-[680px] object-cover "
+                     src={getArticle.data.thumbnail}
                      width={1440}
-                     height={500}
+                     height={5}
                   />
+
                   <main className="max-w-[1220px] mx-auto">
                      <div className="flex gap-[42px] justify-center my-[32px]">
                         <a
@@ -145,9 +147,12 @@ export default function DetailArticle({ params }) {
                            />
                         </a>
                      </div>
-                     <p className="font-inter font-[400] text-[22px] leading-9 text-justify">
-                        {getArticle.data.content}
-                     </p>
+                     <p
+                        className="font-inter font-[400] text-[22px] leading-9 text-justify"
+                        dangerouslySetInnerHTML={{
+                           __html: getArticle.data.content,
+                        }}
+                     ></p>
                      <aside className=" mt-[130px] font-inter font-[600] text-[22px] leading-9">
                         <div className="flex justify-between">
                            <div>
