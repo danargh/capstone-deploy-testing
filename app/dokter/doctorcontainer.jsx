@@ -10,7 +10,7 @@ import {
    searchQueryAtom,
 } from "@/components/atoms/useAllDoctor";
 import FetchAllDoctor from "@/api/all-doctor";
-import SkeletonLoader from "./doctor-container/skeletonloader";
+// import SkeletonLoader from "./doctor-container/skeletonloader";
 
 export default async function DoctorContainer() {
    const [allDoctor, setAllDoctor] = useAtom(allDoctorAtom);
@@ -105,19 +105,17 @@ export default async function DoctorContainer() {
 
                      <div className="flex flex-col gap-4 items-start justify-start shrink-0 relative">
                         <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
-                           {
-                              doctor_list?.slice(0, 4).map((doctor_list) => (
-                                 <React.Fragment key={doctor_list.ID}>
-                                    <DoctorCard
-                                       image={doctor_list.photo}
-                                       name={doctor_list.full_name}
-                                       title={doctor_list.title}
-                                       work_time={doctor_list.work_time}
-                                       href={`/detail-dokter/${doctor_list.ID}`}
-                                    />
-                                 </React.Fragment>
-                              ))
-                           }
+                           {doctor_list?.slice(0, 4).map((doctor_list) => (
+                              <React.Fragment key={doctor_list.ID}>
+                                 <DoctorCard
+                                    image={doctor_list.photo}
+                                    name={doctor_list.full_name}
+                                    title={doctor_list.title}
+                                    work_time={doctor_list.work_time}
+                                    href={`/detail-dokter/${doctor_list.ID}`}
+                                 />
+                              </React.Fragment>
+                           ))}
                         </div>
                      </div>
                   </div>
