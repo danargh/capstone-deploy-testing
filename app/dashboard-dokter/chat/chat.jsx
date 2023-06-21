@@ -23,7 +23,7 @@ const UserChat = ({ message, type }) => {
           {type === "received" ? (
              <>
                 <div className="flex gap-3 m-5">
-                   {/* <svg
+                   <svg
                       width="50"
                       height="50"
                       viewBox="0 0 80 80"
@@ -50,7 +50,7 @@ const UserChat = ({ message, type }) => {
                             <rect width="80" height="80" rx="40" fill="white" />
                          </clipPath>
                       </defs>
-                   </svg> */}
+                   </svg>
                    <div className="w-1/2 bg-web-green-100 px-4 py-3  rounded-b-lg rounded-e-lg">
                       {message}
                    </div>

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 export default function ChatSidebar({ users, handleUserClick }) {
    return (
       <div className="w-[353px] h-[89vh] overflow-y-auto">
-         <div className="px-5 py-7  bg-web-green-75 text-xl font-bold">
+         <div className="px-5 py-7 bg-web-green-75 text-xl font-bold">
             Chat
          </div>
 
