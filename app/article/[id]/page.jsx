@@ -151,17 +151,20 @@ export default function DetailArticle({ params }) {
                      <aside className=" mt-[130px] font-inter font-[600] text-[22px] leading-9">
                         <div className="flex justify-between">
                            <div>
-                              <h2 className="w-[500px]">
-                                 {/* Peran WHO Dalam Menanggulangan COVID-19 Bagi
-                                 Masyarakat */}
-                                 {filteredArticles[0].title}
-                              </h2>
-                              <Link
-                                 href={`/article/${filteredArticles[0].id}`}
-                                 className="font-[500] text-[16px] leading-4 text-[#268AFF] mt-[18px] flex justify-start"
-                              >
-                                 Post Sebelumnya
-                              </Link>
+                              {filteredArticles.length >= 1 ? (
+                                 <>
+                                    {" "}
+                                    <h2 className="w-[500px] text-right">
+                                       {filteredArticles[0].title}
+                                    </h2>
+                                    <Link
+                                       href={`/article/${filteredArticles[0].id}`}
+                                       className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-end"
+                                    >
+                                       Post Selanjutnya
+                                    </Link>
+                                 </>
+                              ) : null}
                            </div>
                            <div>
                               {filteredArticles.length >= 2 ? (
