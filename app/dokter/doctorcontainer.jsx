@@ -85,10 +85,10 @@ export default async function DoctorContainer() {
                         {randomDoctors?.map((doctor_list) => (
                            <React.Fragment key={doctor_list.ID}>
                               <DoctorCard
-                                 image={doctor_list.photo}
+                                 image={doctor_list.propic}
                                  name={doctor_list.full_name}
-                                 title={doctor_list.title}
-                                 work_time={doctor_list.work_time}
+                                 title={doctor_list.specialist}
+                                 work_time={doctor_list.work_experience}
                                  href={`/detail-dokter/${doctor_list.ID}`}
                               />
                            </React.Fragment>
@@ -108,10 +108,10 @@ export default async function DoctorContainer() {
                            {doctor_list?.slice(0, 4).map((doctor_list) => (
                               <React.Fragment key={doctor_list.ID}>
                                  <DoctorCard
-                                    image={doctor_list.photo}
+                                    image={doctor_list.propic}
                                     name={doctor_list.full_name}
-                                    title={doctor_list.title}
-                                    work_time={doctor_list.work_time}
+                                    title={doctor_list.specialist}
+                                    work_time={doctor_list.work_experience}
                                     href={`/detail-dokter/${doctor_list.ID}`}
                                  />
                               </React.Fragment>
