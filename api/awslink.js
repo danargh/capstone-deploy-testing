@@ -15,7 +15,8 @@ const awsLinkAtom = atom("https://capstone-project.duckdns.org:8080");
 
 export default function AWSLink() {
    const token = Cookies.get("adminToken") || "";
+   const doctortoken = Cookies.get("doctorToken") || "";
    const [awslink] = useAtom(awsLinkAtom);
    //    const [token] = useAtom(authToken);
-   return { awslink, token };
+   return { awslink, token, doctortoken };
 }
