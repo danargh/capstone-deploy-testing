@@ -37,7 +37,7 @@ export default function page({ params }) {
          <div className="mx-auto  max-w-[1440px]">
             <div className="  mt-[100px] mb-[50px] flex flex-col items-center">
                <div className="relative inline-block mt-9  ">
-                  <AvatarSquare image={dokterProfile} round={20} width={190} height={192} />
+                  <AvatarSquare image={data.doctor.propic} round={20} width={190} height={192} />
                   <Badge status={data.doctor.status_online ? 'online' : 'offline'} />
                </div>
                <span className="font-poppins text-lg font-semibold text-center mt-3.5 mb-10">{data.doctor.full_name}</span>

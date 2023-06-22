@@ -21,6 +21,7 @@ const InputFileDaftarStr = ({ value, error, errorTouched }) => {
                id="file-input-str"
                type="file"
                onChange={handleFileChange}
+               name="str"
                style={{
                   opacity: 0,
                   position: "absolute",

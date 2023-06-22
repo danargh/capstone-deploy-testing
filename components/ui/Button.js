@@ -234,7 +234,7 @@ export const LoginUserButton = ({ onClick, children }) => {
 
 export const RegisterDokterButton = ({ onClick, children }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
+      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} type="submit" className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
          <div style={{ display: "flex", alignItems: "center" }}>
             <p className={text_variants_poppins({ size: "sm" })}>{children}</p>
          </div>
