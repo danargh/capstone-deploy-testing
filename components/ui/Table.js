@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { PaginationOrderDokter } from './Pagination';
+import Link from 'next/link';
 
 export const TableOrder = (props) => {
+    const handlePhone = () => {
 
+    }
     return (
         <table className="border-collapse border w-full border-black">
             <thead >
                 <tr className="bg-gray-300 font-semibold h-[43px]">
                     <th className='border border-black'>No</th>
                     <th className='border border-black'>Tanggal</th>
+                    <th className='border border-black'>Jam</th>
                     <th className='border border-black'>Nama</th>
                     <th className='border border-black'>Jenis Kelamin</th>
                     <th className='border border-black'>Status</th>
@@ -21,19 +25,20 @@ export const TableOrder = (props) => {
                     <tr className=''>
                         <td className='border border-black text-center'>{index + 1}</td>
                         <td className='border border-black text-center'>{order.date}</td>
+                        <td className='border border-black text-center'>{order.hours}</td>
                         <td className='border border-black text-center'>{order.name}</td>
                         <td className='border border-black text-center'>{order.gender}</td>
                         <td className='border border-black text-center'>{order.status}</td>
                         {order.chat ?
                             (<>
-                                <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></td>
+                                <td className='border border-black'><Link href={'/dashboard-dokter/chat'} ><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></Link></td>
                                 <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
 
                             </>)
                             : (
                                 <>
                                     <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
-                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} /></td>
+                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} onClick={handlePhone} /></td>
 
                                 </>
                             )
