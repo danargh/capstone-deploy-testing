@@ -8,7 +8,7 @@ import useSWR from "swr";
 export default function ReqWithdraw() {
    // const [dokter, setDokter] = useState(dataDokter);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
+   const [itemsPerPage] = useState(3);
 
    const fetcher = (url) => fetch(url).then((res) => res.json());
    const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://642f8c91b289b1dec4b50531.mockapi.io/withdraw", fetcher, {});

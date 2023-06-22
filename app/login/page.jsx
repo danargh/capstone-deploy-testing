@@ -35,6 +35,7 @@ export default function Login() {
             console.log(result);
             if (result.message === "success login") {
                Cookies.set("doctorToken", result.token, { expires: 7 });
+               localStorage.setItem("doctorData", JSON.stringify(result.doctor));
                router.push("/dashboard-dokter");
             }
          } catch (error) {
