@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { PaginationOrderDokter } from './Pagination';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 
 export const TableOrder = (props) => {
-    const handlePhone = () => {
+    const handlePhone = async () => {
 
+        const { value: url } = await Swal.fire({
+            title: 'Masukkan Link Pertemuan',
+            input: 'text',
+            text: 'Silahkan masukkan link pertemuan anda dengan pasien ke dalam form di bawah ini! Link dapat berupa Zoom, Google meet, Discord call, dll. ',
+            inputPlaceholder: 'Masukan link pertemuan',
+            showCancelButton: true,
+        })
+
+        if (url) {
+            Swal.fire({ icon: 'success', title: 'Yeyy Link Berhasil Dikirim', text: 'Ketuk dimana saja untuk menutup halaman ini', showConfirmButton: false, })
+        }
     }
     return (
         <table className="border-collapse border w-full border-black">
