@@ -21,6 +21,7 @@ const InputFileDaftarSip = ({ value, error, errorTouched }) => {
                id="file-input-sip"
                type="file"
                onChange={handleFileChange}
+               name="sip"
                style={{
                   opacity: 0,
                   position: "absolute",
