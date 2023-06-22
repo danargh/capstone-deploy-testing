@@ -10,8 +10,15 @@ export default function ReqWithdraw() {
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(5);
 
-   const fetcher = (url) => fetch(url).then((res) => res.json());
-   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://642f8c91b289b1dec4b50531.mockapi.io/withdraw", fetcher, {});
+   const fetcher = async (url) => {
+      const token = Cookies.get("adminToken");
+      return fetch(url, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      }).then((res) => res.json());
+   };
+   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://capstone-project.duckdns.org:8080/withdraw", fetcher, {});
 
    const totalpages = dataWithdraw?.length / itemsPerPage;
 
@@ -35,10 +42,11 @@ export default function ReqWithdraw() {
          });
          const index = newDataWithdraw.findIndex((data) => data.id === id);
 
-         const response = await fetch(`https://642f8c91b289b1dec4b50531.mockapi.io/withdraw/${id}`, {
+         const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
             method: "PUT",
             headers: {
                "Content-Type": "application/json",
+               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(newDataWithdraw[index]),
          });
