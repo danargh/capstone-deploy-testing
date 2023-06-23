@@ -1,21 +1,26 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AddObatIcon, SearchIcon } from "@/public/assets/icons/icons";
 import ObatItem from "./ObatItem";
-import { namaObatAtom } from "@/components/atoms/useObatDoctor";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import Aos from "aos";
+import { getDrugs } from "@/components/atoms/useObatDoctor";
+import { receiptAtom } from "@/components/atoms/useCreateReceipt";
+import { motion } from "framer-motion";
 
-const listObat = ["Paracetamol 500mg", "Amoxicillin 3.000mg", "Fluoxetine", "Alprazolam", "Sertraline", "Lorazepam", "Antidepresan"];
+const listDrugs = ["Paracetamol"];
 
-export default function ObatDokter() {
+export default function page() {
    const editObatRef = useRef([]);
-   const [choosedObat, setChoosedObat] = useState(["Paracetamol"]);
+   const [choosedObat, setChoosedObat] = useState([]);
    const [keywordSearch, setKeywordSearch] = useState("");
    const router = useRouter();
-   const [obat, setObat] = useAtom(namaObatAtom);
+   const { dataDrugs, error: errorGetDrugs } = getDrugs();
+   // const { error: errorCreateReceipt, triggerCreateReceipt, isReceiptLoading } = createReceipt();
+   const [receipt, setReceipt] = useAtom(receiptAtom);
+
+   const dataDrugsArray = dataDrugs.recipt;
 
    const handleAddObat = (obat) => {
       setChoosedObat([...choosedObat, obat]);
@@ -47,13 +52,17 @@ export default function ObatDokter() {
 
    const handleSubmitObat = (e) => {
       e.preventDefault();
-      setObat(choosedObat);
+      try {
+         setReceipt(choosedObat);
+      } catch (error) {
+         console.log(error);
+      }
       router.push("/dashboard-dokter/chat");
    };
 
    return (
       <>
-         <section className="grid grid-cols-2 gap-[46px] text-[#577536] mt-[46px] max-w-[1320px] mx-auto h-[90vh]">
+         <section className="grid grid-cols-2 gap-[46px] text-[#577536] mt-[46px] max-w-[1320px] mx-auto h-[1080px] mb-8">
             <div className="flex flex-col justify-between">
                <div>
                   <h1 className="font-inter font-[600] text-[36px] leading-[46px] mb-[30px]">Resep Obat</h1>
@@ -71,37 +80,38 @@ export default function ObatDokter() {
                   <ul className="mt-[20px]">
                      {keywordSearch === ""
                         ? choosedObat.map((obat, index) => {
-                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })
                         : searchedObat.map((obat, index) => {
-                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onAddObat={handleAddObat} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
+                             return <ObatItem key={index} editObatRef={editObatRef} onBlurObatInput={handleBlurObatInput} onChangeObat={handleChangeObat} onFocusEditObat={handleFocusEditObat} onRemoveObat={handleRemoveObat} obat={obat} index={index} />;
                           })}
                   </ul>
                </div>
-               <button onClick={handleSubmitObat} className="w-[220px] font-poppins font-[600] text-[24px] leading-[28px] text-white px-[74px] py-[20px] hover:bg-web-green-400 hover:shadow-md bg-web-green-300 rounded-[12px]">
+               <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} onClick={handleSubmitObat} className="w-[220px] font-poppins font-[600] text-[24px] leading-[28px] text-white px-[74px] py-[20px] hover:shadow-md bg-web-green-300 rounded-[12px]">
                   Lanjut
-               </button>
+               </motion.button>
             </div>
-            <div className="bg-[#C7E8AF] rounded-[5px] px-[24px] pb-[38px] pt-[16px]">
+            <motion.div whileInView={{ y: [64, 0], opacity: [0, 1] }} transition={{ duration: 1 }} className="h-[1080px] overflow-y-scroll bg-[#C7E8AF] rounded-[5px] px-[24px] pb-[38px] pt-[16px]">
                <h2 className="font-poppins font-[700] text-[24px] leading-[36px] text-[#577536] mb-[38px]">Daftar Obat</h2>
                <ul className="flex flex-col gap-[12px]">
-                  {listObat.map((obat, index) => {
+                  {listDrugs.map((obat, index) => {
                      return (
                         <li key={index} className="rounded-[5px] bg-white w-full h-[110px] font-poppins text-[20px] leading-[30px] font-[500] flex items-center justify-between p-[16px]">
                            <p>{obat}</p>
-                           <button
+                           <motion.button
+                              whileHover={{ transition: 2, backgroundColor: "#63863E" }}
                               onClick={() => {
                                  handleAddObat(obat);
                               }}
-                              className="bg-[#8EBF59] px-[34px] py-[12px] rounded-[8px] hover:bg-web-green-400 hover:shadow-md"
+                              className="bg-[#8EBF59] px-[34px] py-[12px] rounded-[8px] hover:shadow-md"
                            >
                               <AddObatIcon />
-                           </button>
+                           </motion.button>
                         </li>
                      );
                   })}
                </ul>
-            </div>
+            </motion.div>
          </section>
       </>
    );

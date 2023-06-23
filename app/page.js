@@ -8,8 +8,12 @@ import { Pagination } from "@/components/ui/Pagination";
 import { useState } from "react";
 import Carousel from "@/components/ui/Carousel";
 import { useRouter } from "next/navigation";
+import { useArticles } from "@/components/atoms/useArticles";
+import { motion } from "framer-motion";
 
 export default function Home() {
+
+    const articles = useArticles();
     const [currentPage, setCurentPage] = useState(1);
     const [postPerPage, setPostPerPage] = useState(12);
 
@@ -20,38 +24,33 @@ export default function Home() {
     const handleDetailArticle = (id) => {
         router.push(`/article/${id}`);
     };
-    const newData = [];
-    const totalPosts = 26;
-    for (let i = 0; i < totalPosts; i++) {
-        const item = {
-            images: detailArtikel,
-            title: "Ilmuwan di China Sebut COVID-19 Mungkin Berasal dari Manusia, Begini Temuannya",
-            description: "Seorang ilmuwan di China mengungkapkan kemungkinan COVID-19 berasal dari manusia. Hal ini menyusul desakan dari Organisasi Kesehatan Dunia (WHO) kepada China untuk bersikap transparan perihal data asal-usul virus Corona.",
-        };
-        const newItem = {
-            ...item,
-        };
-        newData.push(newItem);
-    }
     return (
         <>
             <Navbar />
             <main className="flex min-h-screen flex-col items-center">
                 <Carousel />
                 <div className="grid grid-cols-3 gap-10 mt-[102px]" id="article">
-                    {newData.slice(firstPostIndex, lastPostIndex).map((item, index) => (
-                        <Card
-                            key={index}
-                            images={item.images}
-                            title={item.title}
-                            description={item.description}
-                            postId={1}
-                            handleDetailArticle={handleDetailArticle}
-                        />
+                    {articles && articles.data.slice(firstPostIndex, lastPostIndex).map((article, index) => (
+                        <motion.div whileInView={{ y: [50, 0], opacity: [0, 1] }} transition={{ duration: 1 }}>
+                            <Card
+                                key={index}
+                                images={article.thumbnail}
+                                title={article.title}
+                                description={article.content}
+                                postId={article.id}
+                                handleDetailArticle={handleDetailArticle}
+                            />
+                        </motion.div>
+
                     ))}
                 </div>
                 <div className="flex justify-center mb-36">
-                    <Pagination totalPosts={totalPosts} postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
+                    <Pagination totalPosts={
+                        articles &&
+                            articles.data.length > postPerPage
+                            ? articles.data.length
+                            : 0
+                    } postPerPage={postPerPage} setCurrentPage={setCurentPage} currentPage={currentPage} />
                 </div>
             </main>
             <Footer />

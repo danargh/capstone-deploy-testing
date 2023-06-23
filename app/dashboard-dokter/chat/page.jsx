@@ -1,16 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { namaObatAtom } from "@/components/atoms/useObatDoctor";
-import { useAtom } from "jotai";
-
+import { createReceipt, receiptAtom } from "@/components/atoms/useCreateReceipt";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { useEffect } from "react";
+
 function page() {
    const [selectedFile, setSelectedFile] = useState(null);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    const [selectedUser, setSelectedUser] = useState("0");
    const [newMessage, setNewMessage] = useState("");
-   const [obat, setObat] = useAtom(namaObatAtom);
+   const { triggerCreateReceipt, error: errorCreateReceipt, isReceiptLoading } = createReceipt();
+   const [receipt, setReceipt] = useAtom(receiptAtom);
+
+   const receiptLocal = receipt;
 
    const handleInputChange = (e) => {
       setNewMessage(e.target.value);
@@ -49,15 +53,28 @@ function page() {
    const handleUserClick = (id) => {
       setSelectedUser(id);
    };
-   const handleFormSubmit = (e) => {
+   const handleSendMessage = (e) => {
       e.preventDefault();
 
       const updatedUsers = users.map((user) => {
-         if (user.id === selectedUser) {
-            return {
-               ...user,
-               chat: [...user.chat, { message: newMessage, type: "sent" }],
-            };
+         if (newMessage === "" && selectedFile === "") {
+            return user;
+         } else {
+            if (user.id === selectedUser) {
+               console.log(selectedFile);
+               if (selectedFile !== null) {
+                  // danar : ganti dari "" menjadi null
+                  return {
+                     ...user,
+                     chat: [...user.chat, { message: selectedFile.name, type: "sent" }],
+                  };
+               } else {
+                  return {
+                     ...user,
+                     chat: [...user.chat, { message: newMessage, type: "sent" }],
+                  };
+               }
+            }
          }
          return user;
       });
@@ -66,30 +83,36 @@ function page() {
       setNewMessage("");
    };
 
-   const handleSendObat = (e) => {
+   const handleSendObat = async (e) => {
       e.preventDefault();
-      const messageObat = `Obat yang direkomendasikan : \n ${obat.join(",\n")}, semoga cepat sembuh :)`;
-      const updatedUsers = users.map((user) => {
-         if (user.id === selectedUser) {
-            return {
-               ...user,
-               chat: [...user.chat, { message: messageObat, type: "sent" }],
-            };
-         }
-         return user;
-      });
-      setObat("");
+      let updatedUsers;
+      try {
+         // await triggerCreateReceipt(receiptLocal);
+         const messageObat = `Obat yang direkomendasikan : \n ${receipt.join(",\n")}, semoga cepat sembuh :)`;
+         updatedUsers = users.map((user) => {
+            if (user.id === selectedUser) {
+               return {
+                  ...user,
+                  chat: [...user.chat, { message: messageObat, type: "sent" }],
+               };
+            }
+            return user;
+         });
+      } catch (error) {
+         console.log(error);
+      }
+      setReceipt([]);
       setUsers(updatedUsers);
       setNewMessage("");
    };
 
    return (
       <>
-         {obat.length !== 0 ? (
+         {receiptLocal.length !== 0 ? (
             <div className="rounded-2xl shadow-xl flex flex-col justify-between font-inter font-[600] text-[24px] leading-[30px] absolute left-0 right-0 top-[296px] w-[811px] min-h-[482px] bg-white mx-auto py-[55px] px-[52px]">
                <h3>Obat yang Diinformasikan</h3>
                <ul className="my-[32px]">
-                  {obat.map((obat, index) => (
+                  {receiptLocal.map((obat, index) => (
                      <li key={index} className="border-2 border-black pt-[10px] pl-[10px] pb-[42px]">
                         {obat}
                      </li>
@@ -98,7 +121,7 @@ function page() {
                <div className="flex justify-center gap-[48px] text-white">
                   <button
                      onClick={() => {
-                        setObat("");
+                        setReceipt([]);
                      }}
                      className="bg-[#858585] py-[14px] px-[58px] rounded-xl"
                   >
@@ -146,7 +169,6 @@ function page() {
                                        strokeLinejoin="round"
                                     />
                                  </svg>
-
                                  <p className="text-neutral-0 text-xs">Tutup sesi</p>
                               </Link>
                            </li>
@@ -175,7 +197,7 @@ function page() {
 
                <div className=" flex-grow">
                   <div className="flex items-center justify-between bg-web-green-75 px-3 py-2">
-                     <form onSubmit={handleFormSubmit} className="flex w-full">
+                     <form onSubmit={handleSendMessage} className="flex w-full">
                         <div className="flex items-center gap-3 w-full h-auto">
                            <div>
                               <label htmlFor="file-input" className="cursor-pointer relative">
@@ -188,17 +210,15 @@ function page() {
                                        <div className="line-clamp-1 w-24"> {selectedFile.name}</div>
                                     </>
                                  ) : (
-                                    <>
-                                       <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <rect y="0.5" width="24" height="24" rx="5" fill="#769E4B" />
-                                          <path
-                                             d="M21.6869 17.6972L18.67 11.3628C18.1206 10.2032 17.3013 9.54553 16.3664 9.50226C15.4411 9.45899 14.5447 10.0388 13.8603 11.1464L12.029 14.0973C11.6434 14.7204 11.094 15.0925 10.4964 15.1358C9.88918 15.1877 9.28194 14.9021 8.79037 14.3396L8.57832 14.0973C7.89397 13.3272 7.04577 12.9551 6.17829 13.033C5.31081 13.1108 4.56863 13.6474 4.07706 14.5214L2.40957 17.5069C1.81197 18.5886 1.8698 19.8433 2.57343 20.8645C3.27705 21.8856 4.50116 22.5 5.84094 22.5H18.1399C19.4315 22.5 20.6363 21.9202 21.3496 20.951C22.0821 19.9818 22.1978 18.7616 21.6869 17.6972Z"
-                                             fill="white"
-                                          />
-                                          <path d="M7.09833 11.6967C8.8095 11.6967 10.1966 10.3095 10.1966 8.59833C10.1966 6.88717 8.8095 5.5 7.09833 5.5C5.38717 5.5 4 6.88717 4 8.59833C4 10.3095 5.38717 11.6967 7.09833 11.6967Z" fill="white" />
-                                          <path d="M19 6.7549H17.2941V8.5H15.7059V6.7549H14V5.2549H15.7059V3.5H17.2941V5.2549H19V6.7549Z" fill="white" />
-                                       </svg>
-                                    </>
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <rect y="0.5" width="24" height="24" rx="5" fill="#769E4B" />
+                                       <path
+                                          d="M21.6869 17.6972L18.67 11.3628C18.1206 10.2032 17.3013 9.54553 16.3664 9.50226C15.4411 9.45899 14.5447 10.0388 13.8603 11.1464L12.029 14.0973C11.6434 14.7204 11.094 15.0925 10.4964 15.1358C9.88918 15.1877 9.28194 14.9021 8.79037 14.3396L8.57832 14.0973C7.89397 13.3272 7.04577 12.9551 6.17829 13.033C5.31081 13.1108 4.56863 13.6474 4.07706 14.5214L2.40957 17.5069C1.81197 18.5886 1.8698 19.8433 2.57343 20.8645C3.27705 21.8856 4.50116 22.5 5.84094 22.5H18.1399C19.4315 22.5 20.6363 21.9202 21.3496 20.951C22.0821 19.9818 22.1978 18.7616 21.6869 17.6972Z"
+                                          fill="white"
+                                       />
+                                       <path d="M7.09833 11.6967C8.8095 11.6967 10.1966 10.3095 10.1966 8.59833C10.1966 6.88717 8.8095 5.5 7.09833 5.5C5.38717 5.5 4 6.88717 4 8.59833C4 10.3095 5.38717 11.6967 7.09833 11.6967Z" fill="white" />
+                                       <path d="M19 6.7549H17.2941V8.5H15.7059V6.7549H14V5.2549H15.7059V3.5H17.2941V5.2549H19V6.7549Z" fill="white" />
+                                    </svg>
                                  )}
                               </label>
 
@@ -306,9 +326,7 @@ const UserChat = ({ message, type }) => {
             </>
          ) : (
             <div className="flex gap-3 m-5 justify-end">
-               <div className=" w-1/2 h-auto bg-web-green-100 px-4 py-3  rounded-b-lg rounded-s-lg">
-                  <p className="w-full break-words">{message}</p>
-               </div>
+               <div className=" w-1/2 h-auto bg-web-green-100 px-4 py-3  rounded-b-lg rounded-s-lg">{message.includes("data:image") ? <img src={URL.createObjectURL(selectedFile)} alt={selectedFile.name} className="selected-image" /> : <p className="w-full break-words">{message}</p>}</div>
                <svg width="50" height="50" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_1618_19825)">
                      <rect width="80" height="80" rx="40" fill="#8EBF59" />

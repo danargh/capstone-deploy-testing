@@ -1,6 +1,5 @@
 import React from "react";
 import DoctorCard from "@/components/ui/DoctorCard";
-import TestIMG from "public/assets/images/dokter.png";
 
 export default function AllDoctor({ doctor_list }) {
    return (
@@ -15,18 +14,17 @@ export default function AllDoctor({ doctor_list }) {
          ></div>
          <div className="h-[635px] flex flex-col gap-4 items-start justify-start shrink-0 relative overflow-y-auto">
             <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
-               {doctor_list &&
-                  doctor_list.map((doctor_list) => (
-                     <>
-                        <DoctorCard
-                           image={TestIMG}
-                           name={doctor_list.name}
-                           title={doctor_list.title}
-                           work_time={doctor_list.work_time}
-                           href={doctor_list.href}
-                        />
-                     </>
-                  ))}
+               {doctor_list && doctor_list.map((doctor_list) => (
+                  <React.Fragment key={doctor_list.ID}>
+                     <DoctorCard
+                        image={doctor_list.propic}
+                        name={doctor_list.full_name}
+                        title={doctor_list.specialist}
+                        work_time={doctor_list.work_experience}
+                        href={`/detail-dokter/${doctor_list.ID}`}
+                     />
+                  </React.Fragment>
+               ))}
             </div>
          </div>
       </>

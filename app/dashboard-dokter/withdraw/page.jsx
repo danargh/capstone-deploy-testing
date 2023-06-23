@@ -1,5 +1,5 @@
 import React from "react";
-import WithdrawForm from "./withdraw-form";
+import WithdrawSteps from "./withdraw-steps";
 
 export default function Withdrawal() {
    return (
@@ -64,7 +64,7 @@ export default function Withdrawal() {
 
                      <div className="rounded-lg border-solid border-[#d9d9d9] border-[3px] pt-[26px] pr-8 pb-[26px] pl-8 flex flex-col gap-2.5 items-start justify-start w-[1312px] h-[831px] relative overflow-hidden">
                         <div className="flex flex-row gap-[28px] items-start justify-start shrink-0 relative">
-                           <WithdrawForm />
+                           <WithdrawSteps />
 
                            <div className="bg-neutral-0 rounded-[20px] border-solid border-[rgba(0,0,0,0.50)] border-[3px] shrink-0 w-[767px] h-[375px] relative overflow-hidden">
                               <div className="font-inter font-semibold text-xl/[42px] text-neutral-900 text-left absolute left-[276px] top-11">

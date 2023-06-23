@@ -1,25 +1,28 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { AddArtikelButton } from '@/components/ui/Button';
 import { button_variants } from '@/components/custom/custom';
 import PaginationAlt from '@/components/ui/PaginationAlt';
 import { currentPageAtom, baseIndexAtom, articlesPerPageAtom, useArticleData } from '@/components/atoms/useArticleDoctor';
+import Image from 'next/image';
 
 export default function page() {
    const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
    const [baseIndex, setBaseIndex] = useAtom(baseIndexAtom);
    const [articlesPerPage] = useAtom(articlesPerPageAtom);
+   const [searchTerm, setSearchTerm] = useState('');
+   const [confirmedSearchTerm, setConfirmedSearchTerm] = useState('');
 
    const { dataArtikel, error, handleDelete } = useArticleData();
 
    const indexOfLastArticle = currentPage * articlesPerPage;
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
-   const currentArticles = dataArtikel ? dataArtikel.slice(indexOfFirstArticle, indexOfLastArticle) : [];
+   const currentArticles = Array.isArray(dataArtikel) ? dataArtikel.filter((artikel) => artikel.title.toLowerCase().includes(confirmedSearchTerm.toLowerCase())).slice(indexOfFirstArticle, indexOfLastArticle) : [];
 
-   const totalPages = Math.ceil((dataArtikel?.length || 0) / articlesPerPage);
+   const totalPages = Math.ceil((dataArtikel?.filter((artikel) => artikel.title.toLowerCase().includes(confirmedSearchTerm.toLowerCase())).length || 0) / articlesPerPage);
 
    const handlePageChange = (page) => {
       setCurrentPage(page);
@@ -35,8 +38,10 @@ export default function page() {
                </Link>
             </div>
             <div className="ml-3">
-               <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian"></input>
-               <button className="bg-[#8EBF59] py-[13.5px] px-[23px]">Cari</button>
+               <input type="text" className="w-[640px] h-[50px] mt-[39px]" placeholder="Pencarian" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+               <button className="bg-[#8EBF59] py-[13.5px] px-[23px]" onClick={() => setConfirmedSearchTerm(searchTerm)}>
+                  Cari
+               </button>
             </div>
 
             <div className="relative flex pt-10"></div>
@@ -58,9 +63,13 @@ export default function page() {
                         <tr key={index} scope="" className="">
                            <td className="border border-success-green-100 text-center ">{baseIndex + index}</td>
                            <td className="border border-success-green-100 pl-2 ">{artikel.title}</td>
-                           <td className="border border-success-green-100 text-center ">{artikel.image}</td>
+                           <td className="border border-success-green-100 text-center ">
+                              <div className="mr-[73px] ml-[83px]">
+                                 <Image src={artikel.thumbnail} width={69} height={53} alt="gambarArtikel" />
+                              </div>
+                           </td>
                            <td className="border border-success-green-100 text-center ">{artikel.category}</td>
-                           <td className="border border-success-green-100 text-center ">Sedang Di tinjau</td>
+                           <td className="border border-success-green-100 text-center ">{artikel.status}</td>
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
                               <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>

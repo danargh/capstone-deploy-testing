@@ -13,16 +13,27 @@ export default function VerifikasiDokter() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;   
 
-  const fetchDokterVerif = (url) => fetch(url).then((response) => response.json());
-  const fetchDokterTolak = (url) => fetch(url).then((response) => response.json());
+  const fetchDokterVerif = async (url) => {
+    const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+    const jsonData = await response.json()
+    return jsonData
+ }
+
+  const fetchDokterTolak = async (url) => {
+    const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+    const jsonData = await response.json()
+    return jsonData
+ }
+
 
   const { data: dataDokterVerif, error: errorDokterVerif } = useSWR(
-    "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?status=Terverifikasi",
+    "https://capstone-project.duckdns.org:8080/admin/doctors",
     fetchDokterVerif
   );
 
+
   const { data: dataDokterTolak, error: errorDokterTolak } = useSWR(
-    "https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?status=Tolak",
+    "https://capstone-project.duckdns.org:8080/admin/doctors?status=Tolak",
     fetchDokterTolak
   );
 
@@ -43,7 +54,7 @@ export default function VerifikasiDokter() {
   };
 
   const handleSearch = () => {
-    const searchUrl = `https://647aaec0d2e5b6101db07ba8.mockapi.io/verif/doktermasuk?search=${searchInput}`;
+    const searchUrl = `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchInput}`;
     
     fetch(searchUrl)
       .then((response) => response.json())
@@ -56,10 +67,11 @@ export default function VerifikasiDokter() {
   };
 
   const paginateData = (data) => {
-   const startIndex = (currentPage - 1) * itemsPerPage;
-   const endIndex = startIndex + itemsPerPage;
-   return data.slice(startIndex, endIndex);
- };
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const doctors = data?.doctors || []; // Default to an empty array if data is undefined
+    return doctors.slice(startIndex, endIndex);
+  };
  const changePage = (page) => {
    setCurrentPage(page);
  };
@@ -92,7 +104,7 @@ export default function VerifikasiDokter() {
                 Cari
               </button>
             </div>
-            <Link href="/edit-pengguna/daftar-dokter">
+            <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">
               <button className="w-32 h-11 bg-web-green-300 text-white rounded ">Daftar Dokter</button>
             </Link>
           </div>
@@ -117,23 +129,35 @@ export default function VerifikasiDokter() {
             </tr>
           </thead>
           <tbody className="">
-            {[...paginateData(dokterVerif), ...paginateData(dokterTolak)].map((dokter, i) => (
+            {dataDokterVerif?.doctors.map((dokter, i) => (
               <tr scope="col" key={dokter.id} className="bg-white">
-                <td className="border border-web-green-300 text-center">{dokter.id}</td>
-                <td className="border border-web-green-300 text-center">{dokter.namaDokter}</td>
-                <td className="border border-web-green-300 text-center">{dokter.emailDokter}</td>
+                <td className="border border-web-green-300 text-center">{dokter.ID}</td>
+                <td className="border border-web-green-300 text-center">{dokter.full_name}</td>
+                <td className="border border-web-green-300 text-center">{dokter.email}</td>
                 <td className="border border-web-green-300 text-center">{dokter.nik}</td>
-                <td className="border border-web-green-300 text-center">{dokter.jenisKelamin}</td>
-                <td className="border border-web-green-300 text-center">{dokter.tempatLahir}</td>
-                <td className="border border-web-green-300 text-center">{dokter.Agama}</td>
-                <td className="border border-web-green-300 text-center">{dokter.Universitas}</td>
+                <td className="border border-web-green-300 text-center">{dokter.gender}</td>
+                <td className="border border-web-green-300 text-center">{dokter.birth_place}</td>
+                <td className="border border-web-green-300 text-center">{dokter.religion}</td>
+                <td className="border border-web-green-300 text-center">{dokter.alumnus}</td>
                 <td className="border border-web-green-300 text-center">{dokter.jurusan}</td>
-                <td className="border border-web-green-300 text-center">{dokter.tahunLulus}</td>
-                <td className="border border-web-green-300 text-center">{dokter.tempatPraktik}</td>
-                <td className="border border-web-green-300 text-center">{dokter.noStr}</td>
-                <td className="border border-web-green-300 text-center">{dokter.dokumen}</td>
+                <td className="border border-web-green-300 text-center">{dokter.gard_year}</td>
+                <td className="border border-web-green-300 text-center">{dokter.practice_address}</td>
+                <td className="border border-web-green-300 text-center">{dokter.str_number}</td>
                 <td className="border border-web-green-300 text-center">
-                  {dokter.status === "Terverifikasi" ? (
+                  {dokter.cv && dokter.ijazah && dokter.str ? (
+                    <a
+                    href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${dokter.cv}\n${dokter.ijazah}\n${dokter.str}`)}`}
+                    download="dokumen.txt"
+                    className="text-blue-500 underline"
+                    >
+                    LinkDokumen
+                    </a>
+                  ) : (
+                    "Tidak ada dokumen"
+                  )}
+                </td>
+                <td className="border border-web-green-300 text-center">
+                  {dokter.status === "approved" ? (
                     <div className="flex flex-col justify-center items-center p-3">
                       <p className="text-white font-semibold bg-[#2D6248] w-28 h-9 text-center rounded py-1 justify-center items-center">Terverifikasi</p>
                     </div>

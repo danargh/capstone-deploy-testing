@@ -4,41 +4,32 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { button_variants } from "@/components/custom/custom";
 import PaginationAlt from "@/components/ui/PaginationAlt";
-import useSWR, { mutate } from "swr";
+import ArticleAdminAPI from "@/api/article-admin";
 import Swal from "sweetalert2";
 
 //Any API changes later should refer to the comments for guidance!
 export default function AdminArticleTables() {
    const [currentPage, setCurrentPage] = useState(1);
-   const [baseIndex, setBaseIndex] = useState(0);
+   const [baseIndex, setBaseIndex] = useState(1);
    const [articlesPerPage] = useState(13);
 
-   //Fetch the data from API
-   const fetcher = (url) => fetch(url).then((res) => res.json());
-   const {
-      data: articleData,
-      error,
-      mutate: mutateArticleData,
-   } = useSWR(
-      "https://642ace62b11efeb759a35fe4.mockapi.io/doctorarticle",
-      fetcher,
-      {
-         revalidateOnFocus: false,
-         revalidateOnReconnect: false,
-      }
-   );
+   // get the data
+   const { articleData, articleError, articleMutate, articleEndpoint, token } =
+      ArticleAdminAPI();
+   const mutateArticleData = articleMutate;
+   const articles = articleData ? articleData.data : [];
 
    // Calculate the indexes of the articles to be displayed on the current page
    const indexOfLastArticle = currentPage * articlesPerPage;
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
    // Slice the articleData array to get the articles for the current page
-   const currentArticles = articleData
-      ? articleData.slice(indexOfFirstArticle, indexOfLastArticle)
+   const currentArticles = articles
+      ? articles.slice(indexOfFirstArticle, indexOfLastArticle)
       : [];
 
    // Calculate the total number of pages based on the articlesPerPage
-   const totalPages = Math.ceil((articleData?.length || 0) / articlesPerPage);
+   const totalPages = Math.ceil((articles?.length || 0) / articlesPerPage);
 
    // Handle the Page changes from Pagination
    const handlePageChange = (page) => {
@@ -57,6 +48,34 @@ export default function AdminArticleTables() {
          cancelButtonColor: "#d33",
          confirmButtonText: "Ya!",
          cancelButtonText: "Batal",
+      }).then(async (result) => {
+         if (result.isConfirmed) {
+            try {
+               const response = await fetch(`${articleEndpoint}/${id}`, {
+                  method: "PUT",
+                  headers: {
+                     "Content-Type": "application/json",
+                     Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({
+                     status: "disetujui",
+                  }),
+               });
+
+               if (response.ok) {
+                  const updatedData = articles.filter(
+                     (article) => article.id !== id
+                  );
+                  mutateArticleData(updatedData, false);
+                  Swal.fire("Terhapus!", "Data diterima.", "success");
+               } else {
+                  console.error("Gagal menghapus data:", response);
+                  throw new Error("Gagal menghapus data");
+               }
+            } catch (error) {
+               Swal.fire("Terjadi kesalahan", error.message, "error");
+            }
+         }
       });
    };
 
@@ -71,6 +90,34 @@ export default function AdminArticleTables() {
          cancelButtonColor: "#d33",
          confirmButtonText: "Ya!",
          cancelButtonText: "Batal",
+      }).then(async (result) => {
+         if (result.isConfirmed) {
+            try {
+               const response = await fetch(`${articleEndpoint}/${id}`, {
+                  method: "PUT",
+                  headers: {
+                     "Content-Type": "application/json",
+                     Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({
+                     status: "ditolak",
+                  }),
+               });
+
+               if (response.ok) {
+                  const updatedData = articles.filter(
+                     (article) => article.id !== id
+                  );
+                  mutateArticleData(updatedData, false);
+                  Swal.fire("Ditolak!", "Data telah Ditolak.", "success");
+               } else {
+                  console.error("Gagal menghapus data:", response);
+                  throw new Error("Gagal menghapus data");
+               }
+            } catch (error) {
+               Swal.fire("Terjadi kesalahan", error.message, "error");
+            }
+         }
       });
    };
 
@@ -88,15 +135,15 @@ export default function AdminArticleTables() {
       }).then(async (result) => {
          if (result.isConfirmed) {
             try {
-               const response = await fetch(
-                  `https://642ace62b11efeb759a35fe4.mockapi.io/doctorarticle/${id}`,
-                  {
-                     method: "DELETE",
-                  }
-               );
+               const response = await fetch(`${articleEndpoint}/${id}`, {
+                  headers: {
+                     Authorization: `Bearer ${token}`,
+                  },
+                  method: "DELETE",
+               });
 
                if (response.ok) {
-                  const updatedData = articleData.filter(
+                  const updatedData = articles.filter(
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
@@ -159,15 +206,20 @@ export default function AdminArticleTables() {
                            <tbody className="">
                               {currentArticles &&
                                  currentArticles.map((article, index) => (
-                                    <tr key={article.id} className="font-poppins font-normal text-[14px]">
+                                    <tr
+                                       key={article.id}
+                                       className="font-poppins font-normal text-[14px]"
+                                    >
                                        <td className="border border-success-green-75 text-center ">
                                           {baseIndex + index}
                                        </td>
                                        <td className="border border-success-green-75 pl-2 ">
-                                          {article.writer}
+                                          {article.doctor_name}
                                        </td>
                                        <td className="border border-success-green-75 text-center font-inter text-[#001AFF] underline">
-                                          <Link href={"#"}>{article.title}</Link>
+                                          <Link href={"#"}>
+                                             {article.title}
+                                          </Link>
                                        </td>
                                        <td className="border border-success-green-75 text-center ">
                                           {article.category}

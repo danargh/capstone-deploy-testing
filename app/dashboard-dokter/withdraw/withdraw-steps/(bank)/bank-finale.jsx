@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import BCALogo from "public/assets/images/bca.png";
+import { bankLists } from "@/components/ui/BankCardList";
 import Link from "next/link";
 import { useAtom } from "jotai";
 import useWithdrawal, {
    WithdrawalDataAtom,
 } from "@/components/atoms/useWithdrawal";
 
-export default function PaymentFinale() {
+export default function BankFinale() {
    const [hideBankNumber, toggleHiddenBankNumber] = useState(true);
    const { handleWithdrawalDataSend } = useWithdrawal();
 
@@ -18,7 +18,21 @@ export default function PaymentFinale() {
       toggleHiddenBankNumber((prev) => !prev);
    };
 
-   console.log(withdrawalData);
+   function SelectedBankCard({ selectedBank }) {
+      const selectedBankData = bankLists.find(
+         (bank) => bank.bankName === selectedBank
+      );
+      return (
+         <div className="flex flex-row gap-[11px] items-center justify-start self-stretch shrink-0 relative">
+            <Image
+               src={selectedBankData.bankLogo}
+               alt="bank"
+               width={selectedBankData.width}
+               height={selectedBankData.height}
+            />
+         </div>
+      );
+   }
    return (
       <>
          {withdrawalData &&
@@ -37,12 +51,7 @@ export default function PaymentFinale() {
                            </div>
 
                            <div className="flex flex-row gap-[11px] items-center justify-start shrink-0 relative">
-                              <Image
-                                 src={BCALogo}
-                                 alt="bank"
-                                 width={103}
-                                 height={58}
-                              />
+                              <SelectedBankCard selectedBank={data.method} />
 
                               <div className="flex flex-col gap-[11px] items-start justify-start shrink-0 relative">
                                  <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">
@@ -50,7 +59,7 @@ export default function PaymentFinale() {
                                  </div>
 
                                  <div
-                                    className="curson-pointer font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative"
+                                    className="cursor-pointer select-none font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative"
                                     onClick={handleHiddenBankNumber}
                                  >
                                     {data.method}{" "}
@@ -123,9 +132,7 @@ export default function PaymentFinale() {
                      className="font-poppins font-medium text-lg text-neutral-0 text-left bg-web-green-300 rounded-xl pt-4 pr-3 pb-4 pl-3 flex gap-2.5 items-center justify-center w-[168px] h-[75px] relative"
                      onClick={handleWithdrawalDataSend}
                   >
-                     <Link href="/dashboard-dokter/sukses-withdraw/bank">
-                        Lanjutkan
-                     </Link>
+                     Lanjutkan
                   </button>
                </div>
             ))}

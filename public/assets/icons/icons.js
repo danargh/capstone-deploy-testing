@@ -725,16 +725,30 @@ const AdminArtikelUnggahIcon = ({ width = "16", height = "16", fill = "white" })
    );
 };
 
-const ArrowBackHelpIcon = ({ width = '16', height = '16', fill = 'white' }) => {
-    return (
-        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.5 20.5L4.5 12.5L12.5 4.5L13.925 5.9L8.325 11.5H20.5V13.5H8.325L13.925 19.1L12.5 20.5Z" fill="black" />
-        </svg>
-    );
+const ArrowBackHelpIcon = ({ width = "16", height = "16", fill = "white" }) => {
+   return (
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M12.5 20.5L4.5 12.5L12.5 4.5L13.925 5.9L8.325 11.5H20.5V13.5H8.325L13.925 19.1L12.5 20.5Z" fill="black" />
+      </svg>
+   );
 };
 
+const ResepIcon = ({ width = "16", height = "16", fill = "white" }) => {
+   return (
+      <svg width={width} height={height} viewBox="0 0 40 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path
+            d="M10.1893 8.97203L3.26844 11.8619M13.0792 15.8929L1.54441 20.7094M15.9691 22.8138L9.04821 25.7037M18.0417 1.93844L38.4558 5.29665L26.4916 22.1747C25.858 23.0689 24.462 22.7726 24.2463 21.698L22.307 12.0397L16.8022 3.87037C16.1897 2.9615 16.9604 1.76048 18.0417 1.93844Z"
+            stroke={fill}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+         />
+      </svg>
+   );
+};
 
 export {
+   ResepIcon,
    AddObatIcon,
    ErrorIcon,
    PlayButtonIcon,

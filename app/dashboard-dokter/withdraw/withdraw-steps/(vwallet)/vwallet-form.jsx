@@ -8,7 +8,7 @@ import useWithdrawal, {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-export default function PaymentForm() {
+export default function VWalletForm() {
    const { handleWithdrawalSteps, handleWithdrawalData } = useWithdrawal();
    const [withdrawalData] = useAtom(WithdrawalDataAtom);
 

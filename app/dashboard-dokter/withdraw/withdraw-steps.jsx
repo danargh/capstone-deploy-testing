@@ -2,11 +2,12 @@
 
 import { useAtom } from "jotai";
 import { WithdrawalStepAtom } from "@/components/atoms/useWithdrawal";
-import PaymentForm from "./(bank)/bank-form";
-import PaymentFinale from "./(bank)/payment-confirm";
+import WithdrawForm from "./withdraw-steps/WithdrawForm";
+import WithdrawFinale from "./withdraw-steps/WithdrawFinale";
 import WithdrawMethodControl from "./withdraw-method-control";
+import Error from "./error";
 
-export default function WithdrawForm() {
+export default function WithdrawSteps() {
    const [WithdrawalStep] = useAtom(WithdrawalStepAtom);
 
    function RenderStep() {
@@ -15,11 +16,11 @@ export default function WithdrawForm() {
          case 1:
             return <WithdrawMethodControl />;
          case 2:
-            return <PaymentForm />;
+            return <WithdrawForm />;
          case 3:
-            return <PaymentFinale />;
+            return <WithdrawFinale />;
          default:
-            return <WithdrawMethodControl />;
+            return <Error />; // Failsafe
       }
    }
 

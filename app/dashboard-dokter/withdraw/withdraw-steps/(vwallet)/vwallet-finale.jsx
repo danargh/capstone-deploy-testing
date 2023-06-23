@@ -3,7 +3,7 @@ import Image from "next/image";
 import BCALogo from "public/assets/images/bca.png";
 import Link from "next/link";
 
-export default function WalletPaymentFinale() {
+export default function VWalletFinale() {
    return (
       <div className="flex flex-col gap-[19px] items-start justify-start shrink-0 relative">
          <div className="flex flex-col gap-6 items-start justify-start shrink-0 relative">

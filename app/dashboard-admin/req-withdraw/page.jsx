@@ -4,14 +4,22 @@ import { useState, useEffect } from "react";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import Swal from "sweetalert2";
 import useSWR from "swr";
+import { motion } from "framer-motion";
 
 export default function ReqWithdraw() {
    // const [dokter, setDokter] = useState(dataDokter);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(5);
+   const [itemsPerPage] = useState(3);
 
-   const fetcher = (url) => fetch(url).then((res) => res.json());
-   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://642f8c91b289b1dec4b50531.mockapi.io/withdraw", fetcher, {});
+   const fetcher = async (url) => {
+      const token = Cookies.get("adminToken");
+      return fetch(url, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      }).then((res) => res.json());
+   };
+   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://capstone-project.duckdns.org:8080/withdraw", fetcher, {});
 
    const totalpages = dataWithdraw?.length / itemsPerPage;
 
@@ -35,10 +43,11 @@ export default function ReqWithdraw() {
          });
          const index = newDataWithdraw.findIndex((data) => data.id === id);
 
-         const response = await fetch(`https://642f8c91b289b1dec4b50531.mockapi.io/withdraw/${id}`, {
+         const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
             method: "PUT",
             headers: {
                "Content-Type": "application/json",
+               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(newDataWithdraw[index]),
          });
@@ -88,7 +97,7 @@ export default function ReqWithdraw() {
 
    return (
       <>
-         <section className="pl-[378px] pt-[40px] bg-[#F8FFF1] h-screen w-screen">
+         <motion.section whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="pl-[378px] pt-[40px] bg-[#F8FFF1] h-screen w-screen">
             <header>
                <h1 className="font-poppins mb-[40px] font-[700] text-[#577536] text-[32px] leading-[48px]">Daftar Permintaan Pencairan Dana</h1>
                <div className="flex mb-[30px]">
@@ -154,7 +163,7 @@ export default function ReqWithdraw() {
             <div className="flex justify-start mt-8">
                <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
             </div>
-         </section>
+         </motion.section>
       </>
    );
 }

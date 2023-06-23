@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 // @param {children} is a component that will be rendered inside this component
+import { SidebarDarkLogOutIcon, SidebarLogOutIcon } from "@/public/assets/icons/icons";
+import { motion } from "framer-motion";
 
 const navLinks = [
    {
@@ -35,17 +39,24 @@ const navLinks = [
       width: 48,
       height: 48,
    },
-   {
-      name: "Keluar",
-      icon: "/assets/icons/logout-icon.svg",
-      href: "/login-admin",
-      width: 48,
-      height: 48,
-   },
 ];
 
 export default function SidebarAdmin({ children }) {
    const pathname = usePathname();
+   const path = usePathname();
+   const router = useRouter();
+
+   // Split and filter the path
+   const pathSegments = path.split("/");
+   const filteredPath =
+      pathSegments.length >= 3 // the first segment is the domain the second is dashboard-dokter and the third is the one used.
+         ? `/dashboard-admin/${pathSegments[2]}`
+         : "/dashboard-admin";
+
+   const logoutHandler = () => {
+      Cookies.remove("adminToken");
+      router.push("/login-admin");
+   };
 
    return (
       <>
@@ -61,6 +72,10 @@ export default function SidebarAdmin({ children }) {
                      </Link>
                   );
                })}
+               <button onClick={logoutHandler} className={`${path === "/logout" ? "bg-web-green-400 border-solid border-l-[5px] pt-[5px] pr-[5px] pb-[5px] pl-3" : " "} flex justify-start w-full hover:bg-[#FFFFFF33] my-3 py-3`}>
+                  <Image alt="images" className="mx-[20px]" src="/assets/icons/logout-icon.svg" width="48" height="48" />
+                  <div className={`font-inter ${path === "/" ? "font-bold" : "font-[500]"} text-[16px] text-[#D1E5BB] text-left relative mx-[8px] py-3`}>Keluar</div>
+               </button>
             </div>
             <div>{children}</div>
          </section>
