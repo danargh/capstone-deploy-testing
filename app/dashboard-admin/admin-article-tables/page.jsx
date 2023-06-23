@@ -41,7 +41,7 @@ export default function AdminArticleTables() {
    const handleArticleAccept = async (id) => {
       Swal.fire({
          title: "Apakah Anda yakin?",
-         text: "Apakah kamu yakin ingin menyetujui artikel ini?",
+         text: "Apakah kamu yakin ingin mengunggah artikel ini?",
          icon: "warning",
          showCancelButton: true,
          confirmButtonColor: "#3085d6",
@@ -67,13 +67,13 @@ export default function AdminArticleTables() {
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Terhapus!", "Data diterima.", "success");
+                  Swal.fire("Berhasil!", "Yeyy Artikel Berhasil Diunggah.", "success");
                } else {
-                  console.error("Gagal menghapus data:", response);
-                  throw new Error("Gagal menghapus data");
+                  console.error("Gagal mengunggah data:", response);
+                  throw new Error("Gagal mengunggah data");
                }
             } catch (error) {
-               Swal.fire("Terjadi kesalahan", error.message, "error");
+               Swal.fire("Maaf Artikel Gagal Diunggah", error.message, "error");
             }
          }
       });
@@ -109,10 +109,10 @@ export default function AdminArticleTables() {
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Ditolak!", "Data telah Ditolak.", "success");
+                  Swal.fire("Ditolak!", "Yeyy Artikel Berhasil Ditolak.", "success");
                } else {
-                  console.error("Gagal menghapus data:", response);
-                  throw new Error("Gagal menghapus data");
+                  console.error("Gagal menolak data:", response);
+                  throw new Error("Gagal menolak data");
                }
             } catch (error) {
                Swal.fire("Terjadi kesalahan", error.message, "error");
