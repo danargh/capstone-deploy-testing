@@ -5,20 +5,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function DashboardDokter() {
-   const [dokter, setDokter] = useState({});
+   let dokter = {};
+   if (typeof window !== "undefined") {
+      dokter = JSON.parse(localStorage.getItem("doctorData"));
+   }
 
-   useEffect(() => {
-      const localData = JSON.parse(localStorage.getItem("doctorData"));
-      if (localData) {
-         setDokter(localData);
-      }
-   }, []);
+   console.log(dokter);
 
    return (
       <>
          <section className="w-[1440px] mx-auto">
             <div className="">
-               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter.full_name}</p>
+               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter.doctor.full_name}</p>
             </div>
 
             <div>
@@ -43,7 +41,7 @@ export default function DashboardDokter() {
                         <p className="text-[32px] font-bold font-Inter py-3">Saldo Anda</p>
                      </div>
                      <div className="mx-6 py-6">
-                        <p>{dokter.balance}</p>
+                        <p>{dokter.doctor.balance}</p>
                      </div>
                   </div>
 

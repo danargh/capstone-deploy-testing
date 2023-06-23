@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import Swal from "sweetalert2";
 import useSWR from "swr";
+import { motion } from "framer-motion";
 
 export default function ReqWithdraw() {
    // const [dokter, setDokter] = useState(dataDokter);
@@ -96,7 +97,7 @@ export default function ReqWithdraw() {
 
    return (
       <>
-         <section className="pl-[378px] pt-[40px] bg-[#F8FFF1] h-screen w-screen">
+         <motion.section whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="pl-[378px] pt-[40px] bg-[#F8FFF1] h-screen w-screen">
             <header>
                <h1 className="font-poppins mb-[40px] font-[700] text-[#577536] text-[32px] leading-[48px]">Daftar Permintaan Pencairan Dana</h1>
                <div className="flex mb-[30px]">
@@ -162,7 +163,7 @@ export default function ReqWithdraw() {
             <div className="flex justify-start mt-8">
                <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
             </div>
-         </section>
+         </motion.section>
       </>
    );
 }
