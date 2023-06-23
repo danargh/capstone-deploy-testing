@@ -24,19 +24,20 @@ export function getUserDoctor() {
 
    // get doctor ID in cookies
 
-   fetch("https://capstone-project.duckdns.org:8080/doctor/35", {
-      headers: {
-         "Content-Type": "application/json",
-      },
-      method: "GET",
-   })
-      .then((res) => res.json())
-      .then((data) => {
-         localStorage.setItem("doctorData", JSON.stringify(data));
-      });
+   // fetch("https://capstone-project.duckdns.org:8080/doctor/35", {
+   //    headers: {
+   //       "Content-Type": "application/json",
+   //    },
+   //    method: "GET",
+   // })
+   //    .then((res) => res.json())
+   //    .then((data) => {
+   //       localStorage.setItem("doctorData", JSON.stringify(data));
+   //    });
 
-   const { data, error, revalidate } = useSWR("https://capstone-project.duckdns.org:8080/doctor/5", fetcher, {
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/doctor/5", fetcher, {
       onSuccess: (data) => {
+         console.log(data);
          setDataDoctorLogged(data);
       },
       onError: (error) => {
@@ -47,7 +48,6 @@ export function getUserDoctor() {
    return {
       data,
       error,
-      revalidate,
       isLoading: !error && !data,
    };
 }

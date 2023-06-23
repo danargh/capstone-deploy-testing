@@ -55,7 +55,7 @@ export default function Profile() {
                   </div>
                   <div className="col-span-2">
                      {/* <Input value={dataDoctorLogged.full_name} type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.doctor.full_name}</p>
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.full_name}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -64,7 +64,7 @@ export default function Profile() {
                   </div>
                   <div className="col-span-2">
                      {/* <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.doctor.display_name}</p>
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.display_name}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -72,7 +72,7 @@ export default function Profile() {
                   <div className="col-span-2">
                      <div style={{ position: "relative", display: "inline-block" }}>
                         <label htmlFor="upload-input" className="cursor-pointer">
-                           <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" width={200} height={200} src={dokter.doctor.propic} alt="Dokter" />
+                           <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" width={200} height={200} src={dokter.propic} alt="Dokter" />
                            <svg style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "1" }} className="my-8 mx-14" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <rect width="44" height="44" rx="22" fill="#87AF5B" />
                               <path
@@ -91,7 +91,7 @@ export default function Profile() {
                   </div>
                   <div className="col-span-2">
                      {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.doctor.alumnus}</p>
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.alumnus}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -100,7 +100,7 @@ export default function Profile() {
                   </div>
                   <div className="col-span-2">
                      {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.doctor.practice_address}</p>
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter.practice_address}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
