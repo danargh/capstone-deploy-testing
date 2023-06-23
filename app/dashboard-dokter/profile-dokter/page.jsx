@@ -13,8 +13,8 @@ import { dataDoctorAtom, getUserDoctor } from "@/components/atoms/useUserDoctor"
 import { useAtom } from "jotai";
 
 export default function Profile() {
-   const { data, error, isLoading, revalidate } = getUserDoctor();
-   const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
+   // const { data, error, isLoading, revalidate } = getUserDoctor();
+   // const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
 
    let dokter = {};
    if (typeof window !== "undefined") {

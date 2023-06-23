@@ -7,6 +7,7 @@ import { useAtom } from "jotai";
 import useSidebar from "@/components/atoms/useSidebar.js";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 import {
    CartIcon,
