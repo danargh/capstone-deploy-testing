@@ -52,7 +52,7 @@ export default function Article() {
                            key={index}
                            images={article.thumbnail}
                            title={article.title}
-                           description={article.description}
+                           description={article.content}
                            postId={article.id}
                            handleDetailArticle={handleDetailArticle}
                         />

@@ -14,110 +14,115 @@ export default function DaftarDokter({ params }) {
 
    const fetcher = (url) => fetch(url).then((res) => res.json());
 
-   const { data: pengguna, mutate } = useSWR("https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter", fetcher);
-
+   const { data: pengguna, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetcher);
+ 
    useEffect(() => {
-      mutate();
+     mutate();
    }, []);
-
+ 
    const handleDelete = (id) => {
-      Swal.fire({
-         title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
-         icon: "warning",
-         showCancelButton: true,
-         confirmButtonColor: "#8E1E18",
-         cancelButtonColor: "grey",
-         confirmButtonText: "Ya",
-         cancelButtonText: "Tidak",
-      }).then((result) => {
-         if (result.isConfirmed) {
-            fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter/${id}`, {
-               method: 'DELETE',
-            })
-               .then(() => {
-                  Swal.fire("Data berhasil dihapus", "", "success");
-                  // Mengupdate data pengguna setelah penghapusan
-                  mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
-               })
-               .catch((error) => {
-                  Swal.fire("Terjadi kesalahan", error.message, "error");
-               });
-         }
-      });
-   };
-
-   const handleSearchKeywordChange = (event) => {
-      setSearchKeyword(event.target.value);
-   };
-
-   const handleSearch = () => {
-      fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter?search=${searchKeyword}`)
-         .then((response) => response.json())
-         .then((data) => {
-            mutate(data, false);
+     Swal.fire({
+       title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#8E1E18",
+       cancelButtonColor: "grey",
+       confirmButtonText: "Ya",
+       cancelButtonText: "Tidak",
+     }).then((result) => {
+       if (result.isConfirmed) {
+         fetch(`https://capstone-project.duckdns.org:8080/admin/doctor/${id}`, {
+           method: 'DELETE',
          })
-         .catch((error) => {
-            console.log(error);
-         });
+           .then(() => {
+             Swal.fire("Data berhasil dihapus", "", "success");
+             // Mengupdate data pengguna setelah penghapusan
+             mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
+           })
+           .catch((error) => {
+             Swal.fire("Terjadi kesalahan", error.message, "error");
+           });
+       }
+     });
    };
-
+ 
+   const handleSearchKeywordChange = (event) => {
+     setSearchKeyword(event.target.value);
+   };
+ 
+   const handleSearch = () => {
+     fetch(`https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`)
+       .then((response) => response.json())
+       .then((data) => {
+         mutate(data, false);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+   };
+ 
    const handlePrint = (id) => {
-      const data = pengguna.find((item) => item.id === id);
-      if (data) {
-         const printContent = `
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama Dokter</th>
-                <th>Email Dokter</th>
-                <th>Komisi</th>
-                <th>Tanggal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>${data.id}</td>
-                <td>${data.namaDokter}</td>
-                <td>${data.emailDokter}</td>
-                <td>${data.komisi}</td>
-                <td>${data.tanggal}</td>
-              </tr>
-            </tbody>
-          </table>
-        `;
-
-         const printWindow = window.open("", "_blank");
-         printWindow.document.write(`
-          <html>
-            <head>
-              <title>Data Dokter</title>
-            </head>
-            <body>
-              ${printContent}
-            </body>
-          </html>
-        `);
-
-         printWindow.document.close();
-         printWindow.print();
-      }
+     const data = pengguna.find((item) => item.id === id);
+     if (data) {
+       const printContent = `
+         <table>
+           <thead>
+             <tr>
+               <th>No</th>
+               <th>Nama Dokter</th>
+               <th>Email Dokter</th>
+               <th>Komisi</th>
+               <th>Tanggal</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>${data.id}</td>
+               <td>${data.namaDokter}</td>
+               <td>${data.emailDokter}</td>
+               <td>${data.komisi}</td>
+               <td>${data.tanggal}</td>
+             </tr>
+           </tbody>
+         </table>
+       `;
+ 
+       const printWindow = window.open("", "_blank");
+       printWindow.document.write(`
+         <html>
+           <head>
+             <title>Data Dokter</title>
+           </head>
+           <body>
+             ${printContent}
+           </body>
+         </html>
+       `);
+ 
+       printWindow.document.close();
+       printWindow.print();
+     }
    };
-
+ 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      
-      // Check if dokterMasuk is empty or null
-      if (!pengguna || pengguna.length === 0) {
-         return [];
+    
+      // Check if pengguna is not an array
+      if (!Array.isArray(pengguna)) {
+        return [];
       }
-
+    
+      // Check if startIndex is valid
+      if (startIndex < 0 || startIndex >= pengguna.length) {
+        return [];
+      }
+    
       return pengguna.slice(startIndex, endIndex);
-   };
-
+    };
+ 
    const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);
+     setCurrentPage(pageNumber);
    };
    return (
       <>

@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import { useEffect, useState } from "react";
 import NavbarDokter from "@/components/ui/NavbarDokter";
 import Input from "@/components/forms/Input";
 import Dokter from "@/public/assets/images/dokter.png";
@@ -8,8 +9,22 @@ import Textarea from "@/components/forms/Textarea";
 import Dropdown from "@/components/forms/Dropdown";
 import { SimpanProfileButton } from "@/components/ui/Button";
 import Swal from "sweetalert2";
+import { dataDoctorAtom, getUserDoctor } from "@/components/atoms/useUserDoctor";
+import { useAtom } from "jotai";
 
 export default function Profile() {
+   const { data, error, isLoading } = getUserDoctor();
+   const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
+
+   let doctor = {};
+   if (typeof window !== "undefined") {
+      doctor = JSON.parse(localStorage.getItem("doctorData"));
+   }
+
+   console.log(dataDoctorLogged);
+
+   // const { doctor } = dataDoctorLogged;
+
    const handleFormSubmit = (e) => {
       e.preventDefault();
 
@@ -26,8 +41,8 @@ export default function Profile() {
                   </div>
                   <div className="float-right">
                      <p className="font-inter font-normal text-[#747474] text-[16px]">Tingkat Penyelesaian: 70%</p>
-                     <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                        <div class="bg-[#1BE38F] h-2.5 rounded-full w-3/4"></div>
+                     <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div className="bg-[#1BE38F] h-2.5 rounded-full w-3/4"></div>
                      </div>
                   </div>
                </div>
@@ -43,7 +58,8 @@ export default function Profile() {
                      <p className="text-red-700 my-2 text-lg">*</p>
                   </div>
                   <div className="col-span-2">
-                     <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" />
+                     {/* <Input value={dataDoctorLogged.full_name} type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {doctor.full_name}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -51,7 +67,8 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg my-2">Nama Tampilan</p>
                   </div>
                   <div className="col-span-2">
-                     <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" />
+                     {/* <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {doctor.display_name}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -77,7 +94,8 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg">Alumnus</p>
                   </div>
                   <div className="col-span-2">
-                     <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" />
+                     {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {doctor.alumnus}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -85,7 +103,8 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg">Praktik di</p>
                   </div>
                   <div className="col-span-2">
-                     <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" />
+                     {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
+                     <p className="font-inter font-semibold text-lg my-2 flex">: {doctor.practice_address}</p>
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">

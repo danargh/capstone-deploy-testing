@@ -21,6 +21,7 @@ const InputFileDaftarCv = ({ value, error, errorTouched }) => {
                id="file-input-cv"
                type="file"
                onChange={handleFileChange}
+               name="cv"
                style={{
                   opacity: 0,
                   position: "absolute",

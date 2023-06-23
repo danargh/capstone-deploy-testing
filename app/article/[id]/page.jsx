@@ -9,55 +9,95 @@ import { KirimKomentarButton } from "@/components/ui/Button";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { useArticles } from "@/components/atoms/useArticles";
+import {
+   EmailShareButton,
+   FacebookShareButton,
+   TwitterShareButton,
+} from "react-share";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export function fetchArticle(id) {
+function fetchArticle(id) {
    const { data: article } = useSWR(
       `https://capstone-project.duckdns.org:8080/articles/${id}`,
       fetcher
    );
    return article;
 }
-const comments = [
-   {
-      id: Math.random(),
-      firstName: "Arka",
-      lastName: "Samudra",
-      commentValue:
-         "Saat ini hampir setiap orang mengalami penderitaan akibat pandemi ini. Jika orang tersebut belum siap menghadapi perubahan sosial yang mendadak maka berpotensi timbul depresi dan gangguan kecemasan yang mengancam gangguan mental bila tidak dikelola dengan baik",
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-   },
-];
+
+// const comments = [
+//    {
+//       id: Math.random(),
+//       firstName: "Arka",
+//       lastName: "Samudra",
+//       commentValue:
+//          "Saat ini hampir setiap orang mengalami penderitaan akibat pandemi ini. Jika orang tersebut belum siap menghadapi perubahan sosial yang mendadak maka berpotensi timbul depresi dan gangguan kecemasan yang mengancam gangguan mental bila tidak dikelola dengan baik",
+//       date: new Date().toLocaleDateString(),
+//       time: new Date().toLocaleTimeString(),
+//    },
+// ];
 
 export default function DetailArticle({ params }) {
-   const [comment, setComment] = useState(comments);
+   //    const [comment, setComment] = useState(comments);
    const commentTextRef = useRef();
    const firstNameRef = useRef();
    const lastNameRef = useRef();
    const articles = useArticles();
-   const handleSubmit = (event) => {
+
+   const handleSubmit = async (event) => {
       event.preventDefault();
-      setComment((prevComment) => {
-         const newComment = {
-            id: Math.random(),
-            firstName: firstNameRef.current?.value,
-            lastName: lastNameRef.current?.value,
-            commentValue: commentTextRef.current?.value,
-            date: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString(),
-         };
-         commentTextRef.current.value = "";
-         firstNameRef.current.value = "";
-         lastNameRef.current.value = "";
-         return [...prevComment, newComment];
-      });
+
+      const newComment = {
+         full_name: `${firstNameRef.current?.value}  ${lastNameRef.current?.value}`,
+         comment: commentTextRef.current?.value,
+      };
+      console.log(JSON.stringify(newComment));
+
+      try {
+         const response = await fetch(
+            `https://capstone-project.duckdns.org:8080/articles/${params.id}/comment`,
+            {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(newComment),
+            }
+         );
+         if (!response.ok) {
+            throw new Error("Error adding article");
+         }
+
+         //  const responseData = await response.json();
+         //  console.log(responseData);
+
+         //  mutate(
+         //     `https://capstone-project.duckdns.org:8080/articles/${params.id}/comment`
+         //  );
+      } catch (error) {
+         console.error(error);
+      }
+      //   setComment((prevComment) => {
+      //      const newComment = {
+      //         // id: Math.random(),
+      //         firstName: firstNameRef.current?.value,
+      //         lastName: lastNameRef.current?.value,
+      //         commentValue: commentTextRef.current?.value,
+      //         date: new Date().toLocaleDateString(),
+      //         time: new Date().toLocaleTimeString(),
+      //      };
+      //      commentTextRef.current.value = "";
+      //      firstNameRef.current.value = "";
+      //      lastNameRef.current.value = "";
+      //      return [...prevComment, newComment];
+      //   });
    };
    const getArticle = fetchArticle(params.id);
 
+   const url = window.location.href;
+   console.log(url);
    const filteredArticles =
       articles && articles.data.filter((article) => article.id != params.id);
 
@@ -86,19 +126,22 @@ export default function DetailArticle({ params }) {
                         </p>
                      </div>
                   </header>
+
                   <Image
                      priority
                      alt="images"
-                     className="w-full mt-[48px]"
-                     src="/assets/images/detail-article.png"
+                     className="w-full mt-[48px]   h-[680px] object-cover "
+                     src={getArticle.data.thumbnail}
                      width={1440}
-                     height={500}
+                     height={5}
                   />
+
                   <main className="max-w-[1220px] mx-auto">
                      <div className="flex gap-[42px] justify-center my-[32px]">
-                        <a
-                           href="#"
-                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        <FacebookShareButton
+                           url={url}
+                           className="  w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                           style={{ backgroundColor: "#DEDEDE" }}
                         >
                            <Image
                               priority
@@ -107,10 +150,11 @@ export default function DetailArticle({ params }) {
                               width={30}
                               height={30}
                            />
-                        </a>
-                        <a
-                           href="#"
-                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        </FacebookShareButton>
+                        <EmailShareButton
+                           url={url}
+                           className="  w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                           style={{ backgroundColor: "#DEDEDE" }}
                         >
                            <Image
                               priority
@@ -119,10 +163,11 @@ export default function DetailArticle({ params }) {
                               width={30}
                               height={30}
                            />
-                        </a>
-                        <a
-                           href="#"
-                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                        </EmailShareButton>
+                        <TwitterShareButton
+                           url={url}
+                           className="  w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
+                           style={{ backgroundColor: "#DEDEDE" }}
                         >
                            <Image
                               priority
@@ -131,23 +176,14 @@ export default function DetailArticle({ params }) {
                               width={30}
                               height={30}
                            />
-                        </a>
-                        <a
-                           href="#"
-                           className=" bg-neutral-40 w-[164px] h-[52px] flex items-center justify-center rounded-[10px]"
-                        >
-                           <Image
-                              priority
-                              alt="images"
-                              src="/assets/icons/google-plus-icon.svg"
-                              width={30}
-                              height={30}
-                           />
-                        </a>
+                        </TwitterShareButton>
                      </div>
-                     <p className="font-inter font-[400] text-[22px] leading-9 text-justify">
-                        {getArticle.data.content}
-                     </p>
+                     <p
+                        className=" font-inter font-[400] text-[22px] leading-9 text-justify prose max-w-full"
+                        dangerouslySetInnerHTML={{
+                           __html: getArticle.data.content,
+                        }}
+                     ></p>
                      <aside className=" mt-[130px] font-inter font-[600] text-[22px] leading-9">
                         <div className="flex justify-between">
                            <div>
@@ -200,21 +236,28 @@ export default function DetailArticle({ params }) {
                      wajib ditandai *
                   </p>
                </div>
-               {comment.map((item, index) => (
-                  <div key={index} className="flex gap-3 items-start my-[50px]">
-                     <Image
-                        priority
-                        alt="images"
-                        src="/assets/icons/profile2-icon.svg"
-                        width={40}
-                        height={40}
-                     />
-                     <div>
-                        <h4 className="font-poppins font-[500] text-[24px] leading-8 text-[#00000096]">{`${item.firstName} ${item.lastName}`}</h4>
-                        <p>{item.commentValue}</p>
-                     </div>
-                  </div>
-               ))}
+               {getArticle && getArticle.data.comments.length > 0
+                  ? getArticle.data.comments.map((item, index) => (
+                       <div
+                          key={index}
+                          className="flex gap-3 items-start my-[50px]"
+                       >
+                          <Image
+                             priority
+                             alt="images"
+                             src="/assets/icons/profile2-icon.svg"
+                             width={40}
+                             height={40}
+                          />
+                          <div>
+                             <h4 className="font-poppins font-[500] text-[24px] leading-8 text-[#00000096]">
+                                {item.full_name}
+                             </h4>
+                             <p>{item.comment}</p>
+                          </div>
+                       </div>
+                    ))
+                  : null}
                <form onSubmit={handleSubmit} className="flex flex-col gap-9">
                   <div>
                      <textarea
