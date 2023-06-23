@@ -16,7 +16,7 @@ export default function DashboardDokter() {
       <>
          <section className="w-[1440px] mx-auto">
             <div className="">
-               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter.full_name}</p>
+               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter?.full_name}</p>
             </div>
 
             <div>
@@ -41,7 +41,7 @@ export default function DashboardDokter() {
                         <p className="text-[32px] font-bold font-Inter py-3">Saldo Anda</p>
                      </div>
                      <div className="mx-6 py-6">
-                        <p>{dokter.balance}</p>
+                        <p>{dokter?.balance}</p>
                      </div>
                   </div>
 
