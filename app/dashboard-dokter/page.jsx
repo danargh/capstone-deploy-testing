@@ -5,14 +5,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function DashboardDokter() {
-   const [dokter, setDokter] = useState({});
+   let dokter = {};
+   if (typeof window !== "undefined") {
+      dokter = JSON.parse(localStorage.getItem("doctorData"));
+   }
 
-   useEffect(() => {
-      const localData = JSON.parse(localStorage.getItem("doctorData"));
-      if (localData) {
-         setDokter(localData);
-      }
-   }, []);
+   console.log(dokter);
 
    return (
       <>

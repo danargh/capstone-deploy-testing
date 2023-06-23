@@ -22,13 +22,31 @@ export function getUserDoctor() {
       dataDoctorLocal = JSON.parse(localStorage.getItem("doctorData"));
    }
 
+   // get doctor ID in cookies
+
+   // fetch("https://capstone-project.duckdns.org:8080/doctor/35", {
+   //    headers: {
+   //       "Content-Type": "application/json",
+   //    },
+   //    method: "GET",
+   // })
+   //    .then((res) => res.json())
+   //    .then((data) => {
+   //       localStorage.setItem("doctorData", JSON.stringify(data));
+   //    });
+
    const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/doctor/5", fetcher, {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
+      onSuccess: (data) => {
+         console.log(data);
+         setDataDoctorLogged(data);
+      },
+      onError: (error) => {
+         console.log(error);
+      },
    });
 
    return {
-      dataDoctorLogged: data,
+      data,
       error,
       isLoading: !error && !data,
    };
