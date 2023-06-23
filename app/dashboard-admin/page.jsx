@@ -1,7 +1,12 @@
+"use client";
+
 import { AdminArtikelIcon, AdminArtikelTinjauIcon, AdminArtikelUnggahIcon, AdminDokterIcon, AdminDokterRegisterIcon, AdminUserIcon } from "@/public/assets/icons/icons";
 import React from "react";
+import ArticleAdminAPI from "@/api/article-admin";
 
 export default function page() {
+   const { articleData, articleError } = ArticleAdminAPI();
+
    return (
       <>
          <div className="bg-[#F8FFF1] h-screen w-screen">
@@ -32,14 +37,14 @@ export default function page() {
                               <AdminArtikelUnggahIcon />
                            </div>
                            <p className="font-bold text-center text-sm mt-[30px]">Jumlah artikel terunggah</p>
-                           <p className="font-normal text-center text-sm mt-[23px]">1.000 Artikel</p>
+                           <p className="font-normal text-center text-sm mt-[23px]">{articleData?.data?.length} Artikel</p>
                         </div>
                         <div className="w-[384px] h-[373px] mx-[58px] border-[#63863E] border-[5px] rounded-[15px]">
                            <div className="px-[92px] pt-[10px]">
                               <AdminArtikelTinjauIcon />
                            </div>
                            <p className="font-bold text-center text-sm mt-[30px]">Jumlah artikel ditinjau</p>
-                           <p className="font-normal text-center text-sm mt-[23px]">150 Artikel</p>
+                           <p className="font-normal text-center text-sm mt-[23px]">150 Artikel (statis)</p>
                         </div>
                      </div>
                   </div>

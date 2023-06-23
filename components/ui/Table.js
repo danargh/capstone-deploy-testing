@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { PaginationOrderDokter } from './Pagination';
+import Link from 'next/link';
+import Swal from 'sweetalert2';
 
 export const TableOrder = (props) => {
+    const handlePhone = async () => {
 
+        const { value: url } = await Swal.fire({
+            title: 'Masukkan Link Pertemuan',
+            input: 'text',
+            text: 'Silahkan masukkan link pertemuan anda dengan pasien ke dalam form di bawah ini! Link dapat berupa Zoom, Google meet, Discord call, dll. ',
+            inputPlaceholder: 'Masukan link pertemuan',
+            showCancelButton: true,
+        })
+
+        if (url) {
+            Swal.fire({ icon: 'success', title: 'Yeyy Link Berhasil Dikirim', text: 'Ketuk dimana saja untuk menutup halaman ini', showConfirmButton: false, })
+        }
+    }
     return (
         <table className="border-collapse border w-full border-black">
             <thead >
                 <tr className="bg-gray-300 font-semibold h-[43px]">
                     <th className='border border-black'>No</th>
                     <th className='border border-black'>Tanggal</th>
+                    <th className='border border-black'>Jam</th>
                     <th className='border border-black'>Nama</th>
                     <th className='border border-black'>Jenis Kelamin</th>
                     <th className='border border-black'>Status</th>
@@ -21,19 +37,20 @@ export const TableOrder = (props) => {
                     <tr className=''>
                         <td className='border border-black text-center'>{index + 1}</td>
                         <td className='border border-black text-center'>{order.date}</td>
+                        <td className='border border-black text-center'>{order.hours}</td>
                         <td className='border border-black text-center'>{order.name}</td>
                         <td className='border border-black text-center'>{order.gender}</td>
                         <td className='border border-black text-center'>{order.status}</td>
                         {order.chat ?
                             (<>
-                                <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></td>
+                                <td className='border border-black'><Link href={'/dashboard-dokter/chat'} ><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></Link></td>
                                 <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
 
                             </>)
                             : (
                                 <>
                                     <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
-                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} /></td>
+                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} onClick={handlePhone} /></td>
 
                                 </>
                             )

@@ -21,6 +21,7 @@ const InputFileDaftarIjasah = ({ value, error, errorTouched }) => {
                id="file-input-ijasah"
                type="file"
                onChange={handleFileChange}
+               name="ijazah"
                style={{
                   opacity: 0,
                   position: "absolute",

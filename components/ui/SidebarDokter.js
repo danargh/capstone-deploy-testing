@@ -52,6 +52,7 @@ export default function Sidebar() {
 
    const logoutHandler = () => {
       Cookies.remove("doctorToken");
+      localStorage.removeItem("doctorData");
       router.push("/login");
    };
 

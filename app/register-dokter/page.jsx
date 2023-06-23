@@ -14,88 +14,163 @@ import InputFileDaftarStr from "@/components/forms/InputFileDaftar/input-file-da
 import InputFileDaftarSip from "@/components/forms/InputFileDaftar/input-file-daftarsip";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
+
+// const fetcher = (url) =>
+//   fetch(url, {
+//     body: {
+//       email: form1.initialValues.email,
+//       full_name: form1.initialValues.full_name,
+//       nik: form1.initialValues.nik,
+//       gender: form1.initialValues.nik,
+//       birth_place: form1.initialValues.birth_place,
+//       birth_date: form1.initialValues.birth_date,
+//       religion: form1.initialValues.religion,
+//       alumnus: form2.initialValues.alumnus,
+//       jurusan: form2.initialValues.jurusan,
+//       grad_year: form2.initialValues.grad_year,
+//       alumnus2: form2.initialValues.alumnus2,
+//       jurusan2: form2.initialValues.jurusan2,
+//       grad_year2: form2.initialValues.grad_year2,
+//       practice_address: form2.initialValues.practice_address,
+//       str_number: form2.initialValues.str_number,
+//       cv: form3.initialValues.cv,
+//       ijazah: form3.initialValues.ijazah,
+//       str: form3.initialValues.str,
+//       sip: form3.initialValues.sip,
+//     },
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "multipart/form-data",
+//       // 'Content-Type': 'application/x-www-form-urlencoded',
+//     },
+//   }).then((res) => res.json());
 
 export default function RegisterDokter() {
-   const [index, setIndex] = useState(0);
-   const router = useRouter();
+  const [index, setIndex] = useState(0);
+  const router = useRouter();
 
-   const form1 = useFormik({
-      initialValues: {
-         email: "",
-         namaLengkap: "",
-         nik: "",
-         jenisKelamin: "",
-         tempatLahir: "",
-         tanggalLahir: "",
-         agama: "",
-      },
-      validationSchema: Yup.object({
-         email: Yup.string().email("Email tidak valid").required("Email tidak boleh kosong"),
-         namaLengkap: Yup.string().required("Nama lengkap tidak boleh kosong"),
-         nik: Yup.string().min(16, "Jumlah digit harus 16").max(16, "Jumlah digit harus 16").required("NIK tidak boleh kosong"),
-         jenisKelamin: Yup.string().required("Jenis kelamin tidak boleh kosong"),
-         tempatLahir: Yup.string().required("Tempat lahir tidak boleh kosong"),
-         tanggalLahir: Yup.string().required("Tanggal lahir tidak boleh kosong"),
-         agama: Yup.string().required("Agama tidak boleh kosong"),
-      }),
-      onSubmit: (values) => {
-         alert(JSON.stringify(values, null, 2));
-         setIndex(index + 1);
-      },
-   });
+  // Menggunakan SWR untuk mendapatkan data dari API
+//   const { data: doctorsData, error: doctorsError } = useSWR(
+//     "https://capstone-project.duckdns.org:8080/admin/doctors",
+//     fetcher
+//   );
 
-   const form2 = useFormik({
-      initialValues: {
-         asalUniversitas1: "",
-         jurusan1: "",
-         tahunLulus1: "",
-         asalUniversitas2: "",
-         jurusan2: "",
-         tahunLulus2: "",
-         tempatPraktikSekarang: "",
-         noSTR: "",
-      },
-      validationSchema: Yup.object({
-         asalUniversitas1: Yup.string().required("Asal universitas tidak boleh kosong"),
-         jurusan1: Yup.string().required("Jurusan tidak boleh kosong"),
-         tahunLulus1: Yup.string().required("Tahun lulus tidak boleh kosong"),
-         tempatPraktikSekarang: Yup.string().required("Tempat praktik tidak boleh kosong"),
-         noSTR: Yup.string().max(20, "Maximal nomor STR 20 digit").required("Nomor STR tidak boleh kosong"),
-      }),
-      onSubmit: (values) => {
-         alert(JSON.stringify(values, null, 2));
-         setIndex(index + 1);
-      },
-   });
+  const form1 = useFormik({
+    initialValues: {
+      email: "",
+      full_name: "",
+      nik: "",
+      gender: "",
+      birth_place: "",
+      birth_date: "",
+      religion: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Email tidak valid").required("Email tidak boleh kosong"),
+      full_name: Yup.string().required("Nama lengkap tidak boleh kosong"),
+      nik: Yup.string().min(16, "Jumlah digit harus 16").max(16, "Jumlah digit harus 16").required("NIK tidak boleh kosong"),
+      gender: Yup.string().required("Jenis kelamin tidak boleh kosong"),
+      birth_place: Yup.string().required("Tempat lahir tidak boleh kosong"),
+      birth_date: Yup.string().required("Tanggal lahir tidak boleh kosong"),
+      religion: Yup.string().required("Agama tidak boleh kosong"),
+    }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+      setIndex(index + 1);
+    },
+  });
 
-   const form3 = useFormik({
-      initialValues: {
-         cv: "",
-         ijasah: "",
-         strAktif: "",
-         sip: "",
-      },
-      validationSchema: Yup.object({
-         cv: Yup.mixed().required("CV tidak boleh kosong"),
-         ijasah: Yup.mixed().required("Ijasah tidak boleh kosong"),
-         strAktif: Yup.mixed().required("STR tidak boleh kosong"),
-         sip: Yup.mixed().required("SIP tidak boleh kosong"),
-      }),
-      onSubmit: (values) => {
-         // alert(JSON.stringify(values, null, 2));
-      },
-   });
+  const form2 = useFormik({
+    initialValues: {
+      alumnus: "",
+      jurusan: "",
+      grad_year: "",
+      alumnus2: "",
+      jurusan2: "",
+      grad_year2: "",
+      practice_address: "",
+      str_number: "",
+    },
+    validationSchema: Yup.object({
+      alumnus: Yup.string().required("Asal universitas tidak boleh kosong"),
+      jurusan: Yup.string().required("Jurusan tidak boleh kosong"),
+      grad_year: Yup.string().required("Tahun lulus tidak boleh kosong"),
+      practice_address: Yup.string().required("Tempat praktik tidak boleh kosong"),
+      str_number: Yup.string().max(20, "Maximal nomor STR 20 digit").required("Nomor STR tidak boleh kosong"),
+    }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+      setIndex(index + 1);
+    },
+  });
 
-   const handleFormSubmit = (e) => {
-      e.preventDefault();
-      Swal.fire("Maaf Pendaftaran Gagal", "Pastikan data pendaftaran sesuai dengan ketentuan.", "error");
-      Swal.fire("Pendaftaran Berhasil", "Informasi pendaftaran anda akan kami informasikan melalui email.", "success");
-      router.push("/login");
-   };
+  const form3 = useFormik({
+    initialValues: {
+      cv: "",
+      ijazah: "",
+      str: "",
+      sip: "",
+    },
+    validationSchema: Yup.object({
+      cv: Yup.mixed().required("CV tidak boleh kosong"),
+      ijazah: Yup.mixed().required("Ijasah tidak boleh kosong"),
+      str: Yup.mixed().required("STR tidak boleh kosong"),
+      sip: Yup.mixed().required("SIP tidak boleh kosong"),
+    }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
-   const handleBack = () => {
-      setIndex(index - 1);
-   };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const resp = await fetch("https://capstone-project.duckdns.org:8080/doctor/register", {
+      body: {
+        email: form1.initialValues.email,
+        full_name: form1.initialValues.full_name,
+        nik: form1.initialValues.nik,
+        gender: form1.initialValues.nik,
+        birth_place: form1.initialValues.birth_place,
+        birth_date: form1.initialValues.birth_date,
+        religion: form1.initialValues.religion,
+        alumnus: form2.initialValues.alumnus,
+        jurusan: form2.initialValues.jurusan,
+        grad_year: form2.initialValues.grad_year,
+        alumnus2: form2.initialValues.alumnus2,
+        jurusan2: form2.initialValues.jurusan2,
+        grad_year2: form2.initialValues.grad_year2,
+        practice_address: form2.initialValues.practice_address,
+        str_number: form2.initialValues.str_number,
+        cv: form3.initialValues.cv,
+        ijazah: form3.initialValues.ijazah,
+        str: form3.initialValues.str,
+        sip: form3.initialValues.sip,
+      },
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      mode: "no-cors", 
+    })
+    console.log(resp)
+   //  Swal.fire("Maaf Pendaftaran Gagal", "Pastikan data pendaftaran sesuai dengan ketentuan.", "error");
+   //  Swal.fire("Pendaftaran Berhasil", "Informasi pendaftaran anda akan kami informasikan melalui email.", "success");
+    router.push("/login");
+  };
+
+  const handleBack = () => {
+    setIndex(index - 1);
+  };
+
+//   if (doctorsError) {
+//     return <div>Error loading data</div>;
+//   }
+
+//   if (!doctorsData) {
+//     return <div>Loading...</div>;
+//   }
    return (
       <>
          <section className="min-screen-2xl h-screen flex bg-gray-500 ">
@@ -151,8 +226,8 @@ export default function RegisterDokter() {
                            {form1.touched.email && form1.errors.email ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.email}</p> : null}
                         </div>
                         <div>
-                           <input type="text" placeholder="Nama Lengkap" className={input_variants({ variant: "default" })} name="namaLengkap" value={form1.values.namaLengkap} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.namaLengkap && form1.errors.namaLengkap ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.namaLengkap}</p> : null}
+                           <input type="text" placeholder="Nama Lengkap" className={input_variants({ variant: "default" })} name="full_name" value={form1.values.full_name} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.full_name && form1.errors.full_name ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.full_name}</p> : null}
                         </div>
                         {/* {form1.errors.namaLengkap ? <ErrorMessage errorMessage={form1.errors.namaLengkap} /> : null} */}
                         <div>
@@ -161,64 +236,64 @@ export default function RegisterDokter() {
                         </div>
                         {/* {form1.errors.n1 ? <ErrorMessage errorMessage={form1.errors.n1} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Jenis Kelamin" className={input_variants({ variant: "default" })} name="jenisKelamin" value={form1.values.jenisKelamin} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.jenisKelamin && form1.errors.jenisKelamin ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.jenisKelamin}</p> : null}
+                           <input type="text" placeholder="Jenis Kelamin" className={input_variants({ variant: "default" })} name="gender" value={form1.values.gender} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.gender && form1.errors.gender ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.gender}</p> : null}
                         </div>
                         {/* {form1.errors.jenisKelamin ? <ErrorMessage errorMessage={form1.errors.jenisKelamin} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Tempat Lahir" className={input_variants({ variant: "default" })} name="tempatLahir" value={form1.values.tempatLahir} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.tempatLahir && form1.errors.tempatLahir ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.tempatLahir}</p> : null}
+                           <input type="text" placeholder="Tempat Lahir" className={input_variants({ variant: "default" })} name="birth_place" value={form1.values.birth_place} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.birth_place && form1.errors.birth_place ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.birth_place}</p> : null}
                         </div>
                         {/* {form1.errors.tempatLahir ? <ErrorMessage errorMessage={form1.errors.tempatLahir} /> : null} */}
                         <div>
-                           <input type="date" placeholder="Tanggal Lahir" className={input_variants({ variant: "default" })} name="tanggalLahir" value={form1.values.tanggalLahir} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.tanggalLahir && form1.errors.tanggalLahir ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.tanggalLahir}</p> : null}
+                           <input type="date" placeholder="Tanggal Lahir" className={input_variants({ variant: "default" })} name="birth_date" value={form1.values.birth_date} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.birth_date && form1.errors.birth_date ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.birth_date}</p> : null}
                         </div>
                         {/* {form1.errors.tanggalLahir ? <ErrorMessage errorMessage={form1.errors.tanggalLahir} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Agama" className={input_variants({ variant: "default" })} name="agama" value={form1.values.agama} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.agama && form1.errors.agama ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.agama}</p> : null}
+                           <input type="text" placeholder="Agama" className={input_variants({ variant: "default" })} name="religion" value={form1.values.religion} onChange={form1.handleChange} onBlur={form1.handleBlur} />
+                           {form1.touched.religion && form1.errors.religion ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.religion}</p> : null}
                         </div>
                         {/* {form1.errors.agama ? <ErrorMessage errorMessage={form1.errors.agama} /> : null} */}
-                        <RegisterDokterButton type="submit">Lanjut</RegisterDokterButton>
+                        <RegisterDokterButton>Lanjut</RegisterDokterButton>
                      </form>
                   )}
                   {index === 1 && (
                      <form onSubmit={form2.handleSubmit} className="flex flex-col gap-8">
                         <div>
-                           <input type="text" placeholder="Asal Universitas 1*" className={input_variants({ variant: "default" })} name="asalUniversitas1" value={form2.values.asalUniversitas1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.asalUniversitas1 && form2.errors.asalUniversitas1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.asalUniversitas1}</p> : null}
+                           <input type="text" placeholder="Asal Universitas 1*" className={input_variants({ variant: "default" })} name="alumnus" value={form2.values.alumnus} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.alumnus && form2.errors.alumnus ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.alumnus}</p> : null}
                         </div>
                         {/* {formik.errors.asalUniversitas1 ? <ErrorMessage errorMessage={formik.errors.asalUniversitas1} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Jurusan*" className={input_variants({ variant: "default" })} name="jurusan1" value={form2.values.jurusan1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.jurusan1 && form2.errors.jurusan1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.jurusan1}</p> : null}
+                           <input type="text" placeholder="Jurusan*" className={input_variants({ variant: "default" })} name="jurusan" value={form2.values.jurusan} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.jurusan && form2.errors.jurusan ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.jurusan}</p> : null}
                         </div>
                         {/* {form2.errors.jurusan1 ? <ErrorMessage errorMessage={form2.errors.jurusan1} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Tahun Lulus*" className={input_variants({ variant: "default" })} name="tahunLulus1" value={form2.values.tahunLulus1} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.tahunLulus1 && form2.errors.tahunLulus1 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus1}</p> : null}
+                           <input type="text" placeholder="Tahun Lulus*" className={input_variants({ variant: "default" })} name="grad_year" value={form2.values.grad_year} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.grad_year && form2.errors.grad_year ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.grad_year}</p> : null}
                         </div>
                         {/* {form2.errors.tahunLulus1 ? <ErrorMessage errorMessage={form2.errors.tahunLulus1} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Asal Universitas 2" className={input_variants({ variant: "default" })} name="asalUniversitas2" value={form2.values.asalUniversitas2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.asalUniversitas2 && form2.errors.tahunLulus2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus2}</p> : null}
+                           <input type="text" placeholder="Asal Universitas 2" className={input_variants({ variant: "default" })} name="alumnus2" value={form2.values.alumnus2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.alumnus2 && form2.errors.alumnus2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.alumnus2}</p> : null}
                         </div>
                         <div>
                            <input type="text" placeholder="Jurusan" className={input_variants({ variant: "default" })} name="jurusan2" value={form2.values.jurusan2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
                            {form2.touched.jurusan2 && form2.errors.jurusan2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.jurusan2}</p> : null}
                         </div>
                         <div>
-                           <input type="text" placeholder="Tahun Lulus" className={input_variants({ variant: "default" })} name="tahunLulus2" value={form2.values.tahunLulus2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.tahunLulus2 && form2.errors.tahunLulus2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tahunLulus2}</p> : null}
+                           <input type="text" placeholder="Tahun Lulus" className={input_variants({ variant: "default" })} name="grad_year2" value={form2.values.grad_year2} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.grad_year2 && form2.errors.grad_year2 ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.grad_year2}</p> : null}
                         </div>
                         <div>
-                           <input type="text" placeholder="Tempat Praktik Sekarang" className={input_variants({ variant: "default" })} name="tempatPraktikSekarang" value={form2.values.tempatPraktikSekarang} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.tempatPraktikSekarang && form2.errors.tempatPraktikSekarang ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.tempatPraktikSekarang}</p> : null}
+                           <input type="text" placeholder="Tempat Praktik Sekarang" className={input_variants({ variant: "default" })} name="practice_address" value={form2.values.practice_address} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.practice_address && form2.errors.practice_address ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.practice_address}</p> : null}
                         </div>
                         <div>
-                           <input type="text" placeholder="No STR*" className={input_variants({ variant: "default" })} name="noSTR" value={form2.values.noSTR} onChange={form2.handleChange} onBlur={form2.handleBlur} />
-                           {form2.touched.noSTR && form2.errors.noSTR ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.noSTR}</p> : null}
+                           <input type="text" placeholder="No STR*" className={input_variants({ variant: "default" })} name="str_number" value={form2.values.str_number} onChange={form2.handleChange} onBlur={form2.handleBlur} />
+                           {form2.touched.str_number && form2.errors.str_number ? <p className="text-[14px] text-left text-red-600 absolute">{form2.errors.str_number}</p> : null}
                         </div>
                         {/* {form2.errors.tahunLulus1 ? <ErrorMessage errorMessage={form2.errors.tahunLulus1} /> : null} */}
                         <RegisterDokterButton type="submit">Lanjut</RegisterDokterButton>
@@ -236,7 +311,7 @@ export default function RegisterDokter() {
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Ijazah</p>
                            <p className="text-[12px] font-normal text-gray-500 float-left">Jadikan satu file dan unggah ijazah dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
-                           <InputFileDaftarIjasah value={form3.values.ijasah} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           <InputFileDaftarIjasah value={form3.values.ijazah} onChange={form3.handleChange} onBlur={form3.handleBlur} />
                            {/* {form3.errors.ijasah ? <ErrorMessage errorMessage={form3.errors.ijasah} /> : null} */}
                         </div>
                         <div>
@@ -244,7 +319,7 @@ export default function RegisterDokter() {
                               <p className="text-[18px] font-semibold font-poppins float-left">STR Aktif</p>
                               <p className="text-[12px] font-normal text-gray-500 float-left">Unggah STR dalam bentuk pdf dengan ukuran maksimal 2 MB</p>
                            </div>
-                           <InputFileDaftarStr value={form3.values.strAktif} onChange={form3.handleChange} onBlur={form3.handleBlur} />
+                           <InputFileDaftarStr value={form3.values.str} onChange={form3.handleChange} onBlur={form3.handleBlur} />
                            {/* {form3.errors.strAktif ? <ErrorMessage errorMessage={form3.errors.strAktif} /> : null} */}
                         </div>
                         <div>
