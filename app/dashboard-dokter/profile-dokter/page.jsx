@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import NavbarDokter from "@/components/ui/NavbarDokter";
 import Input from "@/components/forms/Input";
-import Dokter from "@/public/assets/images/Dokter.png";
 import Image from "next/image";
 import Textarea from "@/components/forms/Textarea";
 import Dropdown from "@/components/forms/Dropdown";
