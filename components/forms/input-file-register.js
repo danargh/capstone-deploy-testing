@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const InputFileDaftarCv = ({ name, type, id, selectedFile, setSelectedFile }) => {
-   const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      setSelectedFile(file);
-   };
-
+const InputFileRegister = ({ children, selectedFile }) => {
    return (
       <>
          <div
@@ -15,22 +10,7 @@ const InputFileDaftarCv = ({ name, type, id, selectedFile, setSelectedFile }) =>
                position: "relative",
             }}
          >
-            <input
-               id={id}
-               type={type}
-               onChange={handleFileChange}
-               name={name}
-               style={{
-                  opacity: 0,
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  cursor: "pointer",
-               }}
-            />
+            {children}
             <span
                style={{
                   float: "left",
@@ -66,4 +46,4 @@ const InputFileDaftarCv = ({ name, type, id, selectedFile, setSelectedFile }) =>
    );
 };
 
-export default InputFileDaftarCv;
+export default InputFileRegister;
