@@ -5,6 +5,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import PaginationDok from "@/components/PaginationDok";
 import Cookies from "js-cookie";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 export default function DokterMasuk({ params }) {
    const [token, setToken] = useState("");
@@ -13,14 +14,15 @@ export default function DokterMasuk({ params }) {
    const id = params.id;
    // const [dokterMasuk, setDokterMasuk] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(10);
+   const [itemsPerPage] = useState(30);
    // const fetcher = (url) => fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6MSwiYXV0aG9yaXplZCI6dHJ1ZSwiZXhwIjoxNjg3MTg2MTIxfQ.bm-y7OXsdiVe9lXviUryWAiwiZOB2pJ0kAr7ZJZdXz0`}}).then((res) => {
    //    res.json()
    //    console.log(res)
    // });
+   const tokenDoctor = Cookies.get('adminToken')
 
    const fetcher = async (url) => {
-      const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+      const response = await fetch(url, {headers: {"Authorization": `Bearer ${tokenDoctor}`}})
       const jsonData = await response.json()
       return jsonData
    }
@@ -30,33 +32,45 @@ export default function DokterMasuk({ params }) {
       fetcher
    );
 
+   const totalpages = Math.ceil(dokterMasuk?.length / itemsPerPage);
 
    useEffect(() => {
-      const tokenCookies = Cookies.get("doctorToken");
+      const tokenCookies = Cookies.get("adminToken");
       if (tokenCookies) {
          setToken(tokenCookies);
          console.log(token)
       }
-      mutate();
+      mutate(searchKeyword);
 
    }, []);
 
-   const handleSearchKeywordChange = (event) => {
-      setSearchKeyword(event.target.value);
-   };
+    const handleSearchKeywordChange = (event) => {
+      const keyword = event.target.value;
+      setSearchKeyword(keyword);
+    
+      if (keyword.trim() === "") {
+        // If search keyword is empty, reset the data
+        mutate();
+      }
+    };
 
    const handleSearch = () => {
-      fetch(
-         `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`
-      )
-         .then((response) => response.json())
-         .then((data) => {
-            mutate(data, false);
-         })
-         .catch((error) => {
-            console.log(error);
-         });
-   };
+      if (searchKeyword.trim() === "") {
+        // If search keyword is empty, reset the data
+        setSearchKeyword(""); // Clear the search keyword
+        mutate(); // Fetch the original data
+      } else {
+        // Filter the dokterMasuk data based on the search keyword
+        const filteredData = dokterMasuk?.doctors.filter((dokter) => {
+          const fullName = dokter.full_name.toLowerCase();
+          const email = dokter.email.toLowerCase();
+          const keyword = searchKeyword.toLowerCase();
+          return fullName.includes(keyword) || email.includes(keyword);
+        });
+        mutate({ doctors: filteredData }, false);
+      }
+    };
+  
 
    const handleTolak = (id) => {
       Swal.fire({
@@ -180,7 +194,7 @@ export default function DokterMasuk({ params }) {
                         placeholder="Cari Dokter"
                         aria-label="Search"
                         aria-describedby="button-addon1"
-                        vvalue={searchKeyword}
+                        value={searchKeyword}
                         onChange={handleSearchKeywordChange}
                      />
 
@@ -193,6 +207,11 @@ export default function DokterMasuk({ params }) {
                         Cari
                      </button>
                   </div>
+                  <Link href="/dashboard-admin/edit-pengguna/verifikasi-dokter">
+                     <button className="w-32 h-11 bg-web-green-300 text-white rounded ">
+                        Data Verifikasi
+                     </button>
+                  </Link>
                   <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">
                      <button className="w-32 h-11 bg-web-green-300 text-white rounded ">
                         Daftar Dokter
@@ -303,15 +322,8 @@ export default function DokterMasuk({ params }) {
                   ))}
                </tbody>
             </table>
-            <div className="float-right mt-11">
-               {dokterMasuk?.doctors && dokterMasuk?.doctors.length > 0 ? (
-                  <PaginationDok
-                     currentPage={currentPage}
-                     totalItems={dokterMasuk?.doctors.length}
-                     itemsPerPage={itemsPerPage}
-                     onPageChange={handlePageChange}
-                  />
-               ) : null}
+            <div className="flex justify-center mt-11">
+             <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange}/>
             </div>
          </div>
       </>

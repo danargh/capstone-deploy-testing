@@ -21,7 +21,7 @@ export default function ReqWithdraw() {
    };
    const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://capstone-project.duckdns.org:8080/withdraw", fetcher, {});
 
-   const totalpages = dataWithdraw?.length / itemsPerPage;
+   const totalpages = Math.ceil(dokterMasuk?.length / itemsPerPage)
 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;

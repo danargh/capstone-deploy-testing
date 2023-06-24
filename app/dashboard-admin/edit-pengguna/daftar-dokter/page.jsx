@@ -4,23 +4,34 @@ import React, { useState, useEffect } from "react";
 import useSWR from 'swr'
 import Swal from "sweetalert2";
 import PaginationDok from "@/components/PaginationDok";
+import Cookies from "js-cookie";
 
 export default function DaftarDokter({ params }) {
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
    const [selectedId, setSelectedId] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(10);
+   const [loading, setLoading] = useState(false)
+   const [itemsPerPage] = useState(30);
 
-   const fetcher = (url) => fetch(url).then((res) => res.json());
+   const tokenDoctor = Cookies.get('adminToken')
+
+   const fetcher = async (url) => {
+      const response = await fetch(url, {headers: {"Authorization": `Bearer ${tokenDoctor}`}})
+      const jsonData = await response.json()
+      return jsonData
+   }
 
    const { data: pengguna, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetcher);
+   const getDoctor = pengguna?.doctors
+   console.log(getDoctor)
  
    useEffect(() => {
      mutate();
    }, []);
  
    const handleDelete = (id) => {
+      setLoading(true)
      Swal.fire({
        title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
        icon: "warning",
@@ -33,36 +44,51 @@ export default function DaftarDokter({ params }) {
        if (result.isConfirmed) {
          fetch(`https://capstone-project.duckdns.org:8080/admin/doctor/${id}`, {
            method: 'DELETE',
+           headers: {"Authorization" : `Bearer ${tokenDoctor}`}
          })
            .then(() => {
              Swal.fire("Data berhasil dihapus", "", "success");
              // Mengupdate data pengguna setelah penghapusan
-             mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
+             mutate(pengguna?.doctors.filter((pengguna) => pengguna.id !== id), false);
            })
            .catch((error) => {
              Swal.fire("Terjadi kesalahan", error.message, "error");
            });
        }
      });
+     setLoading(false)
    };
  
-   const handleSearchKeywordChange = (event) => {
-     setSearchKeyword(event.target.value);
-   };
+    const handleSearchKeywordChange = (event) => {
+      const keyword = event.target.value;
+      setSearchKeyword(keyword);
+    
+      if (keyword.trim() === "") {
+        // If search keyword is empty, reset the data
+        mutate();
+      }
+    };
+
  
    const handleSearch = () => {
-     fetch(`https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`)
-       .then((response) => response.json())
-       .then((data) => {
-         mutate(data, false);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-   };
+      if (searchKeyword.trim() === "") {
+        // If search keyword is empty, reset the data
+        setSearchKeyword(""); // Clear the search keyword
+        mutate(); // Fetch the original data
+      } else {
+        // Filter the dokterMasuk data based on the search keyword
+        const filteredData = pengguna?.doctors.filter((dokter) => {
+          const fullName = dokter.full_name.toLowerCase();
+          const email = dokter.email.toLowerCase();
+          const keyword = searchKeyword.toLowerCase();
+          return fullName.includes(keyword) || email.includes(keyword);
+        });
+        mutate({ doctors: filteredData }, false);
+      }
+    };
  
    const handlePrint = (id) => {
-     const data = pengguna.find((item) => item.id === id);
+     const data = pengguna?.doctors.find((item) => item.id === id);
      if (data) {
        const printContent = `
          <table>
@@ -109,16 +135,18 @@ export default function DaftarDokter({ params }) {
       const endIndex = startIndex + itemsPerPage;
     
       // Check if pengguna is not an array
-      if (!Array.isArray(pengguna)) {
+      if (!Array.isArray(getDoctor)) {
         return [];
       }
     
       // Check if startIndex is valid
-      if (startIndex < 0 || startIndex >= pengguna.length) {
+      if (startIndex < 0 || startIndex >= getDoctor.length) {
         return [];
       }
     
-      return pengguna.slice(startIndex, endIndex);
+      const filtered = getDoctor.filter((item) => item.status === "approved");
+      console.log(filtered)
+      return filtered.slice(startIndex, endIndex);
     };
  
    const handlePageChange = (pageNumber) => {
@@ -163,18 +191,20 @@ export default function DaftarDokter({ params }) {
                   </tr>
                </thead>
                <tbody className="">
-                  {PaginatedData().map((penggunas, i) => (
+                  {loading ? (<tr>
+                     <td colSpan={6}>Loading ....</td>
+                  </tr>) : PaginatedData().map((penggunas, i) => (
                      <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
-                        <td className="border border-web-green-300 text-center">{penggunas.id}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.namaDokter}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.emailDokter}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.komisi}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.tanggal}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.ID}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.full_name}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.email}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.balance}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.CreatedAt}</td>
                         <td className="flex gap-3 py-2 justify-center border">
                            <button onClick={() => handlePrint(penggunas.id)} className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
                               Lihat
                            </button>
-                           <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                           <button onClick={() => handleDelete(penggunas.ID)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
                               Hapus
                            </button>
                         </td>
