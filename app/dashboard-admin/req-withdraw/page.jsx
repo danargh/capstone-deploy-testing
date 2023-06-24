@@ -1,25 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import Swal from "sweetalert2";
 import useSWR from "swr";
 import { motion } from "framer-motion";
+import Cookies from "js-cookie";
 
 export default function ReqWithdraw() {
-   // const [dokter, setDokter] = useState(dataDokter);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(3);
+   const [itemsPerPage] = useState(10);
+   const [dataWithdraw, setDataWithdraw] = useState([]);
 
    const fetcher = async (url) => {
       const token = Cookies.get("adminToken");
       return fetch(url, {
          headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
          },
+         method: "GET",
       }).then((res) => res.json());
    };
-   const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://capstone-project.duckdns.org:8080/withdraw", fetcher, {});
+   const {
+      data,
+      error,
+      mutate: mutateDataWithdraw,
+   } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
+      onSuccess: (data) => {
+         setDataWithdraw(data.data);
+      },
+      onError: (error) => {
+         console.log(error);
+      },
+   });
 
    const totalpages = Math.ceil(dataWithdraw?.length / itemsPerPage);
 
@@ -35,28 +49,31 @@ export default function ReqWithdraw() {
 
    const handleApproved = async (id) => {
       try {
-         const newDataWithdraw = dataWithdraw.map((data) => {
-            if (data.id === id) {
-               data.status = "accepted";
-            }
-            return data;
-         });
-         const index = newDataWithdraw.findIndex((data) => data.id === id);
+         // const newDataWithdraw = dataWithdraw.map((data) => {
+         //    if (data.id === id) {
+         //       data.status = "terima";
+         //    }
+         //    return data;
+         // });
+         // const index = newDataWithdraw.findIndex((data) => data.id === id);
 
+         const token = Cookies.get("adminToken");
          const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
-            method: "PUT",
+            method: "POST",
             headers: {
                "Content-Type": "application/json",
                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(newDataWithdraw[index]),
+            body: JSON.stringify({
+               status: "terima",
+            }),
          });
 
          if (response.ok) {
-            mutateDataWithdraw(newDataWithdraw, true);
-            // Swal.fire("Diterima!", "Penarikan telah diterima.", "success");
+            // mutateDataWithdraw(newDataWithdraw, true);
+            Swal.fire("Diterima!", "Penarikan telah diterima.", "success");
          } else {
-            throw new Error("Gagal menghapus data");
+            throw new Error("Gagal menerima data penarikan");
          }
       } catch (error) {
          Swal.fire("Terjadi kesalahan", error.message, "error");
@@ -75,13 +92,13 @@ export default function ReqWithdraw() {
       }).then(async (result) => {
          if (result.isConfirmed) {
             try {
-               const response = await fetch(`https://642f8c91b289b1dec4b50531.mockapi.io/withdraw/${id}`, {
+               const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
                   method: "DELETE",
                });
 
                if (response.ok) {
                   const updatedData = dataWithdraw.filter((data) => data.id !== id);
-                  mutateDataWithdraw(updatedData, false);
+                  // mutateDataWithdraw(updatedData, false);
                   // Swal.fire("Terhapus!", "Data telah dihapus.", "success");
                } else {
                   throw new Error("Gagal menghapus data");
@@ -106,60 +123,70 @@ export default function ReqWithdraw() {
                </div>
             </header>
 
-            <table className="table-auto w-[80%] border-[#8EBF59]">
-               <thead className="bg-[#7CA153] text-center font-inter font-[600] text-[16px] leading-[48px] text-white">
-                  <tr>
-                     <th>No</th>
-                     <th>Nama Dokter</th>
-                     <th>Email Dokter</th>
-                     <th>Penarikan</th>
-                     <th>Tanggal</th>
-                     <th>Aksi</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {PaginatedData()?.map((data, index) => (
-                     <tr key={index} className="bg-white border-[#A9BFB4] border-2 text-center font-poppins font-[400] text-[14px] leading-[48px]">
-                        <td className="border-2 border-[#A9BFB4]">{index + 1}</td>
-                        <td className="border-2 border-[#A9BFB4]">{data.fullName}</td>
-                        <td className="border-2 border-[#A9BFB4]">{data.email}</td>
-                        <td className="border-2 border-[#A9BFB4]">{data.withdraw}</td>
-                        <td className="border-2 border-[#A9BFB4]">{data.date}</td>
-                        <td className="py-[6px] flex gap-[28px] justify-center border-[#A9BFB4]">
-                           {data.status === "waiting" ? (
-                              <>
-                                 <button
-                                    onClick={() => {
-                                       handleApproved(data.id);
-                                    }}
+            <div className=" overflow-x-auto mr-6">
+               <table className="table-auto w-[1600px] border-[#8EBF59]">
+                  <thead className="bg-[#7CA153] text-center font-inter font-[600] text-[16px] leading-[48px] text-white">
+                     <tr>
+                        <th>No</th>
+                        <th>No Referensi</th>
+                        <th>Nama Dokter</th>
+                        <th>Email</th>
+                        <th>Metode</th>
+                        <th>Tujuan</th>
+                        <th>No Rekening</th>
+                        <th>Nominal Transfer</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {PaginatedData()?.map((data, index) => (
+                        <tr key={index} className=" hover:bg-gray-100 bg-white border-[#A9BFB4] border-2 text-center font-poppins font-[400] text-[14px] leading-[48px]">
+                           <td className="border-2 border-[#A9BFB4]">{index + 1}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.reference_number}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.doctor_name}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.doctor_email}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.method}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.bank}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.account_number}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.total}</td>
+                           <td className="border-2 border-[#A9BFB4]">{data.date}</td>
+                           <td className="py-[6px] flex gap-[28px] justify-center border-[#A9BFB4]">
+                              {data.status === undefined ? (
+                                 <>
+                                    <button
+                                       onClick={() => {
+                                          handleApproved(data.id);
+                                       }}
+                                       className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
+                                    >
+                                       Terima
+                                    </button>
+                                    <button
+                                       onClick={() => {
+                                          handleDenied(data.id);
+                                       }}
+                                       className="text-white px-6 bg-[#A12D28] rounded-[5px]"
+                                    >
+                                       Tolak
+                                    </button>
+                                 </>
+                              ) : (
+                                 <div
+                                    // onClick={() => {
+                                    //    handleApproved(data.id);
+                                    // }}
                                     className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
                                  >
-                                    Terima
-                                 </button>
-                                 <button
-                                    onClick={() => {
-                                       handleDenied(data.id);
-                                    }}
-                                    className="text-white px-6 bg-[#A12D28] rounded-[5px]"
-                                 >
-                                    Tolak
-                                 </button>
-                              </>
-                           ) : (
-                              <div
-                                 onClick={() => {
-                                    handleApproved(data.id);
-                                 }}
-                                 className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
-                              >
-                                 Diterima
-                              </div>
-                           )}
-                        </td>
-                     </tr>
-                  ))}
-               </tbody>
-            </table>
+                                    Diterima
+                                 </div>
+                              )}
+                           </td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
+            </div>
             <div className="flex justify-start mt-8">
                <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
             </div>
