@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import NavbarDokter from "@/components/ui/NavbarDokter";
 import Input from "@/components/forms/Input";
 import Image from "next/image";
 import Textarea from "@/components/forms/Textarea";
@@ -12,13 +10,7 @@ import { dataDoctorAtom, getUserDoctor } from "@/components/atoms/useUserDoctor"
 import { useAtom } from "jotai";
 
 export default function Profile() {
-   // const { data, error, isLoading, revalidate } = getUserDoctor();
-   // const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
-
-   let dokter = {};
-   if (typeof window !== "undefined") {
-      dokter = JSON.parse(localStorage.getItem("doctorData"));
-   }
+   const { data: dokter, error, isLoading, revalidate } = getUserDoctor();
 
    const handleFormSubmit = (e) => {
       e.preventDefault();
@@ -35,9 +27,9 @@ export default function Profile() {
                      <p className="text-[#1BE28E] ml-[13px]">Informasi Pribadi</p>
                   </div>
                   <div className="float-right">
-                     <p className="font-inter font-normal text-[#747474] text-[16px]">Tingkat Penyelesaian: 70%</p>
+                     <p className="font-inter font-normal text-[#747474] text-[16px]">Tingkat Penyelesaian: {(3 / 6) * 100}%</p>
                      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                        <div className="bg-[#1BE38F] h-2.5 rounded-full w-3/4"></div>
+                        <div className="bg-[#1BE38F] h-2.5 rounded-full w-3/6"></div>
                      </div>
                   </div>
                </div>
@@ -53,8 +45,7 @@ export default function Profile() {
                      <p className="text-red-700 my-2 text-lg">*</p>
                   </div>
                   <div className="col-span-2">
-                     {/* <Input value={dataDoctorLogged.full_name} type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter?.full_name}</p>
+                     <input value={dokter?.doctor.full_name} type="text" className="font-poppins font-[500] py-[15px] text-[20px] w-full border-gray-400 rounded-[10px]" />
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -62,8 +53,7 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg my-2">Nama Tampilan</p>
                   </div>
                   <div className="col-span-2">
-                     {/* <Input type="text" className="w-11/12 mx-16 border-gray-400 rounded-sm" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter?.display_name}</p>
+                     <input value={dokter?.doctor.display_name} type="text" className="font-poppins font-[500] py-[15px] text-[20px] w-full border-gray-400 rounded-[10px]" />
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -71,7 +61,7 @@ export default function Profile() {
                   <div className="col-span-2">
                      <div style={{ position: "relative", display: "inline-block" }}>
                         <label htmlFor="upload-input" className="cursor-pointer">
-                           <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" width={200} height={200} src={dokter?.propic} alt="Dokter" />
+                           <Image className="rounded-full shadow-md lg:shadow-lg xl:shadow-xl z-10 mx-14" width={200} height={200} src={dokter?.doctor.propic} alt="Dokter" />
                            <svg style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "1" }} className="my-8 mx-14" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <rect width="44" height="44" rx="22" fill="#87AF5B" />
                               <path
@@ -89,8 +79,7 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg">Alumnus</p>
                   </div>
                   <div className="col-span-2">
-                     {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter?.alumnus}</p>
+                     <input value={dokter?.doctor.alumnus} type="text" className="font-poppins font-[500] py-[15px] text-[20px] w-full border-gray-400 rounded-[10px]" />
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -98,8 +87,7 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg">Praktik di</p>
                   </div>
                   <div className="col-span-2">
-                     {/* <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" /> */}
-                     <p className="font-inter font-semibold text-lg my-2 flex">: {dokter?.practice_address}</p>
+                     <input value={dokter?.doctor.practice_address} type="text" className="font-poppins font-[500] py-[15px] text-[20px] rounded-[10px] w-full border-gray-400" />
                   </div>
                </div>
                <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
@@ -107,8 +95,8 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg my-2">Pekerjaan Anda</p>
                   </div>
                   <div className="col-span-2">
-                     <div className="flex items-center mx-14 gap-4">
-                        <Input type="text" className="w-80 border-gray-400 rounded-lg" />
+                     <div className="flex items-center gap-4">
+                        <Input type="text" className="font-poppins font-[500] py-[15px] text-[20px] rounded-[10px] w-full border-gray-400" />
                         <p className="font-inter font-bold text-sm">From</p>
                         <Dropdown />
                         <p className="font-inter font-bold text-sm">To</p>
@@ -121,15 +109,15 @@ export default function Profile() {
                      <p className="font-inter font-semibold text-lg my-2">Dokter Khusus</p>
                   </div>
                   <div className="col-span-2">
-                     <Input type="text" className="w-72 mx-16 border-gray-400 rounded-sm" />
+                     <input value="apaantu" type="text" className="font-poppins font-[500] py-[15px] text-[20px] rounded-[10px] w-full border-gray-400" />
                   </div>
                </div>
-               <div className="grid grid-cols-3 gap-4 mx-14 mt-[105px]">
+               <div className="grid grid-cols-3 mx-14 mt-[105px]">
                   <div className="">
                      <p className="font-inter font-semibold text-lg">Deskripsi Dokter</p>
                   </div>
                   <div className="col-span-2">
-                     <Textarea className="w-11/12 mx-16 border-gray-400 rounded-sm h-48" />
+                     <Textarea className="font-poppins font-[500] py-[15px] text-[20px] rounded-[10px] w-full border-gray-400 h-48" />
                   </div>
                </div>
                <div className="float-right mx-16 mt-16 mb-14">
