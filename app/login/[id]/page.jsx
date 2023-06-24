@@ -14,7 +14,6 @@ export default function LupaPassword({ params }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      alert(email);
    };
    return (
       <>

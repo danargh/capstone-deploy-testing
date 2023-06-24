@@ -65,7 +65,7 @@ export default function page() {
                            <td className="border border-success-green-100 pl-2 ">{artikel.title}</td>
                            <td className="border border-success-green-100 text-center ">
                               <div className="mr-[73px] ml-[83px]">
-                                 <Image src={artikel.thumbnail} width={69} height={53} />
+                                 <Image src={artikel.thumbnail} width={69} height={53} alt="gambarArtikel" />
                               </div>
                            </td>
                            <td className="border border-success-green-100 text-center ">{artikel.category}</td>

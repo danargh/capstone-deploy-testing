@@ -24,6 +24,10 @@ export function useAddArticleDoctor() {
       data.append('category', category);
       data.append('content', content);
       data.append('thumbnail', thumbnail);
+      if (content.length < 250) {
+         alert('Detail Artikel harus memiliki minimal 250 karakter!');
+         return;
+      }
 
       try {
          const response = await fetch('https://capstone-project.duckdns.org:8080/doctor/articles', {
