@@ -13,7 +13,7 @@ export default function ReqWithdraw() {
    const fetcher = (url) => fetch(url).then((res) => res.json());
    const { data: dataWithdraw, error, mutate: mutateDataWithdraw } = useSWR("https://642f8c91b289b1dec4b50531.mockapi.io/withdraw", fetcher, {});
 
-   const totalpages = dataWithdraw?.length / itemsPerPage;
+   const totalpages = Math.ceil(dokterMasuk?.length / itemsPerPage)
 
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;

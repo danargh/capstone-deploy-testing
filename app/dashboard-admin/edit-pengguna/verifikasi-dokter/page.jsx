@@ -5,28 +5,30 @@ import useSWR from 'swr';
 import Swal from "sweetalert2";
 import Link from "next/link";
 import PaginationDok from "@/components/PaginationDok";
+import Cookies from "js-cookie";
 
 export default function VerifikasiDokter() {
   const [dokterVerif, setDokterVerif] = useState([]);
   const [dokterTolak, setDokterTolak] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;   
+  const [itemsPerPage] = useState(30); 
+  const tokenDoctor = Cookies.get('adminToken')
 
   const fetchDokterVerif = async (url) => {
-    const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+    const response = await fetch(url, {headers: {"Authorization": `Bearer ${tokenDoctor}`}})
     const jsonData = await response.json()
     return jsonData
  }
 
   const fetchDokterTolak = async (url) => {
-    const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
+    const response = await fetch(url, {headers: {"Authorization": `Bearer ${tokenDoctor}`}})
     const jsonData = await response.json()
     return jsonData
  }
 
 
-  const { data: dataDokterVerif, error: errorDokterVerif } = useSWR(
+  const { data: dataDokterVerif, error: errorDokterVerif, mutate } = useSWR(
     "https://capstone-project.duckdns.org:8080/admin/doctors",
     fetchDokterVerif
   );
@@ -49,22 +51,32 @@ export default function VerifikasiDokter() {
     }
   }, [dataDokterTolak]);
 
-  const handleSearchInputChange = (e) => {
-    setSearchInput(e.target.value);
+  const handleSearchInputChange = (event) => {
+    const keyword = event.target.value;
+    setSearchInput(keyword);
+  
+    if (keyword.trim() === "") {
+      // If search keyword is empty, reset the data
+      mutate();
+    }
   };
 
   const handleSearch = () => {
-    const searchUrl = `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchInput}`;
-    
-    fetch(searchUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setDokterVerif(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      if (searchInput.trim() === "") {
+        // If search keyword is empty, reset the data
+        setSearchInput(""); // Clear the search keyword
+        mutate(); // Fetch the original data
+      } else {
+        // Filter the dokterMasuk data based on the search keyword
+        const filteredData = dataDokterVerif?.doctors.filter((dokter) => {
+          const fullName = dokter.full_name.toLowerCase();
+          const email = dokter.email.toLowerCase();
+          const keyword = searchInput.toLowerCase();
+          return fullName.includes(keyword) || email.includes(keyword);
+        });
+        mutate({ doctors: filteredData }, false);
+      }
+    };
 
   const paginateData = (data) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -129,7 +141,7 @@ export default function VerifikasiDokter() {
             </tr>
           </thead>
           <tbody className="">
-            {dataDokterVerif?.doctors.map((dokter, i) => (
+            {dataDokterVerif?.doctors?.map((dokter, i) => (
               <tr scope="col" key={dokter.id} className="bg-white">
                 <td className="border border-web-green-300 text-center">{dokter.ID}</td>
                 <td className="border border-web-green-300 text-center">{dokter.full_name}</td>
@@ -171,7 +183,7 @@ export default function VerifikasiDokter() {
             ))}
           </tbody>
         </table>
-        <div className="mt-11 float-right">
+        <div className="mt-11 flex justify-center">
         <PaginationDok
             currentPage={currentPage}
             itemsPerPage={itemsPerPage}

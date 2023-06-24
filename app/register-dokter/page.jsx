@@ -16,45 +16,18 @@ import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 
-// const fetcher = (url) =>
-//   fetch(url, {
-//     body: {
-//       email: form1.initialValues.email,
-//       full_name: form1.initialValues.full_name,
-//       nik: form1.initialValues.nik,
-//       gender: form1.initialValues.nik,
-//       birth_place: form1.initialValues.birth_place,
-//       birth_date: form1.initialValues.birth_date,
-//       religion: form1.initialValues.religion,
-//       alumnus: form2.initialValues.alumnus,
-//       jurusan: form2.initialValues.jurusan,
-//       grad_year: form2.initialValues.grad_year,
-//       alumnus2: form2.initialValues.alumnus2,
-//       jurusan2: form2.initialValues.jurusan2,
-//       grad_year2: form2.initialValues.grad_year2,
-//       practice_address: form2.initialValues.practice_address,
-//       str_number: form2.initialValues.str_number,
-//       cv: form3.initialValues.cv,
-//       ijazah: form3.initialValues.ijazah,
-//       str: form3.initialValues.str,
-//       sip: form3.initialValues.sip,
-//     },
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "multipart/form-data",
-//       // 'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//   }).then((res) => res.json());
+// Fungsi fetcher untuk digunakan dalam useSWR
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function RegisterDokter() {
   const [index, setIndex] = useState(0);
   const router = useRouter();
 
   // Menggunakan SWR untuk mendapatkan data dari API
-//   const { data: doctorsData, error: doctorsError } = useSWR(
-//     "https://capstone-project.duckdns.org:8080/admin/doctors",
-//     fetcher
-//   );
+  const { data: doctorsData, error: doctorsError } = useSWR(
+    "https://capstone-project.duckdns.org:8080/admin/doctors",
+    fetcher
+  );
 
   const form1 = useFormik({
     initialValues: {
@@ -69,7 +42,7 @@ export default function RegisterDokter() {
     validationSchema: Yup.object({
       email: Yup.string().email("Email tidak valid").required("Email tidak boleh kosong"),
       full_name: Yup.string().required("Nama lengkap tidak boleh kosong"),
-      nik: Yup.string().min(16, "Jumlah digit harus 16").max(16, "Jumlah digit harus 16").required("NIK tidak boleh kosong"),
+      nik: Yup.string().length(16, "Jumlah digit harus 16").required("NIK tidak boleh kosong"),
       gender: Yup.string().required("Jenis kelamin tidak boleh kosong"),
       birth_place: Yup.string().required("Tempat lahir tidak boleh kosong"),
       birth_date: Yup.string().required("Tanggal lahir tidak boleh kosong"),
@@ -107,10 +80,10 @@ export default function RegisterDokter() {
 
   const form3 = useFormik({
     initialValues: {
-      cv: "",
-      ijazah: "",
-      str: "",
-      sip: "",
+      cv: null,
+      ijazah: null,
+      str: null,
+      sip: null,
     },
     validationSchema: Yup.object({
       cv: Yup.mixed().required("CV tidak boleh kosong"),
@@ -120,57 +93,57 @@ export default function RegisterDokter() {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      handleFormSubmit();
     },
   });
 
+  const handleFormSubmit = async () => {
+    const formData = new FormData();
+    formData.append("email", form1.values.email);
+    formData.append("full_name", form1.values.full_name);
+    formData.append("nik", form1.values.nik);
+    formData.append("gender", form1.values.gender);
+    formData.append("birth_place", form1.values.birth_place);
+    formData.append("birth_date", form1.values.birth_date);
+    formData.append("religion", form1.values.religion);
+    formData.append("alumnus", form2.values.alumnus);
+    formData.append("jurusan", form2.values.jurusan);
+    formData.append("grad_year", form2.values.grad_year);
+    formData.append("alumnus2", form2.values.alumnus2);
+    formData.append("jurusan2", form2.values.jurusan2);
+    formData.append("grad_year2", form2.values.grad_year2);
+    formData.append("practice_address", form2.values.practice_address);
+    formData.append("str_number", form2.values.str_number);
+    formData.append("cv", form3.values.cv);
+    formData.append("ijazah", form3.values.ijazah);
+    formData.append("str", form3.values.str);
+    formData.append("sip", form3.values.sip);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const resp = await fetch("https://capstone-project.duckdns.org:8080/doctor/register", {
-      body: {
-        email: form1.initialValues.email,
-        full_name: form1.initialValues.full_name,
-        nik: form1.initialValues.nik,
-        gender: form1.initialValues.nik,
-        birth_place: form1.initialValues.birth_place,
-        birth_date: form1.initialValues.birth_date,
-        religion: form1.initialValues.religion,
-        alumnus: form2.initialValues.alumnus,
-        jurusan: form2.initialValues.jurusan,
-        grad_year: form2.initialValues.grad_year,
-        alumnus2: form2.initialValues.alumnus2,
-        jurusan2: form2.initialValues.jurusan2,
-        grad_year2: form2.initialValues.grad_year2,
-        practice_address: form2.initialValues.practice_address,
-        str_number: form2.initialValues.str_number,
-        cv: form3.initialValues.cv,
-        ijazah: form3.initialValues.ijazah,
-        str: form3.initialValues.str,
-        sip: form3.initialValues.sip,
-      },
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      mode: "no-cors", 
-    })
-    console.log(resp)
-   //  Swal.fire("Maaf Pendaftaran Gagal", "Pastikan data pendaftaran sesuai dengan ketentuan.", "error");
-   //  Swal.fire("Pendaftaran Berhasil", "Informasi pendaftaran anda akan kami informasikan melalui email.", "success");
-    router.push("/login");
+    try {
+      const resp = await fetch("https://capstone-project.duckdns.org:8080/doctor/register", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (resp.ok) {
+        // Pendaftaran berhasil
+        Swal.fire("Pendaftaran Berhasil", "Informasi pendaftaran anda akan kami informasikan melalui email.", "success");
+        router.push("/login");
+      } else {
+        // Pendaftaran gagal
+        Swal.fire("Maaf Pendaftaran Gagal", "Pastikan data pendaftaran sesuai dengan ketentuan.", "error");
+      }
+    } catch (error) {
+      // Error saat mengirim permintaan
+      console.error(error);
+      Swal.fire("Maaf Pendaftaran Gagal", "Terjadi kesalahan saat mengirim permintaan.", "error");
+    }
   };
 
   const handleBack = () => {
     setIndex(index - 1);
   };
 
-//   if (doctorsError) {
-//     return <div>Error loading data</div>;
-//   }
-
-//   if (!doctorsData) {
-//     return <div>Loading...</div>;
-//   }
    return (
       <>
          <section className="min-screen-2xl h-screen flex bg-gray-500 ">
@@ -236,8 +209,22 @@ export default function RegisterDokter() {
                         </div>
                         {/* {form1.errors.n1 ? <ErrorMessage errorMessage={form1.errors.n1} /> : null} */}
                         <div>
-                           <input type="text" placeholder="Jenis Kelamin" className={input_variants({ variant: "default" })} name="gender" value={form1.values.gender} onChange={form1.handleChange} onBlur={form1.handleBlur} />
-                           {form1.touched.gender && form1.errors.gender ? <p className="text-[14px] text-left text-red-600 absolute">{form1.errors.gender}</p> : null}
+                           <select
+                              className={input_variants({ variant: "default" })}
+                              name="gender"
+                              value={form1.values.gender}
+                              onChange={form1.handleChange}
+                              onBlur={form1.handleBlur}
+                           >
+                              <option value="">Pilih Jenis Kelamin</option>
+                              <option value="Laki-Laki">Laki-Laki</option>
+                              <option value="Perempuan">Perempuan</option>
+                           </select>
+                           {form1.touched.gender && form1.errors.gender ? (
+                              <p className="text-[14px] text-left text-red-600 absolute">
+                                 {form1.errors.gender}
+                              </p>
+                           ) : null}
                         </div>
                         {/* {form1.errors.jenisKelamin ? <ErrorMessage errorMessage={form1.errors.jenisKelamin} /> : null} */}
                         <div>
