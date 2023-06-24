@@ -12,6 +12,12 @@ export const TableOrder = (props) => {
             text: 'Silahkan masukkan link pertemuan anda dengan pasien ke dalam form di bawah ini! Link dapat berupa Zoom, Google meet, Discord call, dll. ',
             inputPlaceholder: 'Masukan link pertemuan',
             showCancelButton: true,
+            confirmButtonText: "Kirim",
+            confirmButtonColor: " green",
+            cancelButtonText: "Batal"
+
+
+
         })
 
         if (url) {
