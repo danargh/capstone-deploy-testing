@@ -1,20 +1,30 @@
-"use client"
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
-import React, { useState, useEffect } from "react";
-import useSWR from 'swr'
-import Swal from "sweetalert2";
-import PaginationDok from "@/components/PaginationDok";
+'use client';
+import SidebarAdmin from '@/components/ui/SidebarAdmin';
+import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
+import Swal from 'sweetalert2';
+import PaginationDok from '@/components/PaginationDok';
+import Cookies from 'js-cookie';
 
 export default function DaftarDokter({ params }) {
-   const [searchKeyword, setSearchKeyword] = useState("");
+   const [searchKeyword, setSearchKeyword] = useState('');
    const id = params.id;
    const [selectedId, setSelectedId] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
    const [itemsPerPage] = useState(10);
 
-   const fetcher = (url) => fetch(url).then((res) => res.json());
+   const fetcher = (url) => {
+      const token = Cookies.get('adminToken');
+      return fetch(url, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((data) => data.doctors); // akses properti "doctors" dari data
+   };
 
-   const { data: pengguna, mutate } = useSWR("https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter", fetcher);
+   const { data: pengguna, mutate } = useSWR('https://capstone-project.duckdns.org:8080/admin/doctors', fetcher);
 
    useEffect(() => {
       mutate();
@@ -22,25 +32,33 @@ export default function DaftarDokter({ params }) {
 
    const handleDelete = (id) => {
       Swal.fire({
-         title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
-         icon: "warning",
+         title: 'Apakah kamu yakin ingin menghapus akun dokter ini?',
+         icon: 'warning',
          showCancelButton: true,
-         confirmButtonColor: "#8E1E18",
-         cancelButtonColor: "grey",
-         confirmButtonText: "Ya",
-         cancelButtonText: "Tidak",
+         confirmButtonColor: '#8E1E18',
+         cancelButtonColor: 'grey',
+         confirmButtonText: 'Ya',
+         cancelButtonText: 'Tidak',
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter/${id}`, {
+            const token = Cookies.get('adminToken');
+            fetch(`https://capstone-project.duckdns.org:8080/admin/doctor/${id}`, {
                method: 'DELETE',
+               headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+               },
             })
                .then(() => {
-                  Swal.fire("Data berhasil dihapus", "", "success");
+                  Swal.fire('Data berhasil dihapus', '', 'success');
                   // Mengupdate data pengguna setelah penghapusan
-                  mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
+                  mutate(
+                     pengguna.filter((pengguna) => pengguna.id !== id),
+                     true
+                  );
                })
                .catch((error) => {
-                  Swal.fire("Terjadi kesalahan", error.message, "error");
+                  Swal.fire('Terjadi kesalahan', error.message, 'error');
                });
          }
       });
@@ -87,7 +105,7 @@ export default function DaftarDokter({ params }) {
           </table>
         `;
 
-         const printWindow = window.open("", "_blank");
+         const printWindow = window.open('', '_blank');
          printWindow.document.write(`
           <html>
             <head>
@@ -103,13 +121,13 @@ export default function DaftarDokter({ params }) {
          printWindow.print();
       }
    };
-
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      
-      // Check if dokterMasuk is empty or null
-      if (!pengguna || pengguna.length === 0) {
+
+      // Check if pengguna is an array before trying to slice it
+      if (!Array.isArray(pengguna)) {
+         console.error('pengguna is not an array:', pengguna);
          return [];
       }
 
@@ -159,17 +177,23 @@ export default function DaftarDokter({ params }) {
                </thead>
                <tbody className="">
                   {PaginatedData().map((penggunas, i) => (
-                     <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
-                        <td className="border border-web-green-300 text-center">{penggunas.id}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.namaDokter}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.emailDokter}</td>
+                     <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? 'bg-gray-200' : 'bg-white'}>
+                        <td className="border border-web-green-300 text-center">{penggunas.ID}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.full_name}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.email}</td>
                         <td className="border border-web-green-300 text-center">{penggunas.komisi}</td>
                         <td className="border border-web-green-300 text-center">{penggunas.tanggal}</td>
                         <td className="flex gap-3 py-2 justify-center border">
-                           <button onClick={() => handlePrint(penggunas.id)} className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
-                              Lihat
+                           <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
+                              {penggunas.cv && penggunas.ijazah && penggunas.str ? (
+                                 <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}`)}`} download="dokumen.txt" className="text-white">
+                                    Lihat
+                                 </a>
+                              ) : (
+                                 'Tidak ada dokumen'
+                              )}
                            </button>
-                           <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                           <button onClick={() => handleDelete(penggunas.ID)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
                               Hapus
                            </button>
                         </td>
@@ -177,16 +201,7 @@ export default function DaftarDokter({ params }) {
                   ))}
                </tbody>
             </table>
-            <div className="float-right mx-28 mt-11">
-            {pengguna && pengguna.length > 0 ? (
-               <PaginationDok
-                  currentPage={currentPage}
-                  totalItems={pengguna.length}
-                  itemsPerPage={itemsPerPage}
-                  onPageChange={handlePageChange}
-               />
-            ) : null}
-            </div>
+            <div className="float-right mx-28 mt-11">{pengguna && pengguna.length > 0 ? <PaginationDok currentPage={currentPage} totalItems={pengguna.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} /> : null}</div>
          </div>
       </>
    );
