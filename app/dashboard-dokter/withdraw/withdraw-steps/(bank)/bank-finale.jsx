@@ -6,8 +6,12 @@ import { bankLists } from '@/components/ui/BankCardList';
 import Link from 'next/link';
 import { useAtom } from 'jotai';
 import useWithdrawal, { WithdrawalDataAtom } from '@/components/atoms/useWithdrawal';
+import { getUserDoctor } from '@/components/atoms/useUserDoctor';
 
 export default function BankFinale() {
+   const { data: dokter, error, isLoading } = getUserDoctor();
+
+   console.log(dokter);
    const [hideBankNumber, toggleHiddenBankNumber] = useState(true);
    const { handleWithdrawalDataSend } = useWithdrawal();
 
@@ -40,7 +44,10 @@ export default function BankFinale() {
                               <SelectedBankCard selectedBank={data.bank} />
 
                               <div className="flex flex-col gap-[11px] items-start justify-start shrink-0 relative">
-                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">SDR {data.name}</div>
+                                 <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">
+                                    {' '}
+                                    {dokter?.doctor.gender === 'L' ? 'SDR' : 'SDRI'} {dokter?.doctor.full_name}
+                                 </div>
 
                                  <div className="cursor-pointer select-none font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative" onClick={handleHiddenBankNumber}>
                                     {data.method} {hideBankNumber ? '***************' : data.account_number}
@@ -67,7 +74,7 @@ export default function BankFinale() {
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
                                     <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Biaya Transaksi</div>
                                     {/* is it static? */}
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp7.500</div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp{data.amount < 5000000 ? '50.0000' : '100.0000'}</div>
                                  </div>
 
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
