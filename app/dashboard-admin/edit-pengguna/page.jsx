@@ -5,24 +5,15 @@ import useSWR, { mutate } from "swr";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import PaginationDok from "@/components/PaginationDok";
 import { motion } from "framer-motion";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 export default function VerifikasiDokter() {
-   const [dokterVerif, setDokterVerif] = useState([]);
-   const [dokterTolak, setDokterTolak] = useState([]);
    const [searchInput, setSearchInput] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
-   const itemsPerPage = 10;
-
-   //    const fetcher = (url) => {
-   //       const token = Cookies.get('doctorToken');
-   //       return fetch(url, {
-   //          headers: {
-   //             Authorization: `Bearer ${token}`,
-   //          },
-   //       }).then((res) => res.json());
-   //    };
+   const [dataDokterVerif, setDataDokterVerif] = useState([]);
+   const [dataDokterFound, setDataDokterFound] = useState([]);
+   const itemsPerPage = 8;
 
    const fetchDokterVerif = async (url) => {
       const token = Cookies.get("adminToken");
@@ -35,47 +26,43 @@ export default function VerifikasiDokter() {
       return jsonData;
    };
 
-   const fetchDokterTolak = async (url) => {
-      const token = Cookies.get("adminToken");
-      const response = await fetch(url, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-      });
-      const jsonData = await response.json();
-      return jsonData;
-   };
-
-   const { data: dataDokterVerif, error: errorDokterVerif } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetchDokterVerif, {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetchDokterVerif, {
+      onSuccess: (data) => {
+         setDataDokterVerif(data.doctors);
+         setDataDokterFound(data.doctors);
+      },
+      onError: (error) => {
+         console.log(error);
+      },
    });
 
    const handleSearchInputChange = (e) => {
       setSearchInput(e.target.value);
+      handleSearch();
    };
 
    const handleSearch = () => {
-      const searchUrl = `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchInput}`;
-
-      fetch(searchUrl)
-         .then((response) => response.json())
-         .then((data) => {
-            setDokterVerif(data);
-         })
-         .catch((error) => {
-            console.error(error);
+      if (searchInput === "") {
+         setDataDokterVerif(data.doctors);
+         return setDataDokterFound(data.doctors);
+      } else {
+         const filteredData = dataDokterVerif.filter((dokter) => {
+            return dokter.full_name.toLowerCase().includes(searchInput.toLowerCase());
          });
+         setDataDokterFound(filteredData);
+      }
    };
 
-   const paginateData = (data) => {
+   const totalpages = Math.ceil(dataDokterFound?.length / itemsPerPage);
+
+   const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      const doctors = data?.doctors || []; // Default to an empty array if data is undefined
-      return doctors.slice(startIndex, endIndex);
+      return dataDokterFound?.slice(startIndex, endIndex);
    };
-   const changePage = (page) => {
-      setCurrentPage(page);
+
+   const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
    };
    const handleTolak = (id) => {
       Swal.fire({
@@ -145,12 +132,11 @@ export default function VerifikasiDokter() {
 
    return (
       <>
-         {/* <div className='flex'> */}
          <SidebarAdmin />
-         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="p-4 w-full pl-[378px] bg-[#F8FFF1] w-scree h-screen">
+         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="p-4 pl-[378px] bg-[#F8FFF1] w-screen h-screen">
             <p className="text-[32px] font-bold text-web-green-500 ">Pendaftaran Dokter</p>
-            <div class="flex items-center h-24 mt-9">
-               <div class="mb-4 flex w-full gap-16">
+            <div className="flex items-center h-24 mt-9">
+               <div className="mb-4 flex w-full gap-16">
                   <div className="flex">
                      <input
                         type="search"
@@ -197,9 +183,9 @@ export default function VerifikasiDokter() {
                      </tr>
                   </thead>
                   <tbody className="bg-[#F8FFF1]">
-                     {dataDokterVerif?.doctors?.map((dokter, i) => (
+                     {PaginatedData()?.map((dokter, i) => (
                         <tr scope="col" key={dokter.id} className="bg-white">
-                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.ID}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.full_name}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.email}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.nik}</td>
@@ -258,7 +244,7 @@ export default function VerifikasiDokter() {
                </table>
             </div>
             <div className="mt-11 float-left">
-               <PaginationDok currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={dokterVerif.length + dokterTolak.length} onPageChange={changePage} />
+               <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
             </div>
          </motion.div>
       </>

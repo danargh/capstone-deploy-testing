@@ -1,18 +1,21 @@
 "use client";
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
+
 import React, { useState, useEffect } from "react";
 import useSWR from "swr";
 import Swal from "sweetalert2";
 import PaginationDok from "@/components/PaginationDok";
 import Cookies from "js-cookie";
 import { motion } from "framer-motion";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 export default function DaftarDokter({ params }) {
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
    const [selectedId, setSelectedId] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(10);
+   const [itemsPerPage] = useState(8);
+   const [pengguna, setPengguna] = useState([]);
+   const [penggunaFound, setPenggunaFound] = useState([]);
 
    const fetcher = async (url) => {
       const token = Cookies.get("adminToken");
@@ -25,7 +28,16 @@ export default function DaftarDokter({ params }) {
          .then((data) => data.doctors); // akses properti "doctors" dari data
    };
 
-   const { data: pengguna, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctor/order", fetcher);
+   const { data, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctor/order", fetcher, {
+      onSuccess: (data) => {
+         console.log(data);
+         setPengguna(data);
+         setPenggunaFound(data);
+      },
+      onError: (error) => {
+         console.log(error);
+      },
+   });
 
    useEffect(() => {
       mutate();
@@ -67,17 +79,19 @@ export default function DaftarDokter({ params }) {
 
    const handleSearchKeywordChange = (event) => {
       setSearchKeyword(event.target.value);
+      handleSearch();
    };
 
    const handleSearch = () => {
-      fetch(`https://647a44b3a455e257fa648a39.mockapi.io/penggunas/dokter?search=${searchKeyword}`)
-         .then((response) => response.json())
-         .then((data) => {
-            mutate(data, false);
-         })
-         .catch((error) => {
-            console.log(error);
+      if (searchKeyword === "") {
+         setPengguna(data);
+         return setPenggunaFound(data);
+      } else {
+         const filteredData = pengguna.filter((dokter) => {
+            return dokter.doctor_name.toLowerCase().includes(searchKeyword.toLowerCase());
          });
+         setPenggunaFound(filteredData);
+      }
    };
 
    const handlePrint = (id) => {
@@ -122,17 +136,13 @@ export default function DaftarDokter({ params }) {
          printWindow.print();
       }
    };
+
+   const totalpages = Math.ceil(penggunaFound?.length / itemsPerPage);
+
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-
-      // Check if pengguna is an array before trying to slice it
-      if (!Array.isArray(pengguna)) {
-         console.error("pengguna is not an array:", pengguna);
-         return [];
-      }
-
-      return pengguna.slice(startIndex, endIndex);
+      return penggunaFound?.slice(startIndex, endIndex);
    };
 
    const handlePageChange = (pageNumber) => {
@@ -140,9 +150,9 @@ export default function DaftarDokter({ params }) {
    };
    return (
       <>
-         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="bg-[#F8FFF1] w-screen h-screen p-4 sm:ml-72">
-            <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Daftar Dokter</p>
-            <div class="flex items-center h-24 mx-16 mt-9">
+         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="bg-[#F8FFF1] pl-[378px] p-4 w-screen h-screen">
+            <p className="text-[32px] font-bold text-web-green-500 ">Daftar Dokter</p>
+            <div class="flex items-center h-24 mt-9">
                <div class="mb-4 flex w-96">
                   <input
                      type="search"
@@ -164,44 +174,48 @@ export default function DaftarDokter({ params }) {
                   </button>
                </div>
             </div>
-            <table className="border-collapse border w-5/6 border-web-green-300 mx-16">
-               <thead className="">
-                  <tr className="bg-[#63863E] font-semibold h-[43px] border-web-green-300 text-white">
-                     <th className="border border-web-green-300">No</th>
-                     <th className="border border-web-green-300">Nama Dokter</th>
-                     <th className="border border-web-green-300">Email Dokter</th>
-                     <th className="border border-web-green-300">Komisi</th>
-                     <th className="border border-web-green-300">Tanggal</th>
-                     <th className="border border-web-green-300">Aksi</th>
-                  </tr>
-               </thead>
-               <tbody className="">
-                  {PaginatedData().map((penggunas, i) => (
-                     <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
-                        <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.id}</td>
-                        <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_name}</td>
-                        <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_email}</td>
-                        <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.komisi}</td>
-                        <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.tanggal}</td>
-                        <td className="bg-[#F8FFF1] flex gap-3 py-2 justify-center border">
-                           <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
-                              {penggunas.cv && penggunas.ijazah && penggunas.str ? (
-                                 <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}\n${penggunas.sip}`)}`} download="dokumen.txt" className="text-white">
-                                    Lihat
-                                 </a>
-                              ) : (
-                                 "Tidak ada dokumen"
-                              )}
-                           </button>
-                           <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
-                              Hapus
-                           </button>
-                        </td>
+            <div className="overflow-x-auto mr-6">
+               <table className="border-collapse border w-[1500px] border-web-green-300">
+                  <thead className="">
+                     <tr className="bg-[#63863E] font-semibold h-[43px] border-web-green-300 text-white">
+                        <th className="border border-web-green-300">No</th>
+                        <th className="border border-web-green-300">Nama Dokter</th>
+                        <th className="border border-web-green-300">Email Dokter</th>
+                        <th className="border border-web-green-300">Komisi</th>
+                        <th className="border border-web-green-300">Tanggal</th>
+                        <th className="border border-web-green-300">Aksi</th>
                      </tr>
-                  ))}
-               </tbody>
-            </table>
-            <div className="float-left ml-16 mt-11">{pengguna && pengguna.length > 0 ? <PaginationDok currentPage={currentPage} totalItems={pengguna.length} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} /> : null}</div>
+                  </thead>
+                  <tbody className="">
+                     {PaginatedData()?.map((penggunas, i) => (
+                        <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_name}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_email}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.komisi}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.tanggal}</td>
+                           <td className="bg-[#F8FFF1] flex gap-3 py-2 justify-center border">
+                              <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
+                                 {penggunas.cv && penggunas.ijazah && penggunas.str ? (
+                                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}\n${penggunas.sip}`)}`} download="dokumen.pdf" className="text-white">
+                                       Lihat
+                                    </a>
+                                 ) : (
+                                    "Tidak ada dokumen"
+                                 )}
+                              </button>
+                              <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                                 Hapus
+                              </button>
+                           </td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
+            </div>
+            <div className="float-left mt-11">
+               <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
+            </div>
          </motion.div>
       </>
    );
