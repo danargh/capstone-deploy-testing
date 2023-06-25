@@ -1,8 +1,7 @@
 import { io } from "socket.io-client";
 import AWSLink from "./awslink";
 
-// Set the variables
-// yeah, not gonna bother cleaning the code
+// Legacy code
 const { doctortoken } = AWSLink();
 const endpoint = "wss://capstone-project.duckdns.org:8080/doctor/chat";
 
