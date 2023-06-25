@@ -206,7 +206,7 @@ export default function VerifikasiDokter() {
                         <td className="border border-web-green-300 text-center">{dokter.religion}</td>
                         <td className="border border-web-green-300 text-center">{dokter.alumnus}</td>
                         <td className="border border-web-green-300 text-center">{dokter.jurusan}</td>
-                        <td className="border border-web-green-300 text-center">{dokter.gard_year}</td>
+                        <td className="border border-web-green-300 text-center">{dokter.grad_year}</td>
                         <td className="border border-web-green-300 text-center">{dokter.practice_address}</td>
                         <td className="border border-web-green-300 text-center">{dokter.str_number}</td>
                         <td className="border border-web-green-300 text-center">
