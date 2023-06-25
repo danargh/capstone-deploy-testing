@@ -10,8 +10,9 @@ export const WithdrawalDataAtom = atom([
       method: '',
       account_number: 0,
       amount: 0,
-    //   message: '',
-    //   comment: '',
+      bank: '',
+      //   message: '',
+      //   comment: '',
    },
 ]);
 

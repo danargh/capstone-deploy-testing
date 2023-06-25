@@ -24,6 +24,7 @@ export default function VwalletFinale() {
          </div>
       );
    }
+
    return (
       <>
          {withdrawalData &&
@@ -37,7 +38,7 @@ export default function VwalletFinale() {
                            </div>
 
                            <div className="flex flex-row gap-[11px] items-center justify-start shrink-0 relative">
-                              <SelectedBankCard selectedBank={data.method} />
+                              <SelectedBankCard selectedBank={data.bank} />
 
                               <div className="flex flex-col gap-[11px] items-start justify-start shrink-0 relative">
                                  <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">SDR {data.name}</div>
