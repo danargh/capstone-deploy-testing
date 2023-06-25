@@ -7,12 +7,11 @@ export const selectedDropdownAtom = atom('');
 export const WithdrawalMethodAtom = atom('');
 export const WithdrawalDataAtom = atom([
    {
-      name: '',
       method: '',
-      accountnumber: 0,
+      account_number: 0,
       amount: 0,
-      message: '',
-      comment: '',
+    //   message: '',
+    //   comment: '',
    },
 ]);
 
@@ -21,6 +20,7 @@ const useWithdrawal = () => {
    const [withdrawalData, setWithdrawalData] = useAtom(WithdrawalDataAtom);
    const [withdrawalStep, setWithdrawalStep] = useAtom(WithdrawalStepAtom);
    const [withdrawalMethod] = useAtom(WithdrawalMethodAtom);
+   const [selectedDropdown] = useAtom(selectedDropdownAtom);
 
    // Handle form steps
    const handleWithdrawalSteps = () => {
@@ -31,12 +31,12 @@ const useWithdrawal = () => {
    const handleWithdrawalData = (data) => {
       const newData = [
          {
-            name: 'Asep',
-            method: withdrawalMethod,
-            accountnumber: Number(data.accountNumber),
+            method: selectedDropdown,
+            bank: withdrawalMethod,
+            account_number: Number(data.accountNumber),
             amount: Number(data.amount),
-            message: data.message,
-            comment: withdrawalData.comment,
+            // message: data.message,
+            // comment: withdrawalData.comment,
          },
       ];
       setWithdrawalData(newData);

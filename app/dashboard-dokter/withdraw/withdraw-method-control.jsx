@@ -14,8 +14,8 @@ export default function WithdrawMethodControl() {
 
    const [isBankOpen, setIsBankOpen] = useState(false);
    const [isVWalletOpen, setIsVWalletOpen] = useState(false);
-   const [WithdrawOption, setWithdrawOption] = useAtom(WithdrawalMethodAtom);
-   const [selectedDropdown, setDropdown] = useAtom(selectedDropdownAtom);
+   const [WithdrawOption, setWithdrawOption] = useAtom(WithdrawalMethodAtom); // BCA Shopee , dst.
+   const [selectedDropdown, setDropdown] = useAtom(selectedDropdownAtom); // Bank / V Wallet
 
    //Choose the Dropdown
    const handleBankDropdownClick = () => {
