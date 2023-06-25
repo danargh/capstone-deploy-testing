@@ -135,7 +135,7 @@ export default function page({ params }) {
                         <div className="bg-web-green-400 font-poppins whitespace-nowrap flex items-center px-3 rounded-r-md text-white">Pilih Gambar</div>
                         <div className={input_variants({ variant: 'image' })}>{selectedFile ? selectedFile.name : 'Pilih Gambar'}</div>
                      </label>
-                     <input id="file-input" className="hidden" type="file" onChange={handleFileChange} />
+                     <input id="file-input" className="hidden" type="file" accept="image/png, image/jpeg" onChange={handleFileChange} />
                   </div>
                   <div className="pb-[39.5px]">
                      <p className="text-sm font-bold pt-[35px] mb-5">Kategori Artikel</p>
