@@ -5,7 +5,7 @@ import { PaginationOrderDokter } from "@/components/ui/Pagination";
 import { TableOrder } from "@/components/ui/Table";
 import React, { useState, useEffect } from "react";
 import ordersDoctorAPI from "@/api/all-order";
-import DatePicker from "react-date-picker";
+
 function page() {
    const { doctorOrders, token } = ordersDoctorAPI();
    const orders = doctorOrders ? doctorOrders.data : [];
