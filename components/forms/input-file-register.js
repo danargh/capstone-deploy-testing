@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const InputFileRegister = ({ children, selectedFile }) => {
    return (
       <>

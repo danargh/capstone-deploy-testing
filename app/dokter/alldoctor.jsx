@@ -1,5 +1,6 @@
-import React from "react";
+import React, {Suspense} from "react";
 import DoctorCard from "@/components/ui/DoctorCard";
+import Loadstate from "./loadstate";
 
 export default function AllDoctor({ doctor_list }) {
    return (
@@ -14,6 +15,7 @@ export default function AllDoctor({ doctor_list }) {
          ></div>
          <div className="h-[635px] flex flex-col gap-4 items-start justify-start shrink-0 relative overflow-y-auto">
             <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
+            <Suspense fallback={<Loadstate />}>
                {doctor_list && doctor_list.map((doctor_list) => (
                   <React.Fragment key={doctor_list.ID}>
                      <DoctorCard
@@ -25,6 +27,7 @@ export default function AllDoctor({ doctor_list }) {
                      />
                   </React.Fragment>
                ))}
+               </Suspense>
             </div>
          </div>
       </>

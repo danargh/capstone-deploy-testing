@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 export default function RegisterDokter() {
-   const [index, setIndex] = useState(0);
+   const [index, setIndex] = useState(2);
    const router = useRouter();
    const [dataRegister, setDataRegister] = useState({});
    const [dataFileCV, setDataFileCV] = useState(null);
@@ -72,8 +72,22 @@ export default function RegisterDokter() {
       },
    });
 
+   const validateFile = (file) => {
+      const allowedExtensions = [".pdf", ".PDF"];
+      const fileName = file.name;
+      const fileExtension = fileName.split(".").pop().toLowerCase();
+      return allowedExtensions.includes("." + fileExtension);
+   };
+
    const handleFileCV = (e) => {
       const file = e.target.files[0];
+
+      if (validateFile(file) === false) {
+         setErrorFileInput([...errorFileInput, "cv"]);
+         setDataFileCV(null);
+         return;
+      }
+
       if (file?.size > 2000000) {
          setErrorFileInput([...errorFileInput, "cv"]);
          setDataFileCV(null);
@@ -85,6 +99,13 @@ export default function RegisterDokter() {
 
    const handleFileIjazah = (e) => {
       const file = e.target.files[0];
+
+      if (validateFile(file) === false) {
+         setErrorFileInput([...errorFileInput, "ijazah"]);
+         setDataFileIjazah(null);
+         return;
+      }
+
       if (file?.size > 2000000) {
          setErrorFileInput([...errorFileInput, "ijazah"]);
          setDataFileIjazah(null);
@@ -96,6 +117,13 @@ export default function RegisterDokter() {
 
    const handleFileStr = (e) => {
       const file = e.target.files[0];
+
+      if (validateFile(file) === false) {
+         setErrorFileInput([...errorFileInput, "str"]);
+         setDataFileStr(null);
+         return;
+      }
+
       if (file?.size > 2000000) {
          setErrorFileInput([...errorFileInput, "str"]);
          setDataFileStr(null);
@@ -107,6 +135,13 @@ export default function RegisterDokter() {
 
    const handleFileSip = (e) => {
       const file = e.target.files[0];
+
+      if (validateFile(file) === false) {
+         setErrorFileInput([...errorFileInput, "sip"]);
+         setDataFileSip(null);
+         return;
+      }
+
       if (file?.size > 2000000) {
          setErrorFileInput([...errorFileInput, "sip"]);
          setDataFileSip(null);
@@ -320,7 +355,7 @@ export default function RegisterDokter() {
                                  required
                               />
                            </InputFileRegister>
-                           {errorFileInput.includes("cv") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB</p>}
+                           {errorFileInput.includes("cv") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB atau Format file salah.</p>}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">Ijazah</p>
@@ -338,12 +373,11 @@ export default function RegisterDokter() {
                                     cursor: "pointer",
                                  }}
                                  type="file"
-                                 value={dataFileIjazah}
                                  onChange={handleFileIjazah}
                                  required
                               />
                            </InputFileRegister>
-                           {errorFileInput.includes("ijazah") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB</p>}
+                           {errorFileInput.includes("ijazah") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB atau Format file salah.</p>}
                         </div>
                         <div>
                            <div className="max-w-sm">
@@ -367,7 +401,7 @@ export default function RegisterDokter() {
                                  required
                               />
                            </InputFileRegister>
-                           {errorFileInput.includes("str") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB</p>}
+                           {errorFileInput.includes("str") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB atau Format file salah.</p>}
                         </div>
                         <div>
                            <p className="text-[18px] font-semibold font-poppins float-left">SIP (Surat Izin Praktek)</p>
@@ -389,7 +423,7 @@ export default function RegisterDokter() {
                                  required
                               />
                            </InputFileRegister>
-                           {errorFileInput.includes("sip") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB</p>}
+                           {errorFileInput.includes("sip") && <p className="text-[14px] text-left text-red-600 absolute">Ukuran file lebih dari 2 MB atau Format file salah.</p>}
                         </div>
                         <div className="mt-4 w-full flex flex-col justify-center">
                            <RegisterDokterButton type="submit">Daftar</RegisterDokterButton>
