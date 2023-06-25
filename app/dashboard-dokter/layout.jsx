@@ -9,15 +9,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
    return (
-      <html lang="en">
-         <body>
             <div className="flex flex-row">
          <SidebarDokter />
             <DoctorNavbarLayout>
                <div className="h-full">{children}</div>
             </DoctorNavbarLayout>
             </div>
-         </body>
-      </html>
    );
 }

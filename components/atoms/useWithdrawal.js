@@ -1,18 +1,18 @@
-import { atom, useAtom } from "jotai";
-import useSWR, { mutate } from "swr";
-
+import { atom, useAtom } from 'jotai';
+import useSWR, { mutate } from 'swr';
+import Cookies from 'js-cookie';
 // Define the Atoms
 export const WithdrawalStepAtom = atom(1);
-export const selectedDropdownAtom = atom("");
-export const WithdrawalMethodAtom = atom("");
+export const selectedDropdownAtom = atom('');
+export const WithdrawalMethodAtom = atom('');
 export const WithdrawalDataAtom = atom([
    {
-      name: "",
-      method: "",
-      accountnumber: 0,
+      method: '',
+      account_number: 0,
       amount: 0,
-      message: "",
-      comment: "",
+      bank: '',
+      //   message: '',
+      //   comment: '',
    },
 ]);
 
@@ -21,6 +21,7 @@ const useWithdrawal = () => {
    const [withdrawalData, setWithdrawalData] = useAtom(WithdrawalDataAtom);
    const [withdrawalStep, setWithdrawalStep] = useAtom(WithdrawalStepAtom);
    const [withdrawalMethod] = useAtom(WithdrawalMethodAtom);
+   const [selectedDropdown] = useAtom(selectedDropdownAtom);
 
    // Handle form steps
    const handleWithdrawalSteps = () => {
@@ -31,12 +32,10 @@ const useWithdrawal = () => {
    const handleWithdrawalData = (data) => {
       const newData = [
          {
-            name: "Asep",
-            method: withdrawalMethod,
-            accountnumber: Number(data.accountNumber),
+            method: selectedDropdown,
+            bank: withdrawalMethod,
+            account_number: String(data.accountNumber),
             amount: Number(data.amount),
-            message: data.message,
-            comment: withdrawalData.comment,
          },
       ];
       setWithdrawalData(newData);
@@ -44,23 +43,26 @@ const useWithdrawal = () => {
 
    // Send the data needed THEN reset
    const handleWithdrawalDataSend = async () => {
+    console.log(withdrawalData)
+    const Data = withdrawalData[0];
+    console.log(Data)
+    console.log(JSON.stringify(Data))
+      const token = Cookies.get('doctorToken');
       try {
-         const response = await fetch(
-            "https://6486902bbeba6297278ee628.mockapi.io/user/withdrawal",
-            {
-               method: "POST",
-               headers: {
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify(withdrawalData),
-            }
-         );
+         const response = await fetch('https://capstone-project.duckdns.org:8080/doctor/withdraw', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(Data),
+         });
          if (!response.ok) {
-            throw new Error("Error");
+            throw new Error('Error');
          }
          const responseData = await response.json();
          console.log(responseData);
-         mutate("https://6486902bbeba6297278ee628.mockapi.io/user/withdrawal");
+         mutate('https://capstone-project.duckdns.org:8080/doctor/withdraw');
          setWithdrawalData([]);
          setWithdrawalStep(1);
       } catch (error) {
