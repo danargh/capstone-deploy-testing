@@ -53,13 +53,13 @@ export default function Sidebar() {
 
    const logoutHandler = () => {
       Cookies.remove("doctorToken");
-      localStorage.removeItem("doctorData");
+      Cookies.remove("doctorID");
       router.push("/login");
    };
 
    // Function to unify components
    function SidebarComponent({ navName, navPoint, sidebarDarkIcon, sidebarLightIcon }) {
-    const hover = "hover:bg-web-green-400 hover:border-solid hover:border-neutral-0 hover:border-l-[5px] hover:py-[5px] hover:pr-[5px] hover:pl-3"
+      const hover = "hover:bg-web-green-400 hover:border-solid hover:border-neutral-0 hover:border-l-[5px] hover:py-[5px] hover:pr-[5px] hover:pl-3";
       return (
          <Link
             href={`/dashboard-dokter${navPoint}`}

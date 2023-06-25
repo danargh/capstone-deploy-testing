@@ -108,6 +108,7 @@ export default function DoctorContainer() {
 
                      <div className="flex flex-col gap-4 items-start justify-start shrink-0 relative">
                         <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
+                        <Suspense fallback={<Loadstate />}>
                            {doctor_list?.slice(0, 4).map((doctor_list) => (
                               <React.Fragment key={doctor_list.ID}>
                                  <DoctorCard
@@ -119,6 +120,7 @@ export default function DoctorContainer() {
                                  />
                               </React.Fragment>
                            ))}
+                           </Suspense>
                         </div>
                      </div>
                   </div>
