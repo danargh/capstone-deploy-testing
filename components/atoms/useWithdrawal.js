@@ -34,10 +34,8 @@ const useWithdrawal = () => {
          {
             method: selectedDropdown,
             bank: withdrawalMethod,
-            account_number: Number(data.accountNumber),
+            account_number: String(data.accountNumber),
             amount: Number(data.amount),
-            // message: data.message,
-            // comment: withdrawalData.comment,
          },
       ];
       setWithdrawalData(newData);
@@ -45,6 +43,10 @@ const useWithdrawal = () => {
 
    // Send the data needed THEN reset
    const handleWithdrawalDataSend = async () => {
+    console.log(withdrawalData)
+    const Data = withdrawalData[0];
+    console.log(Data)
+    console.log(JSON.stringify(Data))
       const token = Cookies.get('doctorToken');
       try {
          const response = await fetch('https://capstone-project.duckdns.org:8080/doctor/withdraw', {
@@ -53,7 +55,7 @@ const useWithdrawal = () => {
                'Content-Type': 'application/json',
                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(withdrawalData),
+            body: JSON.stringify(Data),
          });
          if (!response.ok) {
             throw new Error('Error');

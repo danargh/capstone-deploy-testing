@@ -43,7 +43,7 @@ export default function BankFinale() {
                                  <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">SDR {data.name}</div>
 
                                  <div className="cursor-pointer select-none font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative" onClick={handleHiddenBankNumber}>
-                                    {data.method} {hideBankNumber ? '***************' : data.accountnumber}
+                                    {data.method} {hideBankNumber ? '***************' : data.account_number}
                                  </div>
                               </div>
                            </div>

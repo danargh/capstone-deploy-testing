@@ -31,7 +31,6 @@ export default function BankForm() {
          //  handleWithdrawalSteps();
          handleWithdrawalSteps();
          handleWithdrawalData(values);
-         console.log(withdrawalData);
       },
    });
 
