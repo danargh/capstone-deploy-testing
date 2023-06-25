@@ -3,7 +3,7 @@
 import { useState } from "react";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import Swal from "sweetalert2";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { motion } from "framer-motion";
 import Cookies from "js-cookie";
 
@@ -22,11 +22,7 @@ export default function ReqWithdraw() {
          method: "GET",
       }).then((res) => res.json());
    };
-   const {
-      data,
-      error,
-      mutate: mutateDataWithdraw,
-   } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
       onSuccess: (data) => {
          setDataWithdraw(data.data);
       },
@@ -49,13 +45,12 @@ export default function ReqWithdraw() {
 
    const handleApproved = async (id) => {
       try {
-         // const newDataWithdraw = dataWithdraw.map((data) => {
-         //    if (data.id === id) {
-         //       data.status = "terima";
-         //    }
-         //    return data;
-         // });
-         // const index = newDataWithdraw.findIndex((data) => data.id === id);
+         const newDataWithdraw = dataWithdraw.map((data) => {
+            if (data.id === id) {
+               data.status = "terima";
+            }
+            return data;
+         });
 
          const token = Cookies.get("adminToken");
          const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
@@ -171,15 +166,10 @@ export default function ReqWithdraw() {
                                        Tolak
                                     </button>
                                  </>
+                              ) : data.status === "terima" ? (
+                                 <div className="text-white px-6 bg-[#8EBF59] rounded-[5px]">Diterima</div>
                               ) : (
-                                 <div
-                                    // onClick={() => {
-                                    //    handleApproved(data.id);
-                                    // }}
-                                    className="text-white px-6 bg-[#8EBF59] rounded-[5px]"
-                                 >
-                                    Diterima
-                                 </div>
+                                 <div className="text-white px-6 bg-[#8EBF59] rounded-[5px]">Ditolak</div>
                               )}
                            </td>
                         </tr>
