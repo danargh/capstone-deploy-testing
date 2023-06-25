@@ -16,7 +16,7 @@ export default function Card({ images, title, description, href, postId, handleD
                         <p className="pt-3 font-inter text-center text-xs font-bold text-neutral-900">{title}</p>
                     </div>
                     <div className="flex w-96 h-fit items-start justify-start px-4 py-8 bg-neutral-0 rounded-none">
-                        <p className="font-inter text-justify text-[14px] font-normal text-neutral-300  line-clamp-[8] " dangerouslySetInnerHTML={{ __html: description }}></p>
+                        <p className="font-inter text-justify text-[14px] font-normal text-neutral-300  line-clamp-[8] break-all" dangerouslySetInnerHTML={{ __html: description }}></p>
                     </div>
                     <div className="flex flex-grow"></div>
                     <div className="flex flex-row justify-end w-96 h-fit px-4 py-2 bg-neutral-0 rounded-none">
