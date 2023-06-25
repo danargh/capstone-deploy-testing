@@ -69,30 +69,9 @@ export default function DetailArticle({ params }) {
          if (!response.ok) {
             throw new Error("Error adding article");
          }
-
-         //  const responseData = await response.json();
-         //  console.log(responseData);
-
-         //  mutate(
-         //     `https://capstone-project.duckdns.org:8080/articles/${params.id}/comment`
-         //  );
       } catch (error) {
          console.error(error);
       }
-      //   setComment((prevComment) => {
-      //      const newComment = {
-      //         // id: Math.random(),
-      //         firstName: firstNameRef.current?.value,
-      //         lastName: lastNameRef.current?.value,
-      //         commentValue: commentTextRef.current?.value,
-      //         date: new Date().toLocaleDateString(),
-      //         time: new Date().toLocaleTimeString(),
-      //      };
-      //      commentTextRef.current.value = "";
-      //      firstNameRef.current.value = "";
-      //      lastNameRef.current.value = "";
-      //      return [...prevComment, newComment];
-      //   });
    };
    const getArticle = fetchArticle(params.id);
 
@@ -179,7 +158,7 @@ export default function DetailArticle({ params }) {
                         </TwitterShareButton>
                      </div>
                      <p
-                        className=" font-inter font-[400] text-[22px] leading-9 text-justify prose max-w-full"
+                        className="break-all font-inter font-[400] text-[22px] leading-9 text-justify prose max-w-full"
                         dangerouslySetInnerHTML={{
                            __html: getArticle.data.content,
                         }}
@@ -190,12 +169,12 @@ export default function DetailArticle({ params }) {
                               {filteredArticles.length >= 1 ? (
                                  <>
                                     {" "}
-                                    <h2 className="w-[500px] text-right">
+                                    <h2 className="w-[500px] text-left">
                                        {filteredArticles[0].title}
                                     </h2>
                                     <Link
                                        href={`/article/${filteredArticles[0].id}`}
-                                       className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-end"
+                                       className="font-[500] text-[16px] leading-4 text-[#268AFF]  mt-[18px] flex justify-start"
                                     >
                                        Post Selanjutnya
                                     </Link>
