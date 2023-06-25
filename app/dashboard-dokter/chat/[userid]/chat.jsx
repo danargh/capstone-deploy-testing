@@ -10,7 +10,7 @@ export default function Chat({ message }) {
       {message &&
             message?.map((message, index) => (
             <React.Fragment key={index}>
-               <ChatBox message={message.message} type={message.type} />
+               <ChatBox message={message.message} type={message.type || 'doctor'} />
             </React.Fragment>
          ))}
       </>
