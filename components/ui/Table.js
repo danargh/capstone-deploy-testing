@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { PaginationOrderDokter } from './Pagination';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import { mutate } from 'swr';
 
 export const TableOrder = (props) => {
     const handlePhone = async (id) => {
@@ -23,7 +25,6 @@ export const TableOrder = (props) => {
 
             const urlLink = new FormData();
             urlLink.append('link', url)
-            console.log(props.token)
             try {
                 const response = await fetch(
                     `https://capstone-project.duckdns.org:8080/doctor/schedules/${id}`,
@@ -56,14 +57,57 @@ export const TableOrder = (props) => {
             confirmButtonText: 'Ya',
             cancelButtonText: `Tidak`,
             icon: 'warning'
-        }).then((result) => {
+        }).then(async (result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                const token = Cookies.get('doctorToken');
+                try {
+                    const response = await fetch(`https://capstone-project.duckdns.org:8080/doctor/schedules/${id}`, {
+                        method: 'PUT',
+
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    console.log(response);
+                    if (!response.ok) {
+                        throw new Error('Error updating article');
+                    }
+                    // const updatedData = await response.json();
+                    mutate(`https://capstone-project.duckdns.org:8080/doctor/schedules`);
+                    // return updatedData;
+                } catch (error) {
+                    console.error('Error updating article:', error);
+                }
                 Swal.fire({ icon: 'success', title: 'Sesi berhasil ditutup', text: 'Ketuk dimana saja untuk menutup halaman ini', showConfirmButton: false, })
 
             }
         })
     }
+
+    const updateArticle = async (id, data) => {
+        const token = Cookies.get('doctorToken');
+        try {
+            const response = await fetch(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`, {
+                method: 'PUT',
+
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+
+                body: data,
+            });
+            console.log(response);
+            if (!response.ok) {
+                throw new Error('Error updating article');
+            }
+            const updatedData = await response.json();
+            mutate(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`);
+            return updatedData;
+        } catch (error) {
+            console.error('Error updating article:', error);
+        }
+    };
 
     const regexPatternTimes = /(\d{2}:\d{2})/;
     const regexPatternDate = /(\d{2})\/(\d{2})\/(\d{4})/;
@@ -85,45 +129,77 @@ export const TableOrder = (props) => {
             </thead>
             <tbody>
                 {props.order && props.order.length > 0 ? props.order.slice(props.firstPostIndex, props.lastPostIndex).map((order, index) => (
-                    <tr className=''>
+                    <tr className={order.status === "selesai" ? 'pointer-none bg-neutral-20' : ''} >
                         <td className='border border-black text-center'>{index + 1}</td>
                         <td className='border border-black text-center'>{order.date.match(regexPatternDate) && `${order.date.match(regexPatternDate)[1]}-${order.date.match(regexPatternDate)[2]}-${order.date.match(regexPatternDate)[3]}`}</td>
                         <td className='border border-black text-center'>{order.date.match(regexPatternTimes)[1]}</td>
                         <td className='border border-black text-center'>{order.user_name}</td>
                         <td className='border border-black text-center'>{order.user_gender}</td>
                         <td className='border border-black text-center'>{order.status}</td>
-                        {order.method === "chat" ?
-                            (<>
-                                <td className='border border-black'><Link href={'/dashboard-dokter/chat'} ><img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} /></Link></td>
-                                <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
-
-                            </>)
-                            : (
-                                <>
-                                    <td className='border border-black'><img className='mx-auto cursor-pointer' /></td>
-                                    <td className='border border-black'><img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} onClick={() => handlePhone(order.id)} /></td>
-
-                                </>
-                            )
-                        }
+                        {order.method === "chat" ? (
+                            <>
+                                <td className={`border border-black ${order.status === "selesai" ? 'disabled' : ''}`}>
+                                    {order.status !== "selesai" ? (
+                                        <Link href={'/dashboard-dokter/chat'}>
+                                            <img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} />
+                                        </Link>
+                                    ) : (
+                                        <img className='mx-auto cursor-pointer' src={"/assets/icons/chat-dokter.svg"} />
+                                    )}
+                                </td>
+                                <td className={`border border-black ${order.status === "selesai" ? 'disabled' : ''}`}>
+                                    <img className='mx-auto cursor-pointer' />
+                                </td>
+                            </>
+                        ) : (
+                            <>
+                                <td className={`border border-black ${order.status === "selesai" ? 'disabled' : ''}`}>
+                                    <img className='mx-auto cursor-pointer' />
+                                </td>
+                                <td className={`border border-black ${order.status === "selesai" ? 'disabled' : ''}`}>
+                                    {order.status !== "selesai" ? (
+                                        <img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} onClick={() => handlePhone(order.id)} />
+                                    ) : (
+                                        <img className='mx-auto cursor-pointer' src={"/assets/icons/call-dokter.svg"} />
+                                    )}
+                                </td>
+                            </>
+                        )}
                         <td className='border border-black text-center'>
-                            <div className='flex gap-5 justify-center'>
-                                <div className='cursor-pointer' onClick={() => handleExit(order.id)}>
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.625 6.125L9.12492 8.62492M9.12492 8.62492L11.6249 11.1249M9.12492 8.62492L6.625 11.1249M9.12492 8.62492L11.6249 6.125M9.125 16.125C4.98287 16.125 1.625 12.7672 1.625 8.625C1.625 4.48287 4.98287 1.125 9.125 1.125C13.2672 1.125 16.625 4.48287 16.625 8.625C16.625 12.7672 13.2672 16.125 9.125 16.125Z" stroke="#8EBF59" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <div className='cursor-pointer'>
-                                    <Link href={"/dashboard-dokter/obat-dokter"}>
-                                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17.4514 10.1615C16.8154 8.83853 15.7423 7.8363 14.4306 7.27506C15.5833 5.55123 15.3845 3.22606 13.8741 1.74276C13.0394 0.94098 11.9663 0.5 10.8533 0.5H10.8136C9.66091 0.5 8.58773 0.981069 7.75304 1.78285L1.23447 8.51782C0.439526 9.35969 -0.0374428 10.4421 0.00230455 11.6047C0.00230455 12.7673 0.479273 13.8497 1.27422 14.6915C2.10891 15.5334 3.22184 15.9343 4.29502 15.9343C5.24896 15.9343 6.16315 15.6136 6.95809 15.0122C6.99784 15.0523 6.99784 15.1325 7.03759 15.1726C7.99152 17.2171 10.0186 18.5 12.2445 18.5C13.1189 18.5 13.9139 18.2996 14.7088 17.9388C17.5706 16.5356 18.8028 13.088 17.4514 10.1615ZM15.5038 10.1615L8.23001 13.6091C8.03127 12.8474 8.07102 12.0056 8.34925 11.2439C8.70698 10.2016 9.46218 9.35969 10.4559 8.87862C11.0123 8.598 11.6085 8.47773 12.2047 8.47773C13.5164 8.51782 14.7486 9.15924 15.5038 10.1615ZM8.94546 2.94543C9.46218 2.42428 10.0981 2.14365 10.8136 2.14365C11.529 2.14365 12.2047 2.42428 12.7215 2.90534C13.7549 3.94766 13.7946 5.6314 12.7612 6.71381L12.642 6.83408C12.5227 6.83408 12.3637 6.83408 12.2445 6.83408C11.37 6.83408 10.5751 7.03452 9.78016 7.39532C9.38268 7.59577 8.98521 7.8363 8.66723 8.11693L6.28239 5.75167L8.94546 2.94543ZM6.20289 13.4488C5.16946 14.4911 3.50007 14.5312 2.42689 13.4889C1.91018 12.9677 1.63195 12.3263 1.63195 11.6047C1.63195 10.8831 1.91018 10.2016 2.38715 9.6804L5.08997 6.91425L7.51456 9.3196C7.23632 9.72049 6.99784 10.2016 6.7991 10.6826C6.52087 11.4844 6.40163 12.2862 6.48112 13.1281L6.20289 13.4488ZM13.9934 16.4154C13.4369 16.696 12.8407 16.8163 12.2445 16.8163C10.9328 16.8163 9.74041 16.1748 8.94546 15.1726L16.2192 11.7249C16.6564 13.569 15.782 15.5334 13.9934 16.4154Z" fill="#8EBF59" />
+                            {order.status !== "selesai" ? (
+                                <div className='flex gap-5 justify-center'>
+                                    <div className='cursor-pointer' onClick={() => handleExit(order.id)}>
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.625 6.125L9.12492 8.62492M9.12492 8.62492L11.6249 11.1249M9.12492 8.62492L6.625 11.1249M9.12492 8.62492L11.6249 6.125M9.125 16.125C4.98287 16.125 1.625 12.7672 1.625 8.625C1.625 4.48287 4.98287 1.125 9.125 1.125C13.2672 1.125 16.625 4.48287 16.625 8.625C16.625 12.7672 13.2672 16.125 9.125 16.125Z" stroke="#8EBF59" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
-                                    </Link>
+                                    </div>
+                                    <div className='cursor-pointer'>
+                                        <Link href={"/dashboard-dokter/obat-dokter"} >
+                                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.4514 10.1615C16.8154 8.83853 15.7423 7.8363 14.4306 7.27506C15.5833 5.55123 15.3845 3.22606 13.8741 1.74276C13.0394 0.94098 11.9663 0.5 10.8533 0.5H10.8136C9.66091 0.5 8.58773 0.981069 7.75304 1.78285L1.23447 8.51782C0.439526 9.35969 -0.0374428 10.4421 0.00230455 11.6047C0.00230455 12.7673 0.479273 13.8497 1.27422 14.6915C2.10891 15.5334 3.22184 15.9343 4.29502 15.9343C5.24896 15.9343 6.16315 15.6136 6.95809 15.0122C6.99784 15.0523 6.99784 15.1325 7.03759 15.1726C7.99152 17.2171 10.0186 18.5 12.2445 18.5C13.1189 18.5 13.9139 18.2996 14.7088 17.9388C17.5706 16.5356 18.8028 13.088 17.4514 10.1615ZM15.5038 10.1615L8.23001 13.6091C8.03127 12.8474 8.07102 12.0056 8.34925 11.2439C8.70698 10.2016 9.46218 9.35969 10.4559 8.87862C11.0123 8.598 11.6085 8.47773 12.2047 8.47773C13.5164 8.51782 14.7486 9.15924 15.5038 10.1615ZM8.94546 2.94543C9.46218 2.42428 10.0981 2.14365 10.8136 2.14365C11.529 2.14365 12.2047 2.42428 12.7215 2.90534C13.7549 3.94766 13.7946 5.6314 12.7612 6.71381L12.642 6.83408C12.5227 6.83408 12.3637 6.83408 12.2445 6.83408C11.37 6.83408 10.5751 7.03452 9.78016 7.39532C9.38268 7.59577 8.98521 7.8363 8.66723 8.11693L6.28239 5.75167L8.94546 2.94543ZM6.20289 13.4488C5.16946 14.4911 3.50007 14.5312 2.42689 13.4889C1.91018 12.9677 1.63195 12.3263 1.63195 11.6047C1.63195 10.8831 1.91018 10.2016 2.38715 9.6804L5.08997 6.91425L7.51456 9.3196C7.23632 9.72049 6.99784 10.2016 6.7991 10.6826C6.52087 11.4844 6.40163 12.2862 6.48112 13.1281L6.20289 13.4488ZM13.9934 16.4154C13.4369 16.696 12.8407 16.8163 12.2445 16.8163C10.9328 16.8163 9.74041 16.1748 8.94546 15.1726L16.2192 11.7249C16.6564 13.569 15.782 15.5334 13.9934 16.4154Z" fill="#8EBF59" />
+                                            </svg>
+                                        </Link>
 
-                                </div>
+                                    </div>
 
 
-                            </div> </td>
+                                </div>) : (<div className='flex gap-5 justify-center'>
+                                    <div >
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.625 6.125L9.12492 8.62492M9.12492 8.62492L11.6249 11.1249M9.12492 8.62492L6.625 11.1249M9.12492 8.62492L11.6249 6.125M9.125 16.125C4.98287 16.125 1.625 12.7672 1.625 8.625C1.625 4.48287 4.98287 1.125 9.125 1.125C13.2672 1.125 16.625 4.48287 16.625 8.625C16.625 12.7672 13.2672 16.125 9.125 16.125Z" stroke="#8EBF59" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <div className='cursor-pointer'>
+                                        <div >
+                                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.4514 10.1615C16.8154 8.83853 15.7423 7.8363 14.4306 7.27506C15.5833 5.55123 15.3845 3.22606 13.8741 1.74276C13.0394 0.94098 11.9663 0.5 10.8533 0.5H10.8136C9.66091 0.5 8.58773 0.981069 7.75304 1.78285L1.23447 8.51782C0.439526 9.35969 -0.0374428 10.4421 0.00230455 11.6047C0.00230455 12.7673 0.479273 13.8497 1.27422 14.6915C2.10891 15.5334 3.22184 15.9343 4.29502 15.9343C5.24896 15.9343 6.16315 15.6136 6.95809 15.0122C6.99784 15.0523 6.99784 15.1325 7.03759 15.1726C7.99152 17.2171 10.0186 18.5 12.2445 18.5C13.1189 18.5 13.9139 18.2996 14.7088 17.9388C17.5706 16.5356 18.8028 13.088 17.4514 10.1615ZM15.5038 10.1615L8.23001 13.6091C8.03127 12.8474 8.07102 12.0056 8.34925 11.2439C8.70698 10.2016 9.46218 9.35969 10.4559 8.87862C11.0123 8.598 11.6085 8.47773 12.2047 8.47773C13.5164 8.51782 14.7486 9.15924 15.5038 10.1615ZM8.94546 2.94543C9.46218 2.42428 10.0981 2.14365 10.8136 2.14365C11.529 2.14365 12.2047 2.42428 12.7215 2.90534C13.7549 3.94766 13.7946 5.6314 12.7612 6.71381L12.642 6.83408C12.5227 6.83408 12.3637 6.83408 12.2445 6.83408C11.37 6.83408 10.5751 7.03452 9.78016 7.39532C9.38268 7.59577 8.98521 7.8363 8.66723 8.11693L6.28239 5.75167L8.94546 2.94543ZM6.20289 13.4488C5.16946 14.4911 3.50007 14.5312 2.42689 13.4889C1.91018 12.9677 1.63195 12.3263 1.63195 11.6047C1.63195 10.8831 1.91018 10.2016 2.38715 9.6804L5.08997 6.91425L7.51456 9.3196C7.23632 9.72049 6.99784 10.2016 6.7991 10.6826C6.52087 11.4844 6.40163 12.2862 6.48112 13.1281L6.20289 13.4488ZM13.9934 16.4154C13.4369 16.696 12.8407 16.8163 12.2445 16.8163C10.9328 16.8163 9.74041 16.1748 8.94546 15.1726L16.2192 11.7249C16.6564 13.569 15.782 15.5334 13.9934 16.4154Z" fill="#8EBF59" />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>)} </td>
 
                     </tr>
                 )) : null}
