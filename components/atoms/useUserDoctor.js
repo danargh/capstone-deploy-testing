@@ -17,7 +17,7 @@ export function getUserDoctor() {
    const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
 
    let dataDoctorLocal;
-   if (typeof window !== "undefined") {
+   if (typeof window !== undefined) {
       dataDoctorLocal = JSON.parse(localStorage.getItem("doctorData"));
    }
 
@@ -34,37 +34,5 @@ export function getUserDoctor() {
       data,
       error,
       isLoading: !error && !data,
-   };
-}
-
-const fetcherUpdate = async (url, { arg }) => {
-   const token = Cookies.get("doctorToken");
-   fetch(url, {
-      headers: {
-         "Content-Type": "application/json",
-         authorization: `Bearer ${token}`,
-      },
-      method: "PUT",
-      body: arg,
-   }).then((res) => res.json());
-};
-
-export function updateUserDoctor() {
-   const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
-
-   const { data, trigger, error, isMutating } = useSWRMutation(`https://capstone-project.duckdns.org:8080/doctor/}`, fetcherUpdate, {
-      onSuccess: (data) => {
-         console.log(data);
-      },
-      onError: (error) => {
-         console.log(error);
-      },
-   });
-
-   return {
-      data,
-      trigger,
-      error,
-      isMutating,
    };
 }
