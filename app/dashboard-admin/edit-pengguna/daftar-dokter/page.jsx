@@ -24,7 +24,7 @@ export default function DaftarDokter({ params }) {
          .then((data) => data.doctors); // akses properti "doctors" dari data
    };
 
-   const { data: pengguna, mutate } = useSWR('https://capstone-project.duckdns.org:8080/admin/doctors', fetcher);
+   const { data: pengguna, mutate } = useSWR('https://capstone-project.duckdns.org:8080/admin/doctor/order', fetcher);
 
    useEffect(() => {
       mutate();
@@ -178,22 +178,22 @@ export default function DaftarDokter({ params }) {
                <tbody className="">
                   {PaginatedData().map((penggunas, i) => (
                      <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? 'bg-gray-200' : 'bg-white'}>
-                        <td className="border border-web-green-300 text-center">{penggunas.ID}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.full_name}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.email}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.id}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.doctor_name}</td>
+                        <td className="border border-web-green-300 text-center">{penggunas.doctor_email}</td>
                         <td className="border border-web-green-300 text-center">{penggunas.komisi}</td>
                         <td className="border border-web-green-300 text-center">{penggunas.tanggal}</td>
                         <td className="flex gap-3 py-2 justify-center border">
                            <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
                               {penggunas.cv && penggunas.ijazah && penggunas.str ? (
-                                 <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}`)}`} download="dokumen.txt" className="text-white">
+                                 <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}\n${penggunas.sip}`)}`} download="dokumen.txt" className="text-white">
                                     Lihat
                                  </a>
                               ) : (
                                  'Tidak ada dokumen'
                               )}
                            </button>
-                           <button onClick={() => handleDelete(penggunas.ID)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                           <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
                               Hapus
                            </button>
                         </td>
