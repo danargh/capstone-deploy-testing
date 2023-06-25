@@ -23,7 +23,6 @@ export function getUserDoctor() {
 
    const { data, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${dataDoctorLocal.ID}`, fetcher, {
       onSuccess: (data) => {
-         console.log(data);
          setDataDoctorLogged(data);
       },
       onError: (error) => {
@@ -38,7 +37,7 @@ export function getUserDoctor() {
    };
 }
 
-const fetcherUpdate = async (url, data) => {
+const fetcherUpdate = async (url, { arg }) => {
    const token = Cookies.get("doctorToken");
    fetch(url, {
       headers: {
@@ -46,21 +45,16 @@ const fetcherUpdate = async (url, data) => {
          authorization: `Bearer ${token}`,
       },
       method: "PUT",
-      body: JSON.stringify(data),
+      body: arg,
    }).then((res) => res.json());
 };
 
 export function updateUserDoctor() {
    const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
 
-   const {
-      data,
-      error,
-      mutate: mutateDataDoctor,
-   } = useSWRMutation(`https://capstone-project.duckdns.org:8080/doctor/}`, fetcherUpdate, {
+   const { data, trigger, error, isMutating } = useSWRMutation(`https://capstone-project.duckdns.org:8080/doctor/}`, fetcherUpdate, {
       onSuccess: (data) => {
          console.log(data);
-         setDataDoctorLogged(data);
       },
       onError: (error) => {
          console.log(error);
@@ -68,6 +62,9 @@ export function updateUserDoctor() {
    });
 
    return {
-      mutateDataDoctor,
+      data,
+      trigger,
+      error,
+      isMutating,
    };
 }
