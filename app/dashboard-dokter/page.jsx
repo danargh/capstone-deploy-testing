@@ -3,12 +3,10 @@
 import NavbarDokter from "@/components/ui/NavbarDokter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getUserDoctor } from "@/components/atoms/useUserDoctor";
 
 export default function DashboardDokter() {
-   let dokter = {};
-   if (typeof window !== "undefined") {
-      dokter = JSON.parse(localStorage.getItem("doctorData"));
-   }
+   const { data: dokter, error, isLoading } = getUserDoctor();
 
    console.log(dokter);
 
@@ -16,7 +14,7 @@ export default function DashboardDokter() {
       <>
          <section className="w-[1440px] mx-auto">
             <div className="">
-               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter?.full_name}</p>
+               <p className="font-inter text-[22px] font-semibold pt-14 px-14">Hallo, Selamat Datang, Dokter {dokter?.doctor.full_name}</p>
             </div>
 
             <div>
@@ -41,7 +39,7 @@ export default function DashboardDokter() {
                         <p className="text-[32px] font-bold font-Inter py-3">Saldo Anda</p>
                      </div>
                      <div className="mx-6 py-6">
-                        <p>{dokter?.balance}</p>
+                        <p>{dokter?.doctor.balance}</p>
                      </div>
                   </div>
 
@@ -112,7 +110,7 @@ export default function DashboardDokter() {
                      <div className="flex items-center justify-center">
                         <div className="mx-4">
                            <p className="text-[28px] font-bold font-Inter py-3">Total Komisi</p>
-                           <p className="text-2xl">Rp. 7.786.000</p>
+                           <p className="text-2xl">{dokter?.doctor.komisi}</p>
                         </div>
                      </div>
                   </div>

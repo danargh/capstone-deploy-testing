@@ -16,12 +16,9 @@ const fetcher = async (url) =>
 export function getUserDoctor() {
    const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
 
-   let dataDoctorLocal;
-   if (typeof window !== undefined) {
-      dataDoctorLocal = JSON.parse(localStorage.getItem("doctorData"));
-   }
+   const id = Cookies.get("doctorID");
 
-   const { data, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${dataDoctorLocal.ID}`, fetcher, {
+   const { data, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${id}`, fetcher, {
       onSuccess: (data) => {
          setDataDoctorLogged(data);
       },
