@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 export default function RegisterDokter() {
-   const [index, setIndex] = useState(2);
+   const [index, setIndex] = useState(0);
    const router = useRouter();
    const [dataRegister, setDataRegister] = useState({});
    const [dataFileCV, setDataFileCV] = useState(null);
