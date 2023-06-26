@@ -83,7 +83,7 @@ export default function DaftarDokter({ params }) {
          return setPenggunaFound(data);
       } else {
          const filteredData = pengguna.filter((dokter) => {
-            return dokter.doctor_name.toLowerCase().includes(searchKeyword.toLowerCase());
+            return dokter.full_name.toLowerCase().includes(searchKeyword.toLowerCase());
          });
          setPenggunaFound(filteredData);
       }
