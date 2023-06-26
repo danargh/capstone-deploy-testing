@@ -74,13 +74,13 @@ export default function BankFinale() {
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
                                     <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Biaya Transaksi</div>
                                     {/* is it static? */}
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp{data.amount < 5000000 ? '50.0000' : '100.0000'}</div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp {data.amount < 5000000 ? '50.000' : '100.000'}</div>
                                  </div>
 
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
                                     <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Total</div>
 
-                                    <div className="text-neutral-900 text-center relative">Rp{data.amount + 7500}</div>
+                                    <div className="text-neutral-900 text-center relative">Rp{data.amount + (data.amount < 5000000 ? 50000 : 100000)}</div>
                                  </div>
                               </div>
 
