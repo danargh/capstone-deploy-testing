@@ -7,24 +7,17 @@ import {
    receiptAtom,
 } from "@/components/atoms/useCreateReceipt";
 import { useAtom } from "jotai";
-import ChatSidebar from "./chatSidebar";
+import ChatSidebar from "../chatSidebar";
 import Chat from "./chat";
 import Action from "./action";
 import Cookies from "js-cookie";
 import ChatHistoryAPI from "@/api/chat-history";
 
-
 export default function Page({ params }) {
    const userID = String(params.userid);
    const [selectedFile, setSelectedFile] = useState(null);
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   const [selectedUser, setSelectedUser] = useState("0");
    const [newMessage, setNewMessage] = useState("");
-   const {
-      triggerCreateReceipt,
-      error: errorCreateReceipt,
-      isReceiptLoading,
-   } = createReceipt();
    const [receipt, setReceipt] = useAtom(receiptAtom);
 
    const receiptLocal = receipt;
@@ -39,16 +32,6 @@ export default function Page({ params }) {
 
    const handleClick = () => {
       setIsDropdownOpen(!isDropdownOpen);
-   };
-
-   const [users, setUsers] = useState([
-      {
-         id: "1",
-         nama: "rudi",
-      },
-   ]);
-   const handleUserClick = (id) => {
-      setSelectedUser(id);
    };
 
    const handleSendObat = async (e) => {
@@ -77,6 +60,8 @@ export default function Page({ params }) {
    };
 
    // Websocket and Chat History Starts here ---- Cleaning the code above will take a lot of time
+
+   const selectedUser = JSON.parse(Cookies.get("selectedUser"));
 
    // Fetch doctortoken from cookies and define necessary variables
    const token = Cookies.get("doctorToken") || "";
@@ -115,11 +100,11 @@ export default function Page({ params }) {
             const receivedMessage = JSON.parse(event.data);
             // I know this looks stupid, but if i wait any longer i won't be able to finish in time -- also can't think of a good var name
             const newHistory = {
-                message: receivedMessage.message,
-                to: receivedMessage.to,
-                type: receivedMessage.hasOwnProperty('From') ? 'user' : 'doctor',
-              };
-              console.log(newHistory)
+               message: receivedMessage.message,
+               to: receivedMessage.to,
+               type: receivedMessage.hasOwnProperty("From") ? "user" : "doctor",
+            };
+            console.log(newHistory);
             setChatHistory((prevChatHistory) => [
                ...prevChatHistory,
                newHistory,
@@ -146,7 +131,7 @@ export default function Page({ params }) {
             socket.current.close();
          }
       };
-   }, [socket]);
+   }, []);
 
    const handleSendMessage = (e) => {
       e.preventDefault();
@@ -154,10 +139,11 @@ export default function Page({ params }) {
 
       // Send the message to the WebSocket server
       const messageToSend = {
-         "to": Number(userID),
-         "message": newMessage,
+         to: Number(userID),
+         message: newMessage,
       };
       socket.current.send(JSON.stringify(messageToSend));
+      console.log(messageToSend)
       // Add new chat history
       setChatHistory((prevChatHistory) => [...prevChatHistory, messageToSend]);
       setNewMessage("");
@@ -199,10 +185,10 @@ export default function Page({ params }) {
          )}
 
          <div className="flex mx-auto">
-            <ChatSidebar users={users} handleUserClick={handleUserClick} />
+            <ChatSidebar />
             <div className="flex-grow">
                <div className="flex justify-between py-7 px-4 bg-web-green-75 text-xl font-bold">
-                  {users[selectedUser].nama}
+                  {selectedUser ? selectedUser.user_name : ""}
                   <div className="relative">
                      <button
                         onClick={handleClick}

@@ -3,11 +3,9 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useAtom } from "jotai";
 import useSidebar from "@/components/atoms/useSidebar.js";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 
 import {
    CartIcon,
