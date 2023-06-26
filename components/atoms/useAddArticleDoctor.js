@@ -55,6 +55,7 @@ export function useAddArticleDoctor() {
          });
       } catch (error) {
          console.error(error);
+         Swal.fire('Maaf Artikel Gagal Diunggah Ketuk dimana saja untuk menutup halaman ini.', 'error');
       }
       router.push('/dashboard-dokter/data-artikel');
    };
