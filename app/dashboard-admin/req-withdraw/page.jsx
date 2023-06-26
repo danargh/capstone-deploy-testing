@@ -28,6 +28,7 @@ export default function ReqWithdraw() {
       mutate: withdrawMutate,
    } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
       onSuccess: (data) => {
+         console.log(data);
          setDataWithdraw(data.data);
       },
       onError: (error) => {
@@ -151,7 +152,7 @@ export default function ReqWithdraw() {
                            <td className="border-2 border-[#A9BFB4]">{data.total}</td>
                            <td className="border-2 border-[#A9BFB4]">{data.date}</td>
                            <td className="py-[6px] flex gap-[28px] justify-center border-[#A9BFB4]">
-                              {data.status === undefined ? (
+                              {data.status === "waiting" ? (
                                  <>
                                     <button
                                        onClick={() => {
@@ -170,10 +171,10 @@ export default function ReqWithdraw() {
                                        Tolak
                                     </button>
                                  </>
-                              ) : data.status === "terima" ? (
+                              ) : data.status === "approved" ? (
                                  <div className="text-white px-6 bg-[#8EBF59] rounded-[5px]">Diterima</div>
                               ) : (
-                                 <div className="text-white px-6 bg-[#8EBF59] rounded-[5px]">Ditolak</div>
+                                 <div className="text-white px-6 bg-[#A12D28] rounded-[5px]">Ditolak</div>
                               )}
                            </td>
                         </tr>

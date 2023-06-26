@@ -18,7 +18,7 @@ export function getUserDoctor() {
 
    const id = Cookies.get("doctorID");
 
-   const { data, error } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${id}`, fetcher, {
+   const { data, error, mutate } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${id}`, fetcher, {
       onSuccess: (data) => {
          setDataDoctorLogged(data);
       },
@@ -31,5 +31,6 @@ export function getUserDoctor() {
       data,
       error,
       isLoading: !error && !data,
+      mutate,
    };
 }
