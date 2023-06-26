@@ -234,7 +234,7 @@ export default function AdminArticleTables() {
                                           {article.doctor_name}
                                        </td>
                                        <td className="border border-success-green-75 text-center font-inter text-[#001AFF] underline">
-                                          <Link href={"#"}>
+                                          <Link href={`/article-preview/${article.id}`}>
                                              {article.title}
                                           </Link>
                                        </td>
