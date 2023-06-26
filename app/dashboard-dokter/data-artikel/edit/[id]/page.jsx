@@ -53,7 +53,7 @@ export default function page({ params }) {
          });
          console.log(response);
          if (!response.ok) {
-            throw new Error('Error updating article');
+            throw new Error('Maaf Artikel Gagal Diunggah Ketuk dimana saja untuk menutup halaman ini');
          }
          const updatedData = await response.json();
          mutate(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`);
@@ -107,7 +107,7 @@ export default function page({ params }) {
                   <ArrowBackArtikelEditButton />
                </Link>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form id="edit-artikel-dokter" onSubmit={handleSubmit}>
                <div className="mx-24" style={{ paddingTop: 17 }}>
                   <span className="text-sm">Judul Artikel</span>
                   <br />
@@ -115,7 +115,7 @@ export default function page({ params }) {
                      Maksimal 250 Karakter
                   </span>
                   <div className="" style={{ width: 914 }}>
-                     <input type="text" placeholder="Masukkan Judul Artikel" required maxLength="250" className="w-full rounded-lg" onChange={(e) => setTitle(e.target.value)} value={title} />
+                     <input id="edit-judul-artikel" type="text" placeholder="Masukkan Judul Artikel" required maxLength="250" className="w-full rounded-lg" onChange={(e) => setTitle(e.target.value)} value={title} />
                   </div>
                   <div className="" style={{ paddingTop: 31 }}>
                      <span className="text-sm">Detail Artikel</span>
@@ -124,7 +124,7 @@ export default function page({ params }) {
                         Minimal 250 Karakter
                      </span>
                   </div>
-                  <ReactQuill theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={content} onChange={setContent} />
+                  <ReactQuill id="edit-konten-artikel" theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={content} onChange={setContent} />
                   <div className="" style={{ paddingTop: 36 }}>
                      <span className="text-sm">Tambahkan Gambar</span>
                      <br />
@@ -135,13 +135,13 @@ export default function page({ params }) {
                         <div className="bg-web-green-400 font-poppins whitespace-nowrap flex items-center px-3 rounded-r-md text-white">Pilih Gambar</div>
                         <div className={input_variants({ variant: 'image' })}>{selectedFile ? selectedFile.name : 'Pilih Gambar'}</div>
                      </label>
-                     <input id="file-input" className="hidden" type="file" onChange={handleFileChange} />
+                     <input id="file-input" className="hidden" type="file" accept="image/png, image/jpeg" onChange={handleFileChange} />
                   </div>
                   <div className="pb-[39.5px]">
                      <p className="text-sm font-bold pt-[35px] mb-5">Kategori Artikel</p>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="edit-radio-depresi"
                            type="radio"
                            value="Depresi"
                            name="kategori"
@@ -156,7 +156,7 @@ export default function page({ params }) {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="edit-radio-gangguan-kepribadian"
                            type="radio"
                            value="Gangguan Kepribadian"
                            name="kategori"
@@ -171,7 +171,7 @@ export default function page({ params }) {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="edit-radio-gangguan-tidur"
                            type="radio"
                            value="Gangguan Tidur"
                            name="kategori"
@@ -186,7 +186,7 @@ export default function page({ params }) {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="edit-radio-kesehatan-mental"
                            type="radio"
                            value="Kesehatan Mental"
                            name="kategori"
@@ -201,7 +201,7 @@ export default function page({ params }) {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="edit-radio-stress"
                            type="radio"
                            value="Stress"
                            name="kategori"

@@ -1,63 +1,69 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import SidebarAdmin from "@/components/ui/SidebarAdmin";
+import React, { useState, useEffect } from "react";
+import useSWR, { mutate } from "swr";
 import Swal from "sweetalert2";
 import Link from "next/link";
-import useSWR from "swr";
-import PaginationDok from "@/components/PaginationDok";
 import Cookies from "js-cookie";
+import { motion } from "framer-motion";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
-export default function DokterMasuk({ params }) {
-   const [token, setToken] = useState("");
-   const [alasanPenolakan, setAlasanPenolakan] = useState("");
-   const [searchKeyword, setSearchKeyword] = useState("");
-   const id = params.id;
-   // const [dokterMasuk, setDokterMasuk] = useState([]);
+export default function VerifikasiDokter() {
+   const [searchInput, setSearchInput] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(10);
-   // const fetcher = (url) => fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6MSwiYXV0aG9yaXplZCI6dHJ1ZSwiZXhwIjoxNjg3MTg2MTIxfQ.bm-y7OXsdiVe9lXviUryWAiwiZOB2pJ0kAr7ZJZdXz0`}}).then((res) => {
-   //    res.json()
-   //    console.log(res)
-   // });
+   const [dataDokterVerif, setDataDokterVerif] = useState([]);
+   const [dataDokterFound, setDataDokterFound] = useState([]);
+   const itemsPerPage = 8;
 
-   const fetcher = async (url) => {
-      const response = await fetch(url, {headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJkb2N0b3JfaWQiOjEsImV4cCI6MTY4NzI1MjE0NX0.hYhCg--eMAa0cwqdB5IdQuekaER4dtsiFv058Fypp_Y`}})
-      const jsonData = await response.json()
-      return jsonData
-   }
+   const fetchDokterVerif = async (url) => {
+      const token = Cookies.get("adminToken");
+      const response = await fetch(url, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
+      const jsonData = await response.json();
+      return jsonData;
+   };
 
-   const { data: dokterMasuk, mutate } = useSWR(
-      "https://capstone-project.duckdns.org:8080/admin/doctors",
-      fetcher
-   );
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetchDokterVerif, {
+      onSuccess: (data) => {
+         setDataDokterVerif(data.doctors);
+         setDataDokterFound(data.doctors);
+      },
+      onError: (error) => {
+         console.log(error);
+      },
+   });
 
-
-   useEffect(() => {
-      const tokenCookies = Cookies.get("doctorToken");
-      if (tokenCookies) {
-         setToken(tokenCookies);
-         console.log(token)
-      }
-      mutate();
-
-   }, []);
-
-   const handleSearchKeywordChange = (event) => {
-      setSearchKeyword(event.target.value);
+   const handleSearchInputChange = (e) => {
+      setSearchInput(e.target.value);
+      handleSearch();
    };
 
    const handleSearch = () => {
-      fetch(
-         `https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`
-      )
-         .then((response) => response.json())
-         .then((data) => {
-            mutate(data, false);
-         })
-         .catch((error) => {
-            console.log(error);
+      if (searchInput === "") {
+         setDataDokterVerif(data.doctors);
+         return setDataDokterFound(data.doctors);
+      } else {
+         const filteredData = dataDokterVerif.filter((dokter) => {
+            return dokter.full_name.toLowerCase().includes(searchInput.toLowerCase());
          });
+         setDataDokterFound(filteredData);
+      }
    };
 
+   const totalpages = Math.ceil(dataDokterFound?.length / itemsPerPage);
+
+   const PaginatedData = () => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return dataDokterFound?.slice(startIndex, endIndex);
+   };
+
+   const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+   };
    const handleTolak = (id) => {
       Swal.fire({
          title: "Alasan Penolakan",
@@ -75,104 +81,62 @@ export default function DokterMasuk({ params }) {
          },
       }).then((result) => {
          if (result.isConfirmed) {
+            const token = Cookies.get("adminToken");
             const alasan = result.value;
-            fetch(
-               `https://capstone-project.duckdns.org:8080/admin/doctors/${id}`,
-               {
-                  method: "PUT",
-                  headers: {
-                     "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                     alasanPenolakan: alasan,
-                     status: "Ditolak",
-                  }),
-               }
-            )
+            fetch(`https://capstone-project.duckdns.org:8080/admin/doctors/${id}/reject `, {
+               method: "PUT",
+               headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+               },
+               body: JSON.stringify({
+                  alasanPenolakan: alasan,
+                  status: "Ditolak",
+               }),
+            })
                .then((response) => response.json())
                .then((data) => {
-                  Swal.fire("Berhasil!", "Dokter ditolak.", "success");
-                  fetch(
-                     "https://capstone-project.duckdns.org:8080/admin/doctors",
-                     fetcher
-                  )
-                     .then((response) => response.json())
-                     .then((data) => {
-                        setDokterMasuk(data);
-                     })
-                     .catch((error) => {
-                        console.log(error);
-                     });
+                  Swal.fire("Berhasil!", "Dokter terverifikasi.", "success");
+                  mutate("https://capstone-project.duckdns.org:8080/admin/doctors");
                })
+
                .catch((error) => {
                   console.log(error);
-                  Swal.fire(
-                     "Oops!",
-                     "Terjadi kesalahan. Mohon coba lagi.",
-                     "error"
-                  );
+                  Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
                });
          }
       });
    };
 
    const handleVerifikasi = (id) => {
-      fetch(
-         `https://capstone-project.duckdns.org:8080/admin/doctors/${id}`,
-         {
-            method: "PUT",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ status: "Terverifikasi" }),
-         }
-      )
+      const token = Cookies.get("adminToken");
+      fetch(`https://capstone-project.duckdns.org:8080/admin/doctors/${id}/approve`, {
+         method: "PUT",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+         },
+         body: JSON.stringify({ status: "Terverifikasi" }),
+      })
          .then((response) => response.json())
          .then((data) => {
             Swal.fire("Berhasil!", "Dokter terverifikasi.", "success");
-            fetch(
-               "https://capstone-project.duckdns.org:8080/admin/doctors",
-               fetcher
-            )
-               .then((response) => response.json())
-               .then((data) => {
-                  setDokterMasuk(data);
-               })
-               .catch((error) => {
-                  console.log(error);
-               });
+            mutate("https://capstone-project.duckdns.org:8080/admin/doctors");
          })
+
          .catch((error) => {
             console.log(error);
             Swal.fire("Oops!", "Terjadi kesalahan. Mohon coba lagi.", "error");
          });
    };
 
-   const PaginatedData = () => {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-
-      // Check if dokterMasuk is empty or null
-      if (!dokterMasuk?.doctors || dokterMasuk?.doctors.length === 0) {
-         return [];
-      }
-
-      return dokterMasuk?.doctors.slice(startIndex, endIndex);
-   };
-
-   const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);
-   };
    return (
       <>
-         {/* <div className='flex'> */}
-
-         <div className="p-4 sm:ml-72 w-full">
-            <p className="text-[32px] font-bold text-web-green-500 mx-16 ">
-               Pendaftaran Dokter
-            </p>
-            <div class="flex items-center h-24 mx-16 mt-9">
-               <div class="mb-4 flex w-full gap-16">
+         <SidebarAdmin />
+         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="p-4 pl-[378px] bg-[#F8FFF1] w-screen h-screen">
+            <p className="text-[32px] font-bold text-web-green-500 ">Pendaftaran Dokter</p>
+            <div className="flex items-center h-24 mt-9">
+               <div className="mb-4 flex w-full gap-16">
                   <div className="flex">
                      <input
                         type="search"
@@ -180,8 +144,8 @@ export default function DokterMasuk({ params }) {
                         placeholder="Cari Dokter"
                         aria-label="Search"
                         aria-describedby="button-addon1"
-                        vvalue={searchKeyword}
-                        onChange={handleSearchKeywordChange}
+                        value={searchInput}
+                        onChange={handleSearchInputChange}
                      />
 
                      <button
@@ -194,126 +158,95 @@ export default function DokterMasuk({ params }) {
                      </button>
                   </div>
                   <Link href="/dashboard-admin/edit-pengguna/daftar-dokter">
-                     <button className="w-32 h-11 bg-web-green-300 text-white rounded ">
-                        Daftar Dokter
-                     </button>
+                     <button className="w-32 h-11 bg-web-green-300 text-white rounded ">Daftar Dokter</button>
                   </Link>
                </div>
             </div>
-            <table className="border-collapse border w-full border-web-green-300 mx-16">
-               <thead className="">
-                  <tr className="bg-[#63863E] font-semibold border-web-green-300 text-white">
-                     <th className="border border-web-green-300 py-5">No</th>
-                     <th className="border border-web-green-300">
-                        Nama Dokter
-                     </th>
-                     <th className="border border-web-green-300">
-                        Email Dokter
-                     </th>
-                     <th className="border border-web-green-300">NIK</th>
-                     <th className="border border-web-green-300">
-                        Jenis Kelamin
-                     </th>
-                     <th className="border border-web-green-300">
-                        Tempat Lahir
-                     </th>
-                     <th className="border border-web-green-300">Agama</th>
-                     <th className="border border-web-green-300">
-                        Universitas
-                     </th>
-                     <th className="border border-web-green-300">Jurusan</th>
-                     <th className="border border-web-green-300">
-                        Tahun Lulus
-                     </th>
-                     <th className="border border-web-green-300">
-                        Tempat Praktik
-                     </th>
-                     <th className="border border-web-green-300">No STR</th>
-                     <th className="border border-web-green-300">Dokumen</th>
-                     <th className="border border-web-green-300">Aksi</th>
-                  </tr>
-               </thead>
-               <tbody className="">
-                  {PaginatedData().map((dokter, i) => (
-                     <tr scope="col" key={dokter.id} className="bg-white">
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.ID}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.full_name}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.email}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.nik}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.gender}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.birth_place}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.religion}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.alumnus}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.jurusan}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.grad_year}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.practice_address}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.str_number}
-                        </td>
-                        <td className="border border-web-green-300 text-center">
-                           {dokter.cv && dokter.ijazah && dokter.str ? (
-                              <a
-                                 href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${dokter.cv}\n${dokter.ijazah}\n${dokter.str}`)}`}
-                                 download="dokumen.txt"
-                                 className="text-blue-500 underline"
-                              >
-                                 LinkDokumen
-                              </a>
-                           ) : (
-                              "Tidak ada dokumen"
-                           )}
-                        </td>
-                        <td className="flex gap-3 py-2 justify-center border">
-                           <button
-                              onClick={() => handleVerifikasi(dokter.id)}
-                              className="w-[83px] h-[35px] rounded-md  bg-web-green-300 text-white"
-                           >
-                              Verifikasi
-                           </button>
-                           <button
-                              onClick={() => handleTolak(dokter.id)}
-                              className="w-[83px] h-[35px] rounded-md  bg-red-900 text-white"
-                           >
-                              Tolak
-                           </button>
-                        </td>
+            <div className="overflow-x-auto mr-6">
+               <table className="bg-[#F8FFF1] border-collapse table-auto w-[2500px] border border-web-green-300">
+                  <thead>
+                     <tr className="bg-[#63863E] font-semibold border-web-green-300 text-white">
+                        <th className="border border-web-green-300 py-5">No</th>
+                        <th className="border border-web-green-300">Nama Dokter</th>
+                        <th className="border border-web-green-300">Email Dokter</th>
+                        <th className="border border-web-green-300">NIK</th>
+                        <th className="border border-web-green-300">Jenis Kelamin</th>
+                        <th className="border border-web-green-300">Tempat Lahir</th>
+                        <th className="border border-web-green-300">Agama</th>
+                        <th className="border border-web-green-300">Universitas</th>
+                        <th className="border border-web-green-300">Jurusan</th>
+                        <th className="border border-web-green-300">Tahun Lulus</th>
+                        <th className="border border-web-green-300">Tempat Praktik</th>
+                        <th className="border border-web-green-300">No STR</th>
+                        <th className="border border-web-green-300">Dokumen</th>
+                        <th className="border border-web-green-300">Aksi</th>
                      </tr>
-                  ))}
-               </tbody>
-            </table>
-            <div className="float-right mt-11">
-               {dokterMasuk?.doctors && dokterMasuk?.doctors.length > 0 ? (
-                  <PaginationDok
-                     currentPage={currentPage}
-                     totalItems={dokterMasuk?.doctors.length}
-                     itemsPerPage={itemsPerPage}
-                     onPageChange={handlePageChange}
-                  />
-               ) : null}
+                  </thead>
+                  <tbody className="bg-[#F8FFF1]">
+                     {PaginatedData()?.map((dokter, i) => (
+                        <tr scope="col" key={dokter.id} className="bg-white">
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.full_name}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.email}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.nik}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.gender}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.birth_place}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.religion}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.alumnus}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.jurusan}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.grad_year}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.practice_address}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{dokter.str_number}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">
+                              {dokter.cv && dokter.ijazah && dokter.str ? (
+                                 <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${dokter.cv}\n${dokter.ijazah}\n${dokter.str}`)}`} download="dokumen.txt" className="text-blue-500 underline">
+                                    LinkDokumen
+                                 </a>
+                              ) : (
+                                 "Tidak ada dokumen"
+                              )}
+                           </td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">
+                              {(() => {
+                                 switch (dokter.status) {
+                                    case "approved":
+                                       return (
+                                          <div className="flex flex-col justify-center items-center p-3">
+                                             <p className="text-white font-semibold bg-[#2D6248] w-28 h-9 text-center rounded py-1 justify-center items-center">Terverifikasi</p>
+                                          </div>
+                                       );
+                                    case "notapproved":
+                                       return (
+                                          <td className="flex gap-3 py-2 justify-center border">
+                                             <button onClick={() => handleVerifikasi(dokter.ID)} className="w-[83px] h-[35px] rounded-md  bg-web-green-300 text-white">
+                                                Verifikasi
+                                             </button>
+
+                                             <button onClick={() => handleTolak(dokter.ID)} className="w-[83px] h-[35px] rounded-md  bg-red-900 text-white">
+                                                Tolak
+                                             </button>
+                                          </td>
+                                       );
+                                    case "rejected":
+                                       return (
+                                          <div className="flex flex-col justify-center items-center p-3">
+                                             <p className="text-white font-semibold bg-[#A12D28] w-28 h-9 text-center rounded py-1 justify-center items-center">Ditolak</p>
+                                          </div>
+                                       );
+                                    default:
+                                       return null;
+                                 }
+                              })()}
+                           </td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
             </div>
-         </div>
+            <div className="mt-11 float-left">
+               <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
+            </div>
+         </motion.div>
       </>
    );
 }

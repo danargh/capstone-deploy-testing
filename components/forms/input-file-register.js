@@ -1,13 +1,4 @@
-import React, { useState } from "react";
-
-const InputFileDaftarCv = ({ value, error, errorTouched }) => {
-   const [selectedFile, setSelectedFile] = useState(value);
-
-   const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      setSelectedFile(file);
-   };
-
+const InputFileRegister = ({ children, selectedFile }) => {
    return (
       <>
          <div
@@ -17,27 +8,12 @@ const InputFileDaftarCv = ({ value, error, errorTouched }) => {
                position: "relative",
             }}
          >
-            <input
-               id="file-input-cv"
-               type="file"
-               onChange={handleFileChange}
-               name="cv"
-               style={{
-                  opacity: 0,
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  cursor: "pointer",
-               }}
-            />
-              <span
+            {children}
+            <span
                style={{
                   float: "left",
                   border: "solid",
-                  borderWidth:"1px",
+                  borderWidth: "1px",
                   width: "100%",
                   borderRadius: "8px 0 0 8px",
                   height: "40px",
@@ -45,7 +21,7 @@ const InputFileDaftarCv = ({ value, error, errorTouched }) => {
                   paddingTop: "8px",
                   paddingLeft: "5px",
                   borderColor: "#D2D2D2",
-                  color:"gray"
+                  color: "gray",
                }}
             >
                {selectedFile ? selectedFile.name : "Pilih File"}
@@ -64,16 +40,8 @@ const InputFileDaftarCv = ({ value, error, errorTouched }) => {
                Pilih
             </label>
          </div>
-
-         {errorTouched && error ? (
-            <p
-               className="text-[14px] text-left text-red-600 absolute"
-            >
-               {error}
-            </p>
-         ) : null}
       </>
    );
 };
 
-export default InputFileDaftarCv;
+export default InputFileRegister;

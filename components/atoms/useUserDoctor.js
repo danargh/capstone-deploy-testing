@@ -16,28 +16,10 @@ const fetcher = async (url) =>
 export function getUserDoctor() {
    const [dataDoctorLogged, setDataDoctorLogged] = useAtom(dataDoctorAtom);
 
-   let dataDoctorLocal = "";
+   const id = Cookies.get("doctorID");
 
-   if (typeof window !== "undefined") {
-      dataDoctorLocal = JSON.parse(localStorage.getItem("doctorData"));
-   }
-
-   // get doctor ID in cookies
-
-   // fetch("https://capstone-project.duckdns.org:8080/doctor/35", {
-   //    headers: {
-   //       "Content-Type": "application/json",
-   //    },
-   //    method: "GET",
-   // })
-   //    .then((res) => res.json())
-   //    .then((data) => {
-   //       localStorage.setItem("doctorData", JSON.stringify(data));
-   //    });
-
-   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/doctor/5", fetcher, {
+   const { data, error, mutate } = useSWR(`https://capstone-project.duckdns.org:8080/doctor/${id}`, fetcher, {
       onSuccess: (data) => {
-         console.log(data);
          setDataDoctorLogged(data);
       },
       onError: (error) => {
@@ -49,5 +31,6 @@ export function getUserDoctor() {
       data,
       error,
       isLoading: !error && !data,
+      mutate,
    };
 }
