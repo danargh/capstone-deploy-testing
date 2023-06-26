@@ -1,7 +1,6 @@
 import ChatSidebar from "./chatSidebar";
 
 export default function Page() {
-    
    return (
       <>
          <div className="flex mx-auto">
@@ -48,7 +47,8 @@ export default function Page() {
                            </div>
 
                            <input
-                              type="text "
+                              id="message-input"
+                              type="text"
                               placeholder="Tulis pesan anda"
                               className="outline-none bg-transparent text-xs px-4 w-full h-auto resize-none"
                            />

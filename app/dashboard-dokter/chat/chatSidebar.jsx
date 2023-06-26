@@ -4,7 +4,6 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import ordersDoctorAPI from "@/api/all-order";
 import Cookies from "js-cookie";
-import useSidebar from "@/components/atoms/useSidebar";
 
 export default function ChatSidebar() {
    // Define the Variables
@@ -43,10 +42,10 @@ export default function ChatSidebar() {
 }
 
 const UserContact = ({ id, nama, onClick }) => {
-    const { isSidebarOpen } = useSidebar();
    return (
       <>
          <div
+            id="user-selection"
             className="flex bg-neutral-10 px-5 py-2 items-center hover:bg-web-green-50 cursor-pointer"
             onClick={() => onClick(id)}
          >
