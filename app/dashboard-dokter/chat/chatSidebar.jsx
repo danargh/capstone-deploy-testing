@@ -1,20 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/navigation";
+import ordersDoctorAPI from "@/api/all-order";
+import Cookies from "js-cookie";
 
-export default function ChatSidebar({ users, handleUserClick }) {
+export default function ChatSidebar() {
+   // Define the Variables
+   const router = useRouter();
+   const { doctorOrders } = ordersDoctorAPI();
+
+   // Filter chat that hadn't been completed yet
+   const unfinishedOrders = doctorOrders?.data.filter(
+      (user, index, self) =>
+         user.status !== "selesai" &&
+         user.method === "chat" &&
+         self.findIndex((u) => u.user_id === user.user_id) === index // Prevents duplication
+   );
+
+   // Save the user ID then go to the chatroom
+   const handleUserClick = (id) => {
+      const selectedUser = unfinishedOrders.find((user) => user.user_id === id);
+      Cookies.set("selectedUser", JSON.stringify(selectedUser));
+      router.push(`/dashboard-dokter/chat/${id}`);
+   };
+
    return (
-      <div className="w-[353px] h-[89vh] overflow-y-auto">
-         <div className="px-5 py-7 bg-web-green-75 text-xl font-bold">
-            Chat
-         </div>
+      <div className="min-w-[353px] h-[89vh] overflow-y-auto">
+         <div className="px-5 py-7 bg-web-green-75 text-xl font-bold">Chat</div>
 
-         {users.map((user) => (
+         {unfinishedOrders?.map((user) => (
             <UserContact
-               key={user.id}
-               id={user.id}
-               nama={user.nama}
-               chat={user.chat}
+               key={user.user_id}
+               id={user.user_id}
+               nama={user.user_name}
                onClick={handleUserClick}
             />
          ))}
@@ -26,6 +45,7 @@ const UserContact = ({ id, nama, onClick }) => {
    return (
       <>
          <div
+            id="user-selection"
             className="flex bg-neutral-10 px-5 py-2 items-center hover:bg-web-green-50 cursor-pointer"
             onClick={() => onClick(id)}
          >
@@ -59,10 +79,9 @@ const UserContact = ({ id, nama, onClick }) => {
                   </defs>
                </svg>
             </div>
-
-            <div className="ps-5 flex flex-col gap-1">
-               <div className="text-lg font-medium">{nama}</div>
-            </div>
+               <div className="ps-5 flex flex-col gap-1">
+                  <div className="text-lg font-medium truncate">{nama}</div>
+               </div>
          </div>
       </>
    );

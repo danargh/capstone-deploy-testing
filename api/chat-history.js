@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import useSWR from "swr";
 import AWSLink from "./awslink";
+import Cookies from "js-cookie";
 
 // Fix Later
 const fetcher = async (url, token) =>
@@ -14,9 +14,11 @@ const fetcher = async (url, token) =>
 
 export default function ChatHistoryAPI() {
    // Define the endpoint
+   const selectedUserData = JSON.parse(Cookies.get("selectedUser"));
+   const selectedUser = selectedUserData ? selectedUserData.user_id : "";
    const { awslink, doctortoken } = AWSLink();
 
-   const chatHistoryEndpoint = `${awslink}/chathistory/23`;
+   const chatHistoryEndpoint = `${awslink}/chathistory/${selectedUser}`;
 
    //Fetch history
    const { data: fetchedchatHistoryData, error: chatHistoryError } = useSWR(
