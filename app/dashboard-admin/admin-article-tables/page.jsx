@@ -158,7 +158,7 @@ export default function AdminArticleTables() {
                if (response.ok) {
                   const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Terhapus!", "Data telah dihapus.", "success");
+                  Swal.fire("Terhapus! Data telah dihapus. success");
                } else {
                   console.error("Gagal menghapus data:", response);
                   throw new Error("Gagal menghapus data");
@@ -220,41 +220,32 @@ export default function AdminArticleTables() {
                                           {article.date}
 
                                        </td>
-                                       <td className="border border-success-green-75 text-center ">{article.category}</td>
-                                       <td className="border border-success-green-75 text-center ">{article.date}</td>
 
                                        <td className="border border-success-green-75 text-center flex justify-center px-10 gap-2">
                                           <button
-                                             className={button_variants({
-                                                variant: "default",
-                                                size: "default",
-                                             })}
+                                             className={`font-normal rounded-lg gap-3 flex justify-center py-3 px-4 bg-[#8EBF59] hover:drop-shadow-md text-white disabled:bg-neutral-300 disabled:cursor-not-allowed`}
                                              onClick={() => handleArticleAccept(article.id)}
                                              style={{
                                                 marginTop: 18.5,
                                                 marginBottom: 18.5,
                                              }}
+                                             disabled={article.status === "disetujui"}
                                           >
                                              Unggah
                                           </button>
                                           <button
-                                             className={button_variants({
-                                                variant: "warning",
-                                                size: "default",
-                                             })}
+                                             className={`font-normal rounded-lg gap-3 flex justify-center py-3 px-4 bg-[#FEDE2D] hover:bg-[#B29701] hover:drop-shadow-md text-white disabled:bg-neutral-300 disabled:cursor-not-allowed`}
                                              onClick={() => handleArticleReject(article.id)}
                                              style={{
                                                 marginTop: 18.5,
                                                 marginBottom: 18.5,
                                              }}
+                                             disabled={article.status === "ditolak"}
                                           >
                                              Tolak
                                           </button>
                                           <button
-                                             className={button_variants({
-                                                variant: "danger",
-                                                size: "default",
-                                             })}
+                                             className={`font-normal rounded-lg gap-3 flex justify-center py-3 px-4 bg-[#A12D28] hover:bg-[#A12D28] hover:drop-shadow-md text-white`}
                                              onClick={() => handleArticleDelete(article.id)}
                                              style={{
                                                 marginTop: 18.5,
