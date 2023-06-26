@@ -39,10 +39,6 @@ export default function DaftarDokter({ params }) {
       },
    });
 
-   useEffect(() => {
-      mutate();
-   }, []);
-
    const handleDelete = (id) => {
       Swal.fire({
          title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
