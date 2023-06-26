@@ -99,27 +99,27 @@ export const KirimArtikelButton = ({ onClick, children }) => {
 
 export const ArrowBackArtikelButton = ({ onClick, children }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} onClick={onClick}>
+      <button whileHover={{ transition: 2, backgroundColor: "#63863E" }} onClick={onClick}>
          <div style={{ display: "flex", alignItems: "center" }}>
             <ArrowBackIconTableArtikel />
             <p style={{ marginLeft: 13 }} className={text_variants_poppins({ size: "xl" })}>
                Tambah Artikel
             </p>
          </div>
-      </motion.button>
+      </button>
    );
 };
 
 export const ArrowBackArtikelEditButton = ({ onClick, children }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} onClick={onClick}>
+      <button whileHover={{ transition: 2, backgroundColor: "#63863E" }} onClick={onClick}>
          <div style={{ display: "flex", alignItems: "center" }}>
             <ArrowBackIconTableArtikel />
             <p style={{ marginLeft: 13 }} className={text_variants_poppins({ size: "xl" })}>
                Edit Artikel
             </p>
          </div>
-      </motion.button>
+      </button>
    );
 };
 
@@ -161,7 +161,7 @@ export const LanjutkanProfileButton = ({ onClick, children }) => {
 };
 export const SimpanProfileButton = ({ onClick, children }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: "#63863E" }} className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
+      <motion.button type="submit" whileHover={{ transition: 2, backgroundColor: "#63863E" }} className={button_variants({ variant: "default", size: "default" })} onClick={onClick}>
          <p className={text_variants_inter({ variant: "inter_32_reguler" })}>{children}</p>
       </motion.button>
    );

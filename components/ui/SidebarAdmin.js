@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 // @param {children} is a component that will be rendered inside this component
 import { SidebarDarkLogOutIcon, SidebarLogOutIcon } from "@/public/assets/icons/icons";
+import { motion } from "framer-motion";
 
 const navLinks = [
    {

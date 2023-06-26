@@ -1,135 +1,158 @@
-"use client"
-import SidebarAdmin from "@/components/ui/SidebarAdmin";
+"use client";
+
 import React, { useState, useEffect } from "react";
-import useSWR from 'swr'
+import useSWR from "swr";
 import Swal from "sweetalert2";
 import PaginationDok from "@/components/PaginationDok";
+import Cookies from "js-cookie";
+import { motion } from "framer-motion";
+import PaginationAlt from "@/components/ui/PaginationAlt";
 
 export default function DaftarDokter({ params }) {
    const [searchKeyword, setSearchKeyword] = useState("");
    const id = params.id;
    const [selectedId, setSelectedId] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage] = useState(10);
+   const [itemsPerPage] = useState(8);
+   const [pengguna, setPengguna] = useState([]);
+   const [penggunaFound, setPenggunaFound] = useState([]);
 
-   const fetcher = (url) => fetch(url).then((res) => res.json());
+   const fetcher = async (url) => {
+      const token = Cookies.get("adminToken");
+      return fetch(url, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((data) => data.doctors); // akses properti "doctors" dari data
+   };
 
-   const { data: pengguna, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetcher);
- 
-   useEffect(() => {
-     mutate();
-   }, []);
- 
-   const handleDelete = (id) => {
-     Swal.fire({
-       title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
-       icon: "warning",
-       showCancelButton: true,
-       confirmButtonColor: "#8E1E18",
-       cancelButtonColor: "grey",
-       confirmButtonText: "Ya",
-       cancelButtonText: "Tidak",
-     }).then((result) => {
-       if (result.isConfirmed) {
-         fetch(`https://capstone-project.duckdns.org:8080/admin/doctor/${id}`, {
-           method: 'DELETE',
-         })
-           .then(() => {
-             Swal.fire("Data berhasil dihapus", "", "success");
-             // Mengupdate data pengguna setelah penghapusan
-             mutate(pengguna.filter((pengguna) => pengguna.id !== id), false);
-           })
-           .catch((error) => {
-             Swal.fire("Terjadi kesalahan", error.message, "error");
-           });
-       }
-     });
-   };
- 
-   const handleSearchKeywordChange = (event) => {
-     setSearchKeyword(event.target.value);
-   };
- 
-   const handleSearch = () => {
-     fetch(`https://capstone-project.duckdns.org:8080/admin/doctors?search=${searchKeyword}`)
-       .then((response) => response.json())
-       .then((data) => {
-         mutate(data, false);
-       })
-       .catch((error) => {
+   const { data, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctor/order", fetcher, {
+      onSuccess: (data) => {
+         console.log(data);
+         setPengguna(data);
+         setPenggunaFound(data);
+      },
+      onError: (error) => {
          console.log(error);
-       });
+      },
+   });
+
+   useEffect(() => {
+      mutate();
+   }, []);
+
+   const handleDelete = (id) => {
+      Swal.fire({
+         title: "Apakah kamu yakin ingin menghapus akun dokter ini?",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#8E1E18",
+         cancelButtonColor: "grey",
+         confirmButtonText: "Ya",
+         cancelButtonText: "Tidak",
+      }).then((result) => {
+         if (result.isConfirmed) {
+            const token = Cookies.get("adminToken");
+            fetch(`https://capstone-project.duckdns.org:8080/admin/doctor/${id}`, {
+               method: "DELETE",
+               headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+               },
+            })
+               .then(() => {
+                  Swal.fire("Data berhasil dihapus", "", "success");
+                  // Mengupdate data pengguna setelah penghapusan
+                  mutate(
+                     pengguna.filter((pengguna) => pengguna.id !== id),
+                     true
+                  );
+               })
+               .catch((error) => {
+                  Swal.fire("Terjadi kesalahan", error.message, "error");
+               });
+         }
+      });
    };
- 
+
+   const handleSearchKeywordChange = (event) => {
+      setSearchKeyword(event.target.value);
+      handleSearch();
+   };
+
+   const handleSearch = () => {
+      if (searchKeyword === "") {
+         setPengguna(data);
+         return setPenggunaFound(data);
+      } else {
+         const filteredData = pengguna.filter((dokter) => {
+            return dokter.doctor_name.toLowerCase().includes(searchKeyword.toLowerCase());
+         });
+         setPenggunaFound(filteredData);
+      }
+   };
+
    const handlePrint = (id) => {
-     const data = pengguna.find((item) => item.id === id);
-     if (data) {
-       const printContent = `
-         <table>
-           <thead>
-             <tr>
-               <th>No</th>
-               <th>Nama Dokter</th>
-               <th>Email Dokter</th>
-               <th>Komisi</th>
-               <th>Tanggal</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <td>${data.id}</td>
-               <td>${data.namaDokter}</td>
-               <td>${data.emailDokter}</td>
-               <td>${data.komisi}</td>
-               <td>${data.tanggal}</td>
-             </tr>
-           </tbody>
-         </table>
-       `;
- 
-       const printWindow = window.open("", "_blank");
-       printWindow.document.write(`
-         <html>
-           <head>
-             <title>Data Dokter</title>
-           </head>
-           <body>
-             ${printContent}
-           </body>
-         </html>
-       `);
- 
-       printWindow.document.close();
-       printWindow.print();
-     }
+      const data = pengguna.find((item) => item.id === id);
+      if (data) {
+         const printContent = `
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Dokter</th>
+                <th>Email Dokter</th>
+                <th>Komisi</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${data.id}</td>
+                <td>${data.namaDokter}</td>
+                <td>${data.emailDokter}</td>
+                <td>${data.komisi}</td>
+                <td>${data.tanggal}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+         const printWindow = window.open("", "_blank");
+         printWindow.document.write(`
+          <html>
+            <head>
+              <title>Data Dokter</title>
+            </head>
+            <body>
+              ${printContent}
+            </body>
+          </html>
+        `);
+
+         printWindow.document.close();
+         printWindow.print();
+      }
    };
- 
+
+   const totalpages = Math.ceil(penggunaFound?.length / itemsPerPage);
+
    const PaginatedData = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-    
-      // Check if pengguna is not an array
-      if (!Array.isArray(pengguna)) {
-        return [];
-      }
-    
-      // Check if startIndex is valid
-      if (startIndex < 0 || startIndex >= pengguna.length) {
-        return [];
-      }
-    
-      return pengguna.slice(startIndex, endIndex);
-    };
- 
+      return penggunaFound?.slice(startIndex, endIndex);
+   };
+
    const handlePageChange = (pageNumber) => {
-     setCurrentPage(pageNumber);
+      setCurrentPage(pageNumber);
    };
    return (
       <>
-         {/* <div className='flex'> */}
-         <div className="p-4 sm:ml-72">
-            <p className="text-[32px] font-bold text-web-green-500 mx-16 ">Daftar Dokter</p>
-            <div class="flex items-center h-24 mx-16 mt-9">
+         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="bg-[#F8FFF1] pl-[378px] p-4 w-screen h-screen">
+            <p className="text-[32px] font-bold text-web-green-500 ">Daftar Dokter</p>
+            <div class="flex items-center h-24 mt-9">
                <div class="mb-4 flex w-96">
                   <input
                      type="search"
@@ -151,48 +174,49 @@ export default function DaftarDokter({ params }) {
                   </button>
                </div>
             </div>
-            <table className="border-collapse border w-5/6 border-web-green-300 mx-16">
-               <thead className="">
-                  <tr className="bg-[#63863E] font-semibold h-[43px] border-web-green-300 text-white">
-                     <th className="border border-web-green-300">No</th>
-                     <th className="border border-web-green-300">Nama Dokter</th>
-                     <th className="border border-web-green-300">Email Dokter</th>
-                     <th className="border border-web-green-300">Komisi</th>
-                     <th className="border border-web-green-300">Tanggal</th>
-                     <th className="border border-web-green-300">Aksi</th>
-                  </tr>
-               </thead>
-               <tbody className="">
-                  {PaginatedData().map((penggunas, i) => (
-                     <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
-                        <td className="border border-web-green-300 text-center">{penggunas.id}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.namaDokter}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.emailDokter}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.komisi}</td>
-                        <td className="border border-web-green-300 text-center">{penggunas.tanggal}</td>
-                        <td className="flex gap-3 py-2 justify-center border">
-                           <button onClick={() => handlePrint(penggunas.id)} className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
-                              Lihat
-                           </button>
-                           <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
-                              Hapus
-                           </button>
-                        </td>
+            <div className="overflow-x-auto mr-6">
+               <table className="border-collapse border w-[1500px] border-web-green-300">
+                  <thead className="">
+                     <tr className="bg-[#63863E] font-semibold h-[43px] border-web-green-300 text-white">
+                        <th className="border border-web-green-300">No</th>
+                        <th className="border border-web-green-300">Nama Dokter</th>
+                        <th className="border border-web-green-300">Email Dokter</th>
+                        <th className="border border-web-green-300">Komisi</th>
+                        <th className="border border-web-green-300">Tanggal</th>
+                        <th className="border border-web-green-300">Aksi</th>
                      </tr>
-                  ))}
-               </tbody>
-            </table>
-            <div className="float-right mx-28 mt-11">
-            {pengguna && pengguna.length > 0 ? (
-               <PaginationDok
-                  currentPage={currentPage}
-                  totalItems={pengguna.length}
-                  itemsPerPage={itemsPerPage}
-                  onPageChange={handlePageChange}
-               />
-            ) : null}
+                  </thead>
+                  <tbody className="">
+                     {PaginatedData()?.map((penggunas, i) => (
+                        <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_name}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_email}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.komisi}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.tanggal}</td>
+                           <td className="bg-[#F8FFF1] flex gap-3 py-2 justify-center border">
+                              <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
+                                 {penggunas.cv && penggunas.ijazah && penggunas.str ? (
+                                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}\n${penggunas.sip}`)}`} download="dokumen.pdf" className="text-white">
+                                       Lihat
+                                    </a>
+                                 ) : (
+                                    "Tidak ada dokumen"
+                                 )}
+                              </button>
+                              <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                                 Hapus
+                              </button>
+                           </td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
             </div>
-         </div>
+            <div className="float-left mt-11">
+               <PaginationAlt currentPage={currentPage} totalPages={totalpages} onPageChange={handlePageChange} />
+            </div>
+         </motion.div>
       </>
    );
 }

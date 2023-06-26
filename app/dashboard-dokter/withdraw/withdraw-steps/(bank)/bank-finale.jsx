@@ -1,15 +1,17 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { bankLists } from "@/components/ui/BankCardList";
-import Link from "next/link";
-import { useAtom } from "jotai";
-import useWithdrawal, {
-   WithdrawalDataAtom,
-} from "@/components/atoms/useWithdrawal";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { bankLists } from '@/components/ui/BankCardList';
+import Link from 'next/link';
+import { useAtom } from 'jotai';
+import useWithdrawal, { WithdrawalDataAtom } from '@/components/atoms/useWithdrawal';
+import { getUserDoctor } from '@/components/atoms/useUserDoctor';
 
 export default function BankFinale() {
+   const { data: dokter, error, isLoading } = getUserDoctor();
+
+   console.log(dokter);
    const [hideBankNumber, toggleHiddenBankNumber] = useState(true);
    const { handleWithdrawalDataSend } = useWithdrawal();
 
@@ -19,17 +21,10 @@ export default function BankFinale() {
    };
 
    function SelectedBankCard({ selectedBank }) {
-      const selectedBankData = bankLists.find(
-         (bank) => bank.bankName === selectedBank
-      );
+      const selectedBankData = bankLists.find((bank) => bank.bankName === selectedBank);
       return (
          <div className="flex flex-row gap-[11px] items-center justify-start self-stretch shrink-0 relative">
-            <Image
-               src={selectedBankData.bankLogo}
-               alt="bank"
-               width={selectedBankData.width}
-               height={selectedBankData.height}
-            />
+            <Image src={selectedBankData.bankLogo} alt="bank" width={selectedBankData.width} height={selectedBankData.height} />
          </div>
       );
    }
@@ -37,35 +32,25 @@ export default function BankFinale() {
       <>
          {withdrawalData &&
             withdrawalData.map((data, index) => (
-               <div
-                  key={index}
-                  className="flex flex-col gap-[19px] items-start justify-start shrink-0 relative"
-               >
+               <div key={index} className="flex flex-col gap-[19px] items-start justify-start shrink-0 relative">
                   <div className="flex flex-col gap-6 items-start justify-start shrink-0 relative">
                      <div className="border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[151px] relative overflow-hidden">
                         <div className="flex flex-col gap-5 items-start justify-start absolute left-5 top-[13px]">
                            <div className="pt-2.5 pr-0 pb-2.5 pl-0 flex flex-row gap-2.5 items-start justify-start shrink-0 relative">
-                              <div className="font-inter font-bold text-md text-neutral-900 text-center relative">
-                                 Rekening Tujuan
-                              </div>
+                              <div className="font-inter font-bold text-md text-neutral-900 text-center relative">Rekening Tujuan</div>
                            </div>
 
                            <div className="flex flex-row gap-[11px] items-center justify-start shrink-0 relative">
-                              <SelectedBankCard selectedBank={data.method} />
+                              <SelectedBankCard selectedBank={data.bank} />
 
                               <div className="flex flex-col gap-[11px] items-start justify-start shrink-0 relative">
                                  <div className="font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative">
-                                    SDR {data.name}
+                                    {' '}
+                                    {dokter?.doctor.gender === 'L' ? 'SDR' : 'SDRI'} {dokter?.doctor.full_name}
                                  </div>
 
-                                 <div
-                                    className="cursor-pointer select-none font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative"
-                                    onClick={handleHiddenBankNumber}
-                                 >
-                                    {data.method}{" "}
-                                    {hideBankNumber
-                                       ? "***************"
-                                       : data.accountnumber}
+                                 <div className="cursor-pointer select-none font-inter font-medium text-xs/[130%] text-[rgba(0,0,0,0.47)] text-left relative" onClick={handleHiddenBankNumber}>
+                                    {data.method} {hideBankNumber ? '***************' : data.account_number}
                                  </div>
                               </div>
                            </div>
@@ -74,49 +59,33 @@ export default function BankFinale() {
 
                      <div className="flex flex-col gap-0 items-start justify-start shrink-0 relative">
                         <div className="pt-2.5 pr-0 pb-2.5 pl-0 flex flex-row gap-2.5 items-start justify-start self-stretch shrink-0 relative">
-                           <div className="font-inter font-medium text-md text-neutral-900 text-center relative">
-                              Keterangan
-                           </div>
+                           <div className="font-inter font-medium text-md text-neutral-900 text-center relative">Keterangan</div>
                         </div>
 
                         <div className="bg-neutral-0 rounded-sm border-solid border-[#d9d9d9] border-[3px] shrink-0 w-[447px] h-[340px] relative">
                            <div className="flex flex-col gap-[50px] items-center justify-start px-[22px] pb-[14px] pt-[24px] relative">
                               <div className="flex flex-col gap-[18px] items-start justify-start self-stretch shrink-0 relative">
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">
-                                       Nominal Transfer
-                                    </div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Nominal Transfer</div>
 
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">
-                                       Rp{data.amount}
-                                    </div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp{data.amount}</div>
                                  </div>
 
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">
-                                       Biaya Transaksi
-                                    </div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Biaya Transaksi</div>
                                     {/* is it static? */}
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">
-                                       Rp7.500
-                                    </div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Rp{data.amount < 5000000 ? '50.0000' : '100.0000'}</div>
                                  </div>
 
                                  <div className="flex flex-row items-start justify-between self-stretch shrink-0 relative">
-                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">
-                                       Total
-                                    </div>
+                                    <div className="font-inter font-normal text-[18px] text-neutral-900 text-center relative">Total</div>
 
-                                    <div className="text-neutral-900 text-center relative">
-                                       Rp{data.amount + 7500}
-                                    </div>
+                                    <div className="text-neutral-900 text-center relative">Rp{data.amount + 7500}</div>
                                  </div>
                               </div>
 
                               <div className="flex flex-col gap-[9px] items-start justify-start self-stretch shrink-0 relative">
-                                 <div className="font-inter font-normal text-[18px] text-neutral-900 text-left relative w-[428px]">
-                                    Pesan
-                                 </div>
+                                 <div className="font-inter font-normal text-[18px] text-neutral-900 text-left relative w-[428px]">Pesan</div>
                                  <textarea
                                     type="text"
                                     className="font-inter font-normal text-[18px] placeholder:text-[#8f8f8f] resize-none bg-neutral-0 rounded-md border-solid border-[#d9d9d9] border-[3px] pt-2 pr-3.5 pb-2 pl-3.5 flex flex-row gap-2.5 items-start justify-start w-[403px] h-[101px] relative overflow-y-auto"

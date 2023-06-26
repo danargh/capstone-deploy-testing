@@ -35,7 +35,7 @@ export default function Login() {
             console.log(result);
             if (result.message === "success login") {
                Cookies.set("doctorToken", result.token, { expires: 7 });
-               localStorage.setItem("doctorData", JSON.stringify(result.doctor));
+               Cookies.set("doctorID", result.doctor.ID, { expires: 7 });
                router.push("/dashboard-dokter");
             }
          } catch (error) {
@@ -58,7 +58,7 @@ export default function Login() {
                   <form onSubmit={formik.handleSubmit} className="flex flex-col gap-8">
                      <InputNew type="email" label="Email" name="email" onHandleChange={formik.handleChange} value={formik.values.email} />
                      <InputNew type="password" label="Password" name="password" onHandleChange={formik.handleChange} value={formik.values.password} />
-                     {data?.message === "failed to login" ? <ErrorMessage errorMessage="Email atau kata sandi salah. Silahkan coba lagi atau klik lupa kata sandi!" /> : null}
+                     {data?.message === "invalid credentials" ? <ErrorMessage errorMessage="Email atau kata sandi salah. Silahkan coba lagi atau klik lupa kata sandi!" /> : null}
                      <LoginDokterButton type="submit">{isLoginLoading ? "Loading..." : "Log In"}</LoginDokterButton>
                      <button onClick={handleLupaPassword} className="hover:text-[#7CA153] transition-colors text-left font-poppins font-[700] text-[12px] text-web-green-500">
                         Lupa kata sandi?

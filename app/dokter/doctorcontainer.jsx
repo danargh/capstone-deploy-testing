@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {Suspense} from "react";
 import DoctorCard from "@/components/ui/DoctorCard";
 import { useAtom } from "jotai";
 import { SearchIcon } from "@/public/assets/icons/icons";
@@ -10,9 +10,10 @@ import {
    searchQueryAtom,
 } from "@/components/atoms/useAllDoctor";
 import FetchAllDoctor from "@/api/all-doctor";
+import Loadstate from "./loadstate";
 // import SkeletonLoader from "./doctor-container/skeletonloader";
 
-export default async function DoctorContainer() {
+export default function DoctorContainer() {
    const [allDoctor, setAllDoctor] = useAtom(allDoctorAtom);
    const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom);
 
@@ -82,6 +83,7 @@ export default async function DoctorContainer() {
                         </div>
                      </div>
                      <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
+                     <Suspense fallback={<Loadstate />}>
                         {randomDoctors?.map((doctor_list) => (
                            <React.Fragment key={doctor_list.ID}>
                               <DoctorCard
@@ -93,6 +95,7 @@ export default async function DoctorContainer() {
                               />
                            </React.Fragment>
                         ))}
+                        </Suspense>
                      </div>
                   </div>
 
@@ -105,6 +108,7 @@ export default async function DoctorContainer() {
 
                      <div className="flex flex-col gap-4 items-start justify-start shrink-0 relative">
                         <div className="flex flex-row flex-wrap gap-[45px] items-center justify-start shrink-0 relative">
+                        <Suspense fallback={<Loadstate />}>
                            {doctor_list?.slice(0, 4).map((doctor_list) => (
                               <React.Fragment key={doctor_list.ID}>
                                  <DoctorCard
@@ -116,6 +120,7 @@ export default async function DoctorContainer() {
                                  />
                               </React.Fragment>
                            ))}
+                           </Suspense>
                         </div>
                      </div>
                   </div>
