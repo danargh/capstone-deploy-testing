@@ -22,7 +22,11 @@ export default function ReqWithdraw() {
          method: "GET",
       }).then((res) => res.json());
    };
-   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
+   const {
+      data,
+      error,
+      mutate: withdrawMutate,
+   } = useSWR("https://capstone-project.duckdns.org:8080/admin/withdraw", fetcher, {
       onSuccess: (data) => {
          setDataWithdraw(data.data);
       },
@@ -45,13 +49,6 @@ export default function ReqWithdraw() {
 
    const handleApproved = async (id) => {
       try {
-         const newDataWithdraw = dataWithdraw.map((data) => {
-            if (data.id === id) {
-               data.status = "terima";
-            }
-            return data;
-         });
-
          const token = Cookies.get("adminToken");
          const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
             method: "POST",
@@ -64,9 +61,11 @@ export default function ReqWithdraw() {
             }),
          });
 
+         // const newDataWithdraw = dataWithdraw.filter((withdraw) => withdraw.id !== id);
+
          if (response.ok) {
-            // mutateDataWithdraw(newDataWithdraw, true);
             Swal.fire("Diterima!", "Penarikan telah diterima.", "success");
+            withdrawMutate();
          } else {
             throw new Error("Gagal menerima data penarikan");
          }
@@ -85,24 +84,29 @@ export default function ReqWithdraw() {
          confirmButtonText: "Ya",
          cancelButtonText: "Tidak",
       }).then(async (result) => {
-         if (result.isConfirmed) {
-            try {
-               const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
-                  method: "DELETE",
-               });
+         // const newDataWithdraw = dataWithdraw.filter((withdraw) => withdraw.id !== id);
 
-               if (response.ok) {
-                  const updatedData = dataWithdraw.filter((data) => data.id !== id);
-                  // mutateDataWithdraw(updatedData, false);
-                  // Swal.fire("Terhapus!", "Data telah dihapus.", "success");
-               } else {
-                  throw new Error("Gagal menghapus data");
-               }
-            } catch (error) {
-               Swal.fire("Terjadi kesalahan", error.message, "error");
+         try {
+            const token = Cookies.get("adminToken");
+            const response = await fetch(`https://capstone-project.duckdns.org:8080/admin/withdraw/${id}`, {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+               },
+               body: JSON.stringify({
+                  status: "tolak",
+               }),
+            });
+
+            if (response.ok) {
+               Swal.fire("Ditolak!", "Penarikan telah ditolak.", "success");
+               withdrawMutate();
+            } else {
+               throw new Error("Gagal melakukan penolakan.");
             }
-         } else {
-            return;
+         } catch (error) {
+            Swal.fire("Terjadi kesalahan", error.message, "error");
          }
       });
    };
