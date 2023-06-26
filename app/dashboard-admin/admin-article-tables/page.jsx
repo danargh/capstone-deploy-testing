@@ -12,6 +12,7 @@ export default function AdminArticleTables() {
    const [currentPage, setCurrentPage] = useState(1);
    const [baseIndex, setBaseIndex] = useState(1);
    const [articlesPerPage] = useState(13);
+   const [searchQuery, setSearchQuery] = useState("");
 
    // get the data
    const { articleData, articleError, articleMutate, articleEndpoint, token } =
@@ -24,8 +25,14 @@ export default function AdminArticleTables() {
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
    // Slice the articleData array to get the articles for the current page
+   const filteredArticles = articles
+      ? articles.filter((article) =>
+           article.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : [];
+
    const currentArticles = articles
-      ? articles.slice(indexOfFirstArticle, indexOfLastArticle)
+      ? filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle)
       : [];
 
    // Calculate the total number of pages based on the articlesPerPage
@@ -67,7 +74,11 @@ export default function AdminArticleTables() {
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Berhasil!", "Yeyy Artikel Berhasil Diunggah.", "success");
+                  Swal.fire(
+                     "Berhasil!",
+                     "Yeyy Artikel Berhasil Diunggah.",
+                     "success"
+                  );
                } else {
                   console.error("Gagal mengunggah data:", response);
                   throw new Error("Gagal mengunggah data");
@@ -109,7 +120,11 @@ export default function AdminArticleTables() {
                      (article) => article.id !== id
                   );
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Ditolak!", "Yeyy Artikel Berhasil Ditolak.", "success");
+                  Swal.fire(
+                     "Ditolak!",
+                     "Yeyy Artikel Berhasil Ditolak.",
+                     "success"
+                  );
                } else {
                   console.error("Gagal menolak data:", response);
                   throw new Error("Gagal menolak data");
@@ -174,6 +189,8 @@ export default function AdminArticleTables() {
                         type="text"
                         className="font-poppins font-normal text-xs/[120%] text-neutral-900 text-left relative border-solid border-web-green-300 border pt-2.5 pr-0 pb-2.5 pl-2.5 flex flex-row gap-2.5 items-center justify-start shrink-0 w-[559px] h-[50px]"
                         placeholder="Cari Artikel"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                      />
                      <button className="font-poppins font-semibold text-xs/[120%] text-neutral-0 text-left bg-web-green-300 pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[81px] h-[50px] relative">
                         Cari
