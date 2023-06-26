@@ -28,9 +28,8 @@ export default function DaftarDokter({ params }) {
          .then((data) => data.doctors); // akses properti "doctors" dari data
    };
 
-   const { data, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctor/order", fetcher, {
+   const { data, mutate } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetcher, {
       onSuccess: (data) => {
-         console.log(data);
          setPengguna(data);
          setPenggunaFound(data);
       },
@@ -38,10 +37,6 @@ export default function DaftarDokter({ params }) {
          console.log(error);
       },
    });
-
-   useEffect(() => {
-      mutate();
-   }, []);
 
    const handleDelete = (id) => {
       Swal.fire({
@@ -148,6 +143,9 @@ export default function DaftarDokter({ params }) {
    const handlePageChange = (pageNumber) => {
       setCurrentPage(pageNumber);
    };
+
+   const dokterApproved = PaginatedData().filter((dokter) => dokter.status === "approved");
+
    return (
       <>
          <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="bg-[#F8FFF1] pl-[378px] p-4 w-screen h-screen">
@@ -187,13 +185,13 @@ export default function DaftarDokter({ params }) {
                      </tr>
                   </thead>
                   <tbody className="">
-                     {PaginatedData()?.map((penggunas, i) => (
+                     {dokterApproved?.map((penggunas, i) => (
                         <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
-                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_name}</td>
-                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.doctor_email}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.full_name}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.email}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.komisi}</td>
-                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.tanggal}</td>
+                           <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.CreatedAt}</td>
                            <td className="bg-[#F8FFF1] flex gap-3 py-2 justify-center border">
                               <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
                                  {penggunas.cv && penggunas.ijazah && penggunas.str ? (
@@ -204,7 +202,7 @@ export default function DaftarDokter({ params }) {
                                     "Tidak ada dokumen"
                                  )}
                               </button>
-                              <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+                              <button onClick={() => handleDelete(penggunas.ID)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
                                  Hapus
                               </button>
                            </td>
