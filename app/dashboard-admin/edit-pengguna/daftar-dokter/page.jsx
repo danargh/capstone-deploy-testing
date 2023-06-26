@@ -7,6 +7,7 @@ import PaginationDok from "@/components/PaginationDok";
 import Cookies from "js-cookie";
 import { motion } from "framer-motion";
 import PaginationAlt from "@/components/ui/PaginationAlt";
+import jsPDF from "jspdf";
 
 export default function DaftarDokter({ params }) {
    const [searchKeyword, setSearchKeyword] = useState("");
@@ -89,49 +90,56 @@ export default function DaftarDokter({ params }) {
       }
    };
 
-   const handlePrint = (id) => {
-      const data = pengguna.find((item) => item.id === id);
-      if (data) {
-         const printContent = `
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama Dokter</th>
-                <th>Email Dokter</th>
-                <th>Komisi</th>
-                <th>Tanggal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>${data.id}</td>
-                <td>${data.namaDokter}</td>
-                <td>${data.emailDokter}</td>
-                <td>${data.komisi}</td>
-                <td>${data.tanggal}</td>
-              </tr>
-            </tbody>
-          </table>
-        `;
-
-         const printWindow = window.open("", "_blank");
-         printWindow.document.write(`
-          <html>
-            <head>
-              <title>Data Dokter</title>
-            </head>
-            <body>
-              ${printContent}
-            </body>
-          </html>
-        `);
-
-         printWindow.document.close();
-         printWindow.print();
+   // const handlePrint = (doctorData) => {
+   //    const printContent = `
+   //       <p>ID Dokter: <p>
+   //       <p>${doctorData.id}</p>
+   //       <p>Nama Dokter: </p>
+   //       <p>${doctorData.doctor_name}</p>
+   //       <p>Email Dokter: </p> 
+   //       <p>${doctorData.doctor_email}</p>
+   //       <p>Komisi Dokter: </p>
+   //       <p>${doctorData.komisi}</p>
+   //       <p>Tanggal: </p>
+   //       <p>${doctorData.tanggal}</p>
+   //    `;
+   
+   //    const printWindow = window.open("", "_blank");
+   //    printWindow.document.write(`
+   //       <html>
+   //          <head>
+   //             <title>Data Dokter</title>
+   //          </head>
+   //          <body>
+   //             ${printContent}
+   //          </body>
+   //       </html>
+   //    `);
+   
+   //    printWindow.document.close();
+   //    printWindow.print();
+   // };
+   const generatePDF = (id) => {
+      const doctor = pengguna.find((item) => item.id === id);
+      if (doctor) {
+        const doc = new jsPDF();
+        
+        doc.setFont("helvetica");
+        doc.setFontSize(12);
+        
+        doc.setTextColor(0, 0, 0);
+        
+        doc.text(`Nama Dokter: ${doctor.doctor_name}`, 10, 10, { align: "left" });
+        doc.text(`Email Dokter: ${doctor.doctor_email}`, 10, 20, { align: "left" });
+        doc.text(`Komisi: ${doctor.komisi}`, 10, 30, { align: "left" });
+        doc.text(`Tanggal: ${doctor.tanggal}`, 10, 40, { align: "left" });
+        
+        doc.line(10, 50, 200, 50);
+        
+        doc.save("dokumen.pdf");
       }
-   };
-
+    };
+    
    const totalpages = Math.ceil(penggunaFound?.length / itemsPerPage);
 
    const PaginatedData = () => {
@@ -186,6 +194,7 @@ export default function DaftarDokter({ params }) {
                   </thead>
                   <tbody className="">
                      {dokterApproved?.map((penggunas, i) => (
+
                         <tr scope="col" key={penggunas.id} className={selectedId === penggunas.id ? "bg-gray-200" : "bg-white"}>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{i + 1}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.full_name}</td>
@@ -193,21 +202,21 @@ export default function DaftarDokter({ params }) {
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.komisi}</td>
                            <td className="bg-[#F8FFF1] border border-web-green-300 text-center">{penggunas.CreatedAt}</td>
                            <td className="bg-[#F8FFF1] flex gap-3 py-2 justify-center border">
-                              <button className="w-[68px] h-[35px] rounded-md  bg-web-green-300 text-white">
-                                 {penggunas.cv && penggunas.ijazah && penggunas.str ? (
-                                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`${penggunas.cv}\n${penggunas.ijazah}\n${penggunas.str}\n${penggunas.sip}`)}`} download="dokumen.pdf" className="text-white">
-                                       Lihat
-                                    </a>
-                                 ) : (
-                                    "Tidak ada dokumen"
-                                 )}
-                              </button>
-                              <button onClick={() => handleDelete(penggunas.ID)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+
+                           <button
+                              className="w-[68px] h-[35px] rounded-md bg-web-green-300 text-white"
+                              onClick={() => generatePDF(penggunas.id)}>
+                              Lihat
+                           </button>
+
+                              <button onClick={() => handleDelete(penggunas.id)} className="w-[68px] h-[35px] rounded-md bg-red-800 text-white">
+
                                  Hapus
                               </button>
                            </td>
                         </tr>
                      ))}
+
                   </tbody>
                </table>
             </div>
