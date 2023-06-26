@@ -43,12 +43,16 @@ export default function page({ params }) {
                <span className="font-poppins text-lg font-semibold text-center mt-3.5 mb-10">{data.doctor.full_name}</span>
                <span className="font-poppins text-lg text-center mt-3.5">{data.doctor.specialist}</span>
                <span className="font-poppins text-lg text-center mt-2">{data.doctor.jurusan}</span>
+               <br />
+               <span className="font-poppins text-lg text-center mt-2">{data.doctor.jurusan2}</span>
             </div>
             <div className="flex " style={{ marginLeft: 360 }}>
                <Image src={graduationUrl} alt=" Icon" />
                <div className="flex flex-col ml-5 ">
                   <p className="font-semibold text-lg">Alumnus</p>
                   <p>{data.doctor.alumnus}</p>
+                  <br />
+                  <p>{data.doctor.alumnus2}</p>
                </div>
             </div>
             <div className="flex  " style={{ marginLeft: 360 }}>

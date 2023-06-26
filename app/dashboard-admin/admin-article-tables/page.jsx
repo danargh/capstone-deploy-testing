@@ -6,6 +6,7 @@ import { button_variants } from "@/components/custom/custom";
 import PaginationAlt from "@/components/ui/PaginationAlt";
 import ArticleAdminAPI from "@/api/article-admin";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 //Any API changes later should refer to the comments for guidance!
 export default function AdminArticleTables() {
@@ -14,8 +15,7 @@ export default function AdminArticleTables() {
    const [articlesPerPage] = useState(13);
 
    // get the data
-   const { articleData, articleError, articleMutate, articleEndpoint, token } =
-      ArticleAdminAPI();
+   const { articleData, articleError, articleMutate, articleEndpoint, token } = ArticleAdminAPI();
    const mutateArticleData = articleMutate;
    const articles = articleData ? articleData.data : [];
 
@@ -24,9 +24,7 @@ export default function AdminArticleTables() {
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
    // Slice the articleData array to get the articles for the current page
-   const currentArticles = articles
-      ? articles.slice(indexOfFirstArticle, indexOfLastArticle)
-      : [];
+   const currentArticles = articles ? articles.slice(indexOfFirstArticle, indexOfLastArticle) : [];
 
    // Calculate the total number of pages based on the articlesPerPage
    const totalPages = Math.ceil((articles?.length || 0) / articlesPerPage);
@@ -63,9 +61,7 @@ export default function AdminArticleTables() {
                });
 
                if (response.ok) {
-                  const updatedData = articles.filter(
-                     (article) => article.id !== id
-                  );
+                  const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
                   Swal.fire("Terhapus!", "Data diterima.", "success");
                } else {
@@ -105,9 +101,7 @@ export default function AdminArticleTables() {
                });
 
                if (response.ok) {
-                  const updatedData = articles.filter(
-                     (article) => article.id !== id
-                  );
+                  const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
                   Swal.fire("Ditolak!", "Data telah Ditolak.", "success");
                } else {
@@ -143,9 +137,7 @@ export default function AdminArticleTables() {
                });
 
                if (response.ok) {
-                  const updatedData = articles.filter(
-                     (article) => article.id !== id
-                  );
+                  const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
                   Swal.fire("Terhapus!", "Data telah dihapus.", "success");
                } else {
@@ -161,13 +153,11 @@ export default function AdminArticleTables() {
 
    return (
       <>
-         <div className="pl-[313px] py-[50px] px-[65px] flex flex-row gap-[65px] items-start justify-start relative">
+         <motion.div whileInView={{ x: [30, 0], opacity: [0, 1] }} transition={{ duration: 0.5 }} className="bg-[#F8FFF1] w-full h-full pl-[313px] py-[50px] px-[65px] flex flex-row gap-[65px] items-start justify-start relative">
             <div className="py-[50px] px-[65px] flex flex-col gap-10 items-end justify-end relative">
                <div className="flex flex-col gap-6 items-start justify-start shrink-0 relative">
                   <div className="p-2.5 flex flex-row gap-2.5 items-start justify-start shrink-0 relative">
-                     <div className="font-poppins font-bold text-xl text-web-green-500 text-left relative">
-                        Artikel Dokter
-                     </div>
+                     <div className="font-poppins font-bold text-xl text-web-green-500 text-left relative">Artikel Dokter</div>
                   </div>
                   <div className="flex flex-row gap-0 items-start justify-start shrink-0 relative">
                      <input
@@ -175,9 +165,7 @@ export default function AdminArticleTables() {
                         className="font-poppins font-normal text-xs/[120%] text-neutral-900 text-left relative border-solid border-web-green-300 border pt-2.5 pr-0 pb-2.5 pl-2.5 flex flex-row gap-2.5 items-center justify-start shrink-0 w-[559px] h-[50px]"
                         placeholder="Cari Artikel"
                      />
-                     <button className="font-poppins font-semibold text-xs/[120%] text-neutral-0 text-left bg-web-green-300 pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[81px] h-[50px] relative">
-                        Cari
-                     </button>
+                     <button className="font-poppins font-semibold text-xs/[120%] text-neutral-0 text-left bg-web-green-300 pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[81px] h-[50px] relative">Cari</button>
                   </div>
                   <div className="flex flex-row gap-0 items-start justify-start shrink-0 relative">
                      <div className="flex flex-col gap-0 items-start justify-start shrink-0 relative">
@@ -185,48 +173,25 @@ export default function AdminArticleTables() {
                            <thead>
                               <tr className="bg-web-green-400 font-inter font-semibold text-sm h-[43px]">
                                  {" "}
-                                 <th className=" w-[82px] px-4 py-3 text-white">
-                                    No
-                                 </th>
-                                 <th className=" w-[372px] text-white">
-                                    Nama Dokter
-                                 </th>
-                                 <th className="text-white w-[225px]">
-                                    Judul Artikel
-                                 </th>
-                                 <th className="text-white w-[183px] ">
-                                    Kategori
-                                 </th>
-                                 <th className=" text-white w-[131px]">
-                                    Tanggal
-                                 </th>
+                                 <th className=" w-[82px] px-4 py-3 text-white">No</th>
+                                 <th className=" w-[372px] text-white">Nama Dokter</th>
+                                 <th className="text-white w-[225px]">Judul Artikel</th>
+                                 <th className="text-white w-[183px] ">Kategori</th>
+                                 <th className=" text-white w-[131px]">Tanggal</th>
                                  <th className=" text-white w-[317px]">Aksi</th>
                               </tr>
                            </thead>
                            <tbody className="">
                               {currentArticles &&
                                  currentArticles.map((article, index) => (
-                                    <tr
-                                       key={article.id}
-                                       className="font-poppins font-normal text-[14px]"
-                                    >
-                                       <td className="border border-success-green-75 text-center ">
-                                          {baseIndex + index}
-                                       </td>
-                                       <td className="border border-success-green-75 pl-2 ">
-                                          {article.doctor_name}
-                                       </td>
+                                    <tr key={article.id} className="font-poppins font-normal text-[14px]">
+                                       <td className="border border-success-green-75 text-center ">{baseIndex + index}</td>
+                                       <td className="border border-success-green-75 pl-2 ">{article.doctor_name}</td>
                                        <td className="border border-success-green-75 text-center font-inter text-[#001AFF] underline">
-                                          <Link href={"#"}>
-                                             {article.title}
-                                          </Link>
+                                          <Link href={"#"}>{article.title}</Link>
                                        </td>
-                                       <td className="border border-success-green-75 text-center ">
-                                          {article.category}
-                                       </td>
-                                       <td className="border border-success-green-75 text-center ">
-                                          {article.date}
-                                       </td>
+                                       <td className="border border-success-green-75 text-center ">{article.category}</td>
+                                       <td className="border border-success-green-75 text-center ">{article.date}</td>
 
                                        <td className="border border-success-green-75 text-center flex justify-center px-10 gap-2">
                                           <button
@@ -234,9 +199,7 @@ export default function AdminArticleTables() {
                                                 variant: "default",
                                                 size: "default",
                                              })}
-                                             onClick={() =>
-                                                handleArticleAccept(article.id)
-                                             }
+                                             onClick={() => handleArticleAccept(article.id)}
                                              style={{
                                                 marginTop: 18.5,
                                                 marginBottom: 18.5,
@@ -249,9 +212,7 @@ export default function AdminArticleTables() {
                                                 variant: "warning",
                                                 size: "default",
                                              })}
-                                             onClick={() =>
-                                                handleArticleReject(article.id)
-                                             }
+                                             onClick={() => handleArticleReject(article.id)}
                                              style={{
                                                 marginTop: 18.5,
                                                 marginBottom: 18.5,
@@ -264,9 +225,7 @@ export default function AdminArticleTables() {
                                                 variant: "danger",
                                                 size: "default",
                                              })}
-                                             onClick={() =>
-                                                handleArticleDelete(article.id)
-                                             }
+                                             onClick={() => handleArticleDelete(article.id)}
                                              style={{
                                                 marginTop: 18.5,
                                                 marginBottom: 18.5,
@@ -283,15 +242,10 @@ export default function AdminArticleTables() {
                   </div>
                </div>
                <div>
-                  <PaginationAlt
-                     currentPage={currentPage}
-                     articlePerPages={articlesPerPage}
-                     totalPages={totalPages}
-                     onPageChange={handlePageChange}
-                  />
+                  <PaginationAlt currentPage={currentPage} articlePerPages={articlesPerPage} totalPages={totalPages} onPageChange={handlePageChange} />
                </div>
             </div>
-         </div>
+         </motion.div>
       </>
    );
 }

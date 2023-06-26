@@ -1,11 +1,11 @@
-import { atom, useAtom } from 'jotai';
-import useSWR, { mutate } from 'swr';
-import Cookies from 'js-cookie';
+import { atom, useAtom } from "jotai";
+import useSWR, { mutate } from "swr";
+import Cookies from "js-cookie";
 
 export const dataDoctorAtom = atom(null);
 
-const fetcher = (url) => {
-   const token = Cookies.get('adminDoctor');
+const fetcher = async (url) => {
+   const token = Cookies.get("adminToken");
    return fetch(url, {
       headers: {
          Authorization: `Bearer ${token}`,
@@ -13,11 +13,11 @@ const fetcher = (url) => {
    }).then((res) => res.json());
 };
 
-export default function useAkunDoctor() {
+export function useAkunDoctor() {
    const [dataDoctor, setDataDoctor] = useAtom(dataDoctorAtom);
-   useSWR('https://capstone-project.duckdns.org:8080/admin/doctors', fetcher, {
+   const { data, error } = useSWR("https://capstone-project.duckdns.org:8080/admin/doctors", fetcher, {
       onSuccess: (data) => {
-         setDataDoctor(data.doctors);
+         setDataDoctor(data);
       },
       onError: (error) => {
          setError(error);

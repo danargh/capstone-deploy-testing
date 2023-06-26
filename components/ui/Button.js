@@ -234,7 +234,25 @@ export const LoginUserButton = ({ onClick, children }) => {
 
 export const RegisterDokterButton = ({ onClick, children }) => {
    return (
-      <motion.button whileHover={{ transition: 2, backgroundColor: '#63863E' }} type="submit" className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+      <motion.button id="register-dokter" whileHover={{ transition: 2, backgroundColor: '#63863E' }} type="submit" className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+         <div style={{ display: 'flex', alignItems: 'center' }}>
+            <p className={text_variants_poppins({ size: 'sm' })}>{children}</p>
+         </div>
+      </motion.button>
+   );
+};
+export const NextStep1RegisterDokterButton = ({ onClick, children }) => {
+   return (
+      <motion.button id="lanjut-step-register" whileHover={{ transition: 2, backgroundColor: '#63863E' }} type="submit" className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
+         <div style={{ display: 'flex', alignItems: 'center' }}>
+            <p className={text_variants_poppins({ size: 'sm' })}>{children}</p>
+         </div>
+      </motion.button>
+   );
+};
+export const NextStep2RegisterDokterButton = ({ onClick, children }) => {
+   return (
+      <motion.button id="lanjut-step-register" whileHover={{ transition: 2, backgroundColor: '#63863E' }} type="submit" className={button_variants({ variant: 'default', size: 'default' })} onClick={onClick}>
          <div style={{ display: 'flex', alignItems: 'center' }}>
             <p className={text_variants_poppins({ size: 'sm' })}>{children}</p>
          </div>

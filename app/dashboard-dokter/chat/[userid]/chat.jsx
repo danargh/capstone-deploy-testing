@@ -3,16 +3,17 @@
 import React from "react";
 
 export default function Chat({ message }) {
-    
    return (
       <>
-      
-      {message &&
+         {message &&
             message?.map((message, index) => (
-            <React.Fragment key={index}>
-               <ChatBox message={message.message} type={message.type || 'doctor'} />
-            </React.Fragment>
-         ))}
+               <React.Fragment key={index}>
+                  <ChatBox
+                     message={message.message}
+                     type={message.type || "doctor"}
+                  />
+               </React.Fragment>
+            ))}
       </>
    );
 }
