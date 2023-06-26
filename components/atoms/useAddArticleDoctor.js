@@ -1,13 +1,13 @@
-import { atom, useAtom } from 'jotai';
-import { mutate } from 'swr';
-import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { atom, useAtom } from "jotai";
+import { mutate } from "swr";
+import Swal from "sweetalert2";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
-export const artikelAtom = atom('');
-export const categoryAtom = atom('');
-export const contentAtom = atom('');
-export const thumbnailatom = atom('');
+export const artikelAtom = atom("");
+export const categoryAtom = atom("");
+export const contentAtom = atom("");
+export const thumbnailatom = atom("");
 
 export function useAddArticleDoctor() {
    const router = useRouter();
@@ -18,20 +18,20 @@ export function useAddArticleDoctor() {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      const token = Cookies.get('doctorToken');
+      const token = Cookies.get("doctorToken");
       const data = new FormData();
-      data.append('title', title);
-      data.append('category', category);
-      data.append('content', content);
-      data.append('thumbnail', thumbnail);
+      data.append("title", title);
+      data.append("category", category);
+      data.append("content", content);
+      data.append("thumbnail", thumbnail);
       if (content.length < 250) {
-         alert('Detail Artikel harus memiliki minimal 250 karakter!');
+         alert("Detail Artikel harus memiliki minimal 250 karakter!");
          return;
       }
 
       try {
-         const response = await fetch('https://capstone-project.duckdns.org:8080/doctor/articles', {
-            method: 'POST',
+         const response = await fetch("https://capstone-project.duckdns.org:8080/doctor/articles", {
+            method: "POST",
             headers: {
                Authorization: `Bearer ${token}`,
             },
@@ -39,24 +39,25 @@ export function useAddArticleDoctor() {
          });
 
          if (!response.ok) {
-            throw new Error('Error adding article');
+            throw new Error("Error adding article");
          }
 
          const responseData = await response.json();
          console.log(responseData);
 
-         mutate('https://capstone-project.duckdns.org:8080/doctor/articles');
+         mutate("https://capstone-project.duckdns.org:8080/doctor/articles");
 
          Swal.fire({
-            title: 'Berhasil',
-            text: 'Artikel berhasil ditambahkan',
-            icon: 'success',
-            confirmButtonText: 'OK',
+            title: "Berhasil",
+            text: "Artikel berhasil ditambahkan",
+            icon: "success",
+            confirmButtonText: "OK",
          });
       } catch (error) {
          console.error(error);
+         Swal.fire("Maaf Artikel Gagal Diunggah Ketuk dimana saja untuk menutup halaman ini.", "error");
       }
-      router.push('/dashboard-dokter/data-artikel');
+      router.push("/dashboard-dokter/data-artikel");
    };
    //    const handleSubmit = async (e) => {
    //       e.preventDefault();

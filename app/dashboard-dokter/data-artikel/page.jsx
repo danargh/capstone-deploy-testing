@@ -45,7 +45,7 @@ export default function page() {
             </div>
 
             <div className="relative flex pt-10"></div>
-            <table className="border-collapse borde ml-3 border-success-green-100 w-[1370px]">
+            <table id="tabel-artikel-dokter" className="border-collapse borde ml-3 border-success-green-100 w-[1370px]">
                <thead className="">
                   <tr className="bg-[#8EBF59] font-semibold h-[43px]">
                      {' '}
@@ -73,12 +73,12 @@ export default function page() {
 
                            <td className="border border-success-green-100 text-center flex justify-center px-10 gap-2">
                               <Link href="/data-artikel/edit/[id]" as={`/dashboard-dokter/data-artikel/edit/${artikel.id}`}>
-                                 <button className={button_variants({ variant: 'default', size: 'default' })} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
+                                 <button id="edit-artikel-dokter" className={button_variants({ variant: 'default', size: 'default' })} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
                                     Edit
                                  </button>
                               </Link>
 
-                              <button className={button_variants({ variant: 'danger', size: 'default' })} onClick={() => handleDelete(artikel.id)} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
+                              <button id="hapus-artikel-dokter" className={button_variants({ variant: 'danger', size: 'default' })} onClick={() => handleDelete(artikel.id)} style={{ marginTop: 18.5, marginBottom: 18.5 }}>
                                  Hapus
                               </button>
                            </td>

@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 import Cookies from "js-cookie";
 
 export default function Profile() {
-   const { data: dokter, error, isLoading } = getUserDoctor();
+   const { data: dokter, error, isLoading, mutate } = getUserDoctor();
 
    const [fullName, setFullName] = useState("");
    const [displayName, setDisplayName] = useState("");
@@ -106,6 +106,7 @@ export default function Profile() {
 
          if (data.message === "success update doctor") {
             Swal.fire("Update Profile Berhasil", "Terima kasih sudah melengkapi data", "success");
+            mutate();
          } else {
             Swal.fire("Maaf Update Profile Gagal", "Pastikan data Profile sesuai dengan ketentuan.", "error");
          }

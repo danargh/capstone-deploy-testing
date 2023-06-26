@@ -13,6 +13,7 @@ export default function AdminArticleTables() {
    const [currentPage, setCurrentPage] = useState(1);
    const [baseIndex, setBaseIndex] = useState(1);
    const [articlesPerPage] = useState(13);
+   const [searchQuery, setSearchQuery] = useState("");
 
    // get the data
    const { articleData, articleError, articleMutate, articleEndpoint, token } = ArticleAdminAPI();
@@ -24,7 +25,17 @@ export default function AdminArticleTables() {
    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
 
    // Slice the articleData array to get the articles for the current page
-   const currentArticles = articles ? articles.slice(indexOfFirstArticle, indexOfLastArticle) : [];
+
+   const filteredArticles = articles
+      ? articles.filter((article) =>
+           article.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : [];
+
+   const currentArticles = articles
+      ? filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle)
+      : [];
+
 
    // Calculate the total number of pages based on the articlesPerPage
    const totalPages = Math.ceil((articles?.length || 0) / articlesPerPage);
@@ -39,7 +50,7 @@ export default function AdminArticleTables() {
    const handleArticleAccept = async (id) => {
       Swal.fire({
          title: "Apakah Anda yakin?",
-         text: "Apakah kamu yakin ingin menyetujui artikel ini?",
+         text: "Apakah kamu yakin ingin mengunggah artikel ini?",
          icon: "warning",
          showCancelButton: true,
          confirmButtonColor: "#3085d6",
@@ -63,13 +74,17 @@ export default function AdminArticleTables() {
                if (response.ok) {
                   const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Terhapus!", "Data diterima.", "success");
+                  Swal.fire(
+                     "Berhasil!",
+                     "Yeyy Artikel Berhasil Diunggah.",
+                     "success"
+                  );
                } else {
-                  console.error("Gagal menghapus data:", response);
-                  throw new Error("Gagal menghapus data");
+                  console.error("Gagal mengunggah data:", response);
+                  throw new Error("Gagal mengunggah data");
                }
             } catch (error) {
-               Swal.fire("Terjadi kesalahan", error.message, "error");
+               Swal.fire("Maaf Artikel Gagal Diunggah", error.message, "error");
             }
          }
       });
@@ -103,10 +118,14 @@ export default function AdminArticleTables() {
                if (response.ok) {
                   const updatedData = articles.filter((article) => article.id !== id);
                   mutateArticleData(updatedData, false);
-                  Swal.fire("Ditolak!", "Data telah Ditolak.", "success");
+                  Swal.fire(
+                     "Ditolak!",
+                     "Yeyy Artikel Berhasil Ditolak.",
+                     "success"
+                  );
                } else {
-                  console.error("Gagal menghapus data:", response);
-                  throw new Error("Gagal menghapus data");
+                  console.error("Gagal menolak data:", response);
+                  throw new Error("Gagal menolak data");
                }
             } catch (error) {
                Swal.fire("Terjadi kesalahan", error.message, "error");
@@ -164,6 +183,8 @@ export default function AdminArticleTables() {
                         type="text"
                         className="font-poppins font-normal text-xs/[120%] text-neutral-900 text-left relative border-solid border-web-green-300 border pt-2.5 pr-0 pb-2.5 pl-2.5 flex flex-row gap-2.5 items-center justify-start shrink-0 w-[559px] h-[50px]"
                         placeholder="Cari Artikel"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                      />
                      <button className="font-poppins font-semibold text-xs/[120%] text-neutral-0 text-left bg-web-green-300 pt-4 pr-3 pb-4 pl-3 flex flex-row gap-2.5 items-center justify-center shrink-0 w-[81px] h-[50px] relative">Cari</button>
                   </div>
@@ -188,7 +209,16 @@ export default function AdminArticleTables() {
                                        <td className="border border-success-green-75 text-center ">{baseIndex + index}</td>
                                        <td className="border border-success-green-75 pl-2 ">{article.doctor_name}</td>
                                        <td className="border border-success-green-75 text-center font-inter text-[#001AFF] underline">
-                                          <Link href={"#"}>{article.title}</Link>
+                                          <Link href={`/article-preview/${article.id}`}>
+                                             {article.title}
+                                          </Link>
+                                       </td>
+                                       <td className="border border-success-green-75 text-center ">
+                                          {article.category}
+                                       </td>
+                                       <td className="border border-success-green-75 text-center ">
+                                          {article.date}
+
                                        </td>
                                        <td className="border border-success-green-75 text-center ">{article.category}</td>
                                        <td className="border border-success-green-75 text-center ">{article.date}</td>
