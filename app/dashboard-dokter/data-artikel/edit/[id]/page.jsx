@@ -53,7 +53,7 @@ export default function page({ params }) {
          });
          console.log(response);
          if (!response.ok) {
-            throw new Error('Error updating article');
+            throw new Error('Maaf Artikel Gagal Diunggah Ketuk dimana saja untuk menutup halaman ini');
          }
          const updatedData = await response.json();
          mutate(`https://capstone-project.duckdns.org:8080/doctor/articles/${id}`);

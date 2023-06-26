@@ -5,6 +5,7 @@ import { KirimArtikelButton } from '@/components/ui/Button';
 import InputFile from '@/components/forms/input-file';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
+import { useFormik } from 'formik';
 import { ArrowBackArtikelButton } from '@/components/ui/Button';
 import { useAddArticleDoctor } from '@/components/atoms/useAddArticleDoctor';
 
@@ -16,6 +17,7 @@ export default function Page() {
    const { title, setTitle, category, setCategory, content, setContent, thumbnail, setThumbnail, handleSubmit } = useAddArticleDoctor();
    const [selectedFile, setSelectedFile] = useState(null);
 
+   //input file maksimal 3MB
    const handleFileChange = (event) => {
       const file = event.target.files[0];
       if (file.size > 3000000) {
@@ -34,7 +36,7 @@ export default function Page() {
                   <ArrowBackArtikelButton />
                </Link>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form id="form-tambah-artikel-dokter" onSubmit={handleSubmit}>
                <div className="mx-24" style={{ paddingTop: 17 }}>
                   <span className="text-sm">Judul Artikel</span>
                   <br />
@@ -42,7 +44,7 @@ export default function Page() {
                      Maksimal 250 Karakter
                   </span>
                   <div className="" style={{ width: 914 }}>
-                     <input type="text" placeholder="Masukkan Judul Artikel" className="w-full rounded-lg" onChange={(e) => setTitle(e.target.value)} required maxLength="250" value={title} />
+                     <input id="input-judul-artikel" type="text" placeholder="Masukkan Judul Artikel" className="w-full rounded-lg" onChange={(e) => setTitle(e.target.value)} required maxLength="250" value={title} />
                   </div>
                   <div className="" style={{ paddingTop: 31 }}>
                      <span className="text-sm">Detail Artikel</span>
@@ -51,7 +53,7 @@ export default function Page() {
                         Minimal 250 Karakter
                      </span>
                   </div>
-                  <ReactQuill theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={content} onChange={setContent} />
+                  <ReactQuill id="input-konten-artikel" theme="snow" placeholder="Masukkan Detail Artikel" style={{ width: 1233, height: 334, paddingBottom: 36 }} value={content} onChange={setContent} />
                   <div className="" style={{ paddingTop: 36 }}>
                      <span className="text-sm">Tambahkan Gambar</span>
                      <br />
@@ -68,7 +70,7 @@ export default function Page() {
                      <p className="text-sm font-bold pt-[35px] mb-5">Kategori Artikel</p>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="radio-deperesi"
                            type="radio"
                            value="Depresi"
                            name="kategori"
@@ -83,7 +85,7 @@ export default function Page() {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="radio-gangguna-kepribadian"
                            type="radio"
                            value="Gangguan Kepribadian"
                            name="kategori"
@@ -98,7 +100,7 @@ export default function Page() {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="radio-gangguan-tidur"
                            type="radio"
                            value="Gangguan Tidur"
                            name="kategori"
@@ -113,7 +115,7 @@ export default function Page() {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="radio-kesehatan-mental"
                            type="radio"
                            value="Kesehatan Mental"
                            name="kategori"
@@ -128,7 +130,7 @@ export default function Page() {
                      </div>
                      <div className="flex items-center mb-4">
                         <input
-                           id=""
+                           id="radio-stress"
                            type="radio"
                            value="Stress"
                            name="kategori"
